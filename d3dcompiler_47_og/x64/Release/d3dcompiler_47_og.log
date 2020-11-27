@@ -1,17 +1,12 @@
-﻿  ccPlayer.cpp
-C:\Users\Ares\Downloads\ns4moddingapi-1.5a\d3dcompiler_47_og\ccPlayer.cpp(283,2): warning C4060: switch statement contains no 'case' or 'default' labels
-C:\Users\Ares\Downloads\ns4moddingapi-1.5a\d3dcompiler_47_og\ccPlayer.cpp(295,2): warning C4060: switch statement contains no 'case' or 'default' labels
-C:\Users\Ares\Downloads\ns4moddingapi-1.5a\d3dcompiler_47_og\ccPlayer.cpp(556,28): warning C4091: '': ignored on left of 'void' when no variable is declared
-C:\Users\Ares\Downloads\ns4moddingapi-1.5a\d3dcompiler_47_og\ccPlayer.cpp(692,28): warning C4091: '': ignored on left of 'void' when no variable is declared
-C:\Users\Ares\Downloads\ns4moddingapi-1.5a\d3dcompiler_47_og\ccPlayer.cpp(756,1): warning C4506: no definition for inline function 'unsigned int moddingApi::ccGameProperties::str2int(const char *,int)'
-     Creating library C:\Users\Ares\Downloads\ns4moddingapi-1.5a\x64\Release\d3dcompiler_47.lib and object C:\Users\Ares\Downloads\ns4moddingapi-1.5a\x64\Release\d3dcompiler_47.exp
-d3dcompiler_47.exp : warning LNK4070: /OUT:d3dcompiler_47_og.dll directive in .EXP differs from output filename 'C:\Users\Ares\Downloads\ns4moddingapi-1.5a\x64\Release\d3dcompiler_47.dll'; ignoring directive
+﻿  Assembling d3dcompiler_47_og_asm.asm...
+PGOMGR : warning PG0188: No .PGC files matching 'D:\Perfect Storm API\Perfect-Storm-API\x64\Release\d3dcompiler_47!*.pgc' were found.
+    Reading PGD file 1: D:\Perfect Storm API\Perfect-Storm-API\x64\Release\d3dcompiler_47.pgd
+D:\Perfect Storm API\Perfect-Storm-API\x64\Release\d3dcompiler_47.pgd : warning C4961: No profile data was merged into 'D:\Perfect Storm API\Perfect-Storm-API\x64\Release\d3dcompiler_47.pgd', profile-guided optimizations disabled
+     Creating library D:\Perfect Storm API\Perfect-Storm-API\x64\Release\d3dcompiler_47.lib and object D:\Perfect Storm API\Perfect-Storm-API\x64\Release\d3dcompiler_47.exp
+d3dcompiler_47.exp : warning LNK4070: /OUT:d3dcompiler_47_og.dll directive in .EXP differs from output filename 'D:\Perfect Storm API\Perfect-Storm-API\x64\Release\d3dcompiler_47.dll'; ignoring directive
   Generating code
-  0 of 1640 functions ( 0.0%) were compiled, the rest were copied from previous compilation.
-    0 functions were new in current compilation
-    0 functions had inline decision re-evaluated but remain unchanged
   Finished generating code
-d3dcompiler_47.exp : warning LNK4070: /OUT:d3dcompiler_47_og.dll directive in .EXP differs from output filename 'C:\Users\Ares\Downloads\ns4moddingapi-1.5a\x64\Release\d3dcompiler_47.dll'; ignoring directive
-CasualLibrary.lib(Memory.obj) : warning LNK4099: PDB 'CasualLibrary.pdb' was not found with 'CasualLibrary.lib(Memory.obj)' or at 'C:\Users\Ares\Downloads\ns4moddingapi-1.5a\x64\Release\CasualLibrary.pdb'; linking object as if no debug info
-CasualLibrary.lib(Helper.obj) : warning LNK4099: PDB 'CasualLibrary.pdb' was not found with 'CasualLibrary.lib(Helper.obj)' or at 'C:\Users\Ares\Downloads\ns4moddingapi-1.5a\x64\Release\CasualLibrary.pdb'; linking object as if no debug info
-  d3dcompiler_47_og.vcxproj -> C:\Users\Ares\Downloads\ns4moddingapi-1.5a\x64\Release\d3dcompiler_47.dll
+d3dcompiler_47.exp : warning LNK4070: /OUT:d3dcompiler_47_og.dll directive in .EXP differs from output filename 'D:\Perfect Storm API\Perfect-Storm-API\x64\Release\d3dcompiler_47.dll'; ignoring directive
+CasualLibrary.lib(Memory.obj) : warning LNK4099: PDB 'CasualLibrary.pdb' was not found with 'CasualLibrary.lib(Memory.obj)' or at 'D:\Perfect Storm API\Perfect-Storm-API\x64\Release\CasualLibrary.pdb'; linking object as if no debug info
+CasualLibrary.lib(Helper.obj) : warning LNK4099: PDB 'CasualLibrary.pdb' was not found with 'CasualLibrary.lib(Helper.obj)' or at 'D:\Perfect Storm API\Perfect-Storm-API\x64\Release\CasualLibrary.pdb'; linking object as if no debug info
+  d3dcompiler_47_og.vcxproj -> D:\Perfect Storm API\Perfect-Storm-API\x64\Release\d3dcompiler_47.dll
