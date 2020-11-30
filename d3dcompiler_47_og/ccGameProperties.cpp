@@ -24,11 +24,46 @@ using namespace std;
 using namespace moddingApi;
 using namespace ManageMemory;
 
+int ccGameProperties::getCurrentTrack()
+{
+	Address baseAddr = NSUNS4memory.getModule("NSUNS4.exe");
+	uintptr_t getCurrentTrack = NSUNS4memory.getAddress(baseAddr + 0x016B61B0, { 0x9C }).get();
+	int v = NSUNS4memory.read<int>(getCurrentTrack);
+	return v;
+}
 int ccGameProperties::isOnMenu()
 {
 	Address baseAddr = NSUNS4memory.getModule("NSUNS4.exe");
-	uintptr_t isOnMenuAddr = NSUNS4memory.getAddress(baseAddr + 0x0161C8E0, { 0x58, 0xD80, 0xD8, 0x90, 0x390, 0x80 }).get();
+	uintptr_t isOnMenuAddr = NSUNS4memory.getAddress(baseAddr + 0x0161C8E0, { 0x58, 0x30, 0x38, 0x20, 0x30, 0x250, 0x830 }).get();
 	int v = NSUNS4memory.read<int>(isOnMenuAddr);
+	return v;
+}
+int ccGameProperties::isOnCharacterSelect()
+{
+	int n;
+	Address baseAddr = NSUNS4memory.getModule("NSUNS4.exe");
+	uintptr_t isOnStageSelect2Addr = NSUNS4memory.getAddress(baseAddr + 0x016B6480, { 0x0, 0x18, 0x288 }).get();
+	string isOnStageSelect2 = NSUNS4memory.readString(isOnStageSelect2Addr, 28);
+	string filepath = "data\\ui\\flash\\OTHER\\stagesel";
+	return n;
+}
+int ccGameProperties::isOnStageSelect()
+{
+	int v;
+	Address baseAddr = NSUNS4memory.getModule("NSUNS4.exe");
+	uintptr_t isOnStageSelectAddr = NSUNS4memory.getAddress(baseAddr + 0x08D32FD8, { 0x30, 0x28, 0x20, 0x70, 0x18, 0x198 }).get();
+	int	isOnStageSelect = NSUNS4memory.read<int>(isOnStageSelectAddr);
+	uintptr_t isOnStageSelect2Addr = NSUNS4memory.getAddress(baseAddr + 0x016B6480, { 0x0, 0x18, 0x288 }).get();
+	string isOnStageSelect2 = NSUNS4memory.readString(isOnStageSelect2Addr, 28);
+	string filepath = "data\\ui\\flash\\OTHER\\stagesel";
+	if (isOnStageSelect == 1 && isOnStageSelect2 == filepath)
+	{
+		v = 1;
+	}
+	else
+	{
+		v = 0;
+	}
 	return v;
 }
 

@@ -49,6 +49,30 @@
     <Filter Include="Source Files\CasualGamer">
       <UniqueIdentifier>{e36cd54f-28ce-4758-b08e-d134a7c5e20c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="SDL2">
+      <UniqueIdentifier>{f9512016-6d66-4d91-98b9-7aeb9fcb62ed}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\SDL2">
+      <UniqueIdentifier>{e36d0c0c-5644-4101-91c4-08b5a247326b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\SDL2">
+      <UniqueIdentifier>{0c4757dd-4bb8-42a7-a3ee-0c1ca8477642}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Settings">
+      <UniqueIdentifier>{15d62ebe-d333-4ff5-9160-df67ffe859fc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Music">
+      <UniqueIdentifier>{52c29af8-3743-43ba-85f7-7bdae894ce4f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Music">
+      <UniqueIdentifier>{92b739bc-b4ae-4de8-832f-2911c9425781}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Stage">
+      <UniqueIdentifier>{6ba1e460-ea2e-444b-b81d-38a579ece424}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Stage">
+      <UniqueIdentifier>{9ce21614-2833-4efd-8e71-1644b687e356}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="API_Console.cpp">
@@ -219,6 +243,21 @@
     <ClCompile Include="CasualGamer.cpp">
       <Filter>Source Files\CasualGamer</Filter>
     </ClCompile>
+    <ClCompile Include="SDL2\SDL2Music.cpp">
+      <Filter>Source Files\SDL2</Filter>
+    </ClCompile>
+    <ClCompile Include="SDL2\SDL2SoundEffects.cpp">
+      <Filter>Source Files\SDL2</Filter>
+    </ClCompile>
+    <ClCompile Include="SDL2\SDLInit.cpp">
+      <Filter>Source Files\SDL2</Filter>
+    </ClCompile>
+    <ClCompile Include="Stage.cpp">
+      <Filter>Source Files\Stage</Filter>
+    </ClCompile>
+    <ClCompile Include="Music.cpp">
+      <Filter>Source Files\Music</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="API_Console.h">
@@ -367,6 +406,24 @@
     </ClInclude>
     <ClInclude Include="ManageMemory.h">
       <Filter>Header Files\CasualGamer</Filter>
+    </ClInclude>
+    <ClInclude Include="SDL2\SDL2Music.h">
+      <Filter>Header Files\SDL2</Filter>
+    </ClInclude>
+    <ClInclude Include="SDL2\SDL2SoundEffects.h">
+      <Filter>Header Files\SDL2</Filter>
+    </ClInclude>
+    <ClInclude Include="SDL2\SDLInit.h">
+      <Filter>Header Files\SDL2</Filter>
+    </ClInclude>
+    <ClInclude Include="Settings.h">
+      <Filter>Header Files\Settings</Filter>
+    </ClInclude>
+    <ClInclude Include="Music.h">
+      <Filter>Header Files\Music</Filter>
+    </ClInclude>
+    <ClInclude Include="Stage.h">
+      <Filter>Header Files\Stage</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

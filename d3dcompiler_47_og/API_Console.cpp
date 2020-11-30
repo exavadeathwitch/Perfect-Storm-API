@@ -11,7 +11,9 @@
 #include "ccCharacterFunctions.h"
 #include "ccBossIAFunctions.h"
 #include "HookFunctions.h"
-
+#include "SDL2/SDL2SoundEffects.h"
+#include "SDL2/SDL2Music.h"
+#include "SDL2/SDLInit.h"
 using namespace std;
 using namespace moddingApi;
 
@@ -46,6 +48,7 @@ void c_ccGroupBattleEventCameraMoveLookBegin();
 void c_ccGetGpPtr();
 void c_ccMultiMatchShowPlayerStatus();
 void c_ccGetCastPointer();
+void c_SoundTest();
 
 void API_Console::InitializeConsole()
 {
@@ -67,7 +70,7 @@ void API_Console::InitializeConsole()
 	AddCommand("ccGetGpPtr", (uintptr_t)c_ccGetGpPtr, 0);
 	AddCommand("ccMultiMatchShowPlayerStatus", (uintptr_t)c_ccMultiMatchShowPlayerStatus, 0);*/
 	AddCommand("GetCastPointer", (uintptr_t)c_ccGetCastPointer, 1);
-
+	AddCommand("SoundTest", (uintptr_t)c_SoundTest, 0);
 	//cout << std::hex << (d3dcompiler_47_og::moduleBase + 0x1653688) << endl;
 }
 
@@ -106,6 +109,14 @@ void c_ConvertMessage()
 void c_GetVersionNumber()
 {
 	//cout << ccGeneralGameFunctions::GetVersionNumber();
+}
+
+void c_SoundTest()
+{
+	SDL2Music music;
+	music.addMusicTrack("./0000_title.wav");
+	music.playMusicTrack(0);
+	cout << "Playing Sound" << endl;
 }
 
 void c_GetVersionString()

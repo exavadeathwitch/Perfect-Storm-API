@@ -9,7 +9,8 @@
 #include <string>
 #include <vector>
 #include <filesystem>
-
+#include "Stage.h"
+#include "Music.h"
 #include "ccPlayer.h"
 #include "d3dcompiler_47_og.h"
 #include "HookFunctions.h"
@@ -23,6 +24,7 @@
 #include "LuaHook_Commands.h"
 #include "Memory.h"
 #include "ManageMemory.h"
+#include "SDL2/SDL2Music.h"
 #pragma warning( disable: 4307 )
 
 using namespace std;
@@ -34,10 +36,8 @@ int prevBattle = 0;
 
 bool P1isguarding = 0;
 bool P1cantilt = 0;
-
 bool P2isguarding = 0;
 bool P2cantilt = 0;
-
 void ccPlayer::Start()
 {
 	// Currently this function does nothing.
@@ -79,7 +79,7 @@ void ccPlayer::Loop()
 	
 	uintptr_t baseAddr = Internal::Memory::getModule("NSUNS4.exe");
 	uintptr_t basecontrollerAddr = Internal::Memory::getAddress(baseAddr + 0x016BF5A8, { 0x0, 0x8, 0x3C8, 0x5F8, 0x160 });
-	
+
 	uintptr_t P1analogAddr = basecontrollerAddr + 0x2A;
 	uintptr_t P1ButtonAddr = basecontrollerAddr + 0x29;
 	uintptr_t P2analogAddr = basecontrollerAddr + 0x56;
@@ -89,9 +89,7 @@ void ccPlayer::Loop()
 	int p1analogNumber = Internal::Memory::read<uint8_t>(P1analogAddr);
 	int p2buttonNumber = Internal::Memory::read<uint8_t>(P2ButtonAddr);
 	int p2analogNumber = Internal::Memory::read<uint8_t>(P2analogAddr);
-
-
-
+	
 	// Get keyboard keys and update their state. This is useful for using keyboard hooks, like pressing a key to do a certain function.
 	/*Input::UpdateKeys();
 
@@ -107,12 +105,14 @@ void ccPlayer::Loop()
 		if (prevBattle == 0)
 		{
 			// Code for when we quit a battle
-			for (int x = 0; x < 6; x++)
+			for (int x = 0; x < 1; x++)
 			{
-				if (x < 1)
-				{
-					//cout << "Exited Battle" << endl;
-				}
+				stageisSelectedNumber = 0;
+				SDL2Music music;
+				music.Halt_Music();
+				cout << "Exited Battle" << endl;
+				stageselected = 0;
+
 			}
 		}
 		else
@@ -125,6 +125,9 @@ void ccPlayer::Loop()
 
 				if (s != 0 && p != 0)
 				{
+					cout << "Entered Battle" << endl;
+					Music::PlayStageMusicTrack();
+					stageisSelectedNumber = 0;
 					//int charaid = GetPlayerIntProperty(p, s, "characode");
 					//InitializeCharacter(charaid, x);
 					//cout << "Entered Battle" << endl;
@@ -205,6 +208,9 @@ void ccPlayer::Loop()
 		if ((GetPlayerIntProperty(esp2, ess2, "pstate") == 67) && (GetPlayerIntProperty(esp2, ess2, "attackid") == 151) && (GetPlayerIntProperty(esp2, ess2, "prevpstate") == 214)) { SetPlayerIntProperty(esp2, ess2, "npstate", 70); SetPlayerIntProperty(esp2, ess2, "pstateflag", 1); }
 		if ((GetPlayerIntProperty(esp2, ess2, "pstate") == 68) && (GetPlayerIntProperty(esp2, ess2, "attackid") == 171) && (GetPlayerIntProperty(esp2, ess2, "prevpstate") == 214)) { SetPlayerIntProperty(esp2, ess2, "npstate", 71); SetPlayerIntProperty(esp2, ess2, "pstateflag", 1); }
 
+		//Test
+		//if ((GetPlayerIntProperty(p, s, "attackid") == 229 && GetPlayerIntProperty(p, s, "issupport") == 1)) { SetPlayerIntProperty(p, s, "pstate", 63); }
+		//if ((GetPlayerIntProperty(p, s, "attackid") == 229 && GetPlayerIntProperty(p, s, "issupport") == 0)) { SetPlayerIntProperty(p, s, "pstate", 66); }
 		//NM to Grab P1
 		if (P1isguarding == 1)
 		{
@@ -259,10 +265,10 @@ void ccPlayer::Loop()
 			P2cantilt = 0;
 		}
 		// Custom player code in here
-		if (ccGameProperties::isOnMenu() == false && prevFrame != ccGeneralGameFunctions::GetCurrentFrame()) DoCharacterLoop(GetPlayerIntProperty(p, s, "characode"), x);
+		//if (ccGameProperties::isOnMenu() == false && prevFrame != ccGeneralGameFunctions::GetCurrentFrame()) DoCharacterLoop(GetPlayerIntProperty(p, s, "characode"), x);
 	}
 	// Get next frame
-	prevFrame = ccGeneralGameFunctions::GetCurrentFrame();
+	//prevFrame = ccGeneralGameFunctions::GetCurrentFrame();
 }
 
 uintptr_t ccPlayer::plMain[6] = { 0, 0, 0, 0, 0, 0};
@@ -533,6 +539,7 @@ int ccPlayer::GetPlayerIntProperty(uintptr_t p, uintptr_t s, char* prop)
 	case str2int("ditem"): val = NSUNS4memory.read<int>(s + 0x3C); break;
 	case str2int("litem"): val = NSUNS4memory.read<int>(s + 0x40); break;
 	case str2int("ritem"): val = NSUNS4memory.read<int>(s + 0x44); break;
+	case str2int("issupport"): val = NSUNS4memory.read<int>(p + 0xA98); break;
 	case str2int("characode"): val = NSUNS4memory.read<int>(p + 0xC1C); break;
 	case str2int("enablechar"): val = NSUNS4memory.read<int>(p + 0xC38); break;
 	case str2int("cancontrol"): val = NSUNS4memory.read<int>(p + 0xC3C); break;

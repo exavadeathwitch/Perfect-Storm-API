@@ -7,7 +7,7 @@
 #include <vector>
 #include <filesystem>
 #include <Xinput.h>
-
+#include "Stage.h"
 #include "ccMain.h"
 #include "API_Console.h"
 #include "d3dcompiler_47_og.h"
@@ -23,7 +23,7 @@
 using namespace ManageMemory;
 using namespace moddingApi;
 using namespace std;
-
+using namespace Stage;
 int Console_GetInt(char*);
 char * Console_GetString(char*);
 bool EnableAPI = false;
@@ -81,19 +81,20 @@ DWORD WINAPI ccMain::LoopConsole()
 
 	return 0;
 }
-bool test = 0;
+bool CGInitialized = 0;
 // Process the player
 DWORD WINAPI ccMain::LoopGame()
 {
 	while (true)
 	{
-		if (test == 0)
+		if (CGInitialized == 0)
 		{
 			cout << "Sleeping for 5 seconds" << endl;
 			Sleep(5000);
 			CasualGamer::InitializeMemory();
-			test = 1;
+			CGInitialized = 1;
 		}
+		stage::Loop();
 		ccPlayer::Loop();
 		Sleep(10);
 	}

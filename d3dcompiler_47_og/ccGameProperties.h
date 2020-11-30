@@ -10,8 +10,11 @@ namespace moddingApi
 	class ccGameProperties
 	{
 	public:
+		static int getCurrentTrack();
 		static int isOnBattle();
 		static int isOnMenu();
+		static int isOnStageSelect();
+		static int isOnCharacterSelect();
 		static std::string GetActiveWindowTitle();
 
 		static int __fastcall lua_pcallk(void* a1, int a2, int a3, int a4);
