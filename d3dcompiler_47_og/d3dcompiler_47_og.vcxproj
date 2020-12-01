@@ -82,8 +82,8 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
     <GenerateManifest>false</GenerateManifest>
-    <IncludePath>D:\Perfect Storm API\Perfect-Storm-API\d3dcompiler_47_og\src\SDL2_mixer\SDL2_mixer-2.0.4\include;D:\Perfect Storm API\Perfect-Storm-API\d3dcompiler_47_og\src\SDL2\SDL2-2.0.12\include;$(IncludePath)</IncludePath>
-    <LibraryPath>D:\Perfect Storm API\Perfect-Storm-API\d3dcompiler_47_og\src\SDL2_mixer\SDL2_mixer-2.0.4\lib\x64;D:\Perfect Storm API\Perfect-Storm-API\d3dcompiler_47_og\src\SDL2\SDL2-2.0.12\lib\x64;$(LibraryPath)</LibraryPath>
+    <IncludePath>C:\Users\Ares\Documents\GitHub\Perfect-Storm-API\d3dcompiler_47_og\src\SDL2_mixer\SDL2_mixer-2.0.4\include;C:\Users\Ares\Documents\GitHub\Perfect-Storm-API\d3dcompiler_47_og\src\SDL2\SDL2-2.0.12\include;D:\Perfect Storm API\Perfect-Storm-API\d3dcompiler_47_og\src\SDL2_mixer\SDL2_mixer-2.0.4\include;D:\Perfect Storm API\Perfect-Storm-API\d3dcompiler_47_og\src\SDL2\SDL2-2.0.12\include;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\Users\Ares\Documents\GitHub\Perfect-Storm-API\d3dcompiler_47_og\src\SDL2_mixer\SDL2_mixer-2.0.4\lib\x64;C:\Users\Ares\Documents\GitHub\Perfect-Storm-API\d3dcompiler_47_og\src\SDL2\SDL2-2.0.12\lib\x64;D:\Perfect Storm API\Perfect-Storm-API\d3dcompiler_47_og\src\SDL2_mixer\SDL2_mixer-2.0.4\lib\x64;D:\Perfect Storm API\Perfect-Storm-API\d3dcompiler_47_og\src\SDL2\SDL2-2.0.12\lib\x64;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
