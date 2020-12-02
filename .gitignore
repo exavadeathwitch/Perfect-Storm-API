@@ -103,3 +103,6 @@ d3dcompiler_47_og/d3dcompiler_47_og.vcxproj
 .vs/d3dcompiler_47_og/v16/Browse.VC.opendb
 .vs/d3dcompiler_47_og/v16/Browse.VC.db-wal
 .vs/d3dcompiler_47_og/v16/Browse.VC.db-shm
+.vs/d3dcompiler_47_og/v16/ipch/AutoPCH/2aa4285dc3dc94bd/CCPLAYER.ipch
+.vs/d3dcompiler_47_og/v16/ipch/AutoPCH/bd4c178c9ec539ba/API_CONSOLE.ipch
+.vs/d3dcompiler_47_og/v16/ipch/AutoPCH/bf33b9ccd33bce73/CHARACTER.ipch

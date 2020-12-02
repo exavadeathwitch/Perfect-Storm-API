@@ -73,6 +73,9 @@
     <Filter Include="Header Files\Stage">
       <UniqueIdentifier>{9ce21614-2833-4efd-8e71-1644b687e356}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Settings">
+      <UniqueIdentifier>{9241f51c-8dde-4bc7-9d8d-498c857126e6}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="API_Console.cpp">
@@ -258,6 +261,12 @@
     <ClCompile Include="Music.cpp">
       <Filter>Source Files\Music</Filter>
     </ClCompile>
+    <ClCompile Include="Character.cpp">
+      <Filter>Source Files\Player\Characters</Filter>
+    </ClCompile>
+    <ClCompile Include="Settings.cpp">
+      <Filter>Source Files\Settings</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="API_Console.h">
@@ -424,6 +433,9 @@
     </ClInclude>
     <ClInclude Include="Stage.h">
       <Filter>Header Files\Stage</Filter>
+    </ClInclude>
+    <ClInclude Include="Character.h">
+      <Filter>Header Files\Player\Characters</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -95,7 +95,7 @@ void ccPlayer::Loop()
 
 	if (Input::GetKeyDown('U'))
 	{
-		cout << std::hex << GetPlayerStatus(0) << endl;
+		cout << std::hex << GetPlayerStatus(0) << endl;   
 	}*/
 
 	// If the state of isOnBattle is different, then it means we entered/quitted a battle
@@ -177,7 +177,7 @@ void ccPlayer::Loop()
 		if (GetPlayerFloatProperty(sp2, ss2, "armor") < 45.0f) { SetPlayerFloatProperty(sp2, ss2, "armor", 45.0f); }
 		if (GetPlayerFloatProperty(esp2, ess2, "armor") < 45.0f) { SetPlayerFloatProperty(esp2, ess2, "armor", 45.0f); }
 
-		//Better Air Dash
+		//Better Air Chakra Dash
 		if ((GetPlayerIntProperty(p, s, "pstate") == 16) && (GetPlayerIntProperty(p, s, "attackid") == 37)) { SetPlayerFloatProperty(p, s, "anmspeed", ACDStartup); }
 		if (GetPlayerIntProperty(p, s, "attackid") == 38) { SetPlayerFloatProperty(p, s, "anmspeed", 1.0f); }
 		if ((GetPlayerIntProperty(sp1, ss1, "pstate") == 16) && (GetPlayerIntProperty(sp1, ss1, "attackid") == 37)) { SetPlayerFloatProperty(sp1, ss1, "anmspeed", ACDStartup); }

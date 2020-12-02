@@ -165,6 +165,7 @@
     <ClCompile Include="ccMemoryFunctions.cpp" />
     <ClCompile Include="ccPlayer.cpp" />
     <ClCompile Include="ccPlayerStruct.cpp" />
+    <ClCompile Include="Character.cpp" />
     <ClCompile Include="d3dcompiler_47_og.cpp" />
     <ClCompile Include="enet\callbacks.c" />
     <ClCompile Include="enet\compress.c" />
@@ -214,6 +215,7 @@
     <ClCompile Include="SDL2\SDL2Music.cpp" />
     <ClCompile Include="SDL2\SDL2SoundEffects.cpp" />
     <ClCompile Include="SDL2\SDLInit.cpp" />
+    <ClCompile Include="Settings.cpp" />
     <ClCompile Include="Stage.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -233,6 +235,7 @@
     <ClInclude Include="ccMemoryFunctions.h" />
     <ClInclude Include="ccPlayer.h" />
     <ClInclude Include="ccPlayerStruct.h" />
+    <ClInclude Include="Character.h" />
     <ClInclude Include="d3dcompiler_47_og.h" />
     <ClInclude Include="enet\callbacks.h" />
     <ClInclude Include="enet\enet.h" />
