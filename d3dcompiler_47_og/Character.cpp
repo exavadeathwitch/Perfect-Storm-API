@@ -6,17 +6,18 @@ using namespace moddingApi;
 void Character::Initialize(uintptr_t p, uintptr_t s)
 {
 	int characode = ccPlayer::GetPlayerIntProperty(p, s, "characode");
+	Character::SetParam1cmn(p, s, characode);
+
 	switch (characode)
 	{
-	case '159':
-		Character::SetParam7brt(p, s, characode);
-		break;
-	case '201':
-		Character::SetParam7ssx(p, s, characode);
-		break;
-	default:
-		Character::SetParam1cmn(p, s, characode);
-		break;
+		case '159':
+			Character::SetParam7brt(p, s, characode);
+			break;
+		case '201':
+			Character::SetParam7ssx(p, s, characode);
+			break;
+		default:
+			break;
 	}
 }
 
