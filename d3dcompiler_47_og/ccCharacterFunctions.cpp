@@ -1,3 +1,7 @@
+#pragma warning( disable: 6387 )
+#pragma warning( disable: 26451 )
+#pragma warning( disable: 6386 )
+
 #include <Winsock2.h>
 #include <windows.h>
 
