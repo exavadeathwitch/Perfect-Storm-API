@@ -1,18 +1,165 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
 <head>
   <title>Perfect Storm</title>
   <style type="text/css">
+    @font-face {
+        font-family: 'reggae';
+        src: url('FOT-Reggae_Std.ttf') format('truetype');
+    }
+    @font-face {
+        font-family: 'chiaro';
+        src: url('FOT-ChiaroStd-B.otf') format('opentype');
+    }
+    .container {
+        color: white !important;
+    }
+    body, main, footer {
+        background: rgb(30,30,30) !important;
+    }
+    .h1, h1 {
+        font-size: 2rem !important;
+    }
+    .jumbotron {
+        padding: 0 !important;
+        background: url(logo.png);
+        background-size: cover;
+        background-position: center;
+    }
+
+    .jumbotron .container {
+        max-width: 100% !important;
+        margin: 0 auto !important;
+        background: rgba(0,0,0,.6);
+        backdrop-filter: blur(1px);
+    }
+    .jumbotron .container .row {
+        width: 50% !important;
+        height: 400px !important;
+        margin: 0 auto !important;
+
+        display: flex !important;
+        justify-content: center;
+        align-items: center;
+
+        font-size: 20px;
+        color: white;
+    }
+    .jumbotron .container .row h1 { font-family: 'reggae'; font-size: 3rem !important; }
+    h2, h3, p, ul, li { font-family: 'chiaro'; }
+
+    .card {
+        background: rgb(50,50,50) !important;
+    }
+    .card-body {
+        color: white !important;
+    }
+
     .btn-success, .btn-primary {
-      color: white !important;
+        color: white !important;
     }
     footer {
-      background: #F5F5F5 !important;
-      padding: 25px !important;
+        padding: 25px !important;
+    }
+    hr { border-color: white !important; }
+
+    .container-1ov-mD {
+        display: grid;
+        grid-auto-flow: row;
+        grid-row-gap: .25rem;
+        text-indent: 0;
+        min-height: 0;
+        min-width: 0;
+        padding-top: .125rem;
+        padding-bottom: .125rem;
+        background: rgb(75, 75, 75);
+        color: white;
+        border-radius: 30px;
+    }
+    .wrapper-35wsBm.userSelectNone-Iy6XEP.cursorDefault-331ZcI {
+        background-color: var(--background-secondary);
+        border-radius: 4px;
+        padding: 16px;
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+        user-select: none;
+    }
+    .content-2U5lSY {
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-orient: horizontal;
+        -webkit-box-direction: normal;
+        -ms-flex-flow: row nowrap;
+        flex-flow: row nowrap;
+    }
+    .icon-3o6xvg.guildIconImage-3qTk45.guildIcon-lQ0uiM.iconSizeLarge-161qtT.iconActiveLarge-2nzn9z {
+        background-color: #36393f;
+        margin-right: 16px;
+        -webkit-box-flex: 0;
+        -ms-flex: 0 0 auto;
+        flex: 0 0 auto;
+        width: 50px;
+        height: 50px;
+        border-radius: 15px;
+        position: relative;
+        background-clip: padding-box;
+        background-position: 50%;
+        background-size: 100% 100%;
+    }
+    .flex-1xMQg5.flex-1O1GKY.vertical-V37hAW.flex-1O1GKY.directionColumn-35P_nr.justifyCenter-3D2jYp.alignStretch-DpGPf3.noWrap-3jynv6.guildInfo-1STtYi {
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+        flex-direction: column;
+    }
+    h3.inviteDestinationJoined-3W7Gue.inviteDestination-1fAcY7.base-1x0h_U.size16-1P40sf {
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        margin-bottom: 2px;
+        font-size: 16px;
+        line-height: 45px;
+    }
+    .btn-title {
+        outline: none;
+        text-decoration: none;
+    }
+    button.button-3To2tQ.height20-mO2eIN.button-38aScr.lookFilled-1Gx00P.colorGreen-29iAKY.buttonSize-DbrWhv.grow-q77ONN {
+        height: 40px;
+        padding-left: 20px;
+        padding-right: 20px;
+        color: #fff;
+        background-color: #43b581;
+        align-self: center;
+        margin-left: 10px;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        -webkit-box-flex: 0;
+        -ms-flex: 0 0 auto;
+        flex: 0 0 auto;
+        border: none;
+        border-radius: 5px;
+        outline: none;
+        text-decoration: none;
+    }
+
+    @media only screen and (max-width: 1024px) {
+      .jumbotron .container .row {
+          width: 80% !important;
+      }
+    }
+
+    @media only screen and (max-width: 678px) {
+      .jumbotron .container .row {
+          width: 100% !important;
+      }
     }
   </style>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
 </head>
 <body>
   <header>
@@ -20,20 +167,20 @@
   </header>
   <main role="main">
     <section class="jumbotron text-center" align="center">
-        <div class="container" style="background: url('logo.png')">
-            <h1 class="jumbotron-heading">The definitive version of Naruto Shippuden: Ultimate Ninja Storm 4.</h1>
-            <p>
-                As CC2 has neglected to fix bugs and balance characters as they are not focused on providing a competitive experience, 
-                we are taking this into our own hands. We want to provide an experience founded in the greatest aspects of Naruto Shippuden 
-                Ultimate Ninja Storm 4 while incorporating new gameplay ideas.
-            </p>
-            <div class="btn-group">
-                <button class="btn btn-sm btn-outline-secondary btn-success" type="button" onclick="window.open('download.txt')">
-                    Download v1.0.0
-                </button>
-                <button class="btn btn-sm btn-outline-secondary btn-primary" type="button" onclick="window.open(" https: //docs.google.com/document/d/1f0njHwVj1WNI_dk8lOz-_PzqjACF0H5Cn8TTVDrxQX0/edit?usp =sharing", "_blank" );">
-                    Changelog
-                </button>
+        <div class="container">
+            <div class="row">
+                <h1 class="jumbotron-heading">Perfect Storm</h1>
+                <p>
+                    As Naruto Shippuden: Ultimate Ninja Storm 4 is not competitively balanced, we are taking this into our own hands.
+                </p>
+                <div class="btn-group">
+                    <button class="btn btn-sm btn-outline-secondary btn-success" type="button" onclick="window.open('http://www.mediafire.com/file/cql25gjdl932gnh/Perfect_Storm_V1.6.7z/file', '_blank')">
+                        Download v1.6.0
+                    </button>
+                    <button class="btn btn-sm btn-outline-secondary btn-primary changelog" type="button" onclick="document.getElementsByClassName('changes')[0].scrollIntoView({ behavior: 'smooth' });">
+                        Changelog
+                    </button>
+                </div>
             </div>
         </div>
     </section>
@@ -41,42 +188,62 @@
     <div class="compare">
       <div class="container">
         <div class="row">
-          <div class="col-md-5 col-sm-6 col-xs-12">
+          <div class="col-md-4 col-sm-6 col-xs-12">
             <div class="card mb-4 box-shadow">
-              <img class="card-img-top version-logo" alt="Light Version Logo" src="Light Logo.png" />
               <div class="card-body">
+                <h1 class="card-text">
+                    Where to play with others
+                </h1>
                 <p class="card-text">
-                  Light Version strives to rebalance on a granular level, 
-                  retaining the core fundamentals of Storm. This is 
-                  aimed towards current Storm players that are looking 
-                  for the fundamentals they're accustomed to, or a 
-                  transitional period to Dark Version.
+                    Join the discord server for matchmaking and more information about the mod!<br />
+                    <br />
+                    <div class="container-1ov-mD">
+                        <div class="wrapper-35wsBm userSelectNone-Iy6XEP cursorDefault-331ZcI">
+                            <div class="content-2U5lSY">
+                                <div class="icon-3o6xvg guildIconImage-3qTk45 guildIcon-lQ0uiM iconSizeLarge-161qtT iconActiveLarge-2nzn9z" tabindex="0" role="button" style="background-image: url(&quot;https://cdn.discordapp.com/icons/420393601176961025/a_200c105e11f9358c88e3863eaf3adeaa.webp?size=128&quot;);"></div>
+                                    <div class="flex-1xMQg5 flex-1O1GKY vertical-V37hAW flex-1O1GKY directionColumn-35P_nr justifyCenter-3D2jYp alignStretch-DpGPf3 noWrap-3jynv6 guildInfo-1STtYi" style="flex: 1 1 auto;">
+                                        <div class="btn-title" role="button" tabindex="0" onclick="window.open('https://discord.gg/QDFugdb', '_blank');">
+                                            <h3 class="inviteDestinationJoined-3W7Gue inviteDestination-1fAcY7 base-1x0h_U size16-1P40sf">
+                                                <div class="guildNameWrapper-1RQYer">
+                                                    <span class="guildName-2hvnt_">Ultimate Ninja</span>
+                                                </div>
+                                            </h3>
+                                        </div>
+                                    </div>
+                                    <button type="button" class="button-3To2tQ height20-mO2eIN button-38aScr lookFilled-1Gx00P colorGreen-29iAKY buttonSize-DbrWhv grow-q77ONN" onclick="window.open('https://discord.gg/QDFugdb', '_blank');">
+                                        <div class="contents-18-Yxp">Join</div>
+                                    </button>
+                                </div>
+                            </div>
+                    </div>
                 </p>
               </div>
             </div>
           </div>
-          <div class="col-md-5 col-sm-6 col-xs-12">
+          <div class="col-md-8 col-sm-6 col-xs-12">
             <div class="card mb-4 box-shadow">
-              <img class="card-img-top version-logo" alt="Dark Version Logo" src="Dark Logo.png" />
               <div class="card-body">
-                <p class="card-text">
-                  Dark version strives to implement radical changes to the 
-                  system that allow for a higher level of play to be present. 
-                  This is aimed towards both current and new Storm players 
-                  that are looking for new gameplay or higher levels of competition.
-                </p>
-                <div class="btn-group">
-                  <button class="btn btn-sm btn-outline-secondary btn-success" type="button">
-                    Download v1.0.0
-                  </button>
-                  <button class="btn btn-sm btn-outline-secondary btn-primary" type="button" onclick="window.open("https://docs.google.com/document/d/19Ar5Wa5R4wPkh9dFOJ7T9hEV9r3X4emcJ31n-ALBgxs/edit?usp=sharing", "_blank");">
-                    Changelog
-                  </button>
-                </div>
+                  <h1 class="card-text">
+                      Credits
+                  </h1>
+                  <p class="card-text">Mod Pack:</p>
+                  <ul>
+                      <li>Lead Developers - Exavadeathwitch, HydraBladez</li>
+                      <li>Lead Designer - Playco Armboy</li>
+                      <li>Playtesters - Raghbir, Poisoned, Malice, Paradoxitic, Gunweed</li>
+                      <li>Costume Modders - ShinBasker, Chakrawarrior2012, akiaki, Haikal</li>
+                      <li>Moveset Modders - Eliteace, TobiisTenten, Valant96</li>
+                      <li>Engine Modders - Nighlin</li>
+                      <li>Sound Modder - TheOneOfAll</li>
+                      <li>​Artwork - Garrison</li>
+                  </ul>
+                  <p>
+                      Special thanks to Zealot and R.A.G for the modding API.<br />
+                      Super special thanks to TheWalkingAmongTheDead, Theovanua, Typhonua, Crownclown, Portable Productions, and UltimateOmbuStorm for providing code and models.
+                  </p>
               </div>
             </div>
           </div>
-          <div class="col-md-1 col-sm-0 col-xs-0"></div>
         </div>
       </div>
     </div>
@@ -87,16 +254,18 @@
         <div class="col-md-6 col-sm-6 col-xs-12">
           <h2>Installation</h2>
           <ol>
-            <li>Download the latest release of Tournament Edition</li>
-            <li>Copy the .DLL release file in your root Naruto: Storm Rev folder</li>
+            <li>Download the latest release of Perfect Storm</li>
+            <li>Extract the zip file</li>
+            <li>Copy the contents of the folder</li>
+            <li>Paste the copied files into your root Naruto: Storm 4 folder</li>
           </ol>
         </div>
         
         <div class="col-md-6 col-sm-6 col-xs-12">
-          <h3>How to find the root folder for NS: UNSR on Steam</h3>
+          <h3>How to find the root folder for NS: UNS4 on Steam</h3>
           <ol>
             <li>Open Steam and go to your game library</li>
-            <li>Right-click Naruto Shippuden: Ultimate Ninja Storm Revolution from the game's list</li>
+            <li>Right-click Naruto Shippuden: Ultimate Ninja Storm 4 from the game's list</li>
             <li>Under the "Manage" list, click "Browse local files"</li>
           </ol>
         </div>
@@ -112,7 +281,7 @@
       <div class="row">
         <div class="col-md-6 col-sm-6 col-xs-12">
           <p class="desc">
-            This mod utilizes a tool called "Modding API for Naruto Shippuden: Ultimate Ninja Storm Revolution", created by Zealot Tormunds. 
+            This mod utilizes a tool called "Modding API for Naruto Shippuden: Ultimate Ninja Storm 4", created by Zealot Tormunds. 
             It uses .DLL Code Injection to hook onto the game's active memory stored in RAM. 
             From there, an Assembly Language layer of code allows us to modify the game's active memory in realtime. 
             By making use of C++ and Lua, we can allow for high-level code to read and control low-level operations.
@@ -131,33 +300,352 @@
 
   </main>
   
-  <footer>
+  <footer class="changes">
     <div class="container">
-      <p class="float-right">
-          <a href="#">Back to top</a>
-      </p>
-      <div class="row">
-        <div class="col-md-4 col-sm-4 col-xs-12">
-          <h3>Documentation</h3>
-          <p class="desc">You can find all documentation for this mod's functionality in the <a href="#">Wiki</a>.</p>
+        <div class="row">
+            <div class="col-md-8 col-sm-8 col-xs-12">
+                <h2>Patch Notes</h2>
+                <p class="desc">Every patchnote will refer to characters with their unique in-game ID.</p>
+
+                <hr />
+
+                <h3>Version 1.6 - 11/1/2020</h3>
+                <p class="desc">General Changes</p>
+                <ul>
+                    <li>​Items - Debuffs applied on guard</li>
+                    <li>Lightning Beast - Hits on ground</li>
+                </ul>
+                <p class="desc">Character Changes</p>
+                <ul>
+                    <li>2ddr - Longer IC combo, smoother SQIC Combos</li>
+                    <li>2gar/2gav/3gar/7gar - Less endlag on Sand Spear</li>
+                    <li>2itc - Fixed support jutsus not working</li>
+                    <li>2nrx - Ground clone tracking nerfed on Clone Rasengan Jutsu, Tilt startup slowed down, can jump out of AIC3</li>
+                    <li>2ssk - Second hit of tilt comes out</li>
+                    <li>3kks - Fixed awakening crash</li>
+                    <li>3mnt - Awakening IC1 and AIC1 changed, awakening actions added</li>
+                    <li>3tob - Square Combo added, smoother combos, buffed jutsu</li>
+                    <li>4mkg - Faster and better tracking on jutsu, smoother SQIC combos</li>
+                    <li>jkks - Reworked</li>
+                </ul>
+
+                <hr />
+
+                <h3>Version 1.5 - 9/27/2020</h3>
+                <p class="desc">General Changes</p>
+                <ul>
+                    <li>​TheOneOfAll's sound mod has been added!</li>
+                    <li>Lightning Desert - New OST and size increased​</li>
+                </ul>
+                <p class="desc">Character Changes</p>
+                <ul>
+                    <li>1ssk - Neutral Combo analog stick bug fixed</li>
+                    <li>2gar/2gav/3gar/7gar - Sand Spear Jutsu has improved speed and tracking, double hitbox removed</li>
+                    <li>2itc - Fixed Amaterasu not working as a Support Jutsu, tilt is now a counter</li>
+                    <li>2nrx - Rasen Shuriken Jutsu has better tracking, speed, and spawns faster</li>
+                    <li>2lar - Added</li>
+                    <li>3obt - Fixed Jutsu switching crashing the game with other Fire Style users</li>
+                    <li>8tmr - Fixed Support Jutsu not working</li>
+                </ul>
+
+                <hr />
+
+                <h3>Version 1.4 - 9/17/2020</h3>
+                <p class="desc">General Changes</p>
+                <ul>
+                    <li>Roster Icon glitch fixed​</li>
+                    <li>​Changes implemented in 1.3a applied to the cpk</li>
+                </ul>
+                <p class="desc">Character Changes</p>
+                <ul>
+                    <li>1kmm - Shurikens and Chakra Shurikens hit more consistenly, Shuriken damage nerfed</li>
+                    <li>3mnt - Seal applied on last hit of air combo</li>
+                </ul>
+
+                <hr />
+
+                <h3>Version 1.3a - 9/15/2020</h3>
+                <p class="desc">Character Changes</p>
+                <ul>
+                    <li>3ssy - Support type fixed</li>
+                    <li>8kin - No more crashing</li>
+                </ul>
+
+                <hr />
+
+                <h3>Version 1.3 - 9/14/2020</h3>
+                <p class="desc">General Changes</p>
+                <ul>
+                    <li>​Thanks to Garrison for the new logo!</li>
+                    <li>​Stages - No ring outs</li>
+                    <li>​Final Valley - No rain</li>
+                </ul>
+                <p class="desc">Character Changes</p>
+                <ul>
+                    <li>2itc - Removed enhanced jutsu, running clone has better tracking</li>
+                </ul>
+
+                <hr />
+
+                <h3>Version 1.2 - 9/9/2020</h3>
+                <p class="desc">General Changes</p>
+                <ul>
+                    <li>All crash bugs from the previous version have been fixed!​</li>
+                    <li>We are not using the API until Zealot releases an update because of the previous crashes.​</li>
+                    <li>Some custom messages may not be there, but the jutsu names are fine.​</li>
+                    <li>​New OST - Main Menu, Character Select, Online Lobby, Winning, and Orochimaru's Hideout.</li>
+                    <li>​</li>
+                    <li>​</li>
+                </ul>
+                <p class="desc">Costume Changes</p>
+                <ul>
+                    <li>1ssk - Leaf Police</li>
+                    <li>2skr - Casual Clothes</li>
+                    <li>2ino - Casual Clothes</li>
+                </ul>
+
+                <hr />
+
+                <h3>Version 1.1 - 9/6/2020</h3>
+                <p class="desc">General Changes</p>
+                <ul>
+                    <li>Assorted costume fixes by HydraBladez​</li>
+                </ul>
+                <p class="desc">Character Changes</p>
+                <ul>
+                    <li>jkks - No longer softlocks the game.</li>
+                </ul>
+
+                <hr />
+
+                <h3>Version 1.0 - 9/5/2020</h3>
+                <p class="desc">General Changes</p>
+                <ul>
+                    <li>​Characters formerly with dash cut now have strike back.</li>
+                </ul>
+                <p class="desc">Support Type Changes</p>
+                <ul>
+                    <li>​1hak - Charge Assist​</li>
+                    <li>1ino - Cover Fire​</li>
+                    <li>1kib - Break Guard​</li>
+                    <li>1kmm - Cover Fire​</li>
+                    <li>1nej - Charge Guard​</li>
+                    <li>​1sin - Cover Fire</li>
+                    <li>​1ten - Charge Assist</li>
+                    <li>1tmr - Charge Assist​</li>
+                    <li>2asm - Break Guard</li>
+                    <li>2dnz - Cover Fire​</li>
+                    <li>2fou - Cover Fire​</li>
+                    <li>2gar - Cover Fire​</li>
+                    <li>​2gav - Cover Fire</li>
+                    <li>​2hdn - Strike Back</li>
+                    <li>2ino - Cover Fire​</li>
+                    <li>2jug - Strike Back​</li>
+                    <li>2klb - Strike Back​</li>
+                    <li>2knn - Cover Fire​</li>
+                    <li>2ksm - Charge Assist​</li>
+                    <li>2nej - Charge Guard​</li>
+                    <li>2obt - Break Guard​</li>
+                    <li>2orc - Charge Guard​</li>
+                    <li>​2sco - Charge Guard</li>
+                    <li>2sin - Charge Assist​</li>
+                    <li>2tkg - Strike Back​</li>
+                    <li>2tnd - Cover Fire​</li>
+                    <li>2tob - Secret Substitution​</li>
+                    <li>3dri - Charge Guard​</li>
+                    <li>3gar - Cover Fire​</li>
+                    <li>3klb - Strike Back​</li>
+                    <li>3mfn - Break Guard​</li>
+                    <li>3nyg - Charge Assist​</li>
+                    <li>3obt - Break Guard​</li>
+                    <li>3tob - Strike Back​</li>
+                    <li>3utk - Cover Fire​</li>
+                    <li>3who - Break Guard​</li>
+                    <li>4kkg - Cover Fire​</li>
+                    <li>4mnr - Strike Back​</li>
+                    <li>​7brn - Break Guard</li>
+                    <li>7brt - Break Guard​</li>
+                    <li>​7brx - Break Guard</li>
+                    <li>7gar - Cover Fire​</li>
+                    <li>​7sld - Charge Assist</li>
+                    <li>7sln - Charge Assist​</li>
+                    <li>8ino - Cover Fire​</li>
+                    <li>8kin - Charge Guard​</li>
+                    <li>8sin - Charge Assist​</li>
+                    <li>abrt - Break Guard​</li>
+                </ul>
+                <p class="desc">Character Changes</p>
+                <ul>
+                    <li>8tmr - ISQC1 - Removed fan hitbox</li>
+                    <li>8tmr - Jutsu - Hits OTG</li>
+                    <li>8tmr - Jutsu - Works as support</li>
+                    <li>8tmr - New Jutsu - Rumbling Fan Wind Wall</li>
+                    <li>8sin - ISQ2 - Second bug isn't chakra dashable</li>
+                </ul>
+                
+            </div>
+            <div class="col-md-4 col-sm-4 col-xs-12">
+                <h2>Character IDs:</h2>
+                <h3>Base Roster:</h3>
+                <p class="desc">
+                    1fir - Hashirama The First Hokage<br />
+                    1gar - PTS Gaara<br />
+                    1hak - Haku<br />
+                    1hkg - Hiruzen The Third Hokage<br />
+                    1hnt - PTS Hinata<br />
+                    1ino - PTS Ino<br />
+                    1kib - PTS Kiba<br />
+                    1kmm - Kimimaro<br />
+                    1knk - PTS Kankuro<br />
+                    1nej - PTS Neji<br />
+                    1nrt - PTS Naruto<br />
+                    1roc - PTS Lee<br />
+                    1sec - Tobirama The Second Hokage<br />
+                    1sik - PTS Shikamaru<br />
+                    1sin - PTS Shino<br />
+                    1skr - PTS Sakura<br />
+                    1ssk - PTS Sasuke<br />
+                    1tmr - PTS Temari<br />
+                    1tyo - PTS Choji<br />
+                    1zbz - Zabuza<br />
+                    2asm - Asuma<br />
+                    2cyb - Chiyo<br />
+                    2ddr - Deidara<br />
+                    2dnz - Danzo<br />
+                    2fou - Minato The Fourth Hokage<br />
+                    2gar - Gaara<br />
+                    2gav - Gaara 5 Kage Summit<br />
+                    2guy - Guy<br />
+                    2hdn - Hidan<br />
+                    2hnt - Hinata<br />
+                    2ino - Ino<br />
+                    2itc - Itachi<br />
+                    2jry - Jiraiya<br />
+                    2jug - Jugo<br />
+                    2kar - Karin<br />
+                    2kbt - Kabuto<br />
+                    2kbx - Kabuto Snake Cloak<br />
+                    2kib - Kiba<br />
+                    2kks - Kakashi<br />
+                    2kkx - Young Kakashi<br />
+                    2klb - Killer Bee<br />
+                    2knk - Kankuro<br />
+                    2knn - Konan<br />
+                    2ksm - Kisame<br />
+                    2kzu - Kakuzu<br />
+                    2mdr - Masked Man<br />
+                    2mkg - Mei Mizukage<br />
+                    2nej - Neji<br />
+                    2nrg - Naruto Mega Rasengan Barrage<br />
+                    2nrt - Naruto<br />
+                    2nrx - Naruto Sage Mode<br />
+                    2obt - Obito<br />
+                    2obx - Obito Rampaging<br />
+                    2orc - Orochimaru<br />
+                    2pea - Pain<br />
+                    2rkg - Ay Raikage<br />
+                    2roc - Lee<br />
+                    2sai - Sai<br />
+                    2sco - Sasori<br />
+                    2sgt - Suigetsu<br />
+                    2sik - Shikamaru<br />
+                    2sin - Shino<br />
+                    2skr - Sakura<br />
+                    2ssk - Sasuke Kirin /CTS<br />
+                    2ssy - Sasuke Taka<br />
+                    2ssz - Sasuke 5 Kage Summit<br />
+                    2ten - Tenten<br />
+                    2tkg - Ohnoki Tsuchikage<br />
+                    2tmr - Temari<br />
+                    2tnd - Tsunade<br />
+                    2tob - Tobi<br />
+                    2ymt - Yamato<br />
+                    3dri - Darui<br />
+                    3gar - Gaara War<br />
+                    3han - Han<br />
+                    3hnz - Hanzo<br />
+                    3hsm - Hashirama Sage Mode<br />
+                    3irk - Iruka<br />
+                    3kbt - Kabuto Sage Mode<br />
+                    3khm - Konohamaru<br />
+                    3kks - Kakashi Dual Mangekyo<br />
+                    3klb - Killer Bee Samehada<br />
+                    3ksn - Kushina<br />
+                    3mdr - Madara<br />
+                    3mdr_2 - Madara Reanimation Release<br />
+                    3mfn - Mifune<br />
+                    3mnt - Minato Reanimation<br />
+                    3ngt - Nagato<br />
+                    3nrt - Naruto Tailed Beast Bomb<br />
+                    3nyg - Yugito<br />
+                    3obt - Obito Unmasked<br />
+                    3rus - Roshi<br />
+                    3ssk - Sasuke EMS<br />
+                    3tob - Tobi War<br />
+                    3tyo - Choji Butterfly<br />
+                    3utk - Utakata<br />
+                    3who - Fuu<br />
+                    3ygr - Yagura<br />
+                    4kkg - Edo Kazekage<br />
+                    4mkg - Edo Mizukage<br />
+                    4mnr - Mecha Naruto<br />
+                    4muu - Edo Tsuchikage<br />
+                    4nrt - Naruto Kurama Link<br />
+                    4rin - Rin<br />
+                    4rkg - Edo Raikage<br />
+                    4ssi - Shisui<br />
+                    5jrb - Jirobo<br />
+                    5kdm - Kidomaru<br />
+                    5kgy - Kaguya<br />
+                    5mdr - Six Paths Madara<br />
+                    5nrt - Ashura Six Paths Naruto<br />
+                    5obt - Jinchuriki Obito<br />
+                    5skn - Sakon/Ukon<br />
+                    5ssk - Sharinnegan Sasuke<br />
+                    5tyy - Tayuya<br />
+                    6hnb - Hanabi<br />
+                    6hnt - Hinata The Last<br />
+                    6nrt - Naruto The Last<br />
+                    6skr - Sakura The Last<br />
+                    6ssk - Sasuke The Last<br />
+                    7brn - Boruto Ninja Tools<br />
+                    7brt - Boruto Preorder<br />
+                    7brx - Boruto vs Momoshiki<br />
+                    7gar - Gaara Part III<br />
+                    7khm - Konohamaru Part III<br />
+                    7mtk - Mitsuki<br />
+                    7nrt - Hokage Naruto<br />
+                    7nrt - Naruto Part III<br />
+                    7skd - Shikadai<br />
+                    7skr - Sakura Part III<br />
+                    7sld - Sarada Preorder<br />
+                    7sln - Sarada RTB Story<br />
+                    7ssk - Sasuke Part III<br />
+                    7ssk - Wandering Sasuke<br />
+                    7yri - Yurui<br />
+                    8hnt - Hinata Part III<br />
+                    8ino - Ino Part III<br />
+                    8kin - Kinshiki<br />
+                    8knk - Kankuro Part III<br />
+                    8mms - Momoshiki<br />
+                    8roc - Rock Lee Part III<br />
+                    8sai - Sai Part III<br />
+                    8sik - Shikamaru Part III<br />
+                    8sin - Shino Part III<br />
+                    8ten - Tenten Part III<br />
+                    8tmr - Temari Part III<br />
+                    8tyo - Choji Part III<br />
+                </p>
+                <h3>New characters added in Perfect Storm:</h3>
+                <p class="desc">
+                    3ssy - Storm 3 EMS
+                    ​jkks - Revolution Kakashi
+                    ​2lar - Lars
+                </p>
+
+            </div>
+
         </div>
-        <div class="col-md-3 col-sm-3 col-xs-12">
-          <h3>Mod Creators</h3>
-          <ul>
-            <li>Kotesu - Project Lead</li>
-            <li>R.A.G - Lead Programmer</li>
-          </ul>
-        </div>
-        <div class="col-md-4 col-sm-4 col-xs-12">
-          <h3>Modding API</h3>
-          <ul>
-            <li>Zealot Tormunds - Lead Developer</li>
-            <li>Valant96 - Special Thanks</li>
-            <li>Kuroha Saenoki - Special Thanks</li>
-            <li>TheLeonX - Special Thanks</li>
-          </ul>
-        </div>
-      </div>
 
     </div>
   </footer>
