@@ -430,19 +430,19 @@ uintptr_t ccPlayer::GetPlayerInfo(int n)
 		return EPP;
 		//P1 Support 1
 	case 2:
-		PS1P = NSUNS4memory.getAddress(baseAddr + 0x0160FF60, { 0x28, 0x38, 0x70 });
+		PS1P = NSUNS4memory.getAddress(baseAddr + 0x0160FF60, { 0x148, 0x38, 0x70 });
 		return PS1P;
 		//P2 Support 1
 	case 3:
-		EPS1P = NSUNS4memory.getAddress(baseAddr + 0x0160FF60, { 0x38, 0x38, 0x70 });
+		EPS1P = NSUNS4memory.getAddress(baseAddr + 0x0160FF60, { 0x298, 0x38, 0x70 });
 		return EPS1P;
 		//P1 Support 2
 	case 4:
-		PS2P = NSUNS4memory.getAddress(baseAddr + 0x0160FF60, { 0x30, 0x38, 0x70 });
+		PS2P = NSUNS4memory.getAddress(baseAddr + 0x0160FF60, { 0x1D8, 0x38, 0x70 });
 		return PS2P;
 		//P2 Support 2
 	case 5:
-		EPS2P = NSUNS4memory.getAddress(baseAddr + 0x0160FF60, { 0x40, 0x38, 0x70 });
+		EPS2P = NSUNS4memory.getAddress(baseAddr + 0x0160FF60, { 0x328, 0x38, 0x70 });
 		return EPS2P;
 	}
 
