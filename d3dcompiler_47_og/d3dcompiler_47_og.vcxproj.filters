@@ -267,6 +267,12 @@
     <ClCompile Include="Settings.cpp">
       <Filter>Source Files\Settings</Filter>
     </ClCompile>
+    <ClCompile Include="AutoUpdater.cpp">
+      <Filter>Source Files\API</Filter>
+    </ClCompile>
+    <ClCompile Include="DownloadProgress.cpp">
+      <Filter>Source Files\API</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="API_Console.h">
@@ -436,6 +442,12 @@
     </ClInclude>
     <ClInclude Include="Character.h">
       <Filter>Header Files\Player\Characters</Filter>
+    </ClInclude>
+    <ClInclude Include="AutoUpdater.h">
+      <Filter>Header Files\API</Filter>
+    </ClInclude>
+    <ClInclude Include="DownloadProgress.h">
+      <Filter>Header Files\API</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

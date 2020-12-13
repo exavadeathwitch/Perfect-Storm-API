@@ -10,9 +10,9 @@ using namespace std;
 int stage::GetStageNumber()
 {
 	int n;
-	cout << "ccGameProperties::isOnMenu: " << ccGameProperties::isOnMenu() << endl;
-	cout << "ccGameProperties::isOnStageSelect: " << ccGameProperties::isOnStageSelect() << endl;
-	cout << "stageselected: " << stageselected << endl;
+	// cout << "ccGameProperties::isOnMenu: " << ccGameProperties::isOnMenu() << endl;
+	// cout << "ccGameProperties::isOnStageSelect: " << ccGameProperties::isOnStageSelect() << endl;
+	// cout << "stageselected: " << stageselected << endl;
 	if (ccGameProperties::isOnMenu() == 1 && ccGameProperties::isOnStageSelect() == 1)
 	{
 		stageselected = 0;
@@ -39,7 +39,7 @@ int stage::GetStageNumber()
 void stage::Loop()
 {
 	stage::GetStageNumber();
-	std::cout << "StageNumber: " << StageNumber << std::endl;
+	// std::cout << "StageNumber: " << StageNumber << std::endl;
 	if (ccGameProperties::getCurrentTrack() == 4)
 	{
 		SDL2Music music;
