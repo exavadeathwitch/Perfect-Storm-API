@@ -25,6 +25,7 @@
 #include "ManageMemory.h"
 #include "SDL2/SDL2Music.h"
 #include "Character.h"
+#include "Controls.h"
 #pragma warning( disable: 4307 )
 
 using namespace std;
@@ -108,7 +109,7 @@ void ccPlayer::Loop()
 				music.Halt_Music();
 				cout << "Exited Battle" << endl;
 				stageselected = 0;
-
+				inBattle = 0;
 			}
 		}
 		else
@@ -124,6 +125,7 @@ void ccPlayer::Loop()
 					cout << "Entered Battle" << endl;
 					Music::PlayStageMusicTrack();
 					stageisSelectedNumber = 0;
+					inBattle = 1;
 					//int charaid = GetPlayerIntProperty(p, s, "characode");
 					//InitializeCharacter(charaid, x);
 					//cout << "Entered Battle" << endl;

@@ -33,7 +33,7 @@ void Character::SetParam7ssx(uintptr_t p, uintptr_t s, int P)
 {
 	if (P1isguarding == 1)
 	{
-		if ((p1buttonNumber == 34) && ((GetPlayerIntProperty(p, s, "pstate") == 10 || GetPlayerIntProperty(p, s, "pstate") == 11 || GetPlayerIntProperty(p, s, "pstate") == 12))) { SetPlayerIntProperty(p, s, "npstate", 72); SetPlayerIntProperty(p, s, "pstateflag", 1); P1isguarding = 0; }
+		//if ((p1buttonNumber == 34) && ((GetPlayerIntProperty(p, s, "pstate") == 10 || GetPlayerIntProperty(p, s, "pstate") == 11 || GetPlayerIntProperty(p, s, "pstate") == 12))) { SetPlayerIntProperty(p, s, "npstate", 72); SetPlayerIntProperty(p, s, "pstateflag", 1); P1isguarding = 0; }
 	}
 		cout << "test" << endl;
 }

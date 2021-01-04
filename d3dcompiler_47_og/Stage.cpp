@@ -10,9 +10,9 @@ using namespace std;
 int stage::GetStageNumber()
 {
 	int n;
-	cout << "ccGameProperties::isOnMenu: " << ccGameProperties::isOnMenu() << endl;
-	cout << "ccGameProperties::isOnStageSelect: " << ccGameProperties::isOnStageSelect() << endl;
-	cout << "stageselected: " << stageselected << endl;
+	//cout << "ccGameProperties::isOnMenu: " << ccGameProperties::isOnMenu() << endl;
+	//cout << "ccGameProperties::isOnStageSelect: " << ccGameProperties::isOnStageSelect() << endl;
+	//cout << "stageselected: " << stageselected << endl;
 	if (ccGameProperties::isOnMenu() == 1 && ccGameProperties::isOnStageSelect() == 1)
 	{
 		stageselected = 0;
@@ -24,8 +24,8 @@ int stage::GetStageNumber()
 		uintptr_t stageisSelectedAddr = stageNumberAddr + 0x4;
 		int stageNumber = Internal::Memory::read<uint8_t>(stageNumberAddr);
 		stageisSelectedNumber = Internal::Memory::read<uint8_t>(stageisSelectedAddr);
-		std::cout << "StageNumber: " << stageNumber << std::endl;
-		std::cout << "Stage is selected: " << stageisSelectedNumber << std::endl;
+		//std::cout << "StageNumber: " << stageNumber << std::endl;
+		//std::cout << "Stage is selected: " << stageisSelectedNumber << std::endl;
 		if (stageisSelectedNumber == 1)
 		{
 			n = stageNumber;
@@ -39,7 +39,7 @@ int stage::GetStageNumber()
 void stage::Loop()
 {
 	stage::GetStageNumber();
-	std::cout << "StageNumber: " << StageNumber << std::endl;
+	//std::cout << "StageNumber: " << StageNumber << std::endl;
 	if (ccGameProperties::getCurrentTrack() == 4)
 	{
 		SDL2Music music;

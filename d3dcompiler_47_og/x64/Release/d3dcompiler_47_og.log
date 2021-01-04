@@ -1,25 +1,4 @@
-﻿  Character.cpp
-  ccCharacterFunctions.cpp
-C:\Users\Ares\Documents\GitHub\Perfect-Storm-API\d3dcompiler_47_og\ccCharacterFunctions.cpp(91,44): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-C:\Users\Ares\Documents\GitHub\Perfect-Storm-API\d3dcompiler_47_og\ccCharacterFunctions.cpp(107,21): warning C4244: 'initializing': conversion from 'uintptr_t' to 'int', possible loss of data
-C:\Users\Ares\Documents\GitHub\Perfect-Storm-API\d3dcompiler_47_og\ccCharacterFunctions.cpp(108,25): warning C4244: 'initializing': conversion from 'uintptr_t' to 'int', possible loss of data
-C:\Users\Ares\Documents\GitHub\Perfect-Storm-API\d3dcompiler_47_og\ccCharacterFunctions.cpp(109,25): warning C4244: 'initializing': conversion from 'uintptr_t' to 'int', possible loss of data
-C:\Users\Ares\Documents\GitHub\Perfect-Storm-API\d3dcompiler_47_og\ccCharacterFunctions.cpp(187,39): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-C:\Users\Ares\Documents\GitHub\Perfect-Storm-API\d3dcompiler_47_og\ccCharacterFunctions.cpp(299,62): warning C4302: 'type cast': truncation from 'BYTE *' to 'BYTE'
-C:\Users\Ares\Documents\GitHub\Perfect-Storm-API\d3dcompiler_47_og\ccCharacterFunctions.cpp(300,74): warning C4302: 'type cast': truncation from 'BYTE *' to 'BYTE'
-C:\Users\Ares\Documents\GitHub\Perfect-Storm-API\d3dcompiler_47_og\ccCharacterFunctions.cpp(301,74): warning C4302: 'type cast': truncation from 'BYTE *' to 'BYTE'
-C:\Users\Ares\Documents\GitHub\Perfect-Storm-API\d3dcompiler_47_og\ccCharacterFunctions.cpp(302,74): warning C4302: 'type cast': truncation from 'BYTE *' to 'BYTE'
-C:\Users\Ares\Documents\GitHub\Perfect-Storm-API\d3dcompiler_47_og\ccCharacterFunctions.cpp(303,74): warning C4302: 'type cast': truncation from 'BYTE *' to 'BYTE'
-C:\Users\Ares\Documents\GitHub\Perfect-Storm-API\d3dcompiler_47_og\ccCharacterFunctions.cpp(304,74): warning C4302: 'type cast': truncation from 'BYTE *' to 'BYTE'
-C:\Users\Ares\Documents\GitHub\Perfect-Storm-API\d3dcompiler_47_og\ccCharacterFunctions.cpp(305,74): warning C4302: 'type cast': truncation from 'BYTE *' to 'BYTE'
-C:\Users\Ares\Documents\GitHub\Perfect-Storm-API\d3dcompiler_47_og\ccCharacterFunctions.cpp(306,74): warning C4302: 'type cast': truncation from 'BYTE *' to 'BYTE'
-  ccPlayer.cpp
-C:\Users\Ares\Documents\GitHub\Perfect-Storm-API\d3dcompiler_47_og\ccPlayer.cpp(289,2): warning C4060: switch statement contains no 'case' or 'default' labels
-C:\Users\Ares\Documents\GitHub\Perfect-Storm-API\d3dcompiler_47_og\ccPlayer.cpp(301,2): warning C4060: switch statement contains no 'case' or 'default' labels
-C:\Users\Ares\Documents\GitHub\Perfect-Storm-API\d3dcompiler_47_og\ccPlayer.cpp(563,28): warning C4091: '': ignored on left of 'void' when no variable is declared
-C:\Users\Ares\Documents\GitHub\Perfect-Storm-API\d3dcompiler_47_og\ccPlayer.cpp(699,28): warning C4091: '': ignored on left of 'void' when no variable is declared
-C:\Users\Ares\Documents\GitHub\Perfect-Storm-API\d3dcompiler_47_og\ccPlayer.cpp(763,1): warning C4506: no definition for inline function 'unsigned int moddingApi::ccGameProperties::str2int(const char *,int)'
-  Generating Code...
+﻿  Controls.cpp
 PGOMGR : warning PG0188: No .PGC files matching 'C:\Users\Ares\Documents\GitHub\Perfect-Storm-API\x64\Release\d3dcompiler_47!*.pgc' were found.
     Reading PGD file 1: C:\Users\Ares\Documents\GitHub\Perfect-Storm-API\x64\Release\d3dcompiler_47.pgd
 C:\Users\Ares\Documents\GitHub\Perfect-Storm-API\x64\Release\d3dcompiler_47.pgd : warning C4961: No profile data was merged into 'C:\Users\Ares\Documents\GitHub\Perfect-Storm-API\x64\Release\d3dcompiler_47.pgd', profile-guided optimizations disabled

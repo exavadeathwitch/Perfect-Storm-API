@@ -20,10 +20,12 @@
 #include "ManageMemory.h"
 #include "Memory.h"
 #include "FileParser.h"
+#include "Controls.h"
 using namespace ManageMemory;
 using namespace moddingApi;
 using namespace std;
 using namespace Stage;
+using namespace Controls;
 int Console_GetInt(char*);
 char * Console_GetString(char*);
 bool EnableAPI = false;
@@ -96,6 +98,10 @@ DWORD WINAPI ccMain::LoopGame()
 		}
 		stage::Loop();
 		ccPlayer::Loop();
+		if (inBattle == 1)
+		{
+			controls::Loop();
+		}
 		Sleep(10);
 	}
 	return 0;
