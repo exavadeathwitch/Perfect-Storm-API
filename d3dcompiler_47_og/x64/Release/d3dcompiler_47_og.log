@@ -1,12 +1,16 @@
-﻿  Controls.cpp
+﻿  DirectX11Hook.cpp
+C:\Users\Ares\Documents\GitHub\Perfect-Storm-API\d3dcompiler_47_og\DirectX11Hook\DirectX11Hook.cpp(49,2): warning C4996: 'freopen': This function or variable may be unsafe. Consider using freopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\Ares\Documents\GitHub\Perfect-Storm-API\d3dcompiler_47_og\DirectX11Hook\DirectX11Hook.cpp(50,2): warning C4996: 'freopen': This function or variable may be unsafe. Consider using freopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\Ares\Documents\GitHub\Perfect-Storm-API\d3dcompiler_47_og\DirectX11Hook\DirectX11Hook.cpp(51,2): warning C4996: 'freopen': This function or variable may be unsafe. Consider using freopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\Ares\Documents\GitHub\Perfect-Storm-API\d3dcompiler_47_og\DirectX11Hook\DirectX11Hook.cpp(61,34): warning C4244: '=': conversion from 'LONG' to 'float', possible loss of data
+C:\Users\Ares\Documents\GitHub\Perfect-Storm-API\d3dcompiler_47_og\DirectX11Hook\DirectX11Hook.cpp(62,34): warning C4244: '=': conversion from 'LONG' to 'float', possible loss of data
 PGOMGR : warning PG0188: No .PGC files matching 'C:\Users\Ares\Documents\GitHub\Perfect-Storm-API\x64\Release\d3dcompiler_47!*.pgc' were found.
     Reading PGD file 1: C:\Users\Ares\Documents\GitHub\Perfect-Storm-API\x64\Release\d3dcompiler_47.pgd
 C:\Users\Ares\Documents\GitHub\Perfect-Storm-API\x64\Release\d3dcompiler_47.pgd : warning C4961: No profile data was merged into 'C:\Users\Ares\Documents\GitHub\Perfect-Storm-API\x64\Release\d3dcompiler_47.pgd', profile-guided optimizations disabled
      Creating library C:\Users\Ares\Documents\GitHub\Perfect-Storm-API\x64\Release\d3dcompiler_47.lib and object C:\Users\Ares\Documents\GitHub\Perfect-Storm-API\x64\Release\d3dcompiler_47.exp
 d3dcompiler_47.exp : warning LNK4070: /OUT:d3dcompiler_47_og.dll directive in .EXP differs from output filename 'C:\Users\Ares\Documents\GitHub\Perfect-Storm-API\x64\Release\d3dcompiler_47.dll'; ignoring directive
-  Generating code
-  Finished generating code
-d3dcompiler_47.exp : warning LNK4070: /OUT:d3dcompiler_47_og.dll directive in .EXP differs from output filename 'C:\Users\Ares\Documents\GitHub\Perfect-Storm-API\x64\Release\d3dcompiler_47.dll'; ignoring directive
-CasualLibrary.lib(Memory.obj) : warning LNK4099: PDB 'CasualLibrary.pdb' was not found with 'CasualLibrary.lib(Memory.obj)' or at 'C:\Users\Ares\Documents\GitHub\Perfect-Storm-API\x64\Release\CasualLibrary.pdb'; linking object as if no debug info
-CasualLibrary.lib(Helper.obj) : warning LNK4099: PDB 'CasualLibrary.pdb' was not found with 'CasualLibrary.lib(Helper.obj)' or at 'C:\Users\Ares\Documents\GitHub\Perfect-Storm-API\x64\Release\CasualLibrary.pdb'; linking object as if no debug info
-  d3dcompiler_47_og.vcxproj -> C:\Users\Ares\Documents\GitHub\Perfect-Storm-API\x64\Release\d3dcompiler_47.dll
+DirectX11Hook.obj : error LNK2001: unresolved external symbol DetourTransactionBegin
+DirectX11Hook.obj : error LNK2001: unresolved external symbol DetourTransactionCommit
+DirectX11Hook.obj : error LNK2001: unresolved external symbol DetourUpdateThread
+DirectX11Hook.obj : error LNK2001: unresolved external symbol DetourAttach
+C:\Users\Ares\Documents\GitHub\Perfect-Storm-API\x64\Release\d3dcompiler_47.dll : fatal error LNK1120: 4 unresolved externals

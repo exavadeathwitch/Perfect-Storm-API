@@ -76,6 +76,12 @@
     <Filter Include="Source Files\Settings">
       <UniqueIdentifier>{9241f51c-8dde-4bc7-9d8d-498c857126e6}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\IMGUI Hook">
+      <UniqueIdentifier>{a2c31890-0bbc-4103-a7c4-5a2a6be60a0e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\IMGUI Hook">
+      <UniqueIdentifier>{5cf46248-88b1-4e5d-9af0-16c064e8fdfa}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="API_Console.cpp">
@@ -270,6 +276,27 @@
     <ClCompile Include="Controls.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="DirectX11Hook\DirectX11Hook.cpp">
+      <Filter>Source Files\IMGUI Hook</Filter>
+    </ClCompile>
+    <ClCompile Include="DirectX11Hook\imgui.cpp">
+      <Filter>Source Files\IMGUI Hook</Filter>
+    </ClCompile>
+    <ClCompile Include="DirectX11Hook\imgui_demo.cpp">
+      <Filter>Source Files\IMGUI Hook</Filter>
+    </ClCompile>
+    <ClCompile Include="DirectX11Hook\imgui_draw.cpp">
+      <Filter>Source Files\IMGUI Hook</Filter>
+    </ClCompile>
+    <ClCompile Include="DirectX11Hook\imgui_impl_dx11.cpp">
+      <Filter>Source Files\IMGUI Hook</Filter>
+    </ClCompile>
+    <ClCompile Include="DirectX11Hook\imgui_impl_win32.cpp">
+      <Filter>Source Files\IMGUI Hook</Filter>
+    </ClCompile>
+    <ClCompile Include="DirectX11Hook\imgui_widgets.cpp">
+      <Filter>Source Files\IMGUI Hook</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="API_Console.h">
@@ -442,6 +469,39 @@
     </ClInclude>
     <ClInclude Include="Controls.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="DirectX11Hook\detours.h">
+      <Filter>Header Files\IMGUI Hook</Filter>
+    </ClInclude>
+    <ClInclude Include="DirectX11Hook\imconfig.h">
+      <Filter>Header Files\IMGUI Hook</Filter>
+    </ClInclude>
+    <ClInclude Include="DirectX11Hook\imgui.h">
+      <Filter>Header Files\IMGUI Hook</Filter>
+    </ClInclude>
+    <ClInclude Include="DirectX11Hook\imgui_impl_dx11.h">
+      <Filter>Header Files\IMGUI Hook</Filter>
+    </ClInclude>
+    <ClInclude Include="DirectX11Hook\imgui_impl_win32.h">
+      <Filter>Header Files\IMGUI Hook</Filter>
+    </ClInclude>
+    <ClInclude Include="DirectX11Hook\imgui_internal.h">
+      <Filter>Header Files\IMGUI Hook</Filter>
+    </ClInclude>
+    <ClInclude Include="DirectX11Hook\imstb_rectpack.h">
+      <Filter>Header Files\IMGUI Hook</Filter>
+    </ClInclude>
+    <ClInclude Include="DirectX11Hook\imstb_textedit.h">
+      <Filter>Header Files\IMGUI Hook</Filter>
+    </ClInclude>
+    <ClInclude Include="DirectX11Hook\imstb_truetype.h">
+      <Filter>Header Files\IMGUI Hook</Filter>
+    </ClInclude>
+    <ClInclude Include="DirectX11Hook\stdafx.h">
+      <Filter>Header Files\IMGUI Hook</Filter>
+    </ClInclude>
+    <ClInclude Include="DirectX11Hook\targetver.h">
+      <Filter>Header Files\IMGUI Hook</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
