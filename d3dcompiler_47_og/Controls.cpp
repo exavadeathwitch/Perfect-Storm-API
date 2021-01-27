@@ -166,11 +166,11 @@ void controls::Loop()
 						cout << "(A) button pressed" << endl;
 						APress = 1;
 					}
-					cout << (APress == 1) << endl;
-					if (APress == 1)
+					else
 					{
 						cout << "(A) button held" << endl;
 						AHold = 1;
+						APress == 0;
 					}
 					button1 = Internal::Memory::read<uint8_t>(1 + button1Addr);
 					button2 = Internal::Memory::read<uint8_t>(1 + button2Addr);
