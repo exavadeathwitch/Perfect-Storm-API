@@ -21,6 +21,7 @@
 #include "Memory.h"
 #include "FileParser.h"
 #include "Controls.h"
+#include "AutoUpdater.h"
 using namespace ManageMemory;
 using namespace moddingApi;
 using namespace std;
