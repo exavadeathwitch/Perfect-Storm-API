@@ -3,7 +3,7 @@
 #include <iostream>
 using namespace std;
 using namespace moddingApi;
-void Character::Initialize(uintptr_t p, uintptr_t s)
+void Character::Initialize(uintptr_t p, uintptr_t s, int P)
 {
 	int characode = ccPlayer::GetPlayerIntProperty(p, s, "characode");
 	Character::SetParam1cmn(p, s, characode);
@@ -21,17 +21,17 @@ void Character::Initialize(uintptr_t p, uintptr_t s)
 	}
 }
 
-void Character::SetParam1cmn(uintptr_t p, uintptr_t s, int characode)
+void Character::SetParam1cmn(uintptr_t p, uintptr_t s, int P)
 {
 	cout << "test" << endl;
 }
 
-void Character::SetParam7ssx(uintptr_t p, uintptr_t s, int characode)
+void Character::SetParam7ssx(uintptr_t p, uintptr_t s, int P)
 {
 	cout << "test" << endl;
 }
 
-void Character::SetParam7brt(uintptr_t p, uintptr_t s, int characode)
+void Character::SetParam7brt(uintptr_t p, uintptr_t s, int P)
 {
 	cout << "test" << endl;
 }

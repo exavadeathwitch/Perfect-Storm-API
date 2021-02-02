@@ -18,6 +18,7 @@ namespace moddingApi
         void dwFile();
         static string foo();
         vector<string> split(string s, string delimiter);
+        bool fileExists(string name);
     };
 }
 

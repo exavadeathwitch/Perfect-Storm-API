@@ -52,7 +52,6 @@ DWORD WINAPI ccMain::Main()
 	AutoUpdater update;
 	update.dwFile();
 
-
 	// Loop console
 	ccMain::LoopConsole();
 
