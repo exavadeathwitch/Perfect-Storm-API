@@ -2,9 +2,7 @@
 #include <string>
 #include <vector>
 #include <iostream>
-
 #include "API_Console.h"
-
 #include "ccMain.h"
 #include "d3dcompiler_47_og.h"
 #include "ccGeneralGameFunctions.h"
@@ -49,6 +47,7 @@ void c_ccGetGpPtr();
 void c_ccMultiMatchShowPlayerStatus();
 void c_ccGetCastPointer();
 void c_SoundTest();
+void c_ControllerTest();
 
 void API_Console::InitializeConsole()
 {
@@ -71,6 +70,7 @@ void API_Console::InitializeConsole()
 	AddCommand("ccMultiMatchShowPlayerStatus", (uintptr_t)c_ccMultiMatchShowPlayerStatus, 0);*/
 	AddCommand("GetCastPointer", (uintptr_t)c_ccGetCastPointer, 1);
 	AddCommand("SoundTest", (uintptr_t)c_SoundTest, 0);
+	AddCommand("ControllerTest", (uintptr_t)c_ControllerTest, 0);
 	//cout << std::hex << (d3dcompiler_47_og::moduleBase + 0x1653688) << endl;
 }
 
@@ -109,6 +109,11 @@ void c_ConvertMessage()
 void c_GetVersionNumber()
 {
 	//cout << ccGeneralGameFunctions::GetVersionNumber();
+}
+
+void c_ControllerTest()
+{
+	cout << "Not in progress" << endl;
 }
 
 void c_SoundTest()
@@ -332,3 +337,4 @@ int GetCommandIndex(string command)
 
 	return cmd;
 }
+

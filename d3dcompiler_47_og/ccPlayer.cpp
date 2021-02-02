@@ -2,7 +2,6 @@
 
 #include <WinSock2.h>
 #include <windows.h>
-
 #include <stdio.h>
 #include <iostream>
 #include <fstream>
@@ -25,6 +24,8 @@
 #include "Memory.h"
 #include "ManageMemory.h"
 #include "SDL2/SDL2Music.h"
+#include "Character.h"
+#include "Controls.h"
 #pragma warning( disable: 4307 )
 
 using namespace std;
@@ -34,10 +35,6 @@ using namespace ManageMemory;
 int prevFrame = 0;
 int prevBattle = 0;
 
-bool P1isguarding = 0;
-bool P1cantilt = 0;
-bool P2isguarding = 0;
-bool P2cantilt = 0;
 void ccPlayer::Start()
 {
 	// Currently this function does nothing.
@@ -112,7 +109,7 @@ void ccPlayer::Loop()
 				music.Halt_Music();
 				cout << "Exited Battle" << endl;
 				stageselected = 0;
-
+				inBattle = 0;
 			}
 		}
 		else
@@ -128,6 +125,7 @@ void ccPlayer::Loop()
 					cout << "Entered Battle" << endl;
 					Music::PlayStageMusicTrack();
 					stageisSelectedNumber = 0;
+					inBattle = 1;
 					//int charaid = GetPlayerIntProperty(p, s, "characode");
 					//InitializeCharacter(charaid, x);
 					//cout << "Entered Battle" << endl;

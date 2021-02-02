@@ -20,11 +20,12 @@
 #include "ManageMemory.h"
 #include "Memory.h"
 #include "FileParser.h"
-#include "AutoUpdater.h"
+#include "Controls.h"
 using namespace ManageMemory;
 using namespace moddingApi;
 using namespace std;
 using namespace Stage;
+using namespace Controls;
 int Console_GetInt(char*);
 char * Console_GetString(char*);
 bool EnableAPI = false;
@@ -47,10 +48,6 @@ DWORD WINAPI ccMain::Main()
 
 	// Enable the game thread (this is for player modification in game)
 	CreateThread(nullptr, 0, (LPTHREAD_START_ROUTINE)ccMain::LoopGame, (HMODULE)d3dcompiler_47_og::st_hModule, 0, nullptr);
-
-	// Auto-Updater Code
-	AutoUpdater update;
-	update.dwFile();
 
 	// Loop console
 	ccMain::LoopConsole();
@@ -101,6 +98,10 @@ DWORD WINAPI ccMain::LoopGame()
 		}
 		stage::Loop();
 		ccPlayer::Loop();
+		if (inBattle == 1)
+		{
+			controls::Loop();
+		}
 		Sleep(10);
 	}
 	return 0;
