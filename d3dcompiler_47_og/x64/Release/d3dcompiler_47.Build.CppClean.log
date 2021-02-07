@@ -1,133 +1,96 @@
-c:\users\ares\downloads\ns4moddingapi-1.5a\d3dcompiler_47_og\x64\release\vc142.pdb
-c:\users\ares\downloads\ns4moddingapi-1.5a\d3dcompiler_47_og\x64\release\prmfunctions.obj
-c:\users\ares\downloads\ns4moddingapi-1.5a\d3dcompiler_47_og\x64\release\luahook_commands.obj
-c:\users\ares\downloads\ns4moddingapi-1.5a\d3dcompiler_47_og\x64\release\luahook.obj
-c:\users\ares\downloads\ns4moddingapi-1.5a\d3dcompiler_47_og\x64\release\hookfunctions.obj
-c:\users\ares\downloads\ns4moddingapi-1.5a\d3dcompiler_47_og\x64\release\d3dcompiler_47_og.obj
-c:\users\ares\downloads\ns4moddingapi-1.5a\d3dcompiler_47_og\x64\release\ccplayerstruct.obj
-c:\users\ares\downloads\ns4moddingapi-1.5a\d3dcompiler_47_og\x64\release\ccplayer.obj
-c:\users\ares\downloads\ns4moddingapi-1.5a\d3dcompiler_47_og\x64\release\ccmemoryfunctions.obj
-c:\users\ares\downloads\ns4moddingapi-1.5a\d3dcompiler_47_og\x64\release\ccmain.obj
-c:\users\ares\downloads\ns4moddingapi-1.5a\d3dcompiler_47_og\x64\release\ccgeneralgamefunctions.obj
-c:\users\ares\downloads\ns4moddingapi-1.5a\d3dcompiler_47_og\x64\release\ccgameproperties.obj
-c:\users\ares\downloads\ns4moddingapi-1.5a\d3dcompiler_47_og\x64\release\ccbossiafunctions.obj
-c:\users\ares\downloads\ns4moddingapi-1.5a\d3dcompiler_47_og\x64\release\cccharacterfunctions.obj
-c:\users\ares\downloads\ns4moddingapi-1.5a\d3dcompiler_47_og\x64\release\ccbattlefunctions.obj
-c:\users\ares\downloads\ns4moddingapi-1.5a\d3dcompiler_47_og\x64\release\api_console.obj
-c:\users\ares\downloads\ns4moddingapi-1.5a\d3dcompiler_47_og\x64\release\linit.obj
-c:\users\ares\downloads\ns4moddingapi-1.5a\d3dcompiler_47_og\x64\release\lgc.obj
-c:\users\ares\downloads\ns4moddingapi-1.5a\d3dcompiler_47_og\x64\release\lfunc.obj
-c:\users\ares\downloads\ns4moddingapi-1.5a\d3dcompiler_47_og\x64\release\ldump.obj
-c:\users\ares\downloads\ns4moddingapi-1.5a\d3dcompiler_47_og\x64\release\ldo.obj
-c:\users\ares\downloads\ns4moddingapi-1.5a\d3dcompiler_47_og\x64\release\ldebug.obj
-c:\users\ares\downloads\ns4moddingapi-1.5a\d3dcompiler_47_og\x64\release\ldblib.obj
-c:\users\ares\downloads\ns4moddingapi-1.5a\d3dcompiler_47_og\x64\release\lcode.obj
-c:\users\ares\downloads\ns4moddingapi-1.5a\d3dcompiler_47_og\x64\release\lbaselib.obj
-c:\users\ares\downloads\ns4moddingapi-1.5a\d3dcompiler_47_og\x64\release\lauxlib.obj
-c:\users\ares\downloads\ns4moddingapi-1.5a\d3dcompiler_47_og\x64\release\lapi.obj
-c:\users\ares\downloads\ns4moddingapi-1.5a\d3dcompiler_47_og\x64\release\win32.obj
-c:\users\ares\downloads\ns4moddingapi-1.5a\d3dcompiler_47_og\x64\release\unix.obj
-c:\users\ares\downloads\ns4moddingapi-1.5a\d3dcompiler_47_og\x64\release\protocol.obj
-c:\users\ares\downloads\ns4moddingapi-1.5a\d3dcompiler_47_og\x64\release\peer.obj
-c:\users\ares\downloads\ns4moddingapi-1.5a\d3dcompiler_47_og\x64\release\packet.obj
-c:\users\ares\downloads\ns4moddingapi-1.5a\d3dcompiler_47_og\x64\release\list.obj
-c:\users\ares\downloads\ns4moddingapi-1.5a\d3dcompiler_47_og\x64\release\host.obj
-c:\users\ares\downloads\ns4moddingapi-1.5a\d3dcompiler_47_og\x64\release\compress.obj
-c:\users\ares\downloads\ns4moddingapi-1.5a\d3dcompiler_47_og\x64\release\callbacks.obj
-c:\users\ares\downloads\ns4moddingapi-1.5a\d3dcompiler_47_og\x64\release\print.obj
-c:\users\ares\downloads\ns4moddingapi-1.5a\d3dcompiler_47_og\x64\release\lzio.obj
-c:\users\ares\downloads\ns4moddingapi-1.5a\d3dcompiler_47_og\x64\release\lvm.obj
-c:\users\ares\downloads\ns4moddingapi-1.5a\d3dcompiler_47_og\x64\release\lundump.obj
-c:\users\ares\downloads\ns4moddingapi-1.5a\d3dcompiler_47_og\x64\release\lua.obj
-c:\users\ares\downloads\ns4moddingapi-1.5a\d3dcompiler_47_og\x64\release\ltm.obj
-c:\users\ares\downloads\ns4moddingapi-1.5a\d3dcompiler_47_og\x64\release\ltablib.obj
-c:\users\ares\downloads\ns4moddingapi-1.5a\d3dcompiler_47_og\x64\release\ltable.obj
-c:\users\ares\downloads\ns4moddingapi-1.5a\d3dcompiler_47_og\x64\release\lstrlib.obj
-c:\users\ares\downloads\ns4moddingapi-1.5a\d3dcompiler_47_og\x64\release\lstring.obj
-c:\users\ares\downloads\ns4moddingapi-1.5a\d3dcompiler_47_og\x64\release\lstate.obj
-c:\users\ares\downloads\ns4moddingapi-1.5a\d3dcompiler_47_og\x64\release\lparser.obj
-c:\users\ares\downloads\ns4moddingapi-1.5a\d3dcompiler_47_og\x64\release\loslib.obj
-c:\users\ares\downloads\ns4moddingapi-1.5a\d3dcompiler_47_og\x64\release\lopcodes.obj
-c:\users\ares\downloads\ns4moddingapi-1.5a\d3dcompiler_47_og\x64\release\lobject.obj
-c:\users\ares\downloads\ns4moddingapi-1.5a\d3dcompiler_47_og\x64\release\loadlib.obj
-c:\users\ares\downloads\ns4moddingapi-1.5a\d3dcompiler_47_og\x64\release\lmem.obj
-c:\users\ares\downloads\ns4moddingapi-1.5a\d3dcompiler_47_og\x64\release\lmathlib.obj
-c:\users\ares\downloads\ns4moddingapi-1.5a\d3dcompiler_47_og\x64\release\llex.obj
-c:\users\ares\downloads\ns4moddingapi-1.5a\d3dcompiler_47_og\x64\release\liolib.obj
-c:\users\ares\downloads\ns4moddingapi-1.5a\d3dcompiler_47_og\x64\release\casualgamer.obj
-d:\perfect storm api\perfect-storm-api\d3dcompiler_47_og\x64\release\vc142.pdb
-d:\perfect storm api\perfect-storm-api\d3dcompiler_47_og\x64\release\prmfunctions.obj
-d:\perfect storm api\perfect-storm-api\d3dcompiler_47_og\x64\release\luahook_commands.obj
-d:\perfect storm api\perfect-storm-api\d3dcompiler_47_og\x64\release\luahook.obj
-d:\perfect storm api\perfect-storm-api\d3dcompiler_47_og\x64\release\hookfunctions.obj
-d:\perfect storm api\perfect-storm-api\d3dcompiler_47_og\x64\release\d3dcompiler_47_og.obj
-d:\perfect storm api\perfect-storm-api\d3dcompiler_47_og\x64\release\ccplayerstruct.obj
-d:\perfect storm api\perfect-storm-api\d3dcompiler_47_og\x64\release\ccplayer.obj
-d:\perfect storm api\perfect-storm-api\d3dcompiler_47_og\x64\release\ccmemoryfunctions.obj
-d:\perfect storm api\perfect-storm-api\d3dcompiler_47_og\x64\release\ccmain.obj
-d:\perfect storm api\perfect-storm-api\d3dcompiler_47_og\x64\release\ccgeneralgamefunctions.obj
-d:\perfect storm api\perfect-storm-api\d3dcompiler_47_og\x64\release\ccgameproperties.obj
-d:\perfect storm api\perfect-storm-api\d3dcompiler_47_og\x64\release\ccbossiafunctions.obj
-d:\perfect storm api\perfect-storm-api\d3dcompiler_47_og\x64\release\cccharacterfunctions.obj
-d:\perfect storm api\perfect-storm-api\d3dcompiler_47_og\x64\release\ccbattlefunctions.obj
-d:\perfect storm api\perfect-storm-api\d3dcompiler_47_og\x64\release\casualgamer.obj
-d:\perfect storm api\perfect-storm-api\d3dcompiler_47_og\x64\release\api_console.obj
-d:\perfect storm api\perfect-storm-api\d3dcompiler_47_og\x64\release\linit.obj
-d:\perfect storm api\perfect-storm-api\d3dcompiler_47_og\x64\release\lgc.obj
-d:\perfect storm api\perfect-storm-api\d3dcompiler_47_og\x64\release\lfunc.obj
-d:\perfect storm api\perfect-storm-api\d3dcompiler_47_og\x64\release\ldump.obj
-d:\perfect storm api\perfect-storm-api\d3dcompiler_47_og\x64\release\ldo.obj
-d:\perfect storm api\perfect-storm-api\d3dcompiler_47_og\x64\release\ldebug.obj
-d:\perfect storm api\perfect-storm-api\d3dcompiler_47_og\x64\release\ldblib.obj
-d:\perfect storm api\perfect-storm-api\d3dcompiler_47_og\x64\release\lcode.obj
-d:\perfect storm api\perfect-storm-api\d3dcompiler_47_og\x64\release\lbaselib.obj
-d:\perfect storm api\perfect-storm-api\d3dcompiler_47_og\x64\release\lauxlib.obj
-d:\perfect storm api\perfect-storm-api\d3dcompiler_47_og\x64\release\lapi.obj
-d:\perfect storm api\perfect-storm-api\d3dcompiler_47_og\x64\release\win32.obj
-d:\perfect storm api\perfect-storm-api\d3dcompiler_47_og\x64\release\unix.obj
-d:\perfect storm api\perfect-storm-api\d3dcompiler_47_og\x64\release\protocol.obj
-d:\perfect storm api\perfect-storm-api\d3dcompiler_47_og\x64\release\peer.obj
-d:\perfect storm api\perfect-storm-api\d3dcompiler_47_og\x64\release\packet.obj
-d:\perfect storm api\perfect-storm-api\d3dcompiler_47_og\x64\release\list.obj
-d:\perfect storm api\perfect-storm-api\d3dcompiler_47_og\x64\release\host.obj
-d:\perfect storm api\perfect-storm-api\d3dcompiler_47_og\x64\release\compress.obj
-d:\perfect storm api\perfect-storm-api\d3dcompiler_47_og\x64\release\callbacks.obj
-d:\perfect storm api\perfect-storm-api\d3dcompiler_47_og\x64\release\print.obj
-d:\perfect storm api\perfect-storm-api\d3dcompiler_47_og\x64\release\lzio.obj
-d:\perfect storm api\perfect-storm-api\d3dcompiler_47_og\x64\release\lvm.obj
-d:\perfect storm api\perfect-storm-api\d3dcompiler_47_og\x64\release\lundump.obj
-d:\perfect storm api\perfect-storm-api\d3dcompiler_47_og\x64\release\lua.obj
-d:\perfect storm api\perfect-storm-api\d3dcompiler_47_og\x64\release\ltm.obj
-d:\perfect storm api\perfect-storm-api\d3dcompiler_47_og\x64\release\ltablib.obj
-d:\perfect storm api\perfect-storm-api\d3dcompiler_47_og\x64\release\ltable.obj
-d:\perfect storm api\perfect-storm-api\d3dcompiler_47_og\x64\release\lstrlib.obj
-d:\perfect storm api\perfect-storm-api\d3dcompiler_47_og\x64\release\lstring.obj
-d:\perfect storm api\perfect-storm-api\d3dcompiler_47_og\x64\release\lstate.obj
-d:\perfect storm api\perfect-storm-api\d3dcompiler_47_og\x64\release\lparser.obj
-d:\perfect storm api\perfect-storm-api\d3dcompiler_47_og\x64\release\loslib.obj
-d:\perfect storm api\perfect-storm-api\d3dcompiler_47_og\x64\release\lopcodes.obj
-d:\perfect storm api\perfect-storm-api\d3dcompiler_47_og\x64\release\lobject.obj
-d:\perfect storm api\perfect-storm-api\d3dcompiler_47_og\x64\release\loadlib.obj
-d:\perfect storm api\perfect-storm-api\d3dcompiler_47_og\x64\release\lmem.obj
-d:\perfect storm api\perfect-storm-api\d3dcompiler_47_og\x64\release\lmathlib.obj
-d:\perfect storm api\perfect-storm-api\d3dcompiler_47_og\x64\release\llex.obj
-d:\perfect storm api\perfect-storm-api\d3dcompiler_47_og\x64\release\liolib.obj
-c:\users\ares\downloads\ns4moddingapi-1.5a\x64\release\d3dcompiler_47.lib
-c:\users\ares\downloads\ns4moddingapi-1.5a\x64\release\d3dcompiler_47.exp
-c:\users\ares\downloads\ns4moddingapi-1.5a\x64\release\d3dcompiler_47.ipdb
-c:\users\ares\downloads\ns4moddingapi-1.5a\x64\release\d3dcompiler_47.iobj
-c:\users\ares\downloads\ns4moddingapi-1.5a\x64\release\d3dcompiler_47.dll
-c:\users\ares\downloads\ns4moddingapi-1.5a\x64\release\d3dcompiler_47.pdb
-d:\perfect storm api\perfect-storm-api\d3dcompiler_47_og\x64\release\d3dcompiler_47_og_asm.obj
-d:\perfect storm api\perfect-storm-api\x64\release\d3dcompiler_47.pdb
-d:\perfect storm api\perfect-storm-api\x64\release\d3dcompiler_47.dll
-d:\perfect storm api\perfect-storm-api\d3dcompiler_47_og\x64\release\d3dcompiler_47.tlog\cl.command.1.tlog
-d:\perfect storm api\perfect-storm-api\d3dcompiler_47_og\x64\release\d3dcompiler_47.tlog\cl.read.1.tlog
-d:\perfect storm api\perfect-storm-api\d3dcompiler_47_og\x64\release\d3dcompiler_47.tlog\cl.write.1.tlog
-d:\perfect storm api\perfect-storm-api\d3dcompiler_47_og\x64\release\d3dcompiler_47.tlog\d3dcompiler_47.write.1u.tlog
-d:\perfect storm api\perfect-storm-api\d3dcompiler_47_og\x64\release\d3dcompiler_47.tlog\link.command.1.tlog
-d:\perfect storm api\perfect-storm-api\d3dcompiler_47_og\x64\release\d3dcompiler_47.tlog\link.delete.1.tlog
-d:\perfect storm api\perfect-storm-api\d3dcompiler_47_og\x64\release\d3dcompiler_47.tlog\link.read.1.tlog
-d:\perfect storm api\perfect-storm-api\d3dcompiler_47_og\x64\release\d3dcompiler_47.tlog\link.write.1.tlog
-d:\perfect storm api\perfect-storm-api\d3dcompiler_47_og\x64\release\d3dcompiler_47.tlog\masm.read.1u.tlog
-d:\perfect storm api\perfect-storm-api\d3dcompiler_47_og\x64\release\d3dcompiler_47.tlog\masm.write.1u.tlog
+c:\users\joseph~1\appdata\local\tempvc142.pdb
+e:\programming\perfect storm\d3dcompiler_47_og\x64\release\imgui_impl_dx11.obj
+e:\programming\perfect storm\d3dcompiler_47_og\x64\release\imgui_draw.obj
+e:\programming\perfect storm\d3dcompiler_47_og\x64\release\imgui_demo.obj
+e:\programming\perfect storm\d3dcompiler_47_og\x64\release\imgui.obj
+e:\programming\perfect storm\d3dcompiler_47_og\x64\release\directx11hook.obj
+e:\programming\perfect storm\d3dcompiler_47_og\x64\release\character.obj
+e:\programming\perfect storm\d3dcompiler_47_og\x64\release\controls.obj
+e:\programming\perfect storm\d3dcompiler_47_og\x64\release\ccplayerstruct.obj
+e:\programming\perfect storm\d3dcompiler_47_og\x64\release\ccplayer.obj
+e:\programming\perfect storm\d3dcompiler_47_og\x64\release\ccmemoryfunctions.obj
+e:\programming\perfect storm\d3dcompiler_47_og\x64\release\ccmain.obj
+e:\programming\perfect storm\d3dcompiler_47_og\x64\release\ccgeneralgamefunctions.obj
+e:\programming\perfect storm\d3dcompiler_47_og\x64\release\ccgameproperties.obj
+e:\programming\perfect storm\d3dcompiler_47_og\x64\release\ccbossiafunctions.obj
+e:\programming\perfect storm\d3dcompiler_47_og\x64\release\cccharacterfunctions.obj
+e:\programming\perfect storm\d3dcompiler_47_og\x64\release\ccbattlefunctions.obj
+e:\programming\perfect storm\d3dcompiler_47_og\x64\release\casualgamer.obj
+e:\programming\perfect storm\d3dcompiler_47_og\x64\release\autoupdater.obj
+e:\programming\perfect storm\d3dcompiler_47_og\x64\release\audioplayer.obj
+e:\programming\perfect storm\d3dcompiler_47_og\x64\release\api_console.obj
+e:\programming\perfect storm\d3dcompiler_47_og\x64\release\xfbinparser.obj
+e:\programming\perfect storm\d3dcompiler_47_og\x64\release\vector3.obj
+e:\programming\perfect storm\d3dcompiler_47_og\x64\release\stage.obj
+e:\programming\perfect storm\d3dcompiler_47_og\x64\release\sound.obj
+e:\programming\perfect storm\d3dcompiler_47_og\x64\release\settings.obj
+e:\programming\perfect storm\d3dcompiler_47_og\x64\release\sdlinit.obj
+e:\programming\perfect storm\d3dcompiler_47_og\x64\release\sdl2soundeffects.obj
+e:\programming\perfect storm\d3dcompiler_47_og\x64\release\sdl2music.obj
+e:\programming\perfect storm\d3dcompiler_47_og\x64\release\prmfunctions.obj
+e:\programming\perfect storm\d3dcompiler_47_og\x64\release\music.obj
+e:\programming\perfect storm\d3dcompiler_47_og\x64\release\multimatch.obj
+e:\programming\perfect storm\d3dcompiler_47_og\x64\release\luahook_commands.obj
+e:\programming\perfect storm\d3dcompiler_47_og\x64\release\luahook.obj
+e:\programming\perfect storm\d3dcompiler_47_og\x64\release\hookfunctions.obj
+e:\programming\perfect storm\d3dcompiler_47_og\x64\release\gamemath.obj
+e:\programming\perfect storm\d3dcompiler_47_og\x64\release\fileparser.obj
+e:\programming\perfect storm\d3dcompiler_47_og\x64\release\downloadprogress.obj
+e:\programming\perfect storm\d3dcompiler_47_og\x64\release\d3dcompiler_47_og.obj
+e:\programming\perfect storm\d3dcompiler_47_og\x64\release\imgui_widgets.obj
+e:\programming\perfect storm\d3dcompiler_47_og\x64\release\imgui_impl_win32.obj
+e:\programming\perfect storm\d3dcompiler_47_og\x64\release\linit.obj
+e:\programming\perfect storm\d3dcompiler_47_og\x64\release\lgc.obj
+e:\programming\perfect storm\d3dcompiler_47_og\x64\release\lfunc.obj
+e:\programming\perfect storm\d3dcompiler_47_og\x64\release\ldump.obj
+e:\programming\perfect storm\d3dcompiler_47_og\x64\release\ldo.obj
+e:\programming\perfect storm\d3dcompiler_47_og\x64\release\ldebug.obj
+e:\programming\perfect storm\d3dcompiler_47_og\x64\release\ldblib.obj
+e:\programming\perfect storm\d3dcompiler_47_og\x64\release\lcode.obj
+e:\programming\perfect storm\d3dcompiler_47_og\x64\release\lbaselib.obj
+e:\programming\perfect storm\d3dcompiler_47_og\x64\release\lauxlib.obj
+e:\programming\perfect storm\d3dcompiler_47_og\x64\release\lapi.obj
+e:\programming\perfect storm\d3dcompiler_47_og\x64\release\win32.obj
+e:\programming\perfect storm\d3dcompiler_47_og\x64\release\unix.obj
+e:\programming\perfect storm\d3dcompiler_47_og\x64\release\protocol.obj
+e:\programming\perfect storm\d3dcompiler_47_og\x64\release\peer.obj
+e:\programming\perfect storm\d3dcompiler_47_og\x64\release\packet.obj
+e:\programming\perfect storm\d3dcompiler_47_og\x64\release\list.obj
+e:\programming\perfect storm\d3dcompiler_47_og\x64\release\host.obj
+e:\programming\perfect storm\d3dcompiler_47_og\x64\release\compress.obj
+e:\programming\perfect storm\d3dcompiler_47_og\x64\release\callbacks.obj
+e:\programming\perfect storm\d3dcompiler_47_og\x64\release\print.obj
+e:\programming\perfect storm\d3dcompiler_47_og\x64\release\lzio.obj
+e:\programming\perfect storm\d3dcompiler_47_og\x64\release\lvm.obj
+e:\programming\perfect storm\d3dcompiler_47_og\x64\release\lundump.obj
+e:\programming\perfect storm\d3dcompiler_47_og\x64\release\lua.obj
+e:\programming\perfect storm\d3dcompiler_47_og\x64\release\ltm.obj
+e:\programming\perfect storm\d3dcompiler_47_og\x64\release\ltablib.obj
+e:\programming\perfect storm\d3dcompiler_47_og\x64\release\ltable.obj
+e:\programming\perfect storm\d3dcompiler_47_og\x64\release\lstrlib.obj
+e:\programming\perfect storm\d3dcompiler_47_og\x64\release\lstring.obj
+e:\programming\perfect storm\d3dcompiler_47_og\x64\release\lstate.obj
+e:\programming\perfect storm\d3dcompiler_47_og\x64\release\lparser.obj
+e:\programming\perfect storm\d3dcompiler_47_og\x64\release\loslib.obj
+e:\programming\perfect storm\d3dcompiler_47_og\x64\release\lopcodes.obj
+e:\programming\perfect storm\d3dcompiler_47_og\x64\release\lobject.obj
+e:\programming\perfect storm\d3dcompiler_47_og\x64\release\loadlib.obj
+e:\programming\perfect storm\d3dcompiler_47_og\x64\release\lmem.obj
+e:\programming\perfect storm\d3dcompiler_47_og\x64\release\lmathlib.obj
+e:\programming\perfect storm\d3dcompiler_47_og\x64\release\llex.obj
+e:\programming\perfect storm\d3dcompiler_47_og\x64\release\liolib.obj
+e:\programming\perfect storm\x64\release\d3dcompiler_47.lib
+e:\programming\perfect storm\x64\release\d3dcompiler_47.exp
+e:\programming\perfect storm\d3dcompiler_47_og\x64\release\d3dcompiler_47_og_asm.obj
+e:\programming\perfect storm\x64\release\d3dcompiler_47.pdb
+e:\programming\perfect storm\d3dcompiler_47_og\x64\release\d3dcompiler_47.tlog\cl.command.1.tlog
+e:\programming\perfect storm\d3dcompiler_47_og\x64\release\d3dcompiler_47.tlog\cl.read.1.tlog
+e:\programming\perfect storm\d3dcompiler_47_og\x64\release\d3dcompiler_47.tlog\cl.write.1.tlog
+e:\programming\perfect storm\d3dcompiler_47_og\x64\release\d3dcompiler_47.tlog\d3dcompiler_47.write.1u.tlog
+e:\programming\perfect storm\d3dcompiler_47_og\x64\release\d3dcompiler_47.tlog\link-pgomgr.read.1.tlog
+e:\programming\perfect storm\d3dcompiler_47_og\x64\release\d3dcompiler_47.tlog\link-pgomgr.write.1.tlog
+e:\programming\perfect storm\d3dcompiler_47_og\x64\release\d3dcompiler_47.tlog\link.command.1.tlog
+e:\programming\perfect storm\d3dcompiler_47_og\x64\release\d3dcompiler_47.tlog\link.read.1.tlog
+e:\programming\perfect storm\d3dcompiler_47_og\x64\release\d3dcompiler_47.tlog\link.write.1.tlog
+e:\programming\perfect storm\d3dcompiler_47_og\x64\release\d3dcompiler_47.tlog\masm.read.1u.tlog
+e:\programming\perfect storm\d3dcompiler_47_og\x64\release\d3dcompiler_47.tlog\masm.write.1u.tlog

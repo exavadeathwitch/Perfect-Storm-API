@@ -5,6 +5,7 @@
 #include <stdint.h>
 #include <iostream>
 #include <filesystem>
+#include <vector>
 
 using namespace std;
 using namespace moddingApi;
@@ -56,7 +57,7 @@ float FileParser::b_ReadFloat(vector<BYTE> actual, int index)
 	return *a;
 }
 
-std::string FileParser::b_ReadString(vector<BYTE> actual, int index, int count)
+string FileParser::b_ReadString(vector<BYTE> actual, int index, int count)
 {
 	string a = "";
 	if (count == -1)
@@ -261,7 +262,7 @@ vector<BYTE> FileParser::ReadAllBytes(string _file)
 	ifstream f;
 	f.open(_file, ios::binary);
 
-	std::vector<BYTE> result;
+	vector<BYTE> result;
 
 	int FileSize = 0;
 	while (!f.eof())
@@ -287,7 +288,7 @@ vector<BYTE> FileParser::ReadAllBytes(string _file)
 	f.close();
 	f.open(_file, ios::binary);
 
-	std::vector<BYTE> result(FileSize);
+	vector<BYTE> result(FileSize);
 
 	f.seekg(0, ios::beg);
 
@@ -307,12 +308,12 @@ vector<string> FileParser::ReadAllLines(string _file)
 	ifstream f;
 	f.open(_file);
 
-	std::vector<string> result;
+	vector<string> result;
 
 	while (!f.eof())
 	{
 		string str;
-		std::getline(f, str);
+		getline(f, str);
 		result.push_back(str);
 	}
 
@@ -320,7 +321,7 @@ vector<string> FileParser::ReadAllLines(string _file)
 	return result;
 }
 
-void FileParser::WriteAllBytes(char* path, std::vector<BYTE> actual)
+void FileParser::WriteAllBytes(char* path, vector<BYTE> actual)
 {
 	ofstream fout;
 	fout.open(path, ios::binary | ios::out);

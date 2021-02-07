@@ -282,9 +282,6 @@
     <ClCompile Include="DirectX11Hook\imgui.cpp">
       <Filter>Source Files\IMGUI Hook</Filter>
     </ClCompile>
-    <ClCompile Include="DirectX11Hook\imgui_demo.cpp">
-      <Filter>Source Files\IMGUI Hook</Filter>
-    </ClCompile>
     <ClCompile Include="DirectX11Hook\imgui_draw.cpp">
       <Filter>Source Files\IMGUI Hook</Filter>
     </ClCompile>
@@ -302,6 +299,30 @@
     </ClCompile>
     <ClCompile Include="DownloadProgress.cpp">
       <Filter>Source Files\API</Filter>
+    </ClCompile>
+    <ClCompile Include="Vector3.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="XfbinParser.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Sound.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MultiMatch.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GameMath.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="FileParser.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="AudioPlayer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="DirectX11Hook\imgui_demo.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -497,9 +518,6 @@
     <ClInclude Include="DirectX11Hook\imstb_truetype.h">
       <Filter>Header Files\IMGUI Hook</Filter>
     </ClInclude>
-    <ClInclude Include="DirectX11Hook\stdafx.h">
-      <Filter>Header Files\IMGUI Hook</Filter>
-    </ClInclude>
     <ClInclude Include="DirectX11Hook\targetver.h">
       <Filter>Header Files\IMGUI Hook</Filter>
     </ClInclude>
@@ -515,15 +533,50 @@
     <ClInclude Include="DownloadProgress.h">
       <Filter>Header Files\API</Filter>
     </ClInclude>
+    <ClInclude Include="XfbinParser.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Vector3.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Sound.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MultiMatch.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GameMath.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="FileParser.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="AudioPlayer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="DirectX11Hook\stdafx.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="d3dcompiler_47_og.def">
       <Filter>Resource Files</Filter>
     </None>
+    <None Include="DirectX11Hook\MyTemplate.vstemplate" />
   </ItemGroup>
   <ItemGroup>
     <MASM Include="d3dcompiler_47_og_asm.asm">
       <Filter>Resource Files</Filter>
     </MASM>
+  </ItemGroup>
+  <ItemGroup>
+    <Library Include="DirectX11Hook\detours.lib" />
+    <Library Include="enet64.lib" />
+    <Library Include="CasualLibrary.lib" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="DirectX11Hook\__TemplateIcon.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
 </Project>

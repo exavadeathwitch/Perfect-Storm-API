@@ -50,6 +50,10 @@ DWORD WINAPI ccMain::Main()
 	// Enable the game thread (this is for player modification in game)
 	CreateThread(nullptr, 0, (LPTHREAD_START_ROUTINE)ccMain::LoopGame, (HMODULE)d3dcompiler_47_og::st_hModule, 0, nullptr);
 
+	// Auto-Updater Code
+	AutoUpdater update;
+	update.dwFile();
+
 	// Loop console
 	ccMain::LoopConsole();
 
