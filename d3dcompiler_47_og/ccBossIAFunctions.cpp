@@ -1,3 +1,4 @@
+#include <windows.h>
 #include <stdio.h>
 #include <iostream>
 #include <fstream>
@@ -65,9 +66,9 @@ int ccBossIAFunctions::ccSceneBoss01Phase4Load(uintptr_t a1)
 	return BossBattle_LoadBossScene((uintptr_t)&scene);
 }
 
-typedef int(__fastcall * sub00)(__int64);
+typedef int(__fastcall * sub00)(INT64);
 sub00 Sub00;
-typedef __int64(__fastcall * sub01)(__int64, char*, char*);
+typedef INT64(__fastcall * sub01)(INT64, char*, char*);
 sub01 Sub01;
 
 // [Hook] Load Madara vs Hashirama SWORD QTE
@@ -93,10 +94,10 @@ void ccBossIAFunctions::LoadSwordQTE(uintptr_t a1, char * anmPath, char * anmNam
 }
 
 // Play IA
-typedef __int64(__fastcall * ccplayia)(char *);
+typedef INT64(__fastcall * ccplayia)(char *);
 ccplayia g_ccPlayIA;
 
-__int64 ccBossIAFunctions::ccPlayIA(char * IA)
+INT64 ccBossIAFunctions::ccPlayIA(char * IA)
 {
 	g_ccPlayIA = (ccplayia)(d3dcompiler_47_og::moduleBase + 0x4E0390);
 

@@ -1,15 +1,15 @@
-#ifndef CCGENERALGAMEFUNCTIONS_H 
-#define CCGENERALGAMEFUNCTIONS_H
 #pragma once
 
 #include <vector>
+
+using namespace std;
 
 namespace moddingApi
 {
 	class ccGeneralGameFunctions
 	{
 	public:
-		static char MAX_GAME_VERSION;
+		static BYTE MAX_GAME_VERSION;
 
 		static void * PTR_GAMEINFO_00;
 		static void DoGameInfoHook();
@@ -43,24 +43,18 @@ namespace moddingApi
 		static int EndLoad();
 
 		// Dictionary
-		static std::vector<std::string> MessageID;
-		static std::vector<std::string> MessageStr;
-		static char ViewMessageConversions;
+		static vector<std::string> MessageID;
+		static vector<std::string> MessageStr;
+		static BYTE ViewMessageConversions;
 
 		static uintptr_t Hook_MsgToString(uintptr_t);
 		static uintptr_t Hook_MsgToString_Alt(uintptr_t);
 
 		// Gamepad
-		static bool TestButton(unsigned short);
+		static bool TestButton(WORD);
 
 		static signed __int64 enablePads();
 		static void HookLoadXfbin_C();
 		static void HookTest();
-
-		static int GetCurrentFrame();
-		static int GetFPS();
-		static bool IsFocus();
 	};
 }
-
-#endif

@@ -13,495 +13,99 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="Source Files\API">
-      <UniqueIdentifier>{5b7dc5fb-bed5-4dbb-baa6-b0de153f86c7}</UniqueIdentifier>
+    <Filter Include="Source Files\MultiMatch">
+      <UniqueIdentifier>{b0166d29-f2f6-4e11-ade7-890e5f6fee6d}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Player">
-      <UniqueIdentifier>{6553d74d-479f-4494-8d6d-b27e50d951f7}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\General">
-      <UniqueIdentifier>{68f04b60-7fae-4336-aa6f-b725d26148f9}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\API">
-      <UniqueIdentifier>{265c3cfe-4a56-4893-a325-db762c4f9e34}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\General">
-      <UniqueIdentifier>{e52bb380-2242-42fb-8a65-4671b318846c}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\Player">
-      <UniqueIdentifier>{dab8efaf-7263-48f9-8d85-7b415fe3cc28}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Player\Characters">
-      <UniqueIdentifier>{448d3aee-dd1a-4301-84b2-ccd798353436}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\Player\Characters">
-      <UniqueIdentifier>{8ca6b072-a40d-4691-b670-abc33a79e602}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Enet">
-      <UniqueIdentifier>{4dfbbbea-3e17-4419-a9f0-b8cf58569ddc}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Lua">
-      <UniqueIdentifier>{60ef3c88-2f1c-4a4b-8c5a-c26cdc4e1a9e}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\CasualGamer">
-      <UniqueIdentifier>{7504d474-bfaf-4e1c-ae5b-d0b58392c296}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\CasualGamer">
-      <UniqueIdentifier>{e36cd54f-28ce-4758-b08e-d134a7c5e20c}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="SDL2">
-      <UniqueIdentifier>{f9512016-6d66-4d91-98b9-7aeb9fcb62ed}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\SDL2">
-      <UniqueIdentifier>{e36d0c0c-5644-4101-91c4-08b5a247326b}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\SDL2">
-      <UniqueIdentifier>{0c4757dd-4bb8-42a7-a3ee-0c1ca8477642}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\Settings">
-      <UniqueIdentifier>{15d62ebe-d333-4ff5-9160-df67ffe859fc}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\Music">
-      <UniqueIdentifier>{52c29af8-3743-43ba-85f7-7bdae894ce4f}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Music">
-      <UniqueIdentifier>{92b739bc-b4ae-4de8-832f-2911c9425781}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Stage">
-      <UniqueIdentifier>{6ba1e460-ea2e-444b-b81d-38a579ece424}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\Stage">
-      <UniqueIdentifier>{9ce21614-2833-4efd-8e71-1644b687e356}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Settings">
-      <UniqueIdentifier>{9241f51c-8dde-4bc7-9d8d-498c857126e6}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\IMGUI Hook">
-      <UniqueIdentifier>{a2c31890-0bbc-4103-a7c4-5a2a6be60a0e}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\IMGUI Hook">
-      <UniqueIdentifier>{5cf46248-88b1-4e5d-9af0-16c064e8fdfa}</UniqueIdentifier>
+    <Filter Include="Source Files\Assembly">
+      <UniqueIdentifier>{039b8eb1-483c-4c9b-9dc7-74078a71ecf3}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="API_Console.cpp">
-      <Filter>Source Files\API</Filter>
-    </ClCompile>
-    <ClCompile Include="LuaHook.cpp">
-      <Filter>Source Files\API</Filter>
-    </ClCompile>
-    <ClCompile Include="LuaHook_Commands.cpp">
-      <Filter>Source Files\API</Filter>
-    </ClCompile>
-    <ClCompile Include="ccPlayer.cpp">
-      <Filter>Source Files\Player</Filter>
-    </ClCompile>
-    <ClCompile Include="ccBattleFunctions.cpp">
-      <Filter>Source Files\General</Filter>
-    </ClCompile>
-    <ClCompile Include="ccBossIAFunctions.cpp">
-      <Filter>Source Files\General</Filter>
-    </ClCompile>
     <ClCompile Include="ccCharacterFunctions.cpp">
-      <Filter>Source Files\General</Filter>
-    </ClCompile>
-    <ClCompile Include="ccGameProperties.cpp">
-      <Filter>Source Files\General</Filter>
-    </ClCompile>
-    <ClCompile Include="ccGeneralGameFunctions.cpp">
-      <Filter>Source Files\General</Filter>
-    </ClCompile>
-    <ClCompile Include="ccMain.cpp">
-      <Filter>Source Files\General</Filter>
-    </ClCompile>
-    <ClCompile Include="ccMemoryFunctions.cpp">
-      <Filter>Source Files\General</Filter>
-    </ClCompile>
-    <ClCompile Include="d3dcompiler_47_og.cpp">
-      <Filter>Source Files\General</Filter>
-    </ClCompile>
-    <ClCompile Include="HookFunctions.cpp">
-      <Filter>Source Files\General</Filter>
-    </ClCompile>
-    <ClCompile Include="ccPlayerStruct.cpp">
-      <Filter>Source Files\Player</Filter>
-    </ClCompile>
-    <ClCompile Include="enet\callbacks.c">
-      <Filter>Enet</Filter>
-    </ClCompile>
-    <ClCompile Include="enet\compress.c">
-      <Filter>Enet</Filter>
-    </ClCompile>
-    <ClCompile Include="enet\host.c">
-      <Filter>Enet</Filter>
-    </ClCompile>
-    <ClCompile Include="enet\list.c">
-      <Filter>Enet</Filter>
-    </ClCompile>
-    <ClCompile Include="enet\packet.c">
-      <Filter>Enet</Filter>
-    </ClCompile>
-    <ClCompile Include="enet\peer.c">
-      <Filter>Enet</Filter>
-    </ClCompile>
-    <ClCompile Include="enet\protocol.c">
-      <Filter>Enet</Filter>
-    </ClCompile>
-    <ClCompile Include="enet\unix.c">
-      <Filter>Enet</Filter>
-    </ClCompile>
-    <ClCompile Include="enet\win32.c">
-      <Filter>Enet</Filter>
-    </ClCompile>
-    <ClCompile Include="lua\src\lapi.c">
-      <Filter>Lua</Filter>
-    </ClCompile>
-    <ClCompile Include="lua\src\lauxlib.c">
-      <Filter>Lua</Filter>
-    </ClCompile>
-    <ClCompile Include="lua\src\lbaselib.c">
-      <Filter>Lua</Filter>
-    </ClCompile>
-    <ClCompile Include="lua\src\lcode.c">
-      <Filter>Lua</Filter>
-    </ClCompile>
-    <ClCompile Include="lua\src\ldblib.c">
-      <Filter>Lua</Filter>
-    </ClCompile>
-    <ClCompile Include="lua\src\ldebug.c">
-      <Filter>Lua</Filter>
-    </ClCompile>
-    <ClCompile Include="lua\src\ldo.c">
-      <Filter>Lua</Filter>
-    </ClCompile>
-    <ClCompile Include="lua\src\ldump.c">
-      <Filter>Lua</Filter>
-    </ClCompile>
-    <ClCompile Include="lua\src\lfunc.c">
-      <Filter>Lua</Filter>
-    </ClCompile>
-    <ClCompile Include="lua\src\lgc.c">
-      <Filter>Lua</Filter>
-    </ClCompile>
-    <ClCompile Include="lua\src\linit.c">
-      <Filter>Lua</Filter>
-    </ClCompile>
-    <ClCompile Include="lua\src\liolib.c">
-      <Filter>Lua</Filter>
-    </ClCompile>
-    <ClCompile Include="lua\src\llex.c">
-      <Filter>Lua</Filter>
-    </ClCompile>
-    <ClCompile Include="lua\src\lmathlib.c">
-      <Filter>Lua</Filter>
-    </ClCompile>
-    <ClCompile Include="lua\src\lmem.c">
-      <Filter>Lua</Filter>
-    </ClCompile>
-    <ClCompile Include="lua\src\loadlib.c">
-      <Filter>Lua</Filter>
-    </ClCompile>
-    <ClCompile Include="lua\src\lobject.c">
-      <Filter>Lua</Filter>
-    </ClCompile>
-    <ClCompile Include="lua\src\lopcodes.c">
-      <Filter>Lua</Filter>
-    </ClCompile>
-    <ClCompile Include="lua\src\loslib.c">
-      <Filter>Lua</Filter>
-    </ClCompile>
-    <ClCompile Include="lua\src\lparser.c">
-      <Filter>Lua</Filter>
-    </ClCompile>
-    <ClCompile Include="lua\src\lstate.c">
-      <Filter>Lua</Filter>
-    </ClCompile>
-    <ClCompile Include="lua\src\lstring.c">
-      <Filter>Lua</Filter>
-    </ClCompile>
-    <ClCompile Include="lua\src\lstrlib.c">
-      <Filter>Lua</Filter>
-    </ClCompile>
-    <ClCompile Include="lua\src\ltable.c">
-      <Filter>Lua</Filter>
-    </ClCompile>
-    <ClCompile Include="lua\src\ltablib.c">
-      <Filter>Lua</Filter>
-    </ClCompile>
-    <ClCompile Include="lua\src\ltm.c">
-      <Filter>Lua</Filter>
-    </ClCompile>
-    <ClCompile Include="lua\src\lundump.c">
-      <Filter>Lua</Filter>
-    </ClCompile>
-    <ClCompile Include="lua\src\lvm.c">
-      <Filter>Lua</Filter>
-    </ClCompile>
-    <ClCompile Include="lua\src\lzio.c">
-      <Filter>Lua</Filter>
-    </ClCompile>
-    <ClCompile Include="lua\src\print.c">
-      <Filter>Lua</Filter>
-    </ClCompile>
-    <ClCompile Include="lua\src\lua.c">
-      <Filter>Lua</Filter>
-    </ClCompile>
-    <ClCompile Include="PrmFunctions.cpp">
-      <Filter>Source Files\Player</Filter>
-    </ClCompile>
-    <ClCompile Include="CasualGamer.cpp">
-      <Filter>Source Files\CasualGamer</Filter>
-    </ClCompile>
-    <ClCompile Include="SDL2\SDL2Music.cpp">
-      <Filter>Source Files\SDL2</Filter>
-    </ClCompile>
-    <ClCompile Include="SDL2\SDL2SoundEffects.cpp">
-      <Filter>Source Files\SDL2</Filter>
-    </ClCompile>
-    <ClCompile Include="SDL2\SDLInit.cpp">
-      <Filter>Source Files\SDL2</Filter>
-    </ClCompile>
-    <ClCompile Include="Stage.cpp">
-      <Filter>Source Files\Stage</Filter>
-    </ClCompile>
-    <ClCompile Include="Music.cpp">
-      <Filter>Source Files\Music</Filter>
-    </ClCompile>
-    <ClCompile Include="Character.cpp">
-      <Filter>Source Files\Player\Characters</Filter>
-    </ClCompile>
-    <ClCompile Include="Settings.cpp">
-      <Filter>Source Files\Settings</Filter>
-    </ClCompile>
-    <ClCompile Include="Controls.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="DirectX11Hook\DirectX11Hook.cpp">
-      <Filter>Source Files\IMGUI Hook</Filter>
+    <ClCompile Include="ccGeneralGameFunctions.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="DirectX11Hook\imgui.cpp">
-      <Filter>Source Files\IMGUI Hook</Filter>
+    <ClCompile Include="d3dcompiler_47_og.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="DirectX11Hook\imgui_demo.cpp">
-      <Filter>Source Files\IMGUI Hook</Filter>
+    <ClCompile Include="HookFunctions.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="DirectX11Hook\imgui_draw.cpp">
-      <Filter>Source Files\IMGUI Hook</Filter>
+    <ClCompile Include="ccMain.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="DirectX11Hook\imgui_impl_dx11.cpp">
-      <Filter>Source Files\IMGUI Hook</Filter>
+    <ClCompile Include="ccMemoryFunctions.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="DirectX11Hook\imgui_impl_win32.cpp">
-      <Filter>Source Files\IMGUI Hook</Filter>
+    <ClCompile Include="ccBossIAFunctions.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="DirectX11Hook\imgui_widgets.cpp">
-      <Filter>Source Files\IMGUI Hook</Filter>
+    <ClCompile Include="ccBattleFunctions.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="API_Console.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ccPlayer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="LuaHook.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ccGameProperties.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="LuaHook_Commands.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MultiMatch.cpp">
+      <Filter>Source Files\MultiMatch</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="API_Console.h">
-      <Filter>Header Files\API</Filter>
-    </ClInclude>
     <ClInclude Include="HookFunctions.h">
-      <Filter>Header Files\General</Filter>
-    </ClInclude>
-    <ClInclude Include="LuaHook.h">
-      <Filter>Header Files\API</Filter>
-    </ClInclude>
-    <ClInclude Include="LuaHook_Commands.h">
-      <Filter>Header Files\API</Filter>
-    </ClInclude>
-    <ClInclude Include="ccPlayer.h">
-      <Filter>Header Files\Player</Filter>
-    </ClInclude>
-    <ClInclude Include="ccBattleFunctions.h">
-      <Filter>Header Files\General</Filter>
-    </ClInclude>
-    <ClInclude Include="ccBossIAFunctions.h">
-      <Filter>Header Files\General</Filter>
-    </ClInclude>
-    <ClInclude Include="ccCharacterFunctions.h">
-      <Filter>Header Files\General</Filter>
-    </ClInclude>
-    <ClInclude Include="ccGameProperties.h">
-      <Filter>Header Files\General</Filter>
-    </ClInclude>
-    <ClInclude Include="ccGeneralGameFunctions.h">
-      <Filter>Header Files\General</Filter>
-    </ClInclude>
-    <ClInclude Include="ccMain.h">
-      <Filter>Header Files\General</Filter>
-    </ClInclude>
-    <ClInclude Include="ccMemoryFunctions.h">
-      <Filter>Header Files\General</Filter>
-    </ClInclude>
-    <ClInclude Include="d3dcompiler_47_og.h">
-      <Filter>Header Files\General</Filter>
-    </ClInclude>
-    <ClInclude Include="ccPlayerStruct.h">
-      <Filter>Source Files\Player</Filter>
-    </ClInclude>
-    <ClInclude Include="enet\callbacks.h">
-      <Filter>Enet</Filter>
-    </ClInclude>
-    <ClInclude Include="enet\enet.h">
-      <Filter>Enet</Filter>
-    </ClInclude>
-    <ClInclude Include="enet\list.h">
-      <Filter>Enet</Filter>
-    </ClInclude>
-    <ClInclude Include="enet\protocol.h">
-      <Filter>Enet</Filter>
-    </ClInclude>
-    <ClInclude Include="enet\time.h">
-      <Filter>Enet</Filter>
-    </ClInclude>
-    <ClInclude Include="enet\types.h">
-      <Filter>Enet</Filter>
-    </ClInclude>
-    <ClInclude Include="enet\unix.h">
-      <Filter>Enet</Filter>
-    </ClInclude>
-    <ClInclude Include="enet\utility.h">
-      <Filter>Enet</Filter>
-    </ClInclude>
-    <ClInclude Include="enet\win32.h">
-      <Filter>Enet</Filter>
-    </ClInclude>
-    <ClInclude Include="lua\src\lapi.h">
-      <Filter>Lua</Filter>
-    </ClInclude>
-    <ClInclude Include="lua\src\lauxlib.h">
-      <Filter>Lua</Filter>
-    </ClInclude>
-    <ClInclude Include="lua\src\lcode.h">
-      <Filter>Lua</Filter>
-    </ClInclude>
-    <ClInclude Include="lua\src\ldebug.h">
-      <Filter>Lua</Filter>
-    </ClInclude>
-    <ClInclude Include="lua\src\ldo.h">
-      <Filter>Lua</Filter>
-    </ClInclude>
-    <ClInclude Include="lua\src\lfunc.h">
-      <Filter>Lua</Filter>
-    </ClInclude>
-    <ClInclude Include="lua\src\lgc.h">
-      <Filter>Lua</Filter>
-    </ClInclude>
-    <ClInclude Include="lua\src\llex.h">
-      <Filter>Lua</Filter>
-    </ClInclude>
-    <ClInclude Include="lua\src\llimits.h">
-      <Filter>Lua</Filter>
-    </ClInclude>
-    <ClInclude Include="lua\src\lmem.h">
-      <Filter>Lua</Filter>
-    </ClInclude>
-    <ClInclude Include="lua\src\lobject.h">
-      <Filter>Lua</Filter>
-    </ClInclude>
-    <ClInclude Include="lua\src\lopcodes.h">
-      <Filter>Lua</Filter>
-    </ClInclude>
-    <ClInclude Include="lua\src\lparser.h">
-      <Filter>Lua</Filter>
-    </ClInclude>
-    <ClInclude Include="lua\src\lstate.h">
-      <Filter>Lua</Filter>
-    </ClInclude>
-    <ClInclude Include="lua\src\lstring.h">
-      <Filter>Lua</Filter>
-    </ClInclude>
-    <ClInclude Include="lua\src\ltable.h">
-      <Filter>Lua</Filter>
-    </ClInclude>
-    <ClInclude Include="lua\src\ltm.h">
-      <Filter>Lua</Filter>
-    </ClInclude>
-    <ClInclude Include="lua\src\luaconf.h">
-      <Filter>Lua</Filter>
-    </ClInclude>
-    <ClInclude Include="lua\src\lualib.h">
-      <Filter>Lua</Filter>
-    </ClInclude>
-    <ClInclude Include="lua\src\lundump.h">
-      <Filter>Lua</Filter>
-    </ClInclude>
-    <ClInclude Include="lua\src\lvm.h">
-      <Filter>Lua</Filter>
-    </ClInclude>
-    <ClInclude Include="lua\src\lzio.h">
-      <Filter>Lua</Filter>
-    </ClInclude>
-    <ClInclude Include="lua\src\lua.h">
-      <Filter>Lua</Filter>
-    </ClInclude>
-    <ClInclude Include="PrmFunctions.h">
-      <Filter>Header Files\Player</Filter>
-    </ClInclude>
-    <ClInclude Include="Memory.h">
-      <Filter>Header Files\CasualGamer</Filter>
-    </ClInclude>
-    <ClInclude Include="ManageMemory.h">
-      <Filter>Header Files\CasualGamer</Filter>
-    </ClInclude>
-    <ClInclude Include="SDL2\SDL2Music.h">
-      <Filter>Header Files\SDL2</Filter>
-    </ClInclude>
-    <ClInclude Include="SDL2\SDL2SoundEffects.h">
-      <Filter>Header Files\SDL2</Filter>
-    </ClInclude>
-    <ClInclude Include="SDL2\SDLInit.h">
-      <Filter>Header Files\SDL2</Filter>
-    </ClInclude>
-    <ClInclude Include="Settings.h">
-      <Filter>Header Files\Settings</Filter>
-    </ClInclude>
-    <ClInclude Include="Music.h">
-      <Filter>Header Files\Music</Filter>
-    </ClInclude>
-    <ClInclude Include="Stage.h">
-      <Filter>Header Files\Stage</Filter>
-    </ClInclude>
-    <ClInclude Include="Character.h">
-      <Filter>Header Files\Player\Characters</Filter>
-    </ClInclude>
-    <ClInclude Include="Controls.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="DirectX11Hook\detours.h">
-      <Filter>Header Files\IMGUI Hook</Filter>
+    <ClInclude Include="ccBattleFunctions.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="DirectX11Hook\imconfig.h">
-      <Filter>Header Files\IMGUI Hook</Filter>
+    <ClInclude Include="ccBossIAFunctions.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="DirectX11Hook\imgui.h">
-      <Filter>Header Files\IMGUI Hook</Filter>
+    <ClInclude Include="ccCharacterFunctions.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="DirectX11Hook\imgui_impl_dx11.h">
-      <Filter>Header Files\IMGUI Hook</Filter>
+    <ClInclude Include="ccGeneralGameFunctions.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="DirectX11Hook\imgui_impl_win32.h">
-      <Filter>Header Files\IMGUI Hook</Filter>
+    <ClInclude Include="ccMain.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="DirectX11Hook\imgui_internal.h">
-      <Filter>Header Files\IMGUI Hook</Filter>
+    <ClInclude Include="ccMemoryFunctions.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="DirectX11Hook\imstb_rectpack.h">
-      <Filter>Header Files\IMGUI Hook</Filter>
+    <ClInclude Include="d3dcompiler_47_og.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="DirectX11Hook\imstb_textedit.h">
-      <Filter>Header Files\IMGUI Hook</Filter>
+    <ClInclude Include="API_Console.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="DirectX11Hook\imstb_truetype.h">
-      <Filter>Header Files\IMGUI Hook</Filter>
+    <ClInclude Include="ccPlayer.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="DirectX11Hook\stdafx.h">
-      <Filter>Header Files\IMGUI Hook</Filter>
+    <ClInclude Include="LuaHook.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="DirectX11Hook\targetver.h">
-      <Filter>Header Files\IMGUI Hook</Filter>
+    <ClInclude Include="ccGameProperties.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="LuaHook_Commands.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MultiMatch.h">
+      <Filter>Source Files\MultiMatch</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

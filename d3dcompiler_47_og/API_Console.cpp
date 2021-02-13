@@ -1,17 +1,18 @@
+#include <windows.h>
 #include <stdio.h>
 #include <string>
 #include <vector>
 #include <iostream>
+
 #include "API_Console.h"
+
 #include "ccMain.h"
 #include "d3dcompiler_47_og.h"
 #include "ccGeneralGameFunctions.h"
 #include "ccCharacterFunctions.h"
 #include "ccBossIAFunctions.h"
 #include "HookFunctions.h"
-#include "SDL2/SDL2SoundEffects.h"
-#include "SDL2/SDL2Music.h"
-#include "SDL2/SDLInit.h"
+
 using namespace std;
 using namespace moddingApi;
 
@@ -45,32 +46,27 @@ void c_ccGroupBattleEventCameraMovePosBegin();
 void c_ccGroupBattleEventCameraMoveLookBegin();
 void c_ccGetGpPtr();
 void c_ccMultiMatchShowPlayerStatus();
-void c_ccGetCastPointer();
-void c_SoundTest();
-void c_ControllerTest();
 
 void API_Console::InitializeConsole()
 {
 	AddCommand("ConvertMessage", (uintptr_t)c_ConvertMessage, 1);
-	//AddCommand("GetVersionNumber", (uintptr_t)c_GetVersionNumber, 0);
-	//AddCommand("GetVersionString", (uintptr_t)c_GetVersionString, 0);
-	//AddCommand("GetVersionStringAPI", (uintptr_t)c_GetVersionStringAPI, 0);
-	/*AddCommand("GetRyo", (uintptr_t)c_GetRyo, 0);
+	AddCommand("GetVersionNumber", (uintptr_t)c_GetVersionNumber, 0);
+	AddCommand("GetVersionString", (uintptr_t)c_GetVersionString, 0);
+	AddCommand("GetVersionStringAPI", (uintptr_t)c_GetVersionStringAPI, 0);
+	AddCommand("GetRyo", (uintptr_t)c_GetRyo, 0);
 	AddCommand("StartLoad", (uintptr_t)c_StartLoad, 0);
-	AddCommand("EndLoad", (uintptr_t)c_EndLoad, 0);*/
+	AddCommand("EndLoad", (uintptr_t)c_EndLoad, 0);
 	AddCommand("ViewMessageConversions", (uintptr_t)c_ViewMessageConversions, 0);
 	AddCommand("Help", (uintptr_t)c_Help, 0);
-	/*AddCommand("ReloadParamFiles", (uintptr_t)c_ReloadParamFiles, 0);
+	AddCommand("ReloadParamFiles", (uintptr_t)c_ReloadParamFiles, 0);
 	AddCommand("EnableAllPad", (uintptr_t)c_EnableAllPad, 0);
 	AddCommand("ControlNpc", (uintptr_t)c_ControlNpc, 2);
 	AddCommand("ccGroupBattleEventCameraBegin", (uintptr_t)c_ccGroupBattleEventCameraBegin, 0);
 	AddCommand("ccGroupBattleEventCameraMovePosBegin", (uintptr_t)c_ccGroupBattleEventCameraMovePosBegin, 4);
 	AddCommand("ccGroupBattleEventCameraMoveLookBegin", (uintptr_t)c_ccGroupBattleEventCameraMoveLookBegin, 4);
 	AddCommand("ccGetGpPtr", (uintptr_t)c_ccGetGpPtr, 0);
-	AddCommand("ccMultiMatchShowPlayerStatus", (uintptr_t)c_ccMultiMatchShowPlayerStatus, 0);*/
-	AddCommand("GetCastPointer", (uintptr_t)c_ccGetCastPointer, 1);
-	AddCommand("SoundTest", (uintptr_t)c_SoundTest, 0);
-	AddCommand("ControllerTest", (uintptr_t)c_ControllerTest, 0);
+	AddCommand("ccMultiMatchShowPlayerStatus", (uintptr_t)c_ccMultiMatchShowPlayerStatus, 0);
+
 	//cout << std::hex << (d3dcompiler_47_og::moduleBase + 0x1653688) << endl;
 }
 
@@ -108,30 +104,17 @@ void c_ConvertMessage()
 
 void c_GetVersionNumber()
 {
-	//cout << ccGeneralGameFunctions::GetVersionNumber();
-}
-
-void c_ControllerTest()
-{
-	cout << "Not in progress" << endl;
-}
-
-void c_SoundTest()
-{
-	SDL2Music music;
-	music.addMusicTrack("./0000_title.wav");
-	music.playMusicTrack(0);
-	cout << "Playing Sound" << endl;
+	cout << ccGeneralGameFunctions::GetVersionNumber();
 }
 
 void c_GetVersionString()
 {
-	//cout << ccGeneralGameFunctions::GetVersionString();
+	cout << ccGeneralGameFunctions::GetVersionString();
 }
 
 void c_GetVersionStringAPI()
 {
-	//cout << ccGeneralGameFunctions::GetVersionStringAPI();
+	cout << ccGeneralGameFunctions::GetVersionStringAPI();
 }
 
 void c_GetRyo()
@@ -176,7 +159,7 @@ void c_Help()
 #include "ccPlayer.h"
 void c_ViewAwakeningDebug()
 {
-	//ccPlayer::AwakeDebugEnabled = !ccPlayer::AwakeDebugEnabled;
+	ccPlayer::AwakeDebugEnabled = !ccPlayer::AwakeDebugEnabled;
 }
 
 #include "ccCharacterFunctions.h"
@@ -294,24 +277,13 @@ void c_ccGroupBattleEventCameraMoveLookBegin()
 #include "MultiMatch.h"
 void c_ccGetGpPtr()
 {
-	//cout << std::hex << (uintptr_t)MultiMatch::fc_GetGpPtr() << endl;
+	cout << std::hex << (uintptr_t)MultiMatch::fc_GetGpPtr() << endl;
 }
 
 #include "LuaHook_Commands.h"
 void c_ccMultiMatchShowPlayerStatus()
 {
 	LuaHook_Commands::ccEntryNameTelop("P4 > HP: 100 / CHK: 100", "", 570, 500, 0, 0, 120);
-}
-
-void c_ccGetCastPointer()
-{
-	std::string param1;
-
-	cout << "CAST >> ";
-	cin >> param1;
-	char * param1_c = strcpy(new char[param1.length() + 1], param1.c_str());
-
-	cout << "CHAR: " << hex << LuaHook::fc_ccGetCastPointer(param1_c) << endl;
 }
 
 void AddCommand(string command, uintptr_t function, int paramCount)
@@ -337,4 +309,3 @@ int GetCommandIndex(string command)
 
 	return cmd;
 }
-

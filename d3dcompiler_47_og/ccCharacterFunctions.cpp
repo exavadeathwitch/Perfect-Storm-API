@@ -1,10 +1,4 @@
-#pragma warning( disable: 6387 )
-#pragma warning( disable: 26451 )
-#pragma warning( disable: 6386 )
-
-#include <Winsock2.h>
 #include <windows.h>
-
 #include <stdio.h>
 #include <iostream>
 #include <fstream>
@@ -13,9 +7,6 @@
 #include "ccCharacterFunctions.h"
 #include "d3dcompiler_47_og.h"
 #include "HookFunctions.h"
-
-#include <WinSock2.h>
-#include <time.h>
 
 using namespace moddingApi;
 using namespace std;
@@ -108,7 +99,7 @@ void ccCharacterFunctions::PartnerFunctions()
 	int char_funct_end_rip = char_funct_end - (main_malloc + 20);
 	int char_functions_rip = char_functions - (main_malloc + 44);
 
-	uintptr_t jump_to = d3dcompiler_47_og::moduleBase + 0x7F0487;
+	uintptr_t jump_to = d3dcompiler_47_og::moduleBase + 0x7EB257;
 
 	void * writeAddress = &function[0];
 
@@ -129,11 +120,11 @@ void ccCharacterFunctions::PartnerFunctions()
 	}
 
 	// Hook original function to jump to our function
-	if(partnerAlloc == 0) HookFunctions::Hook((void*)(d3dcompiler_47_og::moduleBase + 0x7F0454), (void*)main_malloc, 14);
+	if(partnerAlloc == 0) HookFunctions::Hook((void*)(d3dcompiler_47_og::moduleBase + 0x7EB224), (void*)main_malloc, 14);
 	else
 	{
 		// Fix address for reload
-		uintptr_t placeJump = d3dcompiler_47_og::moduleBase + 0x7F0454;
+		uintptr_t placeJump = d3dcompiler_47_og::moduleBase + 0x7EB224;
 
 		DWORD dwOld = 0;
 		VirtualProtect((void*)placeJump, 14, PAGE_EXECUTE_READWRITE, &dwOld);
@@ -198,7 +189,7 @@ void ccCharacterFunctions::SpecialCondFunctions()
 	memcpy((void*)(&function[0] + 0x12), &lea_rip_address, 0x4); // fix the lea with rip + address (points to the end of the condition list)
 
 	// create jump back
-	uintptr_t jback = d3dcompiler_47_og::moduleBase + 0x7C636D; //0x7C4651
+	uintptr_t jback = d3dcompiler_47_og::moduleBase + 0x7C106D;
 	memcpy((void*)(&function[0] + 0x4E), &jback, 8);
 
 	// Copy function to memory, and make executable
@@ -215,11 +206,11 @@ void ccCharacterFunctions::SpecialCondFunctions()
 	}
 
 	// Hook original function
-	if(condAlloc == 0) HookFunctions::Hook((void*)(d3dcompiler_47_og::moduleBase + 0x7C55AD), (void*)main_malloc, 15);
+	if(condAlloc == 0) HookFunctions::Hook((void*)(d3dcompiler_47_og::moduleBase + 0x7C02AD), (void*)main_malloc, 15);
 	else
 	{
 		// Fix address for reload
-		uintptr_t placeJump = d3dcompiler_47_og::moduleBase + 0x7C55AD; //0x7C3891
+		uintptr_t placeJump = d3dcompiler_47_og::moduleBase + 0x7C02AD;
 
 		DWORD dwOld = 0;
 		VirtualProtect((void*)placeJump, 14, PAGE_EXECUTE_READWRITE, &dwOld);
@@ -227,7 +218,7 @@ void ccCharacterFunctions::SpecialCondFunctions()
 		VirtualProtect((void*)placeJump, 14, dwOld, &dwOld);
 	}
 
-	//cout << "Function: " << std::hex << (uintptr_t)(d3dcompiler_47_og::moduleBase + 0x7C3891) << endl;
+	//cout << "Function: " << std::hex << (uintptr_t)(d3dcompiler_47_og::moduleBase + 0x7C02AD) << endl;
 	//cout << "main_malloc = " << std::hex << main_malloc << endl;
 
 	// Free old piece of code (if there was one)
@@ -236,6 +227,7 @@ void ccCharacterFunctions::SpecialCondFunctions()
 }
 
 // COND_BKKX FOR COOP
+#include <time.h>
 vector<uintptr_t> ccCharacterFunctions::charPointer;
 vector<long long> ccCharacterFunctions::charAllocTime;
 void Unhook_COND_BKKX();

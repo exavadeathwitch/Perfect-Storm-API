@@ -1,4 +1,3 @@
-#include <WinSock2.h>
 #include <windows.h>
 #include <stdio.h>
 #include <iostream>
@@ -8,15 +7,11 @@
 #include "d3dcompiler_47_og.h"
 #include "ccMain.h"
 
-#pragma warning( disable: 4305 )
-#pragma warning( disable: 4307 )
-
 using namespace moddingApi;
 using namespace std;
 
 uintptr_t d3dcompiler_47_og::moduleBase;
 uintptr_t d3dcompiler_47_og::st_hModule;
-uintptr_t d3dcompiler_47_og::datasection;
 
 HINSTANCE mHinst = 0, mHinstDLL = 0;
 extern "C" UINT_PTR mProcs[29] = { 0 };
@@ -34,10 +29,6 @@ BOOL WINAPI DllMain(HINSTANCE hinstDLL, DWORD fdwReason, LPVOID lpvReserved, HMO
 
 		d3dcompiler_47_og::st_hModule = (uintptr_t)hModule;
 		d3dcompiler_47_og::moduleBase = (uintptr_t)GetModuleHandle(NULL) + 0xC00;
-		d3dcompiler_47_og::datasection = (uintptr_t)GetModuleHandle(NULL) + 0x13B6000;
-		// 7FF716C86000+1416bdd10
-
-		// Start API
 		CloseHandle(CreateThread(nullptr, 0, (LPTHREAD_START_ROUTINE)ccMain::Main, hModule, 0, nullptr));
 	}
 	else if (fdwReason == DLL_PROCESS_DETACH)
@@ -52,8 +43,8 @@ uintptr_t d3dcompiler_47_og::RecalculateAddress(uintptr_t a)
 {
 	uintptr_t recalc = d3dcompiler_47_og::moduleBase + a;
 
-	if (a > 0x13A38AD) recalc += 0x400;
-	else if (a > 0xEA7420) recalc += 0x400;
+	if (a > 0x13A38AD) recalc += 0x1A00;
+	else if (a > 0xEA7420) recalc += 0xE00;
 
 	return recalc;
 }
