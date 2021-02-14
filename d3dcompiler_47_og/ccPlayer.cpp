@@ -12,7 +12,7 @@
 
 using namespace std;
 using namespace moddingApi;
-/*
+
 int ccPlayer::AfterCharacterCollision(uintptr_t a1)
 {
 	cout << "AfterCharacterCollision -> " << *(int*)(a1 + 0xB28) << endl;
@@ -178,4 +178,3 @@ void ccPlayer::UndoGetAwakeningIDHook()
 	memcpy((void*)(d3dcompiler_47_og::moduleBase + 0x7693D4), OriginalAwakeningFunction, 20);
 	VirtualProtect((void*)(d3dcompiler_47_og::moduleBase + 0x7693D4), 20, dwOld, &dwOld);
 }
-*/

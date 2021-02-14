@@ -159,13 +159,13 @@ void c_Help()
 #include "ccPlayer.h"
 void c_ViewAwakeningDebug()
 {
-	//ccPlayer::AwakeDebugEnabled = !ccPlayer::AwakeDebugEnabled;
+	ccPlayer::AwakeDebugEnabled = !ccPlayer::AwakeDebugEnabled;
 }
 
 #include "ccCharacterFunctions.h"
 void c_ReloadCharsel()
 {
-	//ccCharacterFunctions::ReloadCharsel();
+	ccCharacterFunctions::ReloadCharsel();
 }
 
 #include "ccGameProperties.h"
@@ -215,7 +215,7 @@ void c_ControlNpc()
 	char * param2_c = strcpy(new char[param2.length() + 1], param2.c_str());
 
 	//cout << ccGeneralGameFunctions::MessageToString(param1_c);
-	//ccCharacterFunctions::EnableControl(stoi(param1), stoi(param2));
+	ccCharacterFunctions::EnableControl(stoi(param1), stoi(param2));
 }
 
 #include "LuaHook.h"

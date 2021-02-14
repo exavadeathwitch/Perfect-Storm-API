@@ -18,7 +18,7 @@ using namespace moddingApi;
 ////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////
-/*
+
 typedef struct
 {
 	float x;
@@ -65,7 +65,7 @@ int MultiMatch::ccInitializeMultiMatch(__int64 a1)
 		MultiMatch::p_Chars[2] = "GP_CHAR_ID_2SKR";
 		MultiMatch::p_Chars[3] = "GP_CHAR_ID_2DDR";
 
-		//ccCharacterFunctions::EnableControl(0, 0);
+		ccCharacterFunctions::EnableControl(0, 0);
 
 		// Initialize characters
 		for (int x = 1; x < 4; x++)
@@ -317,7 +317,7 @@ int MultiMatch::ccMultiMatchShowPlayerStatus(__int64 a1)
 
 	return 0;
 }
-*/
+
 /*
 int MultiMatch::ccMultiMatchCameraLoop()
 {

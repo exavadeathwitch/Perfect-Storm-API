@@ -6,7 +6,7 @@
 
 using namespace std;
 using namespace moddingApi;
-/*
+
 typedef uintptr_t(__fastcall * getplayerinfo)(uintptr_t, int);
 getplayerinfo g_GetPlayerInfo;
 
@@ -76,4 +76,3 @@ uintptr_t ccBattleFunctions::Battle_FillSubstitution(uintptr_t a1, int a2, float
 
 	return result;
 }
-*/

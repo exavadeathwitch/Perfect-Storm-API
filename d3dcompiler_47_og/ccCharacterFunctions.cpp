@@ -17,7 +17,7 @@ int ccCharacterFunctions::test()
 }
 
 // Character select param
-/*
+
 int CharacterSelectParamAPI(uintptr_t a1, uintptr_t charsel);
 BYTE OriginalCharacterSelectParam[19];
 uintptr_t charsel_1 = -1;
@@ -70,7 +70,7 @@ void ccCharacterFunctions::ReloadCharsel()
 		cout << "Cannot reload charsel" << endl;
 	}
 }
-*/
+
 // PARTNER FUNCTIONS
 uintptr_t partnerAlloc = 0;
 vector<uintptr_t> ccCharacterFunctions::c_partnerFunctions;
@@ -235,7 +235,7 @@ uintptr_t asd = 0x6B0E4C;
 typedef signed __int64(__fastcall * test)(uintptr_t a1, uintptr_t a2);
 test Test1;
 BYTE originalasd[20];
-/*
+
 signed __int64 COND_BKKX(uintptr_t cptr, uintptr_t a2)
 {
 	if (ccCharacterFunctions::charAllocTime.size() > 0)
@@ -338,4 +338,3 @@ void ccCharacterFunctions::EnableControl(int character, int pad)
 		cout << "Char " << character << " is now being controlled by pad " << pad << endl;
 	}
 }
-*/
