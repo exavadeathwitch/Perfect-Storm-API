@@ -16,8 +16,8 @@ namespace moddingApi
 	{
 	public:
 		int test();
-		void static ReloadCharsel();
-		void static DoCharacterSelectParamHook();
+		//void static ReloadCharsel();
+		//void static DoCharacterSelectParamHook();
 
 		int static PartnerCount;
 
@@ -31,7 +31,7 @@ namespace moddingApi
 
 		static vector<uintptr_t> charPointer;
 		static vector<long long> charAllocTime;
-		static void Hook_COND_BKKX();
-		static void EnableControl(int character, int pad);
+		//static void Hook_COND_BKKX();
+		//static void EnableControl(int character, int pad);
 	};
 }

@@ -265,7 +265,7 @@ std::string GetModMessage()
 	}
 	return st;
 }
-
+/*
 void RandomizeBackground()
 {
 	DWORD dwOld = 0;
@@ -301,7 +301,7 @@ void RandomizeBackground()
 	memcpy((void*)(d3dcompiler_47_og::RecalculateAddress(0xEE52B0)), (void*)(randomBg), 0x20);
 	VirtualProtect((void*)(d3dcompiler_47_og::RecalculateAddress(0xEE52B0)), 0x20, dwOld, &dwOld);
 }
-
+*/
 // All custom messageinfo functions
 vector<std::string> ccGeneralGameFunctions::MessageID;
 vector<std::string> ccGeneralGameFunctions::MessageStr;
@@ -312,7 +312,7 @@ uintptr_t ccGeneralGameFunctions::Hook_MsgToString(uintptr_t MessageToDecode)
 	//bool showDecode = true;
 	//if ((string((char*)MessageToDecode).length() >= 4 && string((char*)MessageToDecode).substr(0, 4) == "####")) showDecode = false;
 
-	RandomizeBackground();
+	//RandomizeBackground();
 
 	if (ccGeneralGameFunctions::ViewMessageConversions == 0 && strlen((char*)MessageToDecode) > 0 && *(char*)MessageToDecode != '+')
 	{

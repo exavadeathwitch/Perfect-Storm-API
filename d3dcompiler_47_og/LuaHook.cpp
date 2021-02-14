@@ -348,7 +348,7 @@ INT64 __fastcall DeclareFunctionAPI(INT64 a1, char* a2, INT64 a3)
 	// Declare my functions
 	if (isLast)
 	{
-		LuaAddFunct("ccHelloWorld", (void*)lua_test);
+		//LuaAddFunct("ccHelloWorld", (void*)lua_test);
 		//LuaAddFunct("ccInitializeMultiMatch", (void*)MultiMatch::ccInitializeMultiMatch);
 		//LuaAddFunct("ccMultiMatchCameraLoop", (void*)MultiMatch::ccMultiMatchCameraLoop);
 		//LuaAddFunct("ccSetEntryModelPath", (void*)ccSetEntryModelPath);

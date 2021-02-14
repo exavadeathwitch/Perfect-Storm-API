@@ -32,7 +32,7 @@ bool Hook3(void*, void*, int);
 // WRITE ALL THE FUNCTIONS YOU WANT TO HOOK IN HERE
 void HookFunctions::InitializeHooks()
 {
-	ccPlayer::InitAwakening();
+	//ccPlayer::InitAwakening();
 
 	HookFunctions::Hook((void*)(d3dcompiler_47_og::moduleBase + 0x85CC80), (void*)ccGeneralGameFunctions::GetVersionStringAPI, 14); // GetVersionString hook
 
@@ -77,7 +77,7 @@ void HookFunctions::InitializeHooks()
 	// Test
 	ccCharacterFunctions::PartnerFunctions();
 	ccCharacterFunctions::SpecialCondFunctions();
-	ccCharacterFunctions::Hook_COND_BKKX();
+	//ccCharacterFunctions::Hook_COND_BKKX();
 }
 
 void HookFunctions::DoMessageInfoHook()
