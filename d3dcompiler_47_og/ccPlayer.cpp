@@ -12,7 +12,7 @@
 
 using namespace std;
 using namespace moddingApi;
-int Player = 5;
+
 int ccPlayer::AfterCharacterCollision(uintptr_t a1)
 {
 	cout << "AfterCharacterCollision -> " << *(int*)(a1 + 0xB28) << endl;
@@ -50,7 +50,7 @@ void ccPlayer::UndoCtrlHook()
 	memcpy((void*)(d3dcompiler_47_og::moduleBase + 0x76EA50), CtrlBytes, 15);
 	VirtualProtect((void*)(d3dcompiler_47_og::moduleBase + 0x85175C), 15, dwOld, &dwOld);
 }
-
+/*
 int ccPlayer::CtrlCounterSimul(uintptr_t)
 {
 
@@ -65,7 +65,7 @@ int ccPlayer::PostCtrl(uintptr_t)
 {
 
 }
-
+*/
 typedef int(__fastcall * g_obj_writepos)(uintptr_t, uintptr_t);
 g_obj_writepos g_Obj_WritePos;
 
