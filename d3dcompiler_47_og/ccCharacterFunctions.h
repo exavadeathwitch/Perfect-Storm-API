@@ -16,8 +16,8 @@ namespace moddingApi
 	{
 	public:
 		int test();
-		void static ReloadCharsel();
-		void static DoCharacterSelectParamHook();
+		//void static ReloadCharsel();
+		//void static DoCharacterSelectParamHook();
 
 		int static PartnerCount;
 

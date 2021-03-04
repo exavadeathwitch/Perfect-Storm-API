@@ -101,6 +101,7 @@ void ccPlayer::UndoMovementHook()
 }
 
 // Awakening functions
+/*
 BYTE ccPlayer::OriginalAwakeningFunction[20];
 typedef char**(__fastcall * fc_getawakeningid)(int a1);
 fc_getawakeningid fc_GetAwakeningID;
@@ -178,3 +179,4 @@ void ccPlayer::UndoGetAwakeningIDHook()
 	memcpy((void*)(d3dcompiler_47_og::moduleBase + 0x7693D4), OriginalAwakeningFunction, 20);
 	VirtualProtect((void*)(d3dcompiler_47_og::moduleBase + 0x7693D4), 20, dwOld, &dwOld);
 }
+*/

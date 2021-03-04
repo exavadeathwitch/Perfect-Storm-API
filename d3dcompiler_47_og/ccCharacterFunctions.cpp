@@ -17,7 +17,7 @@ int ccCharacterFunctions::test()
 }
 
 // Character select param
-
+/*
 int CharacterSelectParamAPI(uintptr_t a1, uintptr_t charsel);
 BYTE OriginalCharacterSelectParam[19];
 uintptr_t charsel_1 = -1;
@@ -70,7 +70,7 @@ void ccCharacterFunctions::ReloadCharsel()
 		cout << "Cannot reload charsel" << endl;
 	}
 }
-
+*/
 // PARTNER FUNCTIONS
 uintptr_t partnerAlloc = 0;
 vector<uintptr_t> ccCharacterFunctions::c_partnerFunctions;
