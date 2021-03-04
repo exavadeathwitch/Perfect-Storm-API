@@ -12,7 +12,7 @@
 
 using namespace std;
 using namespace moddingApi;
-
+int Player = 5;
 int ccPlayer::AfterCharacterCollision(uintptr_t a1)
 {
 	cout << "AfterCharacterCollision -> " << *(int*)(a1 + 0xB28) << endl;
