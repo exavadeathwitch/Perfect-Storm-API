@@ -13,10 +13,10 @@
 #include "ccCharacterFunctions.h"
 #include "ccBossIAFunctions.h"
 #include "HookFunctions.h"
-
+#include "DX11 Initialize.h"
 using namespace moddingApi;
 using namespace std;
-
+using namespace DX11;
 int Console_GetInt(char*);
 char * Console_GetString(char*);
 bool EnableAPI = false;
@@ -24,14 +24,39 @@ bool EnableAPI = false;
 // Main function of the API
 DWORD WINAPI ccMain::Main()
 {
-	//HookFunctions::InitializeHooks();
+	// Read all the mods and configs
 	ccMain::ReadApiFiles();
+
+	// Initialize the function hooks
 	HookFunctions::InitializeHooks();
-	//ccGeneralGameFunctions::CpkLoadList();
+
+	// Enable API
+	EnableAPI = true;
+
+	// Read CPK
+	//ReadCpk();
+
+	// Enable the game thread (this is for player modification in game)
+	CreateThread(nullptr, 0, (LPTHREAD_START_ROUTINE)ccMain::LoopGame, (HMODULE)d3dcompiler_47_og::st_hModule, 0, nullptr);
+	//Hook DX11
+	Hook::MainThread();
+	// Loop console
+	ccMain::LoopConsole();
+
 	return 0;
 }
 
-DWORD WINAPI ccMain::Loop()
+DWORD WINAPI ccMain::LoopGame()
+{
+	while (true)
+	{
+		//cout << "Looping Game" << endl;
+		Sleep(10);
+	}
+	return 0;
+}
+
+DWORD WINAPI ccMain::LoopConsole()
 {
 	while (EnableAPI == false)
 	{
@@ -263,9 +288,6 @@ void ccMain::ReadApiFiles()
 	//HookFunctions::UndoInitializeHook2();
 	//g_InitializeGame = (initializegame)(d3dcompiler_47_og::moduleBase + 0x85175C);
 	//g_InitializeGame2 = (initializegame2)(d3dcompiler_47_og::moduleBase + 0x85AE80);
-
-	EnableAPI = true;
-	CreateThread(nullptr, 0, (LPTHREAD_START_ROUTINE)ccMain::Loop, (HMODULE)d3dcompiler_47_og::st_hModule, 0, nullptr);
 }
 
 void ccMain::ReloadParamFiles()
