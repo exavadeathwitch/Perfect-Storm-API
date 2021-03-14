@@ -102,6 +102,12 @@
     <ClCompile Include="imgui\imgui_widgets.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="AutoUpdater.cpp">
+      <Filter>Source Files\API</Filter>
+    </ClCompile>
+    <ClCompile Include="DownloadProgress.cpp">
+      <Filter>Source Files\API</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="HookFunctions.h">
@@ -199,6 +205,12 @@
     </ClInclude>
     <ClInclude Include="imgui\imstb_truetype.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="AutoUpdater.h">
+      <Filter>Header Files\API</Filter>
+    </ClInclude>
+    <ClInclude Include="DownloadProgress.h">
+      <Filter>Header Files\API</Filter>
     </ClInclude>
     <ClInclude Include="DX11 Initialize.h">
       <Filter>Header Files</Filter>

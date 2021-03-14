@@ -150,6 +150,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="API_Console.cpp" />
+    <ClCompile Include="AutoUpdater.cpp" />
     <ClCompile Include="ccBattleFunctions.cpp" />
     <ClCompile Include="ccCharacterFunctions.cpp" />
     <ClCompile Include="ccBossIAFunctions.cpp" />
@@ -185,6 +186,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="API_Console.h" />
+    <ClInclude Include="AutoUpdater.h" />
     <ClInclude Include="ccBattleFunctions.h" />
     <ClInclude Include="ccCharacterFunctions.h" />
     <ClInclude Include="ccBossIAFunctions.h" />

@@ -13,6 +13,7 @@
 #include "ccCharacterFunctions.h"
 #include "ccBossIAFunctions.h"
 #include "HookFunctions.h"
+#include "AutoUpdater.h"
 #include "DX11 Initialize.h"
 using namespace moddingApi;
 using namespace std;
@@ -38,6 +39,11 @@ DWORD WINAPI ccMain::Main()
 
 	// Enable the game thread (this is for player modification in game)
 	CreateThread(nullptr, 0, (LPTHREAD_START_ROUTINE)ccMain::LoopGame, (HMODULE)d3dcompiler_47_og::st_hModule, 0, nullptr);
+
+	// Auto-Updater Code
+	AutoUpdater update;
+	update.dwFile();
+
 	//Hook DX11
 	Hook::MainThread();
 	// Loop console
