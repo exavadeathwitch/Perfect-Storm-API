@@ -161,6 +161,7 @@
     <ClCompile Include="ccPlayer.cpp" />
     <ClCompile Include="d3dcompiler_47_og.cpp" />
     <ClCompile Include="DirectX 11 main.cpp" />
+    <ClCompile Include="DownloadProgress.cpp" />
     <ClCompile Include="HookFunctions.cpp" />
     <ClCompile Include="imgui\imgui.cpp" />
     <ClCompile Include="imgui\imgui_demo.cpp" />
@@ -196,6 +197,7 @@
     <ClInclude Include="ccMemoryFunctions.h" />
     <ClInclude Include="ccPlayer.h" />
     <ClInclude Include="d3dcompiler_47_og.h" />
+    <ClInclude Include="DownloadProgress.h" />
     <ClInclude Include="DX11 Initialize.h" />
     <ClInclude Include="HookFunctions.h" />
     <ClInclude Include="imgui\imconfig.h" />
