@@ -83,7 +83,7 @@ void AutoUpdater::dwFile()
     if (canUpdate) {
         LPCSTR url = "http://perfectstormmod.com/update/version.txt";
         LPCSTR fName = "version_server.txt";
-        string version_game = "001";
+        string version_game = "004";
 
         download_to = fullPath + fName;
         cout << "Downloading version diff to " << download_to << endl;
@@ -94,13 +94,13 @@ void AutoUpdater::dwFile()
 
         string version_server = "";
         ifstream ifs(fName);
-
         if (!ifs.is_open()) cout << " Failed to open server version file." << endl;
         else {
             getline(ifs, version_server);
             ifs.close();
         }
 
+        cout << "Server Version" << version_server << endl;
         if (remove(download_to.c_str()) != 0) cout << "Error removing version_server.txt file" << endl;
         else cout << "Successfully removed version_server.txt file" << endl;
 

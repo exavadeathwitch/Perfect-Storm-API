@@ -2,7 +2,7 @@
 
 #include <vector>
 using namespace std;
-
+inline bool ModOption = 1;
 namespace moddingApi
 {
 	class ccMain

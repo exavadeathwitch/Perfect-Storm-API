@@ -73,6 +73,7 @@ void API_Console::InitializeConsole()
 typedef void(__stdcall * f)();
 f Function;
 
+
 void API_Console::DoConsoleCommand(string Input)
 {
 	string Command = Input;
