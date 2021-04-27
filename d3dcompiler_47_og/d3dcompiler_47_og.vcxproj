@@ -51,10 +51,12 @@
     <CharacterSet>NotSet</CharacterSet>
     <PlatformToolset>v142</PlatformToolset>
     <CLRSupport>false</CLRSupport>
+    <WholeProgramOptimization>false</WholeProgramOptimization>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings">
     <Import Project="$(VCTargetsPath)\BuildCustomizations\masm.props" />
+    <Import Project="$(VCTargetsPath)\BuildCustomizations\nasm.props" />
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
@@ -81,6 +83,8 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
     <GenerateManifest>false</GenerateManifest>
+    <IncludePath>D:\Perfect Storm API\Perfect-Storm-API\d3dcompiler_47_og;$(IncludePath)</IncludePath>
+    <LibraryPath>D:\Perfect Storm API\Perfect-Storm-API\d3dcompiler_47_og\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -145,7 +149,8 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <ModuleDefinitionFile>d3dcompiler_47_og.def</ModuleDefinitionFile>
-      <AdditionalDependencies>d3d11.lib;dxgi.lib;wininet.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>d3d11.lib;dxgi.lib;wininet.lib;libMinHook-x64-v141-mtd.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>D:\Perfect Storm API\Perfect-Storm-API\d3dcompiler_47_og\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
@@ -177,6 +182,7 @@
     <ClCompile Include="kiero\minhook\src\trampoline.c" />
     <ClCompile Include="LuaHook.cpp" />
     <ClCompile Include="LuaHook_Commands.cpp" />
+    <ClCompile Include="mem.cpp" />
     <ClCompile Include="MultiMatch.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -220,10 +226,15 @@
     <ClInclude Include="kiero\minhook\src\trampoline.h" />
     <ClInclude Include="LuaHook.h" />
     <ClInclude Include="LuaHook_Commands.h" />
+    <ClInclude Include="mem.h" />
     <ClInclude Include="MultiMatch.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <NASM Include="test.asm" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
     <Import Project="$(VCTargetsPath)\BuildCustomizations\masm.targets" />
+    <Import Project="$(VCTargetsPath)\BuildCustomizations\nasm.targets" />
   </ImportGroup>
 </Project>

@@ -12,9 +12,10 @@
 #include "ccCharacterFunctions.h"
 #include "ccBossIAFunctions.h"
 #include "HookFunctions.h"
-
+#include "mem.h"
 using namespace std;
 using namespace moddingApi;
+using namespace mem;
 
 // Console Functions
 vector<string> consoleCommands;
@@ -46,7 +47,7 @@ void c_ccGroupBattleEventCameraMovePosBegin();
 void c_ccGroupBattleEventCameraMoveLookBegin();
 void c_ccGetGpPtr();
 void c_ccMultiMatchShowPlayerStatus();
-
+void c_Test();
 void API_Console::InitializeConsole()
 {
 	AddCommand("ConvertMessage", (uintptr_t)c_ConvertMessage, 1);
@@ -66,6 +67,7 @@ void API_Console::InitializeConsole()
 	AddCommand("ccGroupBattleEventCameraMoveLookBegin", (uintptr_t)c_ccGroupBattleEventCameraMoveLookBegin, 4);
 	AddCommand("ccGetGpPtr", (uintptr_t)c_ccGetGpPtr, 0);
 	AddCommand("ccMultiMatchShowPlayerStatus", (uintptr_t)c_ccMultiMatchShowPlayerStatus, 0);
+	AddCommand("Test", (uintptr_t)c_Test, 0);
 
 	//cout << std::hex << (d3dcompiler_47_og::moduleBase + 0x1653688) << endl;
 }
@@ -73,7 +75,10 @@ void API_Console::InitializeConsole()
 typedef void(__stdcall * f)();
 f Function;
 
-
+void c_Test()
+{
+	mem::TestHookOnline();
+}
 void API_Console::DoConsoleCommand(string Input)
 {
 	string Command = Input;

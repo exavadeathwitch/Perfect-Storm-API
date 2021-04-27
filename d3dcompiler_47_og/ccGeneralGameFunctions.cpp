@@ -13,9 +13,31 @@
 #include "d3dcompiler_47_og.h"
 #include "HookFunctions.h"
 #include "ccMain.h"
-
+#include "mem.h"
+#include "MinHook.h"
 using namespace moddingApi;
 using namespace std;
+using namespace mem;
+
+// Function Hooking
+typedef void(__fastcall* SetRoomName) (__int64 BaseLobbyAddr);
+SetRoomName fpOSetRoomName = (SetRoomName)(0x7FF6F6C28918);
+
+void __fastcall nSetRoomName(__int64 BaseLobbyAddr)
+{
+	cout << "Hooked" << endl;
+
+	oSetRoomName(BaseLobbyAddr);
+}
+
+typedef void(__fastcall* SetRoomName) (__int64 BaseLobbyAddr);
+
+void mem::TestHookOnline()
+{
+	MH_STATUS WINAPI MH_Initialize();
+	oSetRoomName = (SetRoomName)(0x7FF6F6C28918);
+	//oSetRoomName = (SetRoomName)mem::TrampHook32((BYTE*)oSetRoomName, (BYTE*)nSetRoomName, 10);
+}
 
 BYTE ccGeneralGameFunctions::MAX_GAME_VERSION = 9;
 
