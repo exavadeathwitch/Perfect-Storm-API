@@ -83,7 +83,7 @@ void AutoUpdater::dwFile()
     if (canUpdate) {
         LPCSTR url = "http://perfectstormmod.com/update/version.txt";
         LPCSTR fName = "version_server.txt";
-        string version_game = "004";
+        string version_game = "002";
 
         download_to = fullPath + fName;
         cout << "Downloading version diff to " << download_to << endl;
