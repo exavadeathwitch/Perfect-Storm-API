@@ -1,20 +1,12 @@
-#ifndef INCLUDES_MEM
-#define INCLUDES_MEM
-/*----------------------------*/
-
-#define INST_NOP            0x90
-#define INST_CALL            0x08EB0000000215FF //Note: This is flipped around to how it appears in memory because x86 processors are little endian
-#define INST_CALL_SIZE    16
-
-typedef unsigned long long    u64;
-
-
+#include <Windows.h>
+#include <vector>
+#include <stdio.h>
+#include <stdlib.h>
 namespace mem
 {
-    bool Hook(void* toHook, const void* myFnc, const u64 length = INST_CALL_SIZE);
-    void TestHookOnline();
-    //BYTE* TrampHook32(BYTE* src, BYTE* dst, const uintptr_t len);
+    bool Detour32(BYTE* src, BYTE* dst, const uintptr_t len);
+    int TestHookOnline();
+    BYTE* TrampHook32(BYTE* src, BYTE* dst, const uintptr_t len);
+    void __fastcall nSetRoomName(__int64 BaseLobbyAddr);
+    __declspec(naked) int nleaderChange(__int64 a1, __int64 a2, __int64 a3, __int64 a4);
 }
-
-/*----------------------------*/
-#endif

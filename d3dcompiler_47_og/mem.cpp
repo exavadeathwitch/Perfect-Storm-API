@@ -1,37 +1,28 @@
 #include "mem.h"
 #include <Windows.h>
+#include <vector>
 
-
-bool mem::Hook(void* toHook, const void* myFnc, const u64 length)
+bool mem::Detour32(BYTE* src, BYTE* dst, const uintptr_t len)
 {
-    if (toHook && myFnc)
-    {
-        if (length < INST_CALL_SIZE)
-            return false;
+	if (len < 5) return false;
 
-        DWORD curProtection;
-        VirtualProtect(toHook, length, PAGE_EXECUTE_READWRITE, &curProtection);
+	DWORD curProtection;
+	VirtualProtect(src, len, PAGE_EXECUTE_READWRITE, &curProtection);
 
-        if (length > INST_CALL_SIZE)
-            memset(toHook, INST_NOP, length);
+	uintptr_t relativeAddress = dst - src - 5;
 
-        *(u64*)toHook = INST_CALL;
-        *(u64*)((u64)toHook + 8) = (u64)myFnc;
+	*src = 0xE9;
 
-        DWORD temp;
-        VirtualProtect(toHook, length, curProtection, &temp);
+	*(uintptr_t*)(src + 1) = relativeAddress;
+	
+	VirtualProtect(src, len, curProtection, &curProtection);
 
-        return true;
-    }
-    else
-    {
-        return false;
-    }
+	return true;
 }
-/*
+
 BYTE* mem::TrampHook32(BYTE* src, BYTE* dst, const uintptr_t len)
 {
-	if (len < 10) return 0;
+	if (len < 5) return 0;
 
 	//Create Gateway
 	BYTE* gateway = (BYTE*)VirtualAlloc(0, len, MEM_COMMIT | MEM_RESERVE, PAGE_EXECUTE_READWRITE);
@@ -43,14 +34,14 @@ BYTE* mem::TrampHook32(BYTE* src, BYTE* dst, const uintptr_t len)
 	uintptr_t gatewayRelativeAddr = src - gateway - 10;
 
 	//Add the jmp opcode to the end of the gateway
-	*(gateway + len) = 0x25FF;
+	*(gateway + len) = 0xE9;
 
 	//Write the address of the gateway to the jmp
 	*(uintptr_t*)((uintptr_t)gateway + len + 1) = gatewayRelativeAddr;
 
 	//Perform the detour
-	mem::Hook(src, dst, len);
+	mem::Detour32(src, dst, len);
 
 	return gateway;
 }
-*/
+

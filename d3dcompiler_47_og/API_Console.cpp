@@ -13,6 +13,7 @@
 #include "ccBossIAFunctions.h"
 #include "HookFunctions.h"
 #include "mem.h"
+#include "MinHook.h"
 using namespace std;
 using namespace moddingApi;
 using namespace mem;
@@ -67,7 +68,7 @@ void API_Console::InitializeConsole()
 	AddCommand("ccGroupBattleEventCameraMoveLookBegin", (uintptr_t)c_ccGroupBattleEventCameraMoveLookBegin, 4);
 	AddCommand("ccGetGpPtr", (uintptr_t)c_ccGetGpPtr, 0);
 	AddCommand("ccMultiMatchShowPlayerStatus", (uintptr_t)c_ccMultiMatchShowPlayerStatus, 0);
-	AddCommand("Test", (uintptr_t)c_Test, 0);
+	//AddCommand("Test", (uintptr_t)c_Test, 0);
 
 	//cout << std::hex << (d3dcompiler_47_og::moduleBase + 0x1653688) << endl;
 }
@@ -77,8 +78,11 @@ f Function;
 
 void c_Test()
 {
+	//mem::TestHookOnline();
+	//HookFunctions::Hook((void*)(d3dcompiler_47_og::moduleBase + 0x677D18), (void*)mem::nSetRoomName, 20);
 	mem::TestHookOnline();
 }
+
 void API_Console::DoConsoleCommand(string Input)
 {
 	string Command = Input;

@@ -18,25 +18,69 @@
 using namespace moddingApi;
 using namespace std;
 using namespace mem;
-
+//MH_STATUS WINAPI MH_Initialize();
+//fpOSetRoomName = (SetRoomName)(d3dcompiler_47_og::moduleBase + 0x677D18);
+//fpOSetRoomName = (SetRoomName)mem::TrampHook32((BYTE*)fpOSetRoomName, (BYTE*)nSetRoomName, 10);
 // Function Hooking
+
 typedef void(__fastcall* SetRoomName) (__int64 BaseLobbyAddr);
-SetRoomName fpOSetRoomName = (SetRoomName)(0x7FF6F6C28918);
+//SetRoomName fpOSetRoomName = (SetRoomName)(d3dcompiler_47_og::moduleBase + 0x677D18);
 
-void __fastcall nSetRoomName(__int64 BaseLobbyAddr)
+SetRoomName oSetRoomName = NULL;
+//(GetModuleHandle(NULL) + 0x677D18 - 0x400);
+
+void __fastcall mem::nSetRoomName(__int64 BaseLobbyAddr)
 {
-	cout << "Hooked" << endl;
-
 	oSetRoomName(BaseLobbyAddr);
+	*(std::uintptr_t*)(BaseLobbyAddr + 0x64) = 15;
 }
 
-typedef void(__fastcall* SetRoomName) (__int64 BaseLobbyAddr);
 
-void mem::TestHookOnline()
+typedef void(__usercall* leaderChange) (__int64 a1, __int64 a2, __int64 a3, __int64 a4);
+//SetRoomName fpOSetRoomName = (SetRoomName)(d3dcompiler_47_og::moduleBase + 0x677D18);
+
+leaderChange oleaderChange = NULL;
+//(GetModuleHandle(NULL) + 0x677D18 - 0x400);
+
+__declspec(naked) int nleaderChange(__int64 a1, __int64 a2, __int64 a3, __int64 a4);
 {
-	MH_STATUS WINAPI MH_Initialize();
-	oSetRoomName = (SetRoomName)(0x7FF6F6C28918);
-	//oSetRoomName = (SetRoomName)mem::TrampHook32((BYTE*)oSetRoomName, (BYTE*)nSetRoomName, 10);
+	oSetRoomName(BaseLobbyAddr);
+	*(std::uintptr_t*)(BaseLobbyAddr + 0x64) = 15;
+}
+
+int mem::TestHookOnline()
+{
+	//MH_STATUS status = MH_CreateHook((LPVOID)addrSetRoomName, &mem::nSetRoomName, reinterpret_cast<LPVOID*>(&oSetRoomName));
+	std::uintptr_t addrGameBase = (std::uintptr_t)GetModuleHandle(NULL);
+	std::uintptr_t addrSetRoomName = (std::uintptr_t)(addrGameBase + 0x678918);
+	std::uintptr_t addrLeaderChange = (std::uintptr_t)(addrGameBase + 0x573124);
+	MH_STATUS status = MH_CreateHook((LPVOID)addrSetRoomName, &mem::nSetRoomName, reinterpret_cast<LPVOID*>(&oSetRoomName));
+	if (status != MH_OK)
+	{
+		cout << "could not create hook" << endl;
+		return false;
+	}
+
+	status = MH_EnableHook((LPVOID)addrSetRoomName);
+	if (status != MH_OK)
+	{
+		cout << "could not enable hook" << endl;
+		return false;
+	}
+
+	MH_STATUS status = MH_CreateHook((LPVOID)addrLeaderChange, &mem::nSetRoomName, reinterpret_cast<LPVOID*>(&oSetRoomName));
+	if (status != MH_OK)
+	{
+		cout << "could not create hook" << endl;
+		return false;
+	}
+
+	status = MH_EnableHook((LPVOID)addrLeaderChange);
+	if (status != MH_OK)
+	{
+		cout << "could not enable hook" << endl;
+		return false;
+	}
 }
 
 BYTE ccGeneralGameFunctions::MAX_GAME_VERSION = 9;
