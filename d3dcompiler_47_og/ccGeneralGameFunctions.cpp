@@ -13,9 +13,61 @@
 #include "d3dcompiler_47_og.h"
 #include "HookFunctions.h"
 #include "ccMain.h"
-
+#include "mem.h"
+#include "MinHook.h"
 using namespace moddingApi;
 using namespace std;
+using namespace mem;
+//MH_STATUS WINAPI MH_Initialize();
+//fpOSetRoomName = (SetRoomName)(d3dcompiler_47_og::moduleBase + 0x677D18);
+//fpOSetRoomName = (SetRoomName)mem::TrampHook32((BYTE*)fpOSetRoomName, (BYTE*)nSetRoomName, 10);
+// Function Hooking
+
+typedef void(__fastcall* SetRoomName) (__int64 BaseLobbyAddr);
+//SetRoomName fpOSetRoomName = (SetRoomName)(d3dcompiler_47_og::moduleBase + 0x677D18);
+
+SetRoomName oSetRoomName = NULL;
+//(GetModuleHandle(NULL) + 0x677D18 - 0x400);
+
+void __fastcall mem::nSetRoomName(__int64 BaseLobbyAddr)
+{
+	oSetRoomName(BaseLobbyAddr);
+	*(std::uintptr_t*)(BaseLobbyAddr + 0x64) = 15;
+}
+
+
+// typedef void(__usercall* leaderChange) (__int64 a1, __int64 a2, __int64 a3, __int64 a4);
+//SetRoomName fpOSetRoomName = (SetRoomName)(d3dcompiler_47_og::moduleBase + 0x677D18);
+
+//leaderChange oleaderChange = NULL;
+//(GetModuleHandle(NULL) + 0x677D18 - 0x400);
+/*
+__declspec(naked) int mem::nleaderChange(__int64 a1, __int64 a2, __int64 a3, __int64 a4)
+{
+	//oSetRoomName(BaseLobbyAddr);
+	//*(std::uintptr_t*)(BaseLobbyAddr + 0x64) = 15;
+}
+*/
+int mem::TestHookOnline()
+{
+	//MH_STATUS status = MH_CreateHook((LPVOID)addrSetRoomName, &mem::nSetRoomName, reinterpret_cast<LPVOID*>(&oSetRoomName));
+	std::uintptr_t addrGameBase = (std::uintptr_t)GetModuleHandle(NULL);
+	std::uintptr_t addrSetRoomName = (std::uintptr_t)(addrGameBase + 0x678918);
+	MH_STATUS status = MH_CreateHook((LPVOID)addrSetRoomName, &mem::nSetRoomName, reinterpret_cast<LPVOID*>(&oSetRoomName));
+	if (status != MH_OK)
+	{
+		cout << "could not create hook" << endl;
+		return false;
+	}
+
+	status = MH_EnableHook((LPVOID)addrSetRoomName);
+	if (status != MH_OK)
+	{
+		cout << "could not enable hook" << endl;
+		return false;
+	}
+
+}
 
 BYTE ccGeneralGameFunctions::MAX_GAME_VERSION = 9;
 
@@ -151,22 +203,13 @@ char* ccGeneralGameFunctions::GetVersionString()
 // GET VERSION STRING API
 char* ccGeneralGameFunctions::GetVersionStringAPI()
 {
-	int v = GetVersionNumber();
-
-	char * Version[10] = {
-		"1.00 (Modding API v1.3 by Zealot Tormunds)",
-		"1.01 (Modding API v1.3 by Zealot Tormunds)",
-		"1.02 (Modding API v1.3 by Zealot Tormunds)",
-		"1.03 (Modding API v1.3 by Zealot Tormunds)",
-		"1.04 (Modding API v1.3 by Zealot Tormunds)",
-		"1.05 (Modding API v1.3 by Zealot Tormunds)",
-		"1.06 (Modding API v1.3 by Zealot Tormunds)",
-		"1.07 (Modding API v1.3 by Zealot Tormunds)",
-		"1.08 (Modding API v1.3 by Zealot Tormunds)",
-		"1.09 (Modding API v1.3 by Zealot Tormunds)",
+	char* Version = "2.0 (Beta)";
+	if (ModOption == 0)
+	{
+		Version = "1.07 (Enhanced)";
 	};
 
-	return Version[v];
+	return Version;
 }
 
 // GET RYO POINTER
@@ -270,38 +313,57 @@ void RandomizeBackground()
 {
 	DWORD dwOld = 0;
 	VirtualProtect((void*)(d3dcompiler_47_og::RecalculateAddress(0xEE52B0)), 0x20, PAGE_EXECUTE_READWRITE, &dwOld);
-	char * randomBg = "data/ui/max/bg/bg_freebtl1.xfbin";
-	switch (rand() % 7)
+	char* randomBg = "data/ui/max/bg/bg_freebtl2.xfbin";
+	//srand(time(0));
+	//int bg_switch_test = 0;
+	//bg_switch_test = rand() % 10;
+	
+	if (bg_switch_test == 0)
 	{
-	case 0:
 		randomBg = "data/ui/max/bg/bg_freebtl1.xfbin";
-		break;
-	case 1:
-		randomBg = "data/ui/max/bg/bg_freebtl2.xfbin";
-		break;
-	case 2:
-		randomBg = "data/ui/max/bg/bg_freebtl3.xfbin";
-		break;
-	case 3:
-		randomBg = "data/ui/max/bg/bg_freebtl4.xfbin";
-		break;
-	case 4:
-		randomBg = "data/ui/max/bg/bg_freebtl5.xfbin";
-		break;
-	case 5:
-		randomBg = "data/ui/max/bg/bg_freebtl6.xfbin";
-		break;
-	case 6:
-		randomBg = "data/ui/max/bg/bg_freebtl7.xfbin";
-		break;
-	case 7:
-		randomBg = "data/ui/max/bg/bg_freebtl7.xfbin";
-		break;
 	}
+	else if (bg_switch_test == 1)
+	{
+		randomBg = "data/ui/max/bg/bg_freebtl2.xfbin";
+	}
+	else if (bg_switch_test == 2)
+	{
+		randomBg = "data/ui/max/bg/bg_freebtl3.xfbin";
+	}
+	else if (bg_switch_test == 3)
+	{
+		randomBg = "data/ui/max/bg/bg_freebtl4.xfbin";
+	}
+	else if (bg_switch_test == 4)
+	{
+		randomBg = "data/ui/max/bg/bg_freebtl5.xfbin";
+	}
+	else if (bg_switch_test == 5)
+	{
+		randomBg = "data/ui/max/bg/bg_freebtl6.xfbin";
+	}
+	else if (bg_switch_test == 6)
+	{
+		randomBg = "data/ui/max/bg/bg_freebtl7.xfbin";
+	}
+	else if (bg_switch_test == 7)
+	{
+		randomBg = "data/ui/max/bg/bg_freebtl8.xfbin";
+	}
+	else if (bg_switch_test == 8)
+	{
+		randomBg = "data/ui/max/bg/bg_freebtl9.xfbin";
+	}
+	else if (bg_switch_test == 9)
+	{
+		randomBg = "data/ui/max/bg/bg_freebtl10.xfbin";
+	}
+	
 	memcpy((void*)(d3dcompiler_47_og::RecalculateAddress(0xEE52B0)), (void*)(randomBg), 0x20);
 	VirtualProtect((void*)(d3dcompiler_47_og::RecalculateAddress(0xEE52B0)), 0x20, dwOld, &dwOld);
 }
 */
+
 // All custom messageinfo functions
 vector<std::string> ccGeneralGameFunctions::MessageID;
 vector<std::string> ccGeneralGameFunctions::MessageStr;
@@ -312,7 +374,7 @@ uintptr_t ccGeneralGameFunctions::Hook_MsgToString(uintptr_t MessageToDecode)
 	//bool showDecode = true;
 	//if ((string((char*)MessageToDecode).length() >= 4 && string((char*)MessageToDecode).substr(0, 4) == "####")) showDecode = false;
 
-	
+	//RandomizeBackground();
 	if (ccGeneralGameFunctions::ViewMessageConversions == 0 && strlen((char*)MessageToDecode) > 0 && *(char*)MessageToDecode != '+')
 	{
 		HookFunctions::UndoMessageInfoHook();

@@ -15,6 +15,8 @@
 #include "HookFunctions.h"
 #include "AutoUpdater.h"
 #include "DX11 Initialize.h"
+#include "MinHook.h"
+#include "mem.h"
 using namespace moddingApi;
 using namespace std;
 using namespace DX11;
@@ -25,6 +27,7 @@ bool EnableAPI = false;
 // Main function of the API
 DWORD WINAPI ccMain::Main()
 {
+
 	// Read all the mods and configs
 	ccMain::ReadApiFiles();
 
@@ -40,12 +43,27 @@ DWORD WINAPI ccMain::Main()
 	// Enable the game thread (this is for player modification in game)
 	CreateThread(nullptr, 0, (LPTHREAD_START_ROUTINE)ccMain::LoopGame, (HMODULE)d3dcompiler_47_og::st_hModule, 0, nullptr);
 
+	//Initialize MinHook
+	if (MH_Initialize() == MH_OK)
+	{
+		cout << "MinHook Initialized" << endl;
+	}
+	else
+	{
+		cout << "MinHook not Initialized" << endl;
+	}
+
+	if (ModOption == 1)
+	{
+		mem::TestHookOnline();
+		cout << "Perfect Storm Lobby Function Hooked" << endl;
+	}
 	// Auto-Updater Code
 	AutoUpdater update;
 	update.dwFile();
 
 	//Hook DX11
-	Hook::MainThread();
+	//Hook::MainThread();
 	// Loop console
 	ccMain::LoopConsole();
 
@@ -61,14 +79,21 @@ DWORD WINAPI ccMain::LoopGame()
 	}
 	return 0;
 }
-
+bool checking = 0;
 DWORD WINAPI ccMain::LoopConsole()
-{
+{/*
+	if (!checking)
+	{
+		Sleep(5000);
+		AutoUpdater update;
+		update.dwFile();
+		checking = 1;
+	}*/
 	while (EnableAPI == false)
 	{
 		Sleep(100);
 	}
-
+	
 	API_Console::InitializeConsole();
 
 	while (EnableAPI)
@@ -129,7 +154,7 @@ void ccMain::ReadApiFiles()
 	GetCurrentDirectory(_MAX_PATH, ApiPath);
 	int ActualLength = strlen(ApiPath);
 
-	strcat(ApiPath, "\\moddingapi\\");
+	strcat(ApiPath, "\\Perfect Storm\\");
 
 	char ConfigPath[_MAX_PATH];
 	strcpy(ConfigPath, ApiPath);
@@ -167,11 +192,15 @@ void ccMain::ReadApiFiles()
 			memcpy((void*)(d3dcompiler_47_og::moduleBase + 0x6E1C4A), &a, 1);
 			VirtualProtect((void*)(d3dcompiler_47_og::moduleBase + 0x6E1C4A), 1, dwOld, &dwOld);
 		}
+		if (GetPrivateProfileInt("General", "EnablePerfectStorm", 1, ConfigPath) == 1)
+		{
+			cout << "Perfect Storm Enabled!" << endl;
+		}
 		else
 		{
-			
+			cout << "Better 1.07 Enabled!" << endl;
+			ModOption = 0;
 		}
-		
 		cout << "Config finished..." << endl;
 
 		// Start reading mods
@@ -236,8 +265,15 @@ void ccMain::ReadApiFiles()
 					{
 						string _file = f.path().string();
 						string _ext = _file.substr(_file.length() - 4, 4);
-
-						if (_ext == "ns4s")
+						if (_ext == "ns4o")
+						{
+							if (ModOption == 0)
+							{
+								cout << "1.07 patched through exe" << endl;
+								ReadPatchFile(_file);
+							}
+						}
+						else if (_ext == "ns4s")
 						{
 							//cout << "Message file" << endl;
 							vector<string> msg = ReadMessageFile(_file);
@@ -393,7 +429,7 @@ void ccMain::ReloadParamFiles()
 	GetCurrentDirectory(_MAX_PATH, ApiPath);
 	int ActualLength = strlen(ApiPath);
 
-	strcat(ApiPath, "\\moddingapi\\");
+	strcat(ApiPath, "\\Perfect Storm\\");
 
 	char ConfigPath[_MAX_PATH];
 	strcpy(ConfigPath, ApiPath);

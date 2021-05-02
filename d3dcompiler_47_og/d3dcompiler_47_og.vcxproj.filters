@@ -108,6 +108,9 @@
     <ClCompile Include="DownloadProgress.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="mem.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="HookFunctions.h">
@@ -215,6 +218,9 @@
     <ClInclude Include="DownloadProgress.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="mem.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="d3dcompiler_47_og.def">
@@ -225,5 +231,10 @@
     <MASM Include="d3dcompiler_47_og_asm.asm">
       <Filter>Resource Files</Filter>
     </MASM>
+  </ItemGroup>
+  <ItemGroup>
+    <NASM Include="test.asm">
+      <Filter>Header Files</Filter>
+    </NASM>
   </ItemGroup>
 </Project>
