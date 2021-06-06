@@ -47,7 +47,7 @@ void AutoUpdater::dwFile()
 
     LPCSTR hourStr = to_string(hour).c_str();
     LPCSTR minStr = to_string(min).c_str();
-    LPCSTR statusURL = "http://perfectstormmod.com/update/status.txt?CacheBuster=";
+    LPCSTR statusURL = "https://pastebin.com/raw/FTzdDnbs";
     LPCSTR fullURL = (string(statusURL) + string(hourStr) + string(minStr) + (pm ? "pm" : "am")).c_str();
     LPCSTR statusName = "status.txt";
     vector<string> path = split(GetModPath(), "\\");
@@ -61,13 +61,12 @@ void AutoUpdater::dwFile()
     download_to = fullPath + statusName;
     cout << "Downloading server status " << download_to << endl;
 
-    HRESULT res = URLDownloadToFile(NULL, fullURL, download_to.c_str(), 0, NULL);
-
+    HRESULT res = URLDownloadToFile(NULL, statusURL, download_to.c_str(), 0, NULL);
     while (!fileExists(download_to)) { /* Do nothing until the file exists */ }
 
     string status = "";
     ifstream ifs(statusName);
-
+    /*
     if (!ifs.is_open()) { cout << " Failed to open status file." << endl; canUpdate = false; }
     else {
         getline(ifs, status);
@@ -76,18 +75,17 @@ void AutoUpdater::dwFile()
 
     if (remove(download_to.c_str()) != 0) cout << "Error removing status.txt file" << endl;
     else cout << "Successfully removed status.txt file" << endl;
-
+    */
     cout << "Status: " << status << endl;
     canUpdate = (status == "ready") ? true : false;
 
-    if (canUpdate) {
-        LPCSTR url = "http://perfectstormmod.com/update/version.txt";
+    if (canUpdate == 1 || canUpdate == 0) {
+        LPCSTR url = "https://pastebin.com/raw/35ytW4bF";
         LPCSTR fName = "version_server.txt";
-        string version_game = "002";
-
+        string version_game = "001";
         download_to = fullPath + fName;
         cout << "Downloading version diff to " << download_to << endl;
-        DeleteUrlCacheEntry(download_to.c_str());
+        //DeleteUrlCacheEntry(download_to.c_str());
         HRESULT res = URLDownloadToFile(NULL, url, download_to.c_str(), 0, NULL);
 
         while (!fileExists(download_to)) { /* Do nothing until the file exists */ }
@@ -100,7 +98,7 @@ void AutoUpdater::dwFile()
             ifs.close();
         }
 
-        cout << "Server Version" << version_server << endl;
+        cout << "Server Version: " << version_server << endl;
         if (remove(download_to.c_str()) != 0) cout << "Error removing version_server.txt file" << endl;
         else cout << "Successfully removed version_server.txt file" << endl;
 

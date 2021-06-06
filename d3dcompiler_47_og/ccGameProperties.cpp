@@ -24,8 +24,10 @@ int GamePropertiesAPI(uintptr_t);
 
 void ccGameProperties::DoGamePropertiesHook()
 {
+	
 	memcpy(OriginalGameProperties, (void*)(d3dcompiler_47_og::moduleBase + InitGameProperties_Address), 15);
 	HookFunctions::Hook((void*)(d3dcompiler_47_og::moduleBase + InitGameProperties_Address), (void*)GamePropertiesAPI, 15);
+	
 }
 
 void UndoGamePropertiesHook()
@@ -38,6 +40,7 @@ void UndoGamePropertiesHook()
 
 int GamePropertiesAPI(uintptr_t a1)
 {
+	
 	ccGameProperties::GlobalPointer = a1;
 
 	cout << "Global pointer = " << std::hex << ccGameProperties::GlobalPointer << endl;
@@ -46,12 +49,13 @@ int GamePropertiesAPI(uintptr_t a1)
 	InitGameProperties = (initializegameproperties)(d3dcompiler_47_og::moduleBase + InitGameProperties_Address);
 	int a = InitGameProperties(a1);
 	ccGameProperties::DoGamePropertiesHook();
-
-	return a;
+	
+	return a1;
 }
 
 void ccGameProperties::ReloadProperties()
 {
+
 	if (ccGameProperties::GlobalPointer != -1)
 	{
 		//UndoGamePropertiesHook();
@@ -67,6 +71,7 @@ void ccGameProperties::ReloadProperties()
 	{
 		cout << "Cannot reload properties" << endl;
 	}
+	
 }
 
 // GAME INITIALIZATION
@@ -164,7 +169,7 @@ uintptr_t ccSceneAutoSaveCautionAPI(char* a1)
 	return ret;
 }
 
-void ccGameProperties::ccLoadScene(std::string sceneName)
+void ccLoadScene(std::string sceneName)
 {
 	if (sceneName == "ccSceneAutoSaveCaution")
 	{
@@ -177,4 +182,25 @@ void ccGameProperties::ccLoadScene(std::string sceneName)
 	{
 		cout << "Scene not found" << endl;
 	}
+}
+
+
+
+// Get a QWORD pointer from the game
+__int64 ccGameProperties::GetQword(__int64 qw)
+{
+	
+	return *(__int64*)(1);
+}
+
+// Get a DWORD pointer from the game
+int ccGameProperties::GetDword(__int64 dw)
+{
+	return *(__int64*)(1);
+}
+
+// Get a OFFSET pointer from the game
+__int64 ccGameProperties::GetOffset(__int64 of)
+{
+	return *(__int64*)(1);
 }

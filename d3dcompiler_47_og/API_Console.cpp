@@ -5,18 +5,16 @@
 #include <iostream>
 
 #include "API_Console.h"
-
+#include "Training.h"
 #include "ccMain.h"
 #include "d3dcompiler_47_og.h"
 #include "ccGeneralGameFunctions.h"
 #include "ccCharacterFunctions.h"
 #include "ccBossIAFunctions.h"
 #include "HookFunctions.h"
-#include "mem.h"
-#include "MinHook.h"
+
 using namespace std;
 using namespace moddingApi;
-using namespace mem;
 
 // Console Functions
 vector<string> consoleCommands;
@@ -41,14 +39,9 @@ void c_ReloadProperties();
 void c_ReloadInit();
 void c_LoadScene();
 void c_ReloadParamFiles();
-void c_EnableAllPad();
 void c_ControlNpc();
-void c_ccGroupBattleEventCameraBegin();
-void c_ccGroupBattleEventCameraMovePosBegin();
-void c_ccGroupBattleEventCameraMoveLookBegin();
-void c_ccGetGpPtr();
-void c_ccMultiMatchShowPlayerStatus();
-void c_Test();
+void c_EnableTraining();
+
 void API_Console::InitializeConsole()
 {
 	AddCommand("ConvertMessage", (uintptr_t)c_ConvertMessage, 1);
@@ -60,28 +53,45 @@ void API_Console::InitializeConsole()
 	AddCommand("EndLoad", (uintptr_t)c_EndLoad, 0);
 	AddCommand("ViewMessageConversions", (uintptr_t)c_ViewMessageConversions, 0);
 	AddCommand("Help", (uintptr_t)c_Help, 0);
-	AddCommand("ReloadParamFiles", (uintptr_t)c_ReloadParamFiles, 0);
-	AddCommand("EnableAllPad", (uintptr_t)c_EnableAllPad, 0);
 	AddCommand("ControlNpc", (uintptr_t)c_ControlNpc, 2);
-	AddCommand("ccGroupBattleEventCameraBegin", (uintptr_t)c_ccGroupBattleEventCameraBegin, 0);
-	AddCommand("ccGroupBattleEventCameraMovePosBegin", (uintptr_t)c_ccGroupBattleEventCameraMovePosBegin, 4);
-	AddCommand("ccGroupBattleEventCameraMoveLookBegin", (uintptr_t)c_ccGroupBattleEventCameraMoveLookBegin, 4);
-	AddCommand("ccGetGpPtr", (uintptr_t)c_ccGetGpPtr, 0);
-	AddCommand("ccMultiMatchShowPlayerStatus", (uintptr_t)c_ccMultiMatchShowPlayerStatus, 0);
-	//AddCommand("Test", (uintptr_t)c_Test, 0);
-
+	//AddCommand("ViewAwakeningDebug", (uintptr_t)c_ViewAwakeningDebug, 0);
+	//AddCommand("ReloadCharsel", (uintptr_t)c_ReloadCharsel, 0);
+	//AddCommand("ReloadProperties", (uintptr_t)c_ReloadProperties, 0);
+	//AddCommand("ReloadInit", (uintptr_t)c_ReloadInit, 0);
+	//AddCommand("LoadScene", (uintptr_t)c_LoadScene, 1);
+	AddCommand("ReloadParamFiles", (uintptr_t)c_ReloadParamFiles, 0);
+	AddCommand("EnableTraining", (uintptr_t)c_EnableTraining, 0);
 	//cout << std::hex << (d3dcompiler_47_og::moduleBase + 0x1653688) << endl;
+}
+void c_EnableTraining()
+{
+	if (TrainingisOn == true)
+	{
+		TrainingisOn = false;
+	}
+	else
+	{
+		TrainingisOn = true;
+	}
+}
+void c_ControlNpc()
+{
+	std::string param1;
+	cout << "CHAR >> ";
+	cin >> param1;
+	char* param1_c = strcpy(new char[param1.length() + 1], param1.c_str());
+
+	std::string param2;
+	cout << "PAD >> ";
+	cin >> param2;
+	char* param2_c = strcpy(new char[param2.length() + 1], param2.c_str());
+
+	cout << ccGeneralGameFunctions::MessageToString(param1_c);
+	ccCharacterFunctions::EnableControl(stoi(param1), stoi(param2));
 }
 
 typedef void(__stdcall * f)();
 f Function;
-
-void c_Test()
-{
-	//mem::TestHookOnline();
-	//HookFunctions::Hook((void*)(d3dcompiler_47_og::moduleBase + 0x677D18), (void*)mem::nSetRoomName, 20);
-	mem::TestHookOnline();
-}
 
 void API_Console::DoConsoleCommand(string Input)
 {
@@ -169,15 +179,16 @@ void c_Help()
 #include "ccPlayer.h"
 void c_ViewAwakeningDebug()
 {
-	//ccPlayer::AwakeDebugEnabled = !ccPlayer::AwakeDebugEnabled;
+	ccPlayer::AwakeDebugEnabled = !ccPlayer::AwakeDebugEnabled;
 }
 
 #include "ccCharacterFunctions.h"
+/*
 void c_ReloadCharsel()
 {
-	//ccCharacterFunctions::ReloadCharsel();
+	ccCharacterFunctions::ReloadCharsel();
 }
-
+*/
 #include "ccGameProperties.h"
 void c_ReloadProperties()
 {
@@ -197,7 +208,7 @@ void c_LoadScene()
 	cin >> param1;
 	char * param1_c = strcpy(new char[param1.length() + 1], param1.c_str());
 
-	ccGameProperties::ccLoadScene(param1_c);
+	//ccGameProperties::ccLoadScene(param1_c);
 }
 
 void c_ReloadParamFiles()
@@ -205,95 +216,6 @@ void c_ReloadParamFiles()
 	cout << "Reloading API's parameter files (specialCondParam, partnerSlotParam)..." << endl;
 	ccMain::ReloadParamFiles();
 	cout << "Files reloaded correctly" << endl;
-}
-
-void c_EnableAllPad()
-{
-	ccGeneralGameFunctions::enablePads();
-}
-
-void c_ControlNpc()
-{
-	std::string param1;
-	cout << "CHAR >> ";
-	cin >> param1;
-	char * param1_c = strcpy(new char[param1.length() + 1], param1.c_str());
-
-	std::string param2;
-	cout << "PAD >> ";
-	cin >> param2;
-	char * param2_c = strcpy(new char[param2.length() + 1], param2.c_str());
-
-	//cout << ccGeneralGameFunctions::MessageToString(param1_c);
-	ccCharacterFunctions::EnableControl(stoi(param1), stoi(param2));
-}
-
-#include "LuaHook.h"
-void c_ccGroupBattleEventCameraBegin()
-{
-	LuaHook::ccGroupBattleEventCameraBegin();
-}
-
-void c_ccGroupBattleEventCameraMovePosBegin()
-{
-	std::string param1;
-	cout << "X >> ";
-	cin >> param1;
-	float param1_c = stof(param1);
-
-	std::string param2;
-	cout << "Z >> ";
-	cin >> param2;
-	float param2_c = stof(param2);
-
-	std::string param3;
-	cout << "Y >> ";
-	cin >> param3;
-	float param3_c = stof(param3);
-
-	std::string param4;
-	cout << "A >> ";
-	cin >> param4;
-	float param4_c = stof(param4);
-
-	LuaHook::ccGroupBattleEventCameraMovePosBegin(param1_c, param2_c, param3_c, param4_c);
-}
-
-void c_ccGroupBattleEventCameraMoveLookBegin()
-{
-	std::string param1;
-	cout << "X >> ";
-	cin >> param1;
-	float param1_c = stof(param1);
-
-	std::string param2;
-	cout << "Z >> ";
-	cin >> param2;
-	float param2_c = stof(param2);
-
-	std::string param3;
-	cout << "Y >> ";
-	cin >> param3;
-	float param3_c = stof(param3);
-
-	std::string param4;
-	cout << "A >> ";
-	cin >> param4;
-	float param4_c = stof(param4);
-
-	LuaHook::ccGroupBattleEventCameraMovePosBegin(param1_c, param2_c, param3_c, param4_c);
-}
-
-#include "MultiMatch.h"
-void c_ccGetGpPtr()
-{
-	cout << std::hex << (uintptr_t)MultiMatch::fc_GetGpPtr() << endl;
-}
-
-#include "LuaHook_Commands.h"
-void c_ccMultiMatchShowPlayerStatus()
-{
-	LuaHook_Commands::ccEntryNameTelop("P4 > HP: 100 / CHK: 100", "", 570, 500, 0, 0, 120);
 }
 
 void AddCommand(string command, uintptr_t function, int paramCount)

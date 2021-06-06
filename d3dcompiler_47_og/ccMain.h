@@ -3,6 +3,7 @@
 #include <vector>
 using namespace std;
 inline bool ModOption = 1;
+inline bool Debug = 0;
 namespace moddingApi
 {
 	class ccMain

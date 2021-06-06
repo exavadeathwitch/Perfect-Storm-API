@@ -13,11 +13,8 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="Source Files\MultiMatch">
-      <UniqueIdentifier>{b0166d29-f2f6-4e11-ade7-890e5f6fee6d}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Assembly">
-      <UniqueIdentifier>{039b8eb1-483c-4c9b-9dc7-74078a71ecf3}</UniqueIdentifier>
+    <Filter Include="Source Files\Training Mode">
+      <UniqueIdentifier>{3389e733-ff18-4f6d-9378-4e992ad69aeb}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -57,11 +54,29 @@
     <ClCompile Include="ccGameProperties.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="LuaHook_Commands.cpp">
+    <ClCompile Include="AutoUpdater.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="MultiMatch.cpp">
-      <Filter>Source Files\MultiMatch</Filter>
+    <ClCompile Include="DownloadProgress.cpp">
+      <Filter>Header Files</Filter>
+    </ClCompile>
+    <ClCompile Include="imgui\imgui.cpp">
+      <Filter>Header Files</Filter>
+    </ClCompile>
+    <ClCompile Include="imgui\imgui_demo.cpp">
+      <Filter>Header Files</Filter>
+    </ClCompile>
+    <ClCompile Include="imgui\imgui_draw.cpp">
+      <Filter>Header Files</Filter>
+    </ClCompile>
+    <ClCompile Include="imgui\imgui_impl_dx11.cpp">
+      <Filter>Header Files</Filter>
+    </ClCompile>
+    <ClCompile Include="imgui\imgui_impl_win32.cpp">
+      <Filter>Header Files</Filter>
+    </ClCompile>
+    <ClCompile Include="imgui\imgui_widgets.cpp">
+      <Filter>Header Files</Filter>
     </ClCompile>
     <ClCompile Include="DirectX 11 main.cpp">
       <Filter>Source Files</Filter>
@@ -69,47 +84,8 @@
     <ClCompile Include="kiero\kiero.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="kiero\minhook\src\buffer.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="kiero\minhook\src\hook.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="kiero\minhook\src\trampoline.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="kiero\minhook\src\hde\hde32.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="kiero\minhook\src\hde\hde64.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="imgui\imgui.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="imgui\imgui_demo.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="imgui\imgui_draw.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="imgui\imgui_impl_dx11.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="imgui\imgui_impl_win32.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="imgui\imgui_widgets.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="AutoUpdater.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="DownloadProgress.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="mem.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="Training.cpp">
+      <Filter>Source Files\Training Mode</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -149,40 +125,16 @@
     <ClInclude Include="ccGameProperties.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="LuaHook_Commands.h">
+    <ClInclude Include="MinHook.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="MultiMatch.h">
-      <Filter>Source Files\MultiMatch</Filter>
-    </ClInclude>
-    <ClInclude Include="includes.h">
+    <ClInclude Include="AutoUpdater.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="kiero\kiero.h">
+    <ClInclude Include="mem.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="kiero\minhook\include\MinHook.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="kiero\minhook\src\buffer.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="kiero\minhook\src\trampoline.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="kiero\minhook\src\hde\hde32.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="kiero\minhook\src\hde\hde64.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="kiero\minhook\src\hde\pstdint.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="kiero\minhook\src\hde\table32.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="kiero\minhook\src\hde\table64.h">
+    <ClInclude Include="DownloadProgress.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="imgui\imconfig.h">
@@ -212,14 +164,14 @@
     <ClInclude Include="DX11 Initialize.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="AutoUpdater.h">
+    <ClInclude Include="kiero\kiero.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="DownloadProgress.h">
+    <ClInclude Include="Training.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="mem.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="CasualLibrary.hpp">
+      <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -233,8 +185,8 @@
     </MASM>
   </ItemGroup>
   <ItemGroup>
-    <NASM Include="test.asm">
+    <Library Include="imgui\detours.lib">
       <Filter>Header Files</Filter>
-    </NASM>
+    </Library>
   </ItemGroup>
 </Project>

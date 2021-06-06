@@ -15,7 +15,6 @@
 #include "LuaHook.h"
 #include "ccCharacterFunctions.h"
 #include "ccGameProperties.h"
-
 using namespace moddingApi;
 using namespace std;
 
@@ -33,31 +32,22 @@ bool Hook3(void*, void*, int);
 void HookFunctions::InitializeHooks()
 {
 	//ccPlayer::InitAwakening();
-
+	
 	HookFunctions::Hook((void*)(d3dcompiler_47_og::moduleBase + 0x85CC80), (void*)ccGeneralGameFunctions::GetVersionStringAPI, 14); // GetVersionString hook
 
 	memcpy(originalMsgInfo, (void*)(d3dcompiler_47_og::moduleBase + 0xAB46C0), 19);
 	HookFunctions::DoMessageInfoHook();
 	memcpy(originalMsgInfo2, (void*)(d3dcompiler_47_og::moduleBase + 0xAB4770), 19);
 	HookFunctions::DoMessageInfoHook2();
-
-	//ccGeneralGameFunctions::HookLoadXfbin_C();
-
-	//ccGeneralGameFunctions::HookTest();
-
-	//ccGeneralGameFunctions::HookLoadXfbin();
-	//ccGeneralGameFunctions::HookLoadXfbin2();
-
+	//cpktype shit
+	
 	// Awakening IDS:
 	//ccPlayer::InitAwakening();
 	//ccPlayer::DoGetAwakeningIDHook();
 
 	// Lua Hooks:
 	//cout << "Lua hook done." << endl;
-	//ccGeneralGameFunctions::HookCpkLoad();
-	LuaHook::HookDeclareFunction();
-	HookFunctions::Hook((void*)(d3dcompiler_47_og::moduleBase + 0x450A14), (void*)LuaHook::GetPadState, 20);
-	//HookFunctions::Hook((void*)(d3dcompiler_47_og::moduleBase + 0x450E28), (void*)LuaHook::ccGroupBattleEventCameraMovePosBeginCoop, 14);
+	//HookFunctions::Hook((void*)(d3dcompiler_47_og::moduleBase + 0x450A14), (void*)LuaHook::GetPadState, 20);
 
 	// Hook charsel
 	//ccCharacterFunctions::DoCharacterSelectParamHook();
@@ -77,7 +67,7 @@ void HookFunctions::InitializeHooks()
 	// Test
 	ccCharacterFunctions::PartnerFunctions();
 	ccCharacterFunctions::SpecialCondFunctions();
-	ccCharacterFunctions::Hook_COND_BKKX();
+	//ccCharacterFunctions::Hook_COND_BKKX();
 }
 
 void HookFunctions::DoMessageInfoHook()
@@ -209,7 +199,7 @@ bool Hook2(void * toHook, void * ourFunct, int len)
 vector<string> HookID;
 vector<vector<BYTE>> HookBytes;
 vector<uintptr_t> HookAddress;
-void DoHook(void* toHook, void* ourFunct, int len, string ID)
+void HookFunctions::DoHook(void* toHook, void* ourFunct, int len, string ID)
 {
 	int Count = -1;
 	for (int x = 0; x < HookID.size(); x++)
@@ -240,7 +230,7 @@ void DoHook(void* toHook, void* ourFunct, int len, string ID)
 		HookFunctions::Hook(toHook, ourFunct, len);
 	}
 }
-void UndoHook(string ID)
+void HookFunctions::UndoHook(string ID)
 {
 	int Count = -1;
 	for (int x = 0; x < HookID.size(); x++)
