@@ -15,6 +15,10 @@ bool EnableAPI = false;
 
 DWORD WINAPI ccMain::Main()
 {
+	AllocConsole();
+	freopen("conin$", "r", stdin);
+	freopen("conout$", "w", stdout);
+	freopen("conout$", "w", stderr);
 	cout << "wow" << endl;
 	return 0;
 }
