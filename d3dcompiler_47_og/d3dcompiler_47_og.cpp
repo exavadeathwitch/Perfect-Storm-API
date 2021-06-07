@@ -14,9 +14,6 @@
 using namespace moddingApi;
 using namespace std;
 
-uintptr_t d3dcompiler_47_og::moduleBase;
-uintptr_t d3dcompiler_47_og::st_hModule;
-uintptr_t d3dcompiler_47_og::datasection;
 
 HINSTANCE mHinst = 0, mHinstDLL = 0;
 extern "C" UINT_PTR mProcs[29] = { 0 };
@@ -32,9 +29,7 @@ BOOL WINAPI DllMain(HINSTANCE hinstDLL, DWORD fdwReason, LPVOID lpvReserved, HMO
 		for (int i = 0; i < 29; i++)
 			mProcs[i] = (UINT_PTR)GetProcAddress(mHinstDLL, mImportNames[i]);
 
-		d3dcompiler_47_og::st_hModule = (uintptr_t)hModule;
-		d3dcompiler_47_og::moduleBase = (uintptr_t)GetModuleHandle(NULL) + 0xC00;
-		d3dcompiler_47_og::datasection = (uintptr_t)GetModuleHandle(NULL) + 0x13B6000;
+		
 		// 7FF716C86000+1416bdd10
 
 		// Start API
@@ -46,16 +41,6 @@ BOOL WINAPI DllMain(HINSTANCE hinstDLL, DWORD fdwReason, LPVOID lpvReserved, HMO
 	}
 
 	return (TRUE);
-}
-
-uintptr_t d3dcompiler_47_og::RecalculateAddress(uintptr_t a)
-{
-	uintptr_t recalc = d3dcompiler_47_og::moduleBase + a;
-
-	if (a > 0x13A38AD) recalc += 0x400;
-	else if (a > 0xEA7420) recalc += 0x400;
-
-	return recalc;
 }
 
 extern "C" void D3DAssemble_wrapper();

@@ -48,7 +48,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
-    <WholeProgramOptimization>PGUpdate</WholeProgramOptimization>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>NotSet</CharacterSet>
     <PlatformToolset>v142</PlatformToolset>
     <CLRSupport>false</CLRSupport>
@@ -151,181 +151,22 @@
       <OptimizeReferences>true</OptimizeReferences>
       <ModuleDefinitionFile>d3dcompiler_47_og.def</ModuleDefinitionFile>
       <AdditionalLibraryDirectories>D:\Perfect Storm API\Perfect-Storm-API\d3dcompiler_47_og;C:\Program Files %28x86%29\Steam\steamapps\common\NARUTO SHIPPUDEN Ultimate Ninja STORM 4\dll\d3dcompiler_47_og;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_mixer.lib;winmm.lib;ws2_32.lib;enet64.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;CasualLibrary.lib;XInput.lib;D3dcompiler.lib;d3d11.lib;Wininet.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>winmm.lib;ws2_32.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;XInput.lib;D3dcompiler.lib;d3d11.lib;Wininet.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="API_Console.cpp" />
-    <ClCompile Include="AudioPlayer.cpp" />
-    <ClCompile Include="AutoUpdater.cpp" />
-    <ClCompile Include="CasualGamer.cpp" />
-    <ClCompile Include="ccBattleFunctions.cpp" />
-    <ClCompile Include="ccCharacterFunctions.cpp" />
-    <ClCompile Include="ccBossIAFunctions.cpp" />
-    <ClCompile Include="ccGameProperties.cpp" />
-    <ClCompile Include="ccGeneralGameFunctions.cpp" />
     <ClCompile Include="ccMain.cpp" />
-    <ClCompile Include="ccMemoryFunctions.cpp" />
-    <ClCompile Include="ccPlayer.cpp" />
-    <ClCompile Include="ccPlayerStruct.cpp" />
-    <ClCompile Include="Controls.cpp" />
-    <ClCompile Include="Character.cpp" />
-    <ClCompile Include="DirectX11Hook\DirectX11Hook.cpp" />
-    <ClCompile Include="DirectX11Hook\imgui.cpp" />
-    <ClCompile Include="DirectX11Hook\imgui_demo.cpp" />
-    <ClCompile Include="DirectX11Hook\imgui_draw.cpp" />
-    <ClCompile Include="DirectX11Hook\imgui_impl_dx11.cpp" />
-    <ClCompile Include="DirectX11Hook\imgui_impl_win32.cpp" />
-    <ClCompile Include="DirectX11Hook\imgui_widgets.cpp" />
     <ClCompile Include="d3dcompiler_47_og.cpp" />
-    <ClCompile Include="DownloadProgress.cpp" />
-    <ClCompile Include="enet\callbacks.c" />
-    <ClCompile Include="enet\compress.c" />
-    <ClCompile Include="enet\host.c" />
-    <ClCompile Include="enet\list.c" />
-    <ClCompile Include="enet\packet.c" />
-    <ClCompile Include="enet\peer.c" />
-    <ClCompile Include="enet\protocol.c" />
-    <ClCompile Include="enet\unix.c" />
-    <ClCompile Include="enet\win32.c" />
-    <ClCompile Include="FileParser.cpp" />
-    <ClCompile Include="GameMath.cpp" />
-    <ClCompile Include="HookFunctions.cpp" />
-    <ClCompile Include="LuaHook.cpp" />
-    <ClCompile Include="LuaHook_Commands.cpp" />
-    <ClCompile Include="lua\src\lapi.c" />
-    <ClCompile Include="lua\src\lauxlib.c" />
-    <ClCompile Include="lua\src\lbaselib.c" />
-    <ClCompile Include="lua\src\lcode.c" />
-    <ClCompile Include="lua\src\ldblib.c" />
-    <ClCompile Include="lua\src\ldebug.c" />
-    <ClCompile Include="lua\src\ldo.c" />
-    <ClCompile Include="lua\src\ldump.c" />
-    <ClCompile Include="lua\src\lfunc.c" />
-    <ClCompile Include="lua\src\lgc.c" />
-    <ClCompile Include="lua\src\linit.c" />
-    <ClCompile Include="lua\src\liolib.c" />
-    <ClCompile Include="lua\src\llex.c" />
-    <ClCompile Include="lua\src\lmathlib.c" />
-    <ClCompile Include="lua\src\lmem.c" />
-    <ClCompile Include="lua\src\loadlib.c" />
-    <ClCompile Include="lua\src\lobject.c" />
-    <ClCompile Include="lua\src\lopcodes.c" />
-    <ClCompile Include="lua\src\loslib.c" />
-    <ClCompile Include="lua\src\lparser.c" />
-    <ClCompile Include="lua\src\lstate.c" />
-    <ClCompile Include="lua\src\lstring.c" />
-    <ClCompile Include="lua\src\lstrlib.c" />
-    <ClCompile Include="lua\src\ltable.c" />
-    <ClCompile Include="lua\src\ltablib.c" />
-    <ClCompile Include="lua\src\ltm.c" />
-    <ClCompile Include="lua\src\lua.c" />
-    <ClCompile Include="lua\src\lundump.c" />
-    <ClCompile Include="lua\src\lvm.c" />
-    <ClCompile Include="lua\src\lzio.c" />
-    <ClCompile Include="lua\src\print.c" />
-    <ClCompile Include="MultiMatch.cpp" />
-    <ClCompile Include="Music.cpp" />
-    <ClCompile Include="PrmFunctions.cpp" />
-    <ClCompile Include="SDL2\SDL2Music.cpp" />
-    <ClCompile Include="SDL2\SDL2SoundEffects.cpp" />
-    <ClCompile Include="SDL2\SDLInit.cpp" />
-    <ClCompile Include="Settings.cpp" />
-    <ClCompile Include="Sound.cpp" />
-    <ClCompile Include="Stage.cpp" />
-    <ClCompile Include="Vector3.cpp" />
-    <ClCompile Include="XfbinParser.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="d3dcompiler_47_og.def" />
     <MASM Include="d3dcompiler_47_og_asm.asm">
       <FileType>Document</FileType>
     </MASM>
-    <None Include="DirectX11Hook\MyTemplate.vstemplate" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="API_Console.h" />
-    <ClInclude Include="AudioPlayer.h" />
-    <ClInclude Include="AutoUpdater.h" />
-    <ClInclude Include="ccBattleFunctions.h" />
-    <ClInclude Include="ccCharacterFunctions.h" />
-    <ClInclude Include="ccBossIAFunctions.h" />
-    <ClInclude Include="ccGameProperties.h" />
-    <ClInclude Include="ccGeneralGameFunctions.h" />
     <ClInclude Include="ccMain.h" />
-    <ClInclude Include="ccMemoryFunctions.h" />
-    <ClInclude Include="Controls.h" />
-    <ClInclude Include="ccPlayer.h" />
-    <ClInclude Include="DirectX11Hook\detours.h" />
-    <ClInclude Include="DirectX11Hook\imconfig.h" />
-    <ClInclude Include="DirectX11Hook\imgui.h" />
-    <ClInclude Include="DirectX11Hook\imgui_impl_dx11.h" />
-    <ClInclude Include="DirectX11Hook\imgui_impl_win32.h" />
-    <ClInclude Include="DirectX11Hook\imgui_internal.h" />
-    <ClInclude Include="DirectX11Hook\imstb_rectpack.h" />
-    <ClInclude Include="DirectX11Hook\imstb_textedit.h" />
-    <ClInclude Include="DirectX11Hook\imstb_truetype.h" />
-    <ClInclude Include="DirectX11Hook\stdafx.h" />
-    <ClInclude Include="DirectX11Hook\targetver.h" />
-    <ClInclude Include="ccPlayerStruct.h" />
-    <ClInclude Include="Character.h" />
     <ClInclude Include="d3dcompiler_47_og.h" />
-    <ClInclude Include="DownloadProgress.h" />
-    <ClInclude Include="enet\callbacks.h" />
-    <ClInclude Include="enet\enet.h" />
-    <ClInclude Include="enet\list.h" />
-    <ClInclude Include="enet\protocol.h" />
-    <ClInclude Include="enet\time.h" />
-    <ClInclude Include="enet\types.h" />
-    <ClInclude Include="enet\unix.h" />
-    <ClInclude Include="enet\utility.h" />
-    <ClInclude Include="enet\win32.h" />
-    <ClInclude Include="FileParser.h" />
-    <ClInclude Include="GameMath.h" />
-    <ClInclude Include="MultiMatch.h" />
-    <ClInclude Include="Music.h" />
-    <ClInclude Include="HookFunctions.h" />
-    <ClInclude Include="LuaHook.h" />
-    <ClInclude Include="LuaHook_Commands.h" />
-    <ClInclude Include="lua\src\lapi.h" />
-    <ClInclude Include="lua\src\lauxlib.h" />
-    <ClInclude Include="lua\src\lcode.h" />
-    <ClInclude Include="lua\src\ldebug.h" />
-    <ClInclude Include="lua\src\ldo.h" />
-    <ClInclude Include="lua\src\lfunc.h" />
-    <ClInclude Include="lua\src\lgc.h" />
-    <ClInclude Include="lua\src\llex.h" />
-    <ClInclude Include="lua\src\llimits.h" />
-    <ClInclude Include="lua\src\lmem.h" />
-    <ClInclude Include="lua\src\lobject.h" />
-    <ClInclude Include="lua\src\lopcodes.h" />
-    <ClInclude Include="lua\src\lparser.h" />
-    <ClInclude Include="lua\src\lstate.h" />
-    <ClInclude Include="lua\src\lstring.h" />
-    <ClInclude Include="lua\src\ltable.h" />
-    <ClInclude Include="lua\src\ltm.h" />
-    <ClInclude Include="lua\src\lua.h" />
-    <ClInclude Include="lua\src\luaconf.h" />
-    <ClInclude Include="lua\src\lualib.h" />
-    <ClInclude Include="lua\src\lundump.h" />
-    <ClInclude Include="lua\src\lvm.h" />
-    <ClInclude Include="lua\src\lzio.h" />
-    <ClInclude Include="ManageMemory.h" />
-    <ClInclude Include="Memory.h" />
-    <ClInclude Include="PrmFunctions.h" />
-    <ClInclude Include="SDL2\SDL2Music.h" />
-    <ClInclude Include="SDL2\SDL2SoundEffects.h" />
-    <ClInclude Include="SDL2\SDLInit.h" />
-    <ClInclude Include="Settings.h" />
-    <ClInclude Include="Sound.h" />
-    <ClInclude Include="Stage.h" />
-    <ClInclude Include="Vector3.h" />
-    <ClInclude Include="XfbinParser.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <Library Include="CasualLibrary.lib" />
-    <Library Include="DirectX11Hook\detours.lib" />
-    <Library Include="enet64.lib" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="DirectX11Hook\__TemplateIcon.ico" />

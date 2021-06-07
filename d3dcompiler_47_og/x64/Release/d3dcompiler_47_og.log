@@ -1,17 +1,8 @@
-﻿  AutoUpdater.cpp
-E:\Programming\Perfect Storm\d3dcompiler_47_og\AutoUpdater.h(8,9): warning C4068: unknown pragma 'lib'
-E:\Programming\Perfect Storm\d3dcompiler_47_og\AutoUpdater.cpp(39,15): warning C4996: 'localtime': This function or variable may be unsafe. Consider using localtime_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-PGOMGR : warning PG0188: No .PGC files matching 'E:\Programming\Perfect Storm\x64\Release\d3dcompiler_47!*.pgc' were found.
-    Reading PGD file 1: E:\Programming\Perfect Storm\x64\Release\d3dcompiler_47.pgd
-E:\Programming\Perfect Storm\x64\Release\d3dcompiler_47.pgd : warning C4961: No profile data was merged into 'E:\Programming\Perfect Storm\x64\Release\d3dcompiler_47.pgd', profile-guided optimizations disabled
-     Creating library E:\Programming\Perfect Storm\x64\Release\d3dcompiler_47.lib and object E:\Programming\Perfect Storm\x64\Release\d3dcompiler_47.exp
-d3dcompiler_47.exp : warning LNK4070: /OUT:d3dcompiler_47_og.dll directive in .EXP differs from output filename 'E:\Programming\Perfect Storm\x64\Release\d3dcompiler_47.dll'; ignoring directive
-  Generating code
-  Finished generating code
-d3dcompiler_47.exp : warning LNK4070: /OUT:d3dcompiler_47_og.dll directive in .EXP differs from output filename 'E:\Programming\Perfect Storm\x64\Release\d3dcompiler_47.dll'; ignoring directive
-CasualLibrary.lib(Memory.obj) : warning LNK4099: PDB 'CasualLibrary.pdb' was not found with 'CasualLibrary.lib(Memory.obj)' or at 'E:\Programming\Perfect Storm\x64\Release\CasualLibrary.pdb'; linking object as if no debug info
-CasualLibrary.lib(Helper.obj) : warning LNK4099: PDB 'CasualLibrary.pdb' was not found with 'CasualLibrary.lib(Helper.obj)' or at 'E:\Programming\Perfect Storm\x64\Release\CasualLibrary.pdb'; linking object as if no debug info
-detours.lib(detours.obj) : warning LNK4099: PDB 'detours.pdb' was not found with 'detours.lib(detours.obj)' or at 'E:\Programming\Perfect Storm\x64\Release\detours.pdb'; linking object as if no debug info
-detours.lib(modules.obj) : warning LNK4099: PDB 'detours.pdb' was not found with 'detours.lib(modules.obj)' or at 'E:\Programming\Perfect Storm\x64\Release\detours.pdb'; linking object as if no debug info
-detours.lib(disasm.obj) : warning LNK4099: PDB 'detours.pdb' was not found with 'detours.lib(disasm.obj)' or at 'E:\Programming\Perfect Storm\x64\Release\detours.pdb'; linking object as if no debug info
-  d3dcompiler_47_og.vcxproj -> E:\Programming\Perfect Storm\x64\Release\d3dcompiler_47.dll
+﻿  ccMain.cpp
+  d3dcompiler_47_og.cpp
+  Generating Code...
+     Creating library D:\Perfect Storm API\Perfect-Storm-API\x64\Release\d3dcompiler_47.lib and object D:\Perfect Storm API\Perfect-Storm-API\x64\Release\d3dcompiler_47.exp
+d3dcompiler_47.exp : warning LNK4070: /OUT:d3dcompiler_47_og.dll directive in .EXP differs from output filename 'D:\Perfect Storm API\Perfect-Storm-API\x64\Release\d3dcompiler_47.dll'; ignoring directive
+  LINK : /LTCG specified but no code generation required; remove /LTCG from the link command line to improve linker performance
+d3dcompiler_47.exp : warning LNK4070: /OUT:d3dcompiler_47_og.dll directive in .EXP differs from output filename 'D:\Perfect Storm API\Perfect-Storm-API\x64\Release\d3dcompiler_47.dll'; ignoring directive
+  d3dcompiler_47_og.vcxproj -> D:\Perfect Storm API\Perfect-Storm-API\x64\Release\d3dcompiler_47.dll
