@@ -26,7 +26,7 @@ int ccPlayer::Ctrl(uintptr_t a1, uintptr_t a2)
 {
 	g_ccPlayer_Ctrl = (g_ccplayer_ctrl)(d3dcompiler_47_og::moduleBase + 0x76EA50);
 
-	cout << "ccPlayer::Ctrl -> " << std::hex << a1 << ", " << a2 << endl;
+	//cout << "ccPlayer::Ctrl -> " << std::hex << a1 << ", " << a2 << endl;
 	
 	//ccPlayer::UndoCtrlHook();
 	//int a = g_ccPlayer_Ctrl(a1, a2);

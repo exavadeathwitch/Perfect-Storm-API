@@ -81,7 +81,7 @@ void AutoUpdater::dwFile()
     canUpdate = (status == "ready") ? true : false;
 
     if (canUpdate) {
-        LPCSTR url = "http://perfectstormmod.com/update/version.txt";
+        LPCSTR url = "https://pastebin.com/raw/35ytW4bF";
         LPCSTR fName = "version_server.txt";
         string version_game = "002";
 
