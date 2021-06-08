@@ -1,7 +1,9 @@
 #include <iostream>
 #include "includes.h"
 #include "DX11 Initialize.h"
+#include "Training.h"
 using namespace DX11;
+using namespace training;
 extern LRESULT ImGui_ImplWin32_WndProcHandler(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam);
 
 Present oPresent;
@@ -56,7 +58,8 @@ HRESULT __stdcall hkPresent(IDXGISwapChain* pSwapChain, UINT SyncInterval, UINT 
 	ImGui_ImplDX11_NewFrame();
 	ImGui_ImplWin32_NewFrame();
 	ImGui::NewFrame();
-	ImGui::Begin("i love storm");
+	//Training Mode Window
+	training::EnableOnlineTraining();
 	ImGui::End();
 	ImGui::Render();
 

@@ -30,7 +30,7 @@
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <CharacterSet>NotSet</CharacterSet>
-    <PlatformToolset>v142</PlatformToolset>
+    <PlatformToolset>v141</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
@@ -43,15 +43,15 @@
     <UseDebugLibraries>false</UseDebugLibraries>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>Unicode</CharacterSet>
-    <PlatformToolset>v142</PlatformToolset>
+    <PlatformToolset>v141</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>NotSet</CharacterSet>
     <PlatformToolset>v142</PlatformToolset>
     <CLRSupport>false</CLRSupport>
-    <WholeProgramOptimization>false</WholeProgramOptimization>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings">
@@ -82,8 +82,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
     <GenerateManifest>false</GenerateManifest>
-    <IncludePath>D:\Perfect Storm API\Perfect-Storm-API\d3dcompiler_47_og;$(IncludePath)</IncludePath>
-    <LibraryPath>C:\Users\Ares\Documents\GitHub\Perfect-Storm-API\d3dcompiler_47_og\lib;D:\Perfect Storm API\Perfect-Storm-API\d3dcompiler_47_og\lib;$(LibraryPath)</LibraryPath>
+    <LibraryPath>D:\Perfect Storm API\Perfect-Storm-API\d3dcompiler_47_og\lib;C:\Users\Ares\Downloads\ns4moddingapi-1.2b\ns4moddingapi-1.2b\d3dcompiler_47_og\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -106,7 +105,6 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;D3DCOMPILER_47_OG_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -137,11 +135,12 @@
       <WarningLevel>Level3</WarningLevel>
       <PrecompiledHeader>
       </PrecompiledHeader>
-      <Optimization>Disabled</Optimization>
+      <Optimization>Custom</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;D3DCOMPILER_47_OG_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <LanguageStandard>stdcpp17</LanguageStandard>
+      <WholeProgramOptimization>true</WholeProgramOptimization>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -149,8 +148,7 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <ModuleDefinitionFile>d3dcompiler_47_og.def</ModuleDefinitionFile>
-      <AdditionalDependencies>d3d11.lib;dxgi.lib;wininet.lib;libMinHook-x64-v141-mtd.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>D:\Perfect Storm API\Perfect-Storm-API\d3dcompiler_47_og\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>libMinHook-x64-v141-mtd.lib;CasualLibrary.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
@@ -175,15 +173,8 @@
     <ClCompile Include="imgui\imgui_impl_win32.cpp" />
     <ClCompile Include="imgui\imgui_widgets.cpp" />
     <ClCompile Include="kiero\kiero.cpp" />
-    <ClCompile Include="kiero\minhook\src\buffer.c" />
-    <ClCompile Include="kiero\minhook\src\hde\hde32.c" />
-    <ClCompile Include="kiero\minhook\src\hde\hde64.c" />
-    <ClCompile Include="kiero\minhook\src\hook.c" />
-    <ClCompile Include="kiero\minhook\src\trampoline.c" />
     <ClCompile Include="LuaHook.cpp" />
-    <ClCompile Include="LuaHook_Commands.cpp" />
-    <ClCompile Include="mem.cpp" />
-    <ClCompile Include="MultiMatch.cpp" />
+    <ClCompile Include="Training.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="d3dcompiler_47_og.def" />
@@ -194,6 +185,7 @@
   <ItemGroup>
     <ClInclude Include="API_Console.h" />
     <ClInclude Include="AutoUpdater.h" />
+    <ClInclude Include="CasualLibrary.hpp" />
     <ClInclude Include="ccBattleFunctions.h" />
     <ClInclude Include="ccCharacterFunctions.h" />
     <ClInclude Include="ccBossIAFunctions.h" />
@@ -214,23 +206,14 @@
     <ClInclude Include="imgui\imstb_rectpack.h" />
     <ClInclude Include="imgui\imstb_textedit.h" />
     <ClInclude Include="imgui\imstb_truetype.h" />
-    <ClInclude Include="includes.h" />
     <ClInclude Include="kiero\kiero.h" />
-    <ClInclude Include="kiero\minhook\include\MinHook.h" />
-    <ClInclude Include="kiero\minhook\src\buffer.h" />
-    <ClInclude Include="kiero\minhook\src\hde\hde32.h" />
-    <ClInclude Include="kiero\minhook\src\hde\hde64.h" />
-    <ClInclude Include="kiero\minhook\src\hde\pstdint.h" />
-    <ClInclude Include="kiero\minhook\src\hde\table32.h" />
-    <ClInclude Include="kiero\minhook\src\hde\table64.h" />
-    <ClInclude Include="kiero\minhook\src\trampoline.h" />
     <ClInclude Include="LuaHook.h" />
-    <ClInclude Include="LuaHook_Commands.h" />
     <ClInclude Include="mem.h" />
-    <ClInclude Include="MultiMatch.h" />
+    <ClInclude Include="MinHook.h" />
+    <ClInclude Include="Training.h" />
   </ItemGroup>
   <ItemGroup>
-    <NASM Include="test.asm" />
+    <Library Include="imgui\detours.lib" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -17,11 +17,19 @@ namespace moddingApi
 		static void DoCtrlHook();
 		static void UndoCtrlHook();
 
+		static int CtrlCounterSimul(uintptr_t);
+		static int Draw(uintptr_t);
+		static int PostCtrl(uintptr_t);
+
 		static void DoMovementHook();
 		static void UndoMovementHook();
 
 		// Awakening funtions:
 		static BYTE OriginalAwakeningFunction[20];
-		//static bool AwakeDebugEnabled;
+		static void InitAwakening();
+		static bool AwakeDebugEnabled;
+		static char** GetAwakeningID(int);
+		static void DoGetAwakeningIDHook();
+		static void UndoGetAwakeningIDHook();
 	};
 }

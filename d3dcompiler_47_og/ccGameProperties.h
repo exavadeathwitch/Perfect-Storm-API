@@ -1,7 +1,7 @@
 #pragma once
 
 #include <stdio.h>
-using namespace std;
+#include <string.h>
 
 namespace moddingApi
 {
@@ -17,6 +17,10 @@ namespace moddingApi
 		static void ReloadInit();
 
 		static void DoAutoSaveHook();
-		static void ccLoadScene(std::string);
+		//static void ccLoadScene(std::string);
+
+		static __int64 GetQword(__int64 qw);
+		static int GetDword(__int64 dw);
+		static __int64 GetOffset(__int64 of);
 	};
 }

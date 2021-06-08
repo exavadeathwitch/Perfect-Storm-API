@@ -5,29 +5,21 @@
 #include <string>
 #include <vector>
 #include <algorithm>
-
+#include "mem.h"
 #pragma comment(lib, "XInput.lib")
 #include <Xinput.h>
-
+#include "MinHook.h"
 #include "ccGeneralGameFunctions.h"
 #include "d3dcompiler_47_og.h"
 #include "HookFunctions.h"
 #include "ccMain.h"
-#include "mem.h"
-#include "MinHook.h"
+#include "Training.h"
 using namespace moddingApi;
 using namespace std;
-using namespace mem;
-//MH_STATUS WINAPI MH_Initialize();
-//fpOSetRoomName = (SetRoomName)(d3dcompiler_47_og::moduleBase + 0x677D18);
-//fpOSetRoomName = (SetRoomName)mem::TrampHook32((BYTE*)fpOSetRoomName, (BYTE*)nSetRoomName, 10);
-// Function Hooking
 
+//Online Room Name
 typedef void(__fastcall* SetRoomName) (__int64 BaseLobbyAddr);
-//SetRoomName fpOSetRoomName = (SetRoomName)(d3dcompiler_47_og::moduleBase + 0x677D18);
-
 SetRoomName oSetRoomName = NULL;
-//(GetModuleHandle(NULL) + 0x677D18 - 0x400);
 
 void __fastcall mem::nSetRoomName(__int64 BaseLobbyAddr)
 {
@@ -36,37 +28,334 @@ void __fastcall mem::nSetRoomName(__int64 BaseLobbyAddr)
 }
 
 
-// typedef void(__usercall* leaderChange) (__int64 a1, __int64 a2, __int64 a3, __int64 a4);
-//SetRoomName fpOSetRoomName = (SetRoomName)(d3dcompiler_47_og::moduleBase + 0x677D18);
+std::uintptr_t addrGameBase = (std::uintptr_t)GetModuleHandle(NULL);
+signed typedef __int64(__fastcall* DecreaseHealth) (__int64 a1, __int64 a2, float Damage);
+DecreaseHealth oDecreaseHealth = NULL;
 
-//leaderChange oleaderChange = NULL;
-//(GetModuleHandle(NULL) + 0x677D18 - 0x400);
-/*
-__declspec(naked) int mem::nleaderChange(__int64 a1, __int64 a2, __int64 a3, __int64 a4)
+signed __int64 __fastcall mem::nDecreaseHealth(__int64 a1, __int64 a2, float Damage)
 {
-	//oSetRoomName(BaseLobbyAddr);
-	//*(std::uintptr_t*)(BaseLobbyAddr + 0x64) = 15;
+	signed __int64 PlayerAddr; // rax@1
+	float Health; // xmm0_4@2
+	std::uintptr_t addrGameBase = (std::uintptr_t)GetModuleHandle(NULL);
+	typedef signed __int64(__fastcall* FindPlayerAddr) (__int64 a1, unsigned int a2);
+	FindPlayerAddr oFindPlayerAddr = (FindPlayerAddr)(addrGameBase + 0x746C98);
+
+	PlayerAddr = oFindPlayerAddr(a1, a2);
+	if (PlayerAddr)
+	{
+		Health = *(float*)(PlayerAddr + 0x10);
+		if (Health != 0.0)
+			switch(selectedLItem)
+			{
+			case 0:
+				* (float*)(PlayerAddr + 0x10) = Health - Damage;
+				break;
+			case 1:
+				*(float*)(PlayerAddr + 0x10) = 100.0f;
+				break;
+			case 2:
+				*(float*)(PlayerAddr + 0x10) = 30.0f;
+				break;
+			}
+	}
+	if (Debug)	cout << endl << "PlayerAddr: " << PlayerAddr << endl << "Old Health: " << Health << endl << "Damage Taken: " << Damage << endl << "New Health: " << Health - Damage << endl; //Damage Values
+	return PlayerAddr;
 }
-*/
-int mem::TestHookOnline()
+
+typedef __int64(__fastcall* DecreaseChakra) (__int64 a1, __int64 a2, float ChakraCost);
+DecreaseChakra oDecreaseChakra = NULL;
+
+signed __int64 __fastcall mem::nDecreaseChakra(__int64 a1, __int64 a2, float ChakraCost)
 {
-	//MH_STATUS status = MH_CreateHook((LPVOID)addrSetRoomName, &mem::nSetRoomName, reinterpret_cast<LPVOID*>(&oSetRoomName));
+	signed __int64 PlayerStateAddr; // rax@1
+	float CurrentChakra; // xmm0_4@2
+	std::uintptr_t addrGameBase = (std::uintptr_t)GetModuleHandle(NULL);
+	typedef signed __int64(__fastcall* FindPlayerAddr) (__int64 a1, unsigned int a2);
+	FindPlayerAddr oFindPlayerAddr = (FindPlayerAddr)(addrGameBase + 0x746C98);
+
+	PlayerStateAddr = oFindPlayerAddr(a1, a2);
+	if (PlayerStateAddr)
+	{
+		CurrentChakra = *(float*)(PlayerStateAddr + 0x18);
+		if (CurrentChakra != 0.0)
+		if (tcheckBox[0] == true)
+		{
+			*(float*)(PlayerStateAddr + 0x18) = 100.0f;
+		}
+		else
+		{
+			*(float*)(PlayerStateAddr + 0x18) = CurrentChakra - ChakraCost;
+		}
+	}
+	if (Debug)	cout << endl << "PlayerAddr: " << PlayerStateAddr << endl << "Current Chakra: " << CurrentChakra << endl << "Chakra Cost: " << ChakraCost << endl << "Net Chakra: " << CurrentChakra - ChakraCost << endl; //Chakra Values
+	return PlayerStateAddr;
+}
+
+signed typedef __int64(__fastcall* DecreaseSupportGaugeS) (__int64 a1, __int64 a2, float SupportCost);
+DecreaseSupportGaugeS oDecreaseSupportGaugeS = NULL;
+
+signed __int64 __fastcall mem::nDecreaseSupportGaugeS(__int64 a1, __int64 a2, float SupportCost)
+{
+	signed __int64 PlayerStateAddr; // rax@1
+	float CurrentSupportGauge; // xmm0_4@2 Decreases support gauge as a result of a support being called for a support jutsu. Not for switching.
+	typedef signed __int64(__fastcall* sub_140746CE8) (__int64 a1, int a2);
+	sub_140746CE8 osub_140746CE8 = (sub_140746CE8)(addrGameBase + 0x746CE8);
+	PlayerStateAddr = osub_140746CE8(a1, a2);
+	if (PlayerStateAddr)
+	{
+		CurrentSupportGauge = *(float*)(PlayerStateAddr + 0x2C);
+		if (CurrentSupportGauge != 0.0)
+			if (tcheckBox[1] == true)
+			{
+				*(float*)(PlayerStateAddr + 0x2C) = 100.0f;
+			}
+			else
+			{
+				*(float*)(PlayerStateAddr + 0x2C) = CurrentSupportGauge - SupportCost;
+			}
+	}
+	return PlayerStateAddr;
+}
+
+signed typedef __int64(__fastcall* DecreaseSupportGaugeLS) (__int64 a1, int a2, int Uselessvar, int NewSupportGaugeLevel);
+DecreaseSupportGaugeLS oDecreaseSupportGaugeLS = NULL;
+
+signed __int64 __fastcall mem::nDecreaseSupportGaugeLS(__int64 a1, int a2, int Uselessvar, int NewSupportGaugeLevel)
+{
+	if (tcheckBox[1] == true)
+	{
+		signed __int64 PlayerStateAddr; // rax@1 Decreases support gauge as a result of switching. Not for support jutsu.
+		typedef signed __int64(__fastcall* sub_140746CE8) (__int64 a1, int a2);
+		sub_140746CE8 osub_140746CE8 = (sub_140746CE8)(addrGameBase + 0x746CE8);
+		PlayerStateAddr = osub_140746CE8(a1, a2);
+		if (PlayerStateAddr)
+		{
+			*(float*)(PlayerStateAddr + 0x2C) = 100.0f;
+		}
+		return PlayerStateAddr;
+	}
+	oDecreaseSupportGaugeLS(a1, a2, Uselessvar, NewSupportGaugeLevel);
+}
+
+typedef __int64(__fastcall* DecreaseGuardHealth) (__int64 a1, float GuardHealthSubtracted, int a3, int a4, int a5);
+DecreaseGuardHealth oDecreaseGuardHealth = NULL;
+
+__int64 __fastcall mem::nDecreaseGuardHealth(__int64 a1, float GuardHealthSubtracted, int a3, int a4, int a5)
+{
+	float CurrentGuardHealth; // xmm3_4@1
+	float NewGuardHealth; // xmm0_4@1
+
+	CurrentGuardHealth = *(float*)(a1 + 8);
+	if (tcheckBox[2] == true)
+	{
+		NewGuardHealth = 25.0f;
+	}
+	else
+	{
+		NewGuardHealth = *(float*)(a1 + 8) - GuardHealthSubtracted;
+	}
+	if (NewGuardHealth == 0.0)
+		NewGuardHealth = 0.0;
+	if (!a3)
+		*(float*)(a1 + 8) = NewGuardHealth;
+	if (Debug)	cout << endl << "PlayerAddr: " << a1 + 0x8 << endl << "Current Guard Health: " << CurrentGuardHealth << endl << "Guard Damage: " << CurrentGuardHealth - NewGuardHealth << endl << "New Guard Health: " << NewGuardHealth << endl; //Guard Health Values
+	return NewGuardHealth <= 0.0 && CurrentGuardHealth <= 0.0 || a4 && NewGuardHealth <= 0.0 || a5;
+}
+
+typedef __int64(__fastcall* DecreaseSubs) (__int64 a1, unsigned int a2, int Uselessvar, int NewSub);
+DecreaseSubs oDecreaseSubs = NULL;
+
+signed __int64 __fastcall mem::nDecreaseSubs(__int64 a1, unsigned int a2, int Uselessvar, int NewSub)
+{
+	if (tcheckBox[3] == true)
+	{
+		signed __int64 PlayerStateAddr; // rax@1
+		typedef signed __int64(__fastcall* FindPlayerAddr) (__int64 a1, unsigned int a2);
+		FindPlayerAddr oFindPlayerAddr = (FindPlayerAddr)(addrGameBase + 0x746C98);
+		PlayerStateAddr = oFindPlayerAddr(a1, a2);
+		if (PlayerStateAddr)
+			*(float*)(PlayerStateAddr + 0x20) = 100.0f;
+		return PlayerStateAddr;
+	}
+	oDecreaseSubs(a1, a2, Uselessvar, NewSub);
+}
+
+typedef __int64(__fastcall* DecreaseTools) (__int64 a1, unsigned int a2, int MaxTool, int NewTool);
+DecreaseTools oDecreaseTools = NULL;
+
+signed __int64 __fastcall mem::nDecreaseTools(__int64 a1, unsigned int a2, int MaxTool, int NewTool)
+{
+	if (tcheckBox[4] == true)
+	{
+		int NewToolCount; // ebx@1
+		__int64 MaxToolCount; // rdi@1
+		signed __int64 PlayerStateAddr; // rax@1
+
+		NewToolCount = NewTool;                       // New number of each tool in each category
+		MaxToolCount = MaxTool;                       // Original number of each tool in each category as loaded from duelplayerparam
+		typedef signed __int64(__fastcall* FindPlayerAddr) (__int64 a1, unsigned int a2);
+		FindPlayerAddr oFindPlayerAddr = (FindPlayerAddr)(addrGameBase + 0x746C98);
+		PlayerStateAddr = oFindPlayerAddr(a1, a2);
+		if (PlayerStateAddr)
+			*(int*)(PlayerStateAddr + 4 * MaxToolCount + 0x48) = 2;
+		return PlayerStateAddr;
+	}
+	oDecreaseTools(a1, a2, MaxTool, NewTool);
+}
+
+typedef __int64(__fastcall* IncreaseStormGauge) (__int64 BaseAddr, float Increment);
+IncreaseStormGauge oIncreaseStormGauge = NULL;
+
+void __fastcall mem::nIncreaseStormGauge(__int64 BaseAddr, float Increment)
+{
+	float CurrentStormGauge; // xmm0_4@1
+	float NewStormGauge; // xmm0_4@2
+
+	CurrentStormGauge = *(float*)(BaseAddr + 0x34);
+
+	if (selectedSGItem == 1 || selectedSGItem == 2)
+	{
+		if (CurrentStormGauge < 100.0)
+		{
+			NewStormGauge = CurrentStormGauge + Increment;
+			if (selectedSGItem == 1)
+			{
+				*(float*)(BaseAddr + 0x34) = 0.0f;
+			}
+			if (selectedSGItem == 2)
+			{
+				*(float*)(BaseAddr + 0x34) = 100.0f;
+			}
+			if (NewStormGauge > 100.0)
+				*(int*)(BaseAddr + 0x34) = 1120403456;
+		}
+	}
+	if (Debug)	cout << endl << "PlayerAddr: " << BaseAddr + 0x34 << endl << "Current Storm Gauge: " << CurrentStormGauge << endl << "Increment: " << Increment << endl << "New Storm Gauge: " << CurrentStormGauge + Increment << endl; //Storm Gauge Values
+	if (selectedSGItem == 0)
+	oIncreaseStormGauge(BaseAddr, Increment);
+}
+
+void mem::GeneralHook()
+{
+	std::uintptr_t addrDecreaseHealth = (std::uintptr_t)(addrGameBase + 0x746E50);
+	std::uintptr_t addrDecreaseChakra = (std::uintptr_t)(addrGameBase + 0x746DD0);
+	std::uintptr_t addrDecreaseSupportGaugeS = (std::uintptr_t)(addrGameBase + 0x746ED0);
+	std::uintptr_t addrDecreaseSupportGaugeLS = (std::uintptr_t)(addrGameBase + 0x7473B8);
+	std::uintptr_t addrDecreaseGuardHealth = (std::uintptr_t)(addrGameBase + 0x767F24);
+	std::uintptr_t addrDecreaseSubs = (std::uintptr_t)(addrGameBase + 0x74718C);
+	std::uintptr_t addrDecreaseTools = (std::uintptr_t)(addrGameBase + 0x7472A0);
+	std::uintptr_t addrIncreaseStormGauge = (std::uintptr_t)(addrGameBase + 0x747074);
+	bool status = MH_CreateHook((LPVOID)addrDecreaseHealth, &mem::nDecreaseHealth, reinterpret_cast<LPVOID*>(&oDecreaseHealth));
+	if (status != MH_OK)
+	{
+		cout << "could not create hook 2" << endl;
+	}
+
+	status = MH_EnableHook((LPVOID)addrDecreaseHealth);
+	if (status != MH_OK)
+	{
+		cout << "could not enable hook 2" << endl;
+	}
+
+	status = MH_CreateHook((LPVOID)addrDecreaseChakra, &mem::nDecreaseChakra, reinterpret_cast<LPVOID*>(&oDecreaseChakra));
+	if (status != MH_OK)
+	{
+		cout << "could not create hook 2" << endl;
+	}
+
+	status = MH_EnableHook((LPVOID)addrDecreaseChakra);
+	if (status != MH_OK)
+	{
+		cout << "could not enable hook 2" << endl;
+	}
+
+	status = MH_CreateHook((LPVOID)addrDecreaseSupportGaugeS, &mem::nDecreaseSupportGaugeS, reinterpret_cast<LPVOID*>(&oDecreaseSupportGaugeS));
+	if (status != MH_OK)
+	{
+		cout << "could not create hook 2" << endl;
+	}
+
+	status = MH_EnableHook((LPVOID)addrDecreaseSupportGaugeS);
+	if (status != MH_OK)
+	{
+		cout << "could not enable hook 2" << endl;
+	}
+
+	status = MH_CreateHook((LPVOID)addrDecreaseSupportGaugeLS, &mem::nDecreaseSupportGaugeLS, reinterpret_cast<LPVOID*>(&oDecreaseSupportGaugeLS));
+	if (status != MH_OK)
+	{
+		cout << "could not create hook 2" << endl;
+	}
+
+	status = MH_EnableHook((LPVOID)addrDecreaseSupportGaugeLS);
+	if (status != MH_OK)
+	{
+		cout << "could not enable hook 2" << endl;
+	}
+
+	status = MH_CreateHook((LPVOID)addrDecreaseGuardHealth, &mem::nDecreaseGuardHealth, reinterpret_cast<LPVOID*>(&oDecreaseGuardHealth));
+	if (status != MH_OK)
+	{
+		cout << "could not create hook 2" << endl;
+	}
+
+	status = MH_EnableHook((LPVOID)addrDecreaseGuardHealth);
+	if (status != MH_OK)
+	{
+		cout << "could not enable hook 2" << endl;
+	}
+
+	status = MH_CreateHook((LPVOID)addrDecreaseSubs, &mem::nDecreaseSubs, reinterpret_cast<LPVOID*>(&oDecreaseSubs));
+	if (status != MH_OK)
+	{
+		cout << "could not create hook 2" << endl;
+	}
+
+	status = MH_EnableHook((LPVOID)addrDecreaseSubs);
+	if (status != MH_OK)
+	{
+		cout << "could not enable hook 2" << endl;
+	}
+
+	status = MH_CreateHook((LPVOID)addrDecreaseTools, &mem::nDecreaseTools, reinterpret_cast<LPVOID*>(&oDecreaseTools));
+	if (status != MH_OK)
+	{
+		cout << "could not create hook 2" << endl;
+	}
+
+	status = MH_EnableHook((LPVOID)addrDecreaseTools);
+	if (status != MH_OK)
+	{
+		cout << "could not enable hook 2" << endl;
+	}
+	status = MH_CreateHook((LPVOID)addrIncreaseStormGauge, &mem::nIncreaseStormGauge, reinterpret_cast<LPVOID*>(&oIncreaseStormGauge));
+	if (status != MH_OK)
+	{
+		cout << "could not create hook 2" << endl;
+	}
+
+	status = MH_EnableHook((LPVOID)addrIncreaseStormGauge);
+	if (status != MH_OK)
+	{
+		cout << "could not enable hook 2" << endl;
+	}
+}
+void mem::PerfectStormHook()
+{
 	std::uintptr_t addrGameBase = (std::uintptr_t)GetModuleHandle(NULL);
 	std::uintptr_t addrSetRoomName = (std::uintptr_t)(addrGameBase + 0x678918);
 	MH_STATUS status = MH_CreateHook((LPVOID)addrSetRoomName, &mem::nSetRoomName, reinterpret_cast<LPVOID*>(&oSetRoomName));
 	if (status != MH_OK)
 	{
 		cout << "could not create hook" << endl;
-		return false;
 	}
 
 	status = MH_EnableHook((LPVOID)addrSetRoomName);
 	if (status != MH_OK)
 	{
 		cout << "could not enable hook" << endl;
-		return false;
 	}
-
+	
 }
 
 BYTE ccGeneralGameFunctions::MAX_GAME_VERSION = 9;
@@ -184,7 +473,7 @@ char* ccGeneralGameFunctions::GetVersionString()
 {
 	int v = GetVersionNumber();
 
-	char * Version[10] = {
+	char* Version[10] = {
 		"1.00",
 		"1.01",
 		"1.02",
@@ -203,7 +492,7 @@ char* ccGeneralGameFunctions::GetVersionString()
 // GET VERSION STRING API
 char* ccGeneralGameFunctions::GetVersionStringAPI()
 {
-	char* Version = "2.0 (Beta)";
+	char* Version = "2.0b (Beta)";
 	if (ModOption == 0)
 	{
 		Version = "1.07 (Enhanced)";
@@ -308,61 +597,6 @@ std::string GetModMessage()
 	}
 	return st;
 }
-/*
-void RandomizeBackground()
-{
-	DWORD dwOld = 0;
-	VirtualProtect((void*)(d3dcompiler_47_og::RecalculateAddress(0xEE52B0)), 0x20, PAGE_EXECUTE_READWRITE, &dwOld);
-	char* randomBg = "data/ui/max/bg/bg_freebtl2.xfbin";
-	//srand(time(0));
-	//int bg_switch_test = 0;
-	//bg_switch_test = rand() % 10;
-	
-	if (bg_switch_test == 0)
-	{
-		randomBg = "data/ui/max/bg/bg_freebtl1.xfbin";
-	}
-	else if (bg_switch_test == 1)
-	{
-		randomBg = "data/ui/max/bg/bg_freebtl2.xfbin";
-	}
-	else if (bg_switch_test == 2)
-	{
-		randomBg = "data/ui/max/bg/bg_freebtl3.xfbin";
-	}
-	else if (bg_switch_test == 3)
-	{
-		randomBg = "data/ui/max/bg/bg_freebtl4.xfbin";
-	}
-	else if (bg_switch_test == 4)
-	{
-		randomBg = "data/ui/max/bg/bg_freebtl5.xfbin";
-	}
-	else if (bg_switch_test == 5)
-	{
-		randomBg = "data/ui/max/bg/bg_freebtl6.xfbin";
-	}
-	else if (bg_switch_test == 6)
-	{
-		randomBg = "data/ui/max/bg/bg_freebtl7.xfbin";
-	}
-	else if (bg_switch_test == 7)
-	{
-		randomBg = "data/ui/max/bg/bg_freebtl8.xfbin";
-	}
-	else if (bg_switch_test == 8)
-	{
-		randomBg = "data/ui/max/bg/bg_freebtl9.xfbin";
-	}
-	else if (bg_switch_test == 9)
-	{
-		randomBg = "data/ui/max/bg/bg_freebtl10.xfbin";
-	}
-	
-	memcpy((void*)(d3dcompiler_47_og::RecalculateAddress(0xEE52B0)), (void*)(randomBg), 0x20);
-	VirtualProtect((void*)(d3dcompiler_47_og::RecalculateAddress(0xEE52B0)), 0x20, dwOld, &dwOld);
-}
-*/
 
 // All custom messageinfo functions
 vector<std::string> ccGeneralGameFunctions::MessageID;
@@ -371,11 +605,7 @@ BYTE ccGeneralGameFunctions::ViewMessageConversions = 0;
 
 uintptr_t ccGeneralGameFunctions::Hook_MsgToString(uintptr_t MessageToDecode)
 {
-	//bool showDecode = true;
-	//if ((string((char*)MessageToDecode).length() >= 4 && string((char*)MessageToDecode).substr(0, 4) == "####")) showDecode = false;
-
-	//RandomizeBackground();
-	if (ccGeneralGameFunctions::ViewMessageConversions == 0 && strlen((char*)MessageToDecode) > 0 && *(char*)MessageToDecode != '+')
+	if (ccGeneralGameFunctions::ViewMessageConversions == 0)
 	{
 		HookFunctions::UndoMessageInfoHook();
 		char* result = ccGeneralGameFunctions::MessageToString((char*)MessageToDecode);
@@ -386,27 +616,12 @@ uintptr_t ccGeneralGameFunctions::Hook_MsgToString(uintptr_t MessageToDecode)
 			bool finished = false;
 
 			string message((char*)MessageToDecode);
-
-			if (message == "network_agreement_EU_s-A" || message == "network_agreement_s-A")
-			{
-				result = (char*)GetModMessage().c_str();
-				finished = true;
-			}
-			else if (message == "network_agreementp2_EU_s-A" || message == "network_agreementp2_s-A")
-			{
-				result = "";
-				finished = true;
-			}
-
+			
 			if (finished == false)
 			{
 				std::string msg = (std::string)(char*)MessageToDecode;
 
-				if (msg == "network_agreement_select") result = "Press any button to continue";
-				else if (msg == "network_agreement_ok") result = "";
-				else if (msg == "network_agreement_ng") result = "<icon btn_2 />";
-				else
-				{
+
 					for (int x = 0; x < MessageID.size(); x++)
 					{
 						if (msg == MessageID[x])
@@ -414,7 +629,6 @@ uintptr_t ccGeneralGameFunctions::Hook_MsgToString(uintptr_t MessageToDecode)
 							result = (char*)MessageStr[x].c_str();
 						}
 					}
-				}
 				if (msg != (std::string)(char*)MessageToDecode) result = (char*)msg.c_str();
 			}
 		}
@@ -423,20 +637,6 @@ uintptr_t ccGeneralGameFunctions::Hook_MsgToString(uintptr_t MessageToDecode)
 	}
 	else
 	{
-		/*if (string((char*)MessageToDecode).length() >= 4 && string((char*)MessageToDecode).substr(0, 4) == "####")
-		{
-			cout << "Message: " << (char*)MessageToDecode << endl;
-			string realstr = string((char*)MessageToDecode);
-			char* res = (char*)realstr.substr(4, realstr.length()).c_str();
-
-			return (uintptr_t)res;
-		}*/
-
-		if (*(char*)MessageToDecode == '+')
-		{
-			return (MessageToDecode + 1);
-		}
-
 		return MessageToDecode;
 	}
 }
@@ -448,10 +648,7 @@ uintptr_t ccGeneralGameFunctions::Hook_MsgToString_Alt(uintptr_t MessageToDecode
 {
 	g_MessageToString2 = (message_to_string2)(d3dcompiler_47_og::moduleBase + 0xAB4770);
 
-	//bool showDecode = true;
-	//if ((string((char*)MessageToDecode).length() >= 4 && string((char*)MessageToDecode).substr(0, 4) == "####")) showDecode = false;
-
-	if (ccGeneralGameFunctions::ViewMessageConversions == 0 && strlen((char*)MessageToDecode) > 0 && *(char*)MessageToDecode != '+')
+	if (ccGeneralGameFunctions::ViewMessageConversions == 0)
 	{
 		HookFunctions::UndoMessageInfoHook2();
 		char * result = g_MessageToString2((char*)MessageToDecode);
@@ -463,26 +660,13 @@ uintptr_t ccGeneralGameFunctions::Hook_MsgToString_Alt(uintptr_t MessageToDecode
 
 			string message((char*)MessageToDecode);
 
-			if (message == "network_agreement_EU_s-A" || message == "network_agreement_s-A")
-			{
-				result = (char*)GetModMessage().c_str();
-				finished = true;
-			}
-			else if (message == "network_agreementp2_EU_s-A" || message == "network_agreementp2_s-A")
-			{
-				result = "";
-				finished = true;
-			}
-
+			
 			if (finished == false)
 			{
 				std::string msg = (std::string)(char*)MessageToDecode;
 
-				if (msg == "network_agreement_select") result = "Press any button to continue";
-				else if (msg == "network_agreement_ok") result = "";
-				else if (msg == "network_agreement_ng") result = "<icon btn_2 />";
-				else
-				{
+				
+				
 					for (int x = 0; x < MessageID.size(); x++)
 					{
 						if (msg == MessageID[x])
@@ -490,7 +674,7 @@ uintptr_t ccGeneralGameFunctions::Hook_MsgToString_Alt(uintptr_t MessageToDecode
 							result = (char*)MessageStr[x].c_str();
 						}
 					}
-				}
+				
 				if (msg != (std::string)(char*)MessageToDecode) result = (char*)msg.c_str();
 			}
 		}
@@ -499,188 +683,9 @@ uintptr_t ccGeneralGameFunctions::Hook_MsgToString_Alt(uintptr_t MessageToDecode
 	}
 	else
 	{
-		/*if (string((char*)MessageToDecode).length() >= 4 && string((char*)MessageToDecode).substr(0, 4) == "####")
-		{
-			cout << "Message: " << (char*)MessageToDecode << endl;
-			string realstr = string((char*)MessageToDecode);
-			char* res = (char*)realstr.substr(4, realstr.length()).c_str();
-
-			return (uintptr_t)res;
-		}*/
-
-		if (*(char*)MessageToDecode == '+')
-		{
-			return (MessageToDecode + 1);
-		}
-
 		return MessageToDecode;
 	}
 }
-
-////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////
-
-__int64 __fastcall fc_Xfbin_LoadFile(__int64 FilePath);
-BYTE f_LoadXfbin[15];
-
-void ccGeneralGameFunctions::HookLoadXfbin()
-{
-	memcpy(f_LoadXfbin, (void*)(d3dcompiler_47_og::moduleBase + 0x5341CC), 15);
-	HookFunctions::Hook((void*)(d3dcompiler_47_og::moduleBase + 0x5341CC), (void*)(fc_Xfbin_LoadFile), 15);
-}
-
-void UnhookLoadXfbin()
-{
-	DWORD dwOld = 0;
-	VirtualProtect((void*)(d3dcompiler_47_og::moduleBase + 0x5341CC), 15, PAGE_EXECUTE_READWRITE, &dwOld);
-	memcpy((void*)(d3dcompiler_47_og::moduleBase + 0x5341CC), f_LoadXfbin, 15);
-	VirtualProtect((void*)(d3dcompiler_47_og::moduleBase + 0x5341CC), 15, dwOld, &dwOld);
-}
-
-#include <filesystem>
-typedef __int64(__fastcall * Xfbin_LoadFile)(__int64);
-Xfbin_LoadFile g_Xfbin_LoadFile;
-
-__int64 __fastcall fc_Xfbin_LoadFile(__int64 FilePath)
-{
-	g_Xfbin_LoadFile = (Xfbin_LoadFile)(d3dcompiler_47_og::moduleBase + 0x5341CC);
-
-	string ActualFilePath = string((char*)FilePath);
-	string newFilePath = "disc:data_win32/" + ActualFilePath.substr(5, ActualFilePath.length() - 5);
-	cout << newFilePath << endl;
-
-	__int64 result = 0;
-
-	char ApiPath[_MAX_PATH];
-	GetCurrentDirectory(_MAX_PATH, ApiPath);
-
-	string TestPath = string(ApiPath) + "\\data_win32\\" + ActualFilePath.substr(5, ActualFilePath.length() - 5);
-	cout << "Testing for " << TestPath << endl;
-
-	if (filesystem::exists(TestPath) == true)
-	{
-		UnhookLoadXfbin();
-		result = g_Xfbin_LoadFile((__int64)newFilePath.c_str());
-		//result = g_Xfbin_LoadFile(FilePath);
-		ccGeneralGameFunctions::HookLoadXfbin();
-		cout << "Loaded " << newFilePath << endl;
-	}
-	else
-	{
-		UnhookLoadXfbin();
-		result = g_Xfbin_LoadFile(FilePath);
-		ccGeneralGameFunctions::HookLoadXfbin();
-		cout << "Loaded " << FilePath << endl;
-	}
-
-	return result;
-}
-
-////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////
-
-__int64 __fastcall fc_Menu_LoadXfbin(__int64 a1, __int64 FilePath);
-BYTE f_Menu_LoadXfbin[16];
-
-void ccGeneralGameFunctions::HookLoadXfbin2()
-{
-	memcpy(f_Menu_LoadXfbin, (void*)(d3dcompiler_47_og::moduleBase + 0x9FEE00), 16);
-	HookFunctions::Hook((void*)(d3dcompiler_47_og::moduleBase + 0x9FEE00), (void*)(fc_Menu_LoadXfbin), 16);
-}
-
-void UnhookLoadXfbin2()
-{
-	DWORD dwOld = 0;
-	VirtualProtect((void*)(d3dcompiler_47_og::moduleBase + 0x9FEE00), 16, PAGE_EXECUTE_READWRITE, &dwOld);
-	memcpy((void*)(d3dcompiler_47_og::moduleBase + 0x9FEE00), f_Menu_LoadXfbin, 16);
-	VirtualProtect((void*)(d3dcompiler_47_og::moduleBase + 0x9FEE00), 16, dwOld, &dwOld);
-}
-
-#include <filesystem>
-typedef __int64(__fastcall * Menu_LoadXfbin)(__int64, __int64);
-Menu_LoadXfbin g_Menu_LoadXfbin;
-
-__int64 __fastcall fc_Menu_LoadXfbin(__int64 a1, __int64 FilePath)
-{
-	g_Menu_LoadXfbin = (Menu_LoadXfbin)(d3dcompiler_47_og::moduleBase + 0x9FEE00);
-
-	string ActualFilePath = string((char*)FilePath);
-	string newFilePath = "disc:data/" + ActualFilePath.substr(5, ActualFilePath.length() - 5);
-	//cout << newFilePath << endl;
-
-	__int64 result = 0;
-
-	char ApiPath[_MAX_PATH];
-	GetCurrentDirectory(_MAX_PATH, ApiPath);
-
-	string TestPath = string(ApiPath) + "\\data\\" + ActualFilePath.substr(5, ActualFilePath.length() - 5);
-	//cout << "Testing for " << TestPath << endl;
-
-	if (filesystem::exists(TestPath) == true)
-	{
-		UnhookLoadXfbin2();
-		//result = g_Menu_LoadXfbin(a1, (__int64)newFilePath.c_str());
-		result = g_Menu_LoadXfbin(a1, FilePath);
-		ccGeneralGameFunctions::HookLoadXfbin2();
-		//cout << "Loaded " << newFilePath << endl;
-	}
-	else
-	{
-		UnhookLoadXfbin2();
-		result = g_Menu_LoadXfbin(a1, FilePath);
-		ccGeneralGameFunctions::HookLoadXfbin2();
-		//cout << "Loaded " << (char*)FilePath << endl;
-	}
-
-	return result;
-}
-
-////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////
-
-__int64 __fastcall loadCpkFunc(__int64 a1, __int64 a2, int a3);
-BYTE loadCpkFunc1[16];
-
-void ccGeneralGameFunctions::HookCpkLoad()
-{
-	memcpy(loadCpkFunc1, (void*)(d3dcompiler_47_og::moduleBase + 0x56AA4C), 15);
-	HookFunctions::Hook((void*)(d3dcompiler_47_og::moduleBase + 0x56AA4C), (void*)(loadCpkFunc), 15);
-}
-
-void UnhookCpkLoad()
-{
-	DWORD dwOld = 0;
-	VirtualProtect((void*)(d3dcompiler_47_og::moduleBase + 0x56AA4C), 15, PAGE_EXECUTE_READWRITE, &dwOld);
-	memcpy((void*)(d3dcompiler_47_og::moduleBase + 0x56AA4C), loadCpkFunc1, 15);
-	VirtualProtect((void*)(d3dcompiler_47_og::moduleBase + 0x56AA4C), 15, dwOld, &dwOld);
-}
-
-#include <filesystem>
-typedef __int64(__fastcall * fc_loadCpkFunc)(__int64, __int64, int);
-fc_loadCpkFunc g_loadCpkFunc;
-
-__int64 __fastcall loadCpkFunc(__int64 a1, __int64 a2, int a3)
-{
-	g_loadCpkFunc = (fc_loadCpkFunc)(d3dcompiler_47_og::moduleBase + 0x56AA4C);
-
-	cout << std::hex << (uintptr_t)a1 << endl;
-	cout << std::hex << (uintptr_t)a2 << endl;
-	cout << a3 << endl;
-
-	UnhookCpkLoad();
-	__int64 result = g_loadCpkFunc(a1, a2, a3);
-	ccGeneralGameFunctions::HookCpkLoad();
-
-	return result;
-}
-
-
-////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////
 
 // GAMEPAD FUNCTIONS
 bool ccGeneralGameFunctions::TestButton(WORD button)
@@ -708,13 +713,4 @@ bool ccGeneralGameFunctions::TestButton(WORD button)
 	}
 
 	return (actualState.Gamepad.wButtons & button) != 0;
-}
-
-typedef signed __int64(__fastcall * fc_enableAllPad_00)();
-fc_enableAllPad_00 enableAllPad_00;
-signed __int64 ccGeneralGameFunctions::enablePads()
-{
-	enableAllPad_00 = (fc_enableAllPad_00)(d3dcompiler_47_og::moduleBase + 0x6582B4);
-
-	return enableAllPad_00();
 }

@@ -14,9 +14,9 @@
 #include "ccBossIAFunctions.h"
 #include "HookFunctions.h"
 #include "AutoUpdater.h"
-#include "DX11 Initialize.h"
 #include "MinHook.h"
 #include "mem.h"
+#include "DX11 Initialize.h"
 using namespace moddingApi;
 using namespace std;
 using namespace DX11;
@@ -46,25 +46,30 @@ DWORD WINAPI ccMain::Main()
 	//Initialize MinHook
 	if (MH_Initialize() == MH_OK)
 	{
-		cout << "MinHook Initialized" << endl;
+		if (Debug) cout << "MinHook Initialized" << endl;
 	}
 	else
 	{
 		cout << "MinHook not Initialized" << endl;
 	}
-
+	//If Perfect Storm is Enabled
 	if (ModOption == 1)
 	{
-		mem::TestHookOnline();
-		cout << "Perfect Storm Lobby Function Hooked" << endl;
+		mem::PerfectStormHook();
+		if (Debug) cout << "Perfect Storm Lobby Function Hooked" << endl;
 	}
-	// Auto-Updater Code
-	AutoUpdater update;
-	update.dwFile();
+	//General Hooks
+	mem::GeneralHook();
+	//Delete Junk
+	if (remove("PerfectStorm.7z") == 1)
+		cout << "Junk file PerfectStorm.7z deleted!" << endl;
 
-	//Hook DX11
-	//Hook::MainThread();
+	//Hook Imgui
+	Hook::MainThread();
+	if (Debug) cout << "Imgui Hooked!" << endl;
+
 	// Loop console
+	if (Debug) cout << "Console is looping!" << endl;
 	ccMain::LoopConsole();
 
 	return 0;
@@ -79,21 +84,14 @@ DWORD WINAPI ccMain::LoopGame()
 	}
 	return 0;
 }
-bool checking = 0;
+
 DWORD WINAPI ccMain::LoopConsole()
-{/*
-	if (!checking)
-	{
-		Sleep(5000);
-		AutoUpdater update;
-		update.dwFile();
-		checking = 1;
-	}*/
+{
 	while (EnableAPI == false)
 	{
 		Sleep(100);
 	}
-	
+
 	API_Console::InitializeConsole();
 
 	while (EnableAPI)
@@ -148,13 +146,14 @@ void DoInstruction(string instruction, vector<string> params, string _file);
 void ReadPartnerSlotParam(string _file);
 void ReadSpecialConditionParam(string _file);
 
+
 void ccMain::ReadApiFiles()
 {
 	char ApiPath[_MAX_PATH];
 	GetCurrentDirectory(_MAX_PATH, ApiPath);
 	int ActualLength = strlen(ApiPath);
 
-	strcat(ApiPath, "\\Perfect Storm\\");
+	strcat(ApiPath, "\\moddingapi\\");
 
 	char ConfigPath[_MAX_PATH];
 	strcpy(ConfigPath, ApiPath);
@@ -183,15 +182,6 @@ void ccMain::ReadApiFiles()
 			cout << "====== Welcome to STORM 4 MODDING CONSOLE ======" << endl;
 		}
 
-		if (GetPrivateProfileInt("General", "EnableModList", 1, ConfigPath) == 1)
-		{
-			cout << "Enable mod list" << endl;
-			DWORD dwOld = 0;
-			VirtualProtect((void*)(d3dcompiler_47_og::moduleBase + 0x6E1C4A), 1, PAGE_EXECUTE_READWRITE, &dwOld);
-			BYTE a = 0;
-			memcpy((void*)(d3dcompiler_47_og::moduleBase + 0x6E1C4A), &a, 1);
-			VirtualProtect((void*)(d3dcompiler_47_og::moduleBase + 0x6E1C4A), 1, dwOld, &dwOld);
-		}
 		if (GetPrivateProfileInt("General", "EnablePerfectStorm", 1, ConfigPath) == 1)
 		{
 			cout << "Perfect Storm Enabled!" << endl;
@@ -201,12 +191,25 @@ void ccMain::ReadApiFiles()
 			cout << "Better 1.07 Enabled!" << endl;
 			ModOption = 0;
 		}
+		if (GetPrivateProfileInt("General", "Debug", 1, ConfigPath) == 1)
+		{
+			cout << "Debug Mode Enabled!" << endl;
+			Debug = 1;
+		}
+		else
+		{
+			if (GetPrivateProfileInt("General", "EnableAutoUpdater", 1, ConfigPath) == 1)
+			{
+				// Auto-Updater Code
+				AutoUpdater update;
+				update.dwFile();
+			}
+		}
 		cout << "Config finished..." << endl;
-
 		// Start reading mods
 		strcat(ApiPath, "mods\\");
 
-		for (const auto & entry : filesystem::directory_iterator(ApiPath))
+		for (const auto& entry : filesystem::directory_iterator(ApiPath))
 		{
 			std::string s = entry.path().string();
 
@@ -261,7 +264,7 @@ void ccMain::ReadApiFiles()
 				{
 					// Start reading mod files
 					vector<string> files;
-					for (const auto & f : filesystem::directory_iterator(ModPath))
+					for (const auto& f : filesystem::directory_iterator(ModPath))
 					{
 						string _file = f.path().string();
 						string _ext = _file.substr(_file.length() - 4, 4);
@@ -429,7 +432,7 @@ void ccMain::ReloadParamFiles()
 	GetCurrentDirectory(_MAX_PATH, ApiPath);
 	int ActualLength = strlen(ApiPath);
 
-	strcat(ApiPath, "\\Perfect Storm\\");
+	strcat(ApiPath, "\\moddingapi\\");
 
 	char ConfigPath[_MAX_PATH];
 	strcpy(ConfigPath, ApiPath);
@@ -913,7 +916,7 @@ void ReadSpecialConditionParam(string _file)
 		else if (slotType == "COND_B5OB") condFunct = 0x7BFA1C;
 		else if (slotType == "COND_B4NR") condFunct = 0x7BFA84;
 		else if (slotType == "COND_B2NR") condFunct = 0x7BFAEC;
-		else if (slotType == "COND_XJBR") condFunct = 0x7BFB54;
+		else if (slotType == "COND_ALL_GROUP") condFunct = 0x7BFB54;
 		else if (slotType == "COND_BGRG") condFunct = 0x7BFBBC;
 		else if (slotType == "COND_GZTU") condFunct = 0x7BFC24;
 		else if (slotType == "COND_BRSK") condFunct = 0x7BFC8C;

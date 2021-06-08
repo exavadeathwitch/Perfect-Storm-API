@@ -101,7 +101,7 @@ void ccCharacterFunctions::PartnerFunctions()
 
 	uintptr_t jump_to = d3dcompiler_47_og::moduleBase + 0x7EB257;
 
-	void * writeAddress = &function[0];
+	void* writeAddress = &function[0];
 
 	memcpy((void*)(&function[0] + 5), (void*)&char_codes_rip, sizeof(int));
 	memcpy((void*)(&function[0] + 16), (void*)&char_funct_end_rip, 4);
@@ -120,7 +120,7 @@ void ccCharacterFunctions::PartnerFunctions()
 	}
 
 	// Hook original function to jump to our function
-	if(partnerAlloc == 0) HookFunctions::Hook((void*)(d3dcompiler_47_og::moduleBase + 0x7EB224), (void*)main_malloc, 14);
+	if (partnerAlloc == 0) HookFunctions::Hook((void*)(d3dcompiler_47_og::moduleBase + 0x7EB224), (void*)main_malloc, 14);
 	else
 	{
 		// Fix address for reload
@@ -166,7 +166,7 @@ void ccCharacterFunctions::SpecialCondFunctions()
 						0x48, 0x83, 0xC4, 0x20,
 						0x5F,
 						0xC3,
-	
+
 						0xCC, 0xCC, 0x90, 0x90, 0x90, 0x90, // jmp qword ptr [$+6]
 						0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90 };
 
@@ -176,14 +176,14 @@ void ccCharacterFunctions::SpecialCondFunctions()
 	vector<int> condCodes = ccCharacterFunctions::c_specialCondCodes;
 
 	int conditionCount = condFunct.size();
-	int totalSize = (funcsize) + (conditionCount * 0x10) + (0x8);
+	int totalSize = (funcsize)+(conditionCount * 0x10) + (0x8);
 
 	uintptr_t main_malloc = (uintptr_t)VirtualAlloc(0, totalSize, MEM_COMMIT | MEM_RESERVE, PAGE_READWRITE);
 	uintptr_t specialCondFunct = main_malloc + funcsize;
 	uintptr_t specialCondCodes = main_malloc + funcsize + 0x8;
 	uintptr_t end = main_malloc + totalSize;
 
-	void * writeAddress = &function[0];
+	void* writeAddress = &function[0];
 
 	int lea_rip_address = 0x31 + (conditionCount * 0x10) + 0x8 + 14;
 	memcpy((void*)(&function[0] + 0x12), &lea_rip_address, 0x4); // fix the lea with rip + address (points to the end of the condition list)
@@ -206,7 +206,7 @@ void ccCharacterFunctions::SpecialCondFunctions()
 	}
 
 	// Hook original function
-	if(condAlloc == 0) HookFunctions::Hook((void*)(d3dcompiler_47_og::moduleBase + 0x7C02AD), (void*)main_malloc, 15);
+	if (condAlloc == 0) HookFunctions::Hook((void*)(d3dcompiler_47_og::moduleBase + 0x7C02AD), (void*)main_malloc, 15);
 	else
 	{
 		// Fix address for reload
@@ -226,13 +226,15 @@ void ccCharacterFunctions::SpecialCondFunctions()
 	condAlloc = main_malloc;
 }
 
+
+
 // COND_BKKX FOR COOP
 #include <time.h>
 vector<uintptr_t> ccCharacterFunctions::charPointer;
 vector<long long> ccCharacterFunctions::charAllocTime;
 void Unhook_COND_BKKX();
 uintptr_t asd = 0x6B0E4C;
-typedef signed __int64(__fastcall * test)(uintptr_t a1, uintptr_t a2);
+typedef signed __int64(__fastcall* test)(uintptr_t a1, uintptr_t a2);
 test Test1;
 BYTE originalasd[20];
 
@@ -304,7 +306,7 @@ void ccCharacterFunctions::EnableControl(int character, int pad)
 	BYTE newBytes[8] = { 0,0,0,0,0,0,0,0 };
 	memcpy((void*)(ccCharacterFunctions::charPointer[character] + 0xB40), newBytes, 8);
 
-	if(replace == false)
+	if (replace == false)
 	{
 		cout << "Char " << character << " is already a player." << endl;
 	}
@@ -315,7 +317,7 @@ void ccCharacterFunctions::EnableControl(int character, int pad)
 	{
 		VirtualProtect((void*)(ccCharacterFunctions::charPointer[character] + 0x840), 1, PAGE_EXECUTE_READWRITE, &dwOld);
 		BYTE newbyte[1] = { 0 };
-		
+
 		switch (pad)
 		{
 		case 0:
