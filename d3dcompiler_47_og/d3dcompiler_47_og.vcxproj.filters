@@ -21,19 +21,52 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="ccMain.cpp">
+    <ClCompile Include="d3dcompiler_47_og.cpp">
       <Filter>Source Files\General</Filter>
     </ClCompile>
-    <ClCompile Include="d3dcompiler_47_og.cpp">
+    <ClCompile Include="Main.cpp">
+      <Filter>Source Files\General</Filter>
+    </ClCompile>
+    <ClCompile Include="Console.cpp">
+      <Filter>Source Files\General</Filter>
+    </ClCompile>
+    <ClCompile Include="Memory.cpp">
+      <Filter>Source Files\General</Filter>
+    </ClCompile>
+    <ClCompile Include="Message.cpp">
+      <Filter>Source Files\General</Filter>
+    </ClCompile>
+    <ClCompile Include="Settings.cpp">
       <Filter>Source Files\General</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="ccMain.h">
-      <Filter>Header Files\General</Filter>
-    </ClInclude>
     <ClInclude Include="d3dcompiler_47_og.h">
       <Filter>Header Files\General</Filter>
+    </ClInclude>
+    <ClInclude Include="Main.h">
+      <Filter>Header Files\General</Filter>
+    </ClInclude>
+    <ClInclude Include="Console.h">
+      <Filter>Header Files\General</Filter>
+    </ClInclude>
+    <ClInclude Include="Memory.h">
+      <Filter>Header Files\General</Filter>
+    </ClInclude>
+    <ClInclude Include="Message.h">
+      <Filter>Header Files\General</Filter>
+    </ClInclude>
+    <ClInclude Include="Settings.h">
+      <Filter>Header Files\General</Filter>
+    </ClInclude>
+    <ClInclude Include="mINI\ini.h">
+      <Filter>Header Files\General</Filter>
+    </ClInclude>
+    <ClInclude Include="MinHook.h">
+      <Filter>Header Files\General</Filter>
+    </ClInclude>
+    <ClInclude Include="CasualLibrary.hpp">
+      <Filter>Source Files\General</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

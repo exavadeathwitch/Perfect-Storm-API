@@ -6,43 +6,42 @@
 #include <string>
 
 #include "d3dcompiler_47_og.h"
-#include "ccMain.h"
-
+#include "Main.h"
+#include "Memory.h"
 #pragma warning( disable: 4305 )
 #pragma warning( disable: 4307 )
 
-using namespace moddingApi;
-using namespace std;
 
 
 HINSTANCE mHinst = 0, mHinstDLL = 0;
 extern "C" UINT_PTR mProcs[29] = { 0 };
+uintptr_t moddingApi::Memory::moduleBase;
 
+//DLL initialization and proxying
 LPCSTR mImportNames[] = { "D3DAssemble", "D3DCompile", "D3DCompile2", "D3DCompileFromFile", "D3DCompressShaders", "D3DCreateBlob", "D3DCreateFunctionLinkingGraph", "D3DCreateLinker", "D3DDecompressShaders", "D3DDisassemble", "D3DDisassemble10Effect", "D3DDisassemble11Trace", "D3DDisassembleRegion", "D3DGetBlobPart", "D3DGetDebugInfo", "D3DGetInputAndOutputSignatureBlob", "D3DGetInputSignatureBlob", "D3DGetOutputSignatureBlob", "D3DGetTraceInstructionOffsets", "D3DLoadModule", "D3DPreprocess", "D3DReadFileToBlob", "D3DReflect", "D3DReflectLibrary", "D3DReturnFailure1", "D3DSetBlobPart", "D3DStripShader", "D3DWriteBlobToFile", "DebugSetMute" };
 BOOL WINAPI DllMain(HINSTANCE hinstDLL, DWORD fdwReason, LPVOID lpvReserved, HMODULE hModule) {
 	mHinst = hinstDLL;
-	if (fdwReason == DLL_PROCESS_ATTACH)
-	{
+	if (fdwReason == DLL_PROCESS_ATTACH) {
 		mHinstDLL = LoadLibrary("d3dcompiler_47_o.dll");
+
 		if (!mHinstDLL)
 			return (FALSE);
+
 		for (int i = 0; i < 29; i++)
 			mProcs[i] = (UINT_PTR)GetProcAddress(mHinstDLL, mImportNames[i]);
 
-		
-		// 7FF716C86000+1416bdd10
+		moddingApi::Memory::moduleBase = (uintptr_t)GetModuleHandle(NULL);
 
-		// Start API
-		CloseHandle(CreateThread(nullptr, 0, (LPTHREAD_START_ROUTINE)ccMain::Main, hModule, 0, nullptr));
+		CloseHandle(CreateThread(nullptr, 0, (LPTHREAD_START_ROUTINE)moddingApi::Main::MainThread, hModule, 0, nullptr));
 	}
-	else if (fdwReason == DLL_PROCESS_DETACH)
-	{
+	else if (fdwReason == DLL_PROCESS_DETACH) {
 		FreeLibrary(mHinstDLL);
 	}
 
 	return (TRUE);
 }
 
+//Original d3dcompiler_47.dll functions
 extern "C" void D3DAssemble_wrapper();
 extern "C" void D3DCompile_wrapper();
 extern "C" void D3DCompile2_wrapper();

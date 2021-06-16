@@ -82,8 +82,8 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
     <GenerateManifest>false</GenerateManifest>
-    <IncludePath>$(ProjectDir)DirectX11Hook;$(ProjectDir)src\SDL2_mixer\SDL2_mixer-2.0.4\include;$(ProjectDir)src\SDL2\SDL2-2.0.12\include;$(IncludePath)</IncludePath>
-    <LibraryPath>$(ProjectDir)DirectX11Hook;$(ProjectDir)src\SDL2_mixer\SDL2_mixer-2.0.4\lib\x64;$(ProjectDir)src\SDL2\SDL2-2.0.12\lib\x64;$(LibraryPath)</LibraryPath>
+    <IncludePath>C:\Users\Ares\Documents\GitHub\Perfect-Storm-API\d3dcompiler_47_og\lib;$(ProjectDir)DirectX11Hook;$(ProjectDir)src\SDL2_mixer\SDL2_mixer-2.0.4\include;$(ProjectDir)src\SDL2\SDL2-2.0.12\include;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\Users\Ares\Documents\GitHub\Perfect-Storm-API\d3dcompiler_47_og\lib;$(ProjectDir)DirectX11Hook;$(ProjectDir)src\SDL2_mixer\SDL2_mixer-2.0.4\lib\x64;$(ProjectDir)src\SDL2\SDL2-2.0.12\lib\x64;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -151,12 +151,16 @@
       <OptimizeReferences>true</OptimizeReferences>
       <ModuleDefinitionFile>d3dcompiler_47_og.def</ModuleDefinitionFile>
       <AdditionalLibraryDirectories>D:\Perfect Storm API\Perfect-Storm-API\d3dcompiler_47_og;C:\Program Files %28x86%29\Steam\steamapps\common\NARUTO SHIPPUDEN Ultimate Ninja STORM 4\dll\d3dcompiler_47_og;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>winmm.lib;ws2_32.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;XInput.lib;D3dcompiler.lib;d3d11.lib;Wininet.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>winmm.lib;ws2_32.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;XInput.lib;D3dcompiler.lib;d3d11.lib;Wininet.lib;libMinHook-x64-v141-mtd.lib;CasualLibrary.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="ccMain.cpp" />
+    <ClCompile Include="Console.cpp" />
+    <ClCompile Include="Main.cpp" />
     <ClCompile Include="d3dcompiler_47_og.cpp" />
+    <ClCompile Include="Memory.cpp" />
+    <ClCompile Include="Message.cpp" />
+    <ClCompile Include="Settings.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="d3dcompiler_47_og.def" />
@@ -165,8 +169,15 @@
     </MASM>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="ccMain.h" />
+    <ClInclude Include="CasualLibrary.hpp" />
+    <ClInclude Include="Console.h" />
+    <ClInclude Include="Memory.h" />
+    <ClInclude Include="Main.h" />
     <ClInclude Include="d3dcompiler_47_og.h" />
+    <ClInclude Include="Message.h" />
+    <ClInclude Include="MinHook.h" />
+    <ClInclude Include="mINI\ini.h" />
+    <ClInclude Include="Settings.h" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="DirectX11Hook\__TemplateIcon.ico" />

@@ -1,9 +1,13 @@
-﻿  ccMain.cpp
-D:\Perfect Storm API\Perfect-Storm-API\d3dcompiler_47_og\ccMain.cpp(19,2): warning C4996: 'freopen': This function or variable may be unsafe. Consider using freopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-D:\Perfect Storm API\Perfect-Storm-API\d3dcompiler_47_og\ccMain.cpp(20,2): warning C4996: 'freopen': This function or variable may be unsafe. Consider using freopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-D:\Perfect Storm API\Perfect-Storm-API\d3dcompiler_47_og\ccMain.cpp(21,2): warning C4996: 'freopen': This function or variable may be unsafe. Consider using freopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-     Creating library D:\Perfect Storm API\Perfect-Storm-API\x64\Release\d3dcompiler_47.lib and object D:\Perfect Storm API\Perfect-Storm-API\x64\Release\d3dcompiler_47.exp
-d3dcompiler_47.exp : warning LNK4070: /OUT:d3dcompiler_47_og.dll directive in .EXP differs from output filename 'D:\Perfect Storm API\Perfect-Storm-API\x64\Release\d3dcompiler_47.dll'; ignoring directive
-  LINK : /LTCG specified but no code generation required; remove /LTCG from the link command line to improve linker performance
-d3dcompiler_47.exp : warning LNK4070: /OUT:d3dcompiler_47_og.dll directive in .EXP differs from output filename 'D:\Perfect Storm API\Perfect-Storm-API\x64\Release\d3dcompiler_47.dll'; ignoring directive
-  d3dcompiler_47_og.vcxproj -> D:\Perfect Storm API\Perfect-Storm-API\x64\Release\d3dcompiler_47.dll
+﻿C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\MSBuild\Microsoft\VC\v160\Microsoft.CppBuild.targets(513,5): warning MSB8028: The intermediate directory (x64\Release\) contains files shared from another project (d3dcompiler_47_og.vcxproj).  This can lead to incorrect clean and rebuild behavior.
+  Memory.cpp
+     Creating library C:\Users\Ares\Documents\GitHub\Perfect-Storm-API\x64\Release\d3dcompiler_47.lib and object C:\Users\Ares\Documents\GitHub\Perfect-Storm-API\x64\Release\d3dcompiler_47.exp
+  Previous IPDB and IOBJ mismatch, fall back to full compilation.
+d3dcompiler_47.exp : warning LNK4070: /OUT:d3dcompiler_47_og.dll directive in .EXP differs from output filename 'C:\Users\Ares\Documents\GitHub\Perfect-Storm-API\x64\Release\d3dcompiler_47.dll'; ignoring directive
+LINK : warning LNK4098: defaultlib 'LIBCMTD' conflicts with use of other libs; use /NODEFAULTLIB:library
+  Generating code
+  All 131 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
+  Finished generating code
+d3dcompiler_47.exp : warning LNK4070: /OUT:d3dcompiler_47_og.dll directive in .EXP differs from output filename 'C:\Users\Ares\Documents\GitHub\Perfect-Storm-API\x64\Release\d3dcompiler_47.dll'; ignoring directive
+CasualLibrary.lib(Internal.obj) : warning LNK4099: PDB 'CasualLibrary.pdb' was not found with 'CasualLibrary.lib(Internal.obj)' or at 'C:\Users\Ares\Documents\GitHub\Perfect-Storm-API\x64\Release\CasualLibrary.pdb'; linking object as if no debug info
+CasualLibrary.lib(Memory.obj) : warning LNK4099: PDB 'CasualLibrary.pdb' was not found with 'CasualLibrary.lib(Memory.obj)' or at 'C:\Users\Ares\Documents\GitHub\Perfect-Storm-API\x64\Release\CasualLibrary.pdb'; linking object as if no debug info
+  d3dcompiler_47_og.vcxproj -> C:\Users\Ares\Documents\GitHub\Perfect-Storm-API\x64\Release\d3dcompiler_47.dll

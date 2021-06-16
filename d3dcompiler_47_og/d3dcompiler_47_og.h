@@ -7,6 +7,7 @@ namespace moddingApi
 	class d3dcompiler_47_og
 	{
 	public:
+
 	};
 }
 
