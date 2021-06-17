@@ -39,6 +39,9 @@
     <ClCompile Include="Settings.cpp">
       <Filter>Source Files\General</Filter>
     </ClCompile>
+    <ClCompile Include="minIni.c">
+      <Filter>Source Files\General</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="d3dcompiler_47_og.h">
@@ -59,14 +62,17 @@
     <ClInclude Include="Settings.h">
       <Filter>Header Files\General</Filter>
     </ClInclude>
-    <ClInclude Include="mINI\ini.h">
-      <Filter>Header Files\General</Filter>
-    </ClInclude>
     <ClInclude Include="MinHook.h">
       <Filter>Header Files\General</Filter>
     </ClInclude>
     <ClInclude Include="CasualLibrary.hpp">
       <Filter>Source Files\General</Filter>
+    </ClInclude>
+    <ClInclude Include="minGlue.h">
+      <Filter>Header Files\General</Filter>
+    </ClInclude>
+    <ClInclude Include="minIni.h">
+      <Filter>Header Files\General</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

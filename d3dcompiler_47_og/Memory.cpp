@@ -1,4 +1,7 @@
 #include <iostream>
+#include <cstdint>
+#include <windows.h>
+#include <array>
 
 #include "Memory.h"
 #include "CasualLibrary.hpp"
@@ -62,26 +65,45 @@ __int64 __fastcall nInitializeccSceneBootRoot(__int64 a1) {
 	return v3;
 }
 
+
+
+template <std::size_t size>
+auto moddingApi::Memory::write_bytes(const std::uintptr_t start, const std::array<std::uint8_t, size>& bytes) -> bool {
+	DWORD old_prot;
+
+	if (!VirtualProtect(reinterpret_cast<void*>(start), bytes.size(), PAGE_EXECUTE_READWRITE, &old_prot))
+		return false;
+
+	for (auto i = 0u; i < bytes.size(); ++i)
+		*reinterpret_cast<std::uint8_t*>(start + i) = bytes.at(i);
+
+	VirtualProtect(reinterpret_cast<void*>(start), bytes.size(), old_prot, &old_prot);
+	return true;
+}
+
+
+
 //Initializes our memory hooks through usage of the MinHook library. uintptr_t addresses MUST be local variables.
 void moddingApi::Memory::InitHooks() {
 	if (MH_Initialize() == MH_OK) {
-		std::uintptr_t addrDecreaseHealth = (std::uintptr_t)(moddingApi::Memory::moduleBase + 0x6E01D4 + 0xC00);
+
+		//std::uintptr_t addrDecreaseHealth = (std::uintptr_t)(moddingApi::Memory::moduleBase + 0x6E01D4 + 0xC00);
 		std::uintptr_t addrLoadCpkInit = (std::uintptr_t)(moddingApi::Memory::moduleBase + 0x854F3C + 0xC00);
 		std::cout << "MinHook Initialized" << std::endl;
 		
-		bool status = MH_CreateHook((LPVOID)addrDecreaseHealth, &nInitializeccSceneBootRoot, reinterpret_cast<LPVOID*>(&oInitializeccSceneBootRoot));
-		if (status != MH_OK)
-		{
-			std::cout << "could not create hook 2" << std::endl;
-		}
-
+		//bool status = MH_CreateHook((LPVOID)addrDecreaseHealth, &nInitializeccSceneBootRoot, reinterpret_cast<LPVOID*>(&oInitializeccSceneBootRoot));
+		//if (status != MH_OK)
+		//{
+		//	std::cout << "could not create hook 2" << std::endl;
+		//}
+		/*
 		status = MH_EnableHook((LPVOID)addrDecreaseHealth);
 		if (status != MH_OK)
 		{
 			std::cout << "could not enable hook 2" << std::endl;
 		}
-		
-		status = MH_CreateHook((LPVOID)addrLoadCpkInit, &moddingApi::Settings::LoadCpkInitial, reinterpret_cast<LPVOID*>(&oInitCPKLoad));
+		*/
+		bool status = MH_CreateHook((LPVOID)addrLoadCpkInit, &moddingApi::Settings::LoadCpkInitial, reinterpret_cast<LPVOID*>(&oInitCPKLoad));
 		if (status != MH_OK)
 		{
 			std::cout << "could not create hook 23" << std::endl;
@@ -93,11 +115,40 @@ void moddingApi::Memory::InitHooks() {
 			std::cout << "could not enable hook 23" << std::endl;
 		}
 	}
+
 	else
 	{
 		std::cout << "MinHook not Initialized" << std::endl;
 		return;
 	}
+}
+std::vector<BYTE> replace;
+
+void test() {
+	replace.push_back(0xFF);
+	replace.push_back(0xFF);
+	int count = 3;
+	DWORD dwOld = 0;
+	VirtualProtect((void*)(moddingApi::Memory::moduleBase + 0x7F3EB7 + 0xC00), replace.size(), PAGE_EXECUTE_READWRITE, &dwOld);
+	BYTE v[0x1000];
+	for (int x = 0; x < count; x++)
+	{
+		v[x] = replace[x];
+	}
+
+	//cout << "Patch";
+	//cout << std::hex << d3dcompiler_47_og::moduleBase + Address << endl;
+	memcpy((void*)(moddingApi::Memory::moduleBase + 0x7F3EB7 + 0xC00), &v, count - 1);
+	VirtualProtect((void*)(moddingApi::Memory::moduleBase + 0x7F3EB7 + 0xC00), replace.size(), dwOld, &dwOld);
+}
+
+void moddingApi::Memory::WriteBytes() {
+	//test();
+	write_bytes<2>(moddingApi::Memory::moduleBase + 0x7220C2 + 0xC00, { 0xFF, 0xFF });
+	write_bytes<2>(moddingApi::Memory::moduleBase + 0x7F3EB7 + 0xC00, { 0xFF, 0xFF });
+	write_bytes<2>(moddingApi::Memory::moduleBase + 0x7F4139 + 0xC00, { 0xFF, 0xFF });
+	write_bytes<2>(moddingApi::Memory::moduleBase + 0x8553DB + 0xC00, { 0xFF, 0xFF });
+	
 }
 
 //Initialize Base Address for the CasualGamer Memory Library
@@ -122,3 +173,4 @@ int moddingApi::Memory::GetDword(__int64 dw) {
 __int64 moddingApi::Memory::GetOffset(__int64 of) {
 	return (moddingApi::Memory::moduleBase + of);
 }
+

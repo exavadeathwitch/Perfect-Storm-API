@@ -7,7 +7,7 @@
 namespace moddingApi
 {
 	inline bool EnableConsole;
-	inline bool EnablePerfectStorm;
+	inline int EnablePerfectStorm;
 	inline bool EnableDebug;
 	class Settings
 	{
@@ -15,6 +15,7 @@ namespace moddingApi
 		static void ReadConfig(char *ConfigPath);
 
 		static int LoadCpkInitial();
+		static void AddCpk();
 		static std::vector<const char*> CpkToLoad;
 		static std::vector<int> CpkPriority;
 	};

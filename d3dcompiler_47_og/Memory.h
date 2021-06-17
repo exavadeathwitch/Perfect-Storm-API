@@ -2,7 +2,7 @@
 #include <vector>
 #include <stdio.h>
 #include <stdlib.h>
-
+#include <string>
 #include "CasualLibrary.hpp"
 
 
@@ -21,5 +21,9 @@ namespace moddingApi
 
 		static void InitHooks();
 		static void InitializeCasualLibrary();
+		static void moddingApi::Memory::WriteBytes();
+
+		template <std::size_t size>
+		static auto write_bytes(const std::uintptr_t start, const std::array<std::uint8_t, size>& bytes)-> bool;
 	};
 }

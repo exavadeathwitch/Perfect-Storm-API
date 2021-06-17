@@ -11,14 +11,14 @@
 //This is the function that runs after the dll is initialized and proxies the original DLL.
 //Runtime functions will be initiated such as hooks, setting up the console, and reading the config file.
 DWORD WINAPI moddingApi::Main::MainThread() {
-
+	
 	if (!moddingApi::Main::InitConfig()) {
 		moddingApi::Console::InitConsole();
 		std::cout << "Config could not be read. Please make sure that your config.ini file is in " << moddingApi::Main::GetStormDirectory() << "\\PSAPI\\" << std::endl;
 		}
 		
 		
-
+		
 	return 0;
 }
 
@@ -26,7 +26,7 @@ DWORD WINAPI moddingApi::Main::MainThread() {
 bool moddingApi::Main::InitConfig() {
 	char* ConfigPath = strcpy(new char[moddingApi::Main::GetStormDirectory().length() + 1], moddingApi::Main::GetStormDirectory().c_str());
 	strcat(ConfigPath, "\\PSAPI\\");
-	strcat(ConfigPath, "config.ini");
+	strcat(ConfigPath, "settings.ini");
 	std::ifstream ifile;
 	ifile.open(ConfigPath);
 

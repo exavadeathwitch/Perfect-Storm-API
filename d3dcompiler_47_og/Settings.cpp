@@ -8,40 +8,70 @@
 #include "Console.h"
 #include "Settings.h"
 #include "Memory.h"
-#include "mINI/ini.h"
-
-
-void moddingApi::Settings::ReadConfig(char *ConfigPath) {
-	mINI::INIFile file(ConfigPath);
-	mINI::INIStructure ini;
-	file.read(ini);
-
-	std::string& EnableConsole = ini["General"]["Console"];
-	if (EnableConsole == "1") {
-		moddingApi::Console::InitConsole();
-		moddingApi::EnableConsole = 1;
-	}
-
-	std::string& GameVer = ini["General"]["Auto-Updater"];
-	if (GameVer == "Default") {
-		moddingApi::EnablePerfectStorm = 0;
-		return;
-	}
-
-	else {
-		moddingApi::EnablePerfectStorm = 1;
-		std::cout << "Perfect Storm Enabled!" << std::endl;
-		moddingApi::Memory::InitHooks();
-	}
-	
-	std::string& EnableUpdater = ini["General"]["Auto-Updater"];
-	if (EnableUpdater == "1") {
-		std::cout << "Auto-Updater Enabled!" << std::endl;
-	}
-}
+#include "minGlue.h"
+#include "minIni.h"
 
 std::vector<const char*> moddingApi::Settings::CpkToLoad;
 std::vector<int> moddingApi::Settings::CpkPriority;
+
+#define sizearray(a)  (sizeof(a) / sizeof((a)[0]))
+
+void moddingApi::Settings::ReadConfig(char *ConfigPath) {
+	
+
+
+	bool EnableConsole = ini_getl("General", "Console", -1, ConfigPath);
+	if (EnableConsole) {
+		moddingApi::Console::InitConsole();
+		moddingApi::EnableConsole = 1;
+	}
+	
+	char GameVer[100];
+	ini_gets("General", "Version", "dummy", GameVer, sizearray(GameVer), ConfigPath);
+	if (strcmp(GameVer, "Default") == 0) {
+		moddingApi::EnablePerfectStorm = 0;
+		return;
+	}
+	
+	if (strcmp(GameVer, "Enhanced") == 0) {
+		std::cout << "Enhanced Enabled!" << std::endl;
+		moddingApi::EnablePerfectStorm = 1;
+	}
+	moddingApi::Memory::InitHooks();
+
+	if (strcmp(GameVer, "Default") != 0) {
+		moddingApi::EnablePerfectStorm = 2;
+		std::cout << "Perfect Storm Enabled!" << std::endl;
+		moddingApi::Memory::InitializeCasualLibrary();
+		moddingApi::Memory::WriteBytes();
+	}
+	std::cout << moddingApi::EnablePerfectStorm << std::endl;
+	moddingApi::Settings::AddCpk();
+
+	bool EnableUpdater = ini_getl("General", "Auto-Updater", -1, ConfigPath);
+	if (EnableUpdater) {
+		std::cout << "Auto-Updater Enabled!" << std::endl;
+	}
+	
+}
+
+
+void moddingApi::Settings::AddCpk() {
+	int priority = 14;
+	char* CpkPath = strcpy(new char[moddingApi::Main::GetStormDirectory().length() + 1], moddingApi::Main::GetStormDirectory().c_str());
+	strcat(CpkPath, "\\PSAPI\\");
+	switch (moddingApi::EnablePerfectStorm) {
+	case 1: strcat(CpkPath, "Enhanced.cpk");
+		break;
+	case 2: std::cout << CpkPath << std::endl; 
+		strcat(CpkPath, "PerfectStorm.cpk");
+		break;
+	default: std::cout << CpkPath << std::endl;
+	}
+
+	moddingApi::Settings::CpkToLoad.push_back(CpkPath);
+	moddingApi::Settings::CpkPriority.push_back(priority);
+}
 
 int moddingApi::Settings::LoadCpkInitial()
 {
@@ -73,6 +103,7 @@ int moddingApi::Settings::LoadCpkInitial()
 	signed int v26; // [sp+98h] [bp-110h]@4
 	__int64 v27; // [sp+A0h] [bp-108h]@4
 	__int64 retaddr; // [sp+1A8h] [bp+0h]@1
+
 	v0 = (__int64)&retaddr;
 	v1 = moddingApi::Memory::GetQword(0x1416663C8);
 	if (!v1) return v0;
@@ -248,7 +279,7 @@ LABEL_17:
 			sub_14056C34C sub_14056C34C_f = (sub_14056C34C)(moddingApi::Memory::moduleBase + 0x56B74C + 0xC00);
 
 			GameVersion = CpkPriority.at(x);
-			std::cout << "Loaded cpk " << CpkToLoad.at(x) << std::endl;
+			//std::cout << "Loaded cpk " << CpkToLoad.at(x) << std::endl;
 			c->path = CpkToLoad.at(x);
 			c->priority = 0;
 
