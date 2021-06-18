@@ -65,9 +65,6 @@
     <ClInclude Include="MinHook.h">
       <Filter>Header Files\General</Filter>
     </ClInclude>
-    <ClInclude Include="CasualLibrary.hpp">
-      <Filter>Source Files\General</Filter>
-    </ClInclude>
     <ClInclude Include="minGlue.h">
       <Filter>Header Files\General</Filter>
     </ClInclude>

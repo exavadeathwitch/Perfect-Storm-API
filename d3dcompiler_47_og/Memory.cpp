@@ -4,17 +4,22 @@
 #include <array>
 
 #include "Memory.h"
-#include "CasualLibrary.hpp"
 #include "d3dcompiler_47_og.h"
 #include "MinHook.h"
 #include "Settings.h"
+#include "Message.h"
 
-using namespace Memory::Internal;
 
-Address moddingApi::Memory::CGbaseAddr;
 
 signed typedef int(__fastcall* InitCPKLoad)();
 InitCPKLoad oInitCPKLoad = NULL;
+
+signed typedef int(__fastcall* msgtest)();
+msgtest omsgtest = NULL;
+
+signed typedef int(__fastcall* msgtest2)();
+msgtest2 omsgtest2 = NULL;
+
 /*
 signed typedef __int64(__fastcall* DecreaseHealth) (__int64 a1, __int64 a2, float Damage);
 DecreaseHealth oDecreaseHealth = NULL;
@@ -114,12 +119,29 @@ void moddingApi::Memory::InitHooks() {
 		{
 			std::cout << "could not enable hook 23" << std::endl;
 		}
-	}
+		std::uintptr_t addrMessageInfo = (std::uintptr_t)(moddingApi::Memory::moduleBase + 0xAB8720 + 0xC00);
+		status = MH_CreateHook((LPVOID)addrMessageInfo, &moddingApi::Message::Hook_MsgToString, reinterpret_cast<LPVOID*>(&omsgtest));
+		if (status != MH_OK)
+		{
+			std::cout << "could not create hook Hook_MsgToString" << std::endl;
+		}
+		status = MH_EnableHook((LPVOID)addrMessageInfo);
+		if (status != MH_OK)
+		{
+			std::cout << "could not enable hook Hook_MsgToString" << std::endl;
+		}
+		std::uintptr_t addrMessageInfo2 = (std::uintptr_t)(moddingApi::Memory::moduleBase + 0xAB87D0 + 0xC00);
 
-	else
-	{
-		std::cout << "MinHook not Initialized" << std::endl;
-		return;
+		status = MH_CreateHook((LPVOID)addrMessageInfo2, &moddingApi::Message::Hook_MsgToString_Alt, reinterpret_cast<LPVOID*>(&omsgtest2));
+		if (status != MH_OK)
+		{
+			std::cout << "could not create hook Hook_MsgToString_Alt" << std::endl;
+		}
+		status = MH_EnableHook((LPVOID)addrMessageInfo2);
+		if (status != MH_OK)
+		{
+			std::cout << "could not enable hook Hook_MsgToString_Alt" << std::endl;
+		}
 	}
 }
 std::vector<BYTE> replace;
@@ -143,19 +165,20 @@ void test() {
 }
 
 void moddingApi::Memory::WriteBytes() {
-	//test();
+	//Set character limit to FFFF
 	write_bytes<2>(moddingApi::Memory::moduleBase + 0x7220C2 + 0xC00, { 0xFF, 0xFF });
 	write_bytes<2>(moddingApi::Memory::moduleBase + 0x7F3EB7 + 0xC00, { 0xFF, 0xFF });
 	write_bytes<2>(moddingApi::Memory::moduleBase + 0x7F4139 + 0xC00, { 0xFF, 0xFF });
 	write_bytes<2>(moddingApi::Memory::moduleBase + 0x8553DB + 0xC00, { 0xFF, 0xFF });
 	
+	//Disable online microphone for yourself and disable hearing your opponent's microphone
+	write_bytes<3>(moddingApi::Memory::moduleBase + 0xB25974 + 0xC00, { 0x90, 0x90, 0x90 });
+	write_bytes<3>(moddingApi::Memory::moduleBase + 0xB25966 + 0xC00, { 0x90, 0x90, 0x90 });
+	write_bytes<5>(moddingApi::Memory::moduleBase + 0xB260B0 + 0xC00, { 0x90, 0x90, 0x90, 0x90, 0x90 });
+	write_bytes<5>(moddingApi::Memory::moduleBase + 0xB26863 + 0xC00, { 0x90, 0x90, 0x90, 0x90, 0x90 });
+	write_bytes<5>(moddingApi::Memory::moduleBase + 0xB26B45 + 0xC00, { 0x90, 0x90, 0x90, 0x90, 0x90 });
 }
 
-//Initialize Base Address for the CasualGamer Memory Library
-void moddingApi::Memory::InitializeCasualLibrary() {
-
-	moddingApi::Memory::CGbaseAddr = getModule("NSUNS4.exe");
-}
 
 // Get a QWORD pointer from the game
 __int64 moddingApi::Memory::GetQword(__int64 qw) {
@@ -174,3 +197,47 @@ __int64 moddingApi::Memory::GetOffset(__int64 of) {
 	return (moddingApi::Memory::moduleBase + of);
 }
 
+void moddingApi::Message::DoMessageInfoHook()
+{
+	std::uintptr_t addrMessageInfo = (std::uintptr_t)(moddingApi::Memory::moduleBase + 0xAB8720 + 0xC00);
+
+	bool status = MH_EnableHook((LPVOID)addrMessageInfo);
+	if (status != MH_OK)
+	{
+		std::cout << "could not enable hook Hook_MsgToString" << std::endl;
+	}
+}
+
+// Fixed
+void moddingApi::Message::UndoMessageInfoHook()
+{
+	std::uintptr_t addrMessageInfo = (std::uintptr_t)(moddingApi::Memory::moduleBase + 0xAB8720 + 0xC00);
+	bool status = MH_DisableHook((LPVOID)addrMessageInfo);
+	if (status != MH_OK)
+	{
+		std::cout << "could not disable hook Hook_MsgToString" << std::endl;
+	}
+}
+
+// Fixed
+void moddingApi::Message::DoMessageInfoHook2()
+{
+	std::uintptr_t addrMessageInfo = (std::uintptr_t)(moddingApi::Memory::moduleBase + 0xAB87D0 + 0xC00);
+
+	bool status = MH_EnableHook((LPVOID)addrMessageInfo);
+	if (status != MH_OK)
+	{
+		std::cout << "could not enable hook Hook_MsgToString_Alt" << std::endl;
+	}
+}
+
+// Fixed
+void moddingApi::Message::UndoMessageInfoHook2()
+{
+	std::uintptr_t addrMessageInfo = (std::uintptr_t)(moddingApi::Memory::moduleBase + 0xAB87D0 + 0xC00);
+	bool status = MH_DisableHook((LPVOID)addrMessageInfo);
+	if (status != MH_OK)
+	{
+		std::cout << "could not disable hook Hook_MsgToString_Alt" << std::endl;
+	}
+}

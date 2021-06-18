@@ -30,7 +30,6 @@ void moddingApi::Settings::ReadConfig(char *ConfigPath) {
 	ini_gets("General", "Version", "dummy", GameVer, sizearray(GameVer), ConfigPath);
 	if (strcmp(GameVer, "Default") == 0) {
 		moddingApi::EnablePerfectStorm = 0;
-		return;
 	}
 	
 	if (strcmp(GameVer, "Enhanced") == 0) {
@@ -42,17 +41,15 @@ void moddingApi::Settings::ReadConfig(char *ConfigPath) {
 	if (strcmp(GameVer, "Default") != 0) {
 		moddingApi::EnablePerfectStorm = 2;
 		std::cout << "Perfect Storm Enabled!" << std::endl;
-		moddingApi::Memory::InitializeCasualLibrary();
-		moddingApi::Memory::WriteBytes();
 	}
 	std::cout << moddingApi::EnablePerfectStorm << std::endl;
 	moddingApi::Settings::AddCpk();
 
 	bool EnableUpdater = ini_getl("General", "Auto-Updater", -1, ConfigPath);
-	if (EnableUpdater) {
+	if (EnableUpdater && (moddingApi::EnablePerfectStorm != 0)) {
 		std::cout << "Auto-Updater Enabled!" << std::endl;
 	}
-	
+	moddingApi::Memory::WriteBytes();
 }
 
 
