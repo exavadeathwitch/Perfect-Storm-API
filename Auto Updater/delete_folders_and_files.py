@@ -3,7 +3,6 @@ import sys
 import shutil
 
 
-
 def delete() -> None:
     """
     This function checks if the 7 and 12 folder are in data/patch,
@@ -26,7 +25,7 @@ def delete() -> None:
 
     # Delete the 7 folder and rename the 12 to 7 only if both paths exist.
     if os.path.exists(delete_path) and os.path.exists(rename_path):
-        dddssd
+        shutil.rmtree(delete_path)
         if os.path.exists(rename_path):
             os.rename(rename_path, delete_path)
 
@@ -49,7 +48,7 @@ def delete_7z_file() -> None:
 
     try:
         if os.path.isfile(delete_path):  # if file exists
-            os.unlink(delete_path)
+            os.unlink(delete_path)  # deletes the file
     except OSError as e:
         print(f"\nI can't seem to delete the PerfectStorm.7z file. Please try deleting it manually at this location"
               f"{application_path}")
