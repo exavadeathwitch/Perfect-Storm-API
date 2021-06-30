@@ -33,7 +33,7 @@ void HookFunctions::InitializeHooks()
 {
 	//ccPlayer::InitAwakening();
 	
-	HookFunctions::Hook((void*)(d3dcompiler_47_og::moduleBase + 0x85CC80), (void*)ccGeneralGameFunctions::GetVersionStringAPI, 14); // GetVersionString hook
+	//HookFunctions::Hook((void*)(d3dcompiler_47_og::moduleBase + 0x85CC80), (void*)ccGeneralGameFunctions::GetVersionStringAPI, 14); // GetVersionString hook
 
 	memcpy(originalMsgInfo, (void*)(d3dcompiler_47_og::moduleBase + 0xAB46C0), 19);
 	HookFunctions::DoMessageInfoHook();
@@ -65,8 +65,8 @@ void HookFunctions::InitializeHooks()
 	//ccGeneralGameFunctions::DoGameInfoHook();
 
 	// Test
-	ccCharacterFunctions::PartnerFunctions();
-	ccCharacterFunctions::SpecialCondFunctions();
+	//ccCharacterFunctions::PartnerFunctions();
+	//ccCharacterFunctions::SpecialCondFunctions();
 	//ccCharacterFunctions::Hook_COND_BKKX();
 }
 
