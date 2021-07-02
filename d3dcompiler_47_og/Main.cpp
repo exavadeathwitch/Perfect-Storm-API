@@ -18,7 +18,7 @@ DWORD WINAPI moddingApi::Main::MainThread() {
 		}
 		
 		
-		
+	//moddingApi::Console::LoopConsole();
 	return 0;
 }
 

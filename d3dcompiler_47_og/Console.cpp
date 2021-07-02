@@ -3,6 +3,7 @@
 
 #include "Console.h"
 #include "Main.h"
+#include "Memory.h"
 
 //This function will initiate the console.
 void moddingApi::Console::InitConsole() {
@@ -14,5 +15,14 @@ void moddingApi::Console::InitConsole() {
 }
 
 void moddingApi::Console::LoopConsole() {
-
+	bool loop = 1;
+	std::string input;
+	while (loop) {
+		std::cout << ">";
+		std::cin >> input;
+		if (input == "1") {
+			std::cout << "wow" << std::endl;
+			moddingApi::Memory::nInitializeccSceneBattleModeSelect(0xA);
+		}
+	}
 }
