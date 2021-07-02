@@ -4,7 +4,7 @@
 #include <stdlib.h>
 #include <string>
 
-
+inline bool matchmakingFPS = 0;
 namespace moddingApi
 {
 

@@ -21,8 +21,9 @@ void moddingApi::Console::LoopConsole() {
 		std::cout << ">";
 		std::cin >> input;
 		if (input == "1") {
-			std::cout << "wow" << std::endl;
-			moddingApi::Memory::nInitializeccSceneBattleModeSelect(0xA);
+			if (matchmakingFPS) {
+				matchmakingFPS = 0;
+			}
 		}
 	}
 }

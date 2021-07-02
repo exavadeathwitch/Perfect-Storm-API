@@ -20,6 +20,16 @@ msgtest omsgtest = NULL;
 signed typedef int(__fastcall* msgtest2)();
 msgtest2 omsgtest2 = NULL;
 
+typedef __int64(__fastcall* checkFPSMatchmaking)();
+checkFPSMatchmaking ocheckFPSMatchmaking = NULL;
+
+__int64 ncheckFPSMatchmaking() {
+	if (matchmakingFPS == 0)
+		return 29;
+	else
+		return ocheckFPSMatchmaking();
+}
+
 /*
 signed typedef __int64(__fastcall* DecreaseHealth) (__int64 a1, __int64 a2, float Damage);
 DecreaseHealth oDecreaseHealth = NULL;
@@ -383,15 +393,15 @@ auto moddingApi::Memory::write_bytes(const std::uintptr_t start, const std::arra
 void moddingApi::Memory::InitHooks() {
 	if (MH_Initialize() == MH_OK) {
 
-		std::uintptr_t addrDecreaseHealth = (std::uintptr_t)(moddingApi::Memory::moduleBase + 0x6E01D4 + 0xC00);
+		std::uintptr_t addrDecreaseHealth = (std::uintptr_t)(moddingApi::Memory::moduleBase + 0x6B39CC + 0xC00);
 		std::uintptr_t addrLoadCpkInit = (std::uintptr_t)(moddingApi::Memory::moduleBase + 0x854F3C + 0xC00);
 		std::uintptr_t addrNewPlayerState = (std::uintptr_t)(moddingApi::Memory::moduleBase + 0x7ADCB4 + 0xC00);
 		std::uintptr_t addrMessageInfo = (std::uintptr_t)(moddingApi::Memory::moduleBase + 0xAB8720 + 0xC00);
 		std::uintptr_t addrMemString = (std::uintptr_t)(moddingApi::Memory::moduleBase + 0xA01230 + 0xC00);
 		std::uintptr_t addrInitializeccSceneFreeBattleBegin = (std::uintptr_t)(moddingApi::Memory::moduleBase + 0x6DCC64 + 0xC00);
 		std::cout << "MinHook Initialized" << std::endl;
-		/*
-		bool status = MH_CreateHook((LPVOID)addrDecreaseHealth, &nInitializeccSceneBattleModeSelect, reinterpret_cast<LPVOID*>(&oInitializeccSceneBootRoot));
+		
+		bool status = MH_CreateHook((LPVOID)addrDecreaseHealth, &ncheckFPSMatchmaking, reinterpret_cast<LPVOID*>(&ocheckFPSMatchmaking));
 		if (status != MH_OK)
 		{
 			std::cout << "could not create hook 2" << std::endl;
@@ -402,8 +412,8 @@ void moddingApi::Memory::InitHooks() {
 		{
 			std::cout << "could not enable hook 2" << std::endl;
 		}
-		*/
-		bool status = MH_CreateHook((LPVOID)addrLoadCpkInit, &moddingApi::Settings::LoadCpkInitial, reinterpret_cast<LPVOID*>(&oInitCPKLoad));
+		
+		status = MH_CreateHook((LPVOID)addrLoadCpkInit, &moddingApi::Settings::LoadCpkInitial, reinterpret_cast<LPVOID*>(&oInitCPKLoad));
 		if (status != MH_OK)
 		{
 			std::cout << "could not create hook LoadCpkInit" << std::endl;
@@ -503,7 +513,7 @@ void moddingApi::Memory::WriteBytes() {
 	write_bytes<2>(moddingApi::Memory::moduleBase + 0x8553DB + 0xC00, { 0xFF, 0xFF });
 	
 	//Disable online microphone for yourself and disable hearing your opponent's microphone
-	write_bytes<3>(moddingApi::Memory::moduleBase + 0xB25974 + 0xC00, { 0x90, 0x90, 0x90 });
+	write_bytes<3>(moddingApi::Memory::moduleBase + 0xB25794 + 0xC00, { 0x90, 0x90, 0x90 });
 	write_bytes<3>(moddingApi::Memory::moduleBase + 0xB25966 + 0xC00, { 0x90, 0x90, 0x90 });
 	write_bytes<5>(moddingApi::Memory::moduleBase + 0xB260B0 + 0xC00, { 0x90, 0x90, 0x90, 0x90, 0x90 });
 	write_bytes<5>(moddingApi::Memory::moduleBase + 0xB26863 + 0xC00, { 0x90, 0x90, 0x90, 0x90, 0x90 });
