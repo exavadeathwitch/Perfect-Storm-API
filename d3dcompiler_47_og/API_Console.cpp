@@ -44,6 +44,7 @@ void c_EnableTraining();
 
 void API_Console::InitializeConsole()
 {
+	/*
 	AddCommand("ConvertMessage", (uintptr_t)c_ConvertMessage, 1);
 	AddCommand("GetVersionNumber", (uintptr_t)c_GetVersionNumber, 0);
 	AddCommand("GetVersionString", (uintptr_t)c_GetVersionString, 0);
@@ -53,15 +54,16 @@ void API_Console::InitializeConsole()
 	AddCommand("EndLoad", (uintptr_t)c_EndLoad, 0);
 	AddCommand("ViewMessageConversions", (uintptr_t)c_ViewMessageConversions, 0);
 	AddCommand("Help", (uintptr_t)c_Help, 0);
-	AddCommand("ControlNpc", (uintptr_t)c_ControlNpc, 2);
+	//AddCommand("ControlNpc", (uintptr_t)c_ControlNpc, 2);
 	//AddCommand("ViewAwakeningDebug", (uintptr_t)c_ViewAwakeningDebug, 0);
 	//AddCommand("ReloadCharsel", (uintptr_t)c_ReloadCharsel, 0);
 	//AddCommand("ReloadProperties", (uintptr_t)c_ReloadProperties, 0);
 	//AddCommand("ReloadInit", (uintptr_t)c_ReloadInit, 0);
 	//AddCommand("LoadScene", (uintptr_t)c_LoadScene, 1);
 	AddCommand("ReloadParamFiles", (uintptr_t)c_ReloadParamFiles, 0);
-	AddCommand("EnableTraining", (uintptr_t)c_EnableTraining, 0);
+	//AddCommand("EnableTraining", (uintptr_t)c_EnableTraining, 0);
 	//cout << std::hex << (d3dcompiler_47_og::moduleBase + 0x1653688) << endl;
+	*/
 }
 void c_EnableTraining()
 {

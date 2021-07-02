@@ -522,9 +522,11 @@ int ccGeneralGameFunctions::GetGameMoney()
 // GAME MESSAGE TO STRING
 typedef char *(__fastcall * message_to_string)(char *);
 message_to_string g_MessageToString;
-char * ccGeneralGameFunctions::MessageToString(char * msg)
+char* ccGeneralGameFunctions::MessageToString(char* msg)
 {
-	g_MessageToString = (message_to_string)(d3dcompiler_47_og::moduleBase + 0x4E80A4);
+	typedef char* (__fastcall* message_to_string)(char*);
+	message_to_string g_MessageToString;
+	g_MessageToString = (message_to_string)(d3dcompiler_47_og::moduleBase + 0x4E89C4);
 	return g_MessageToString(msg);
 }
 
@@ -598,14 +600,13 @@ std::string GetModMessage()
 	return st;
 }
 
-// All custom messageinfo functions
 vector<std::string> ccGeneralGameFunctions::MessageID;
 vector<std::string> ccGeneralGameFunctions::MessageStr;
-BYTE ccGeneralGameFunctions::ViewMessageConversions = 0;
+char ccGeneralGameFunctions::ViewMessageConversions = 0;
 
 uintptr_t ccGeneralGameFunctions::Hook_MsgToString(uintptr_t MessageToDecode)
 {
-	if (ccGeneralGameFunctions::ViewMessageConversions == 0)
+	if (ccGeneralGameFunctions::ViewMessageConversions == 0 && strlen((char*)MessageToDecode) > 0 && *(char*)MessageToDecode != '+')
 	{
 		HookFunctions::UndoMessageInfoHook();
 		char* result = ccGeneralGameFunctions::MessageToString((char*)MessageToDecode);
@@ -616,12 +617,27 @@ uintptr_t ccGeneralGameFunctions::Hook_MsgToString(uintptr_t MessageToDecode)
 			bool finished = false;
 
 			string message((char*)MessageToDecode);
-			
+
+			if (message == "network_agreement_EU_s-A" || message == "network_agreement_s-A")
+			{
+				result = (char*)GetModMessage().c_str();
+				finished = true;
+			}
+			else if (message == "network_agreementp2_EU_s-A" || message == "network_agreementp2_s-A")
+			{
+				result = "";
+				finished = true;
+			}
+
 			if (finished == false)
 			{
 				std::string msg = (std::string)(char*)MessageToDecode;
 
-
+				if (msg == "network_agreement_select") result = "Press any button to continue";
+				else if (msg == "network_agreement_ok") result = "";
+				else if (msg == "network_agreement_ng") result = "<icon btn_2 />";
+				else
+				{
 					for (int x = 0; x < MessageID.size(); x++)
 					{
 						if (msg == MessageID[x])
@@ -629,6 +645,7 @@ uintptr_t ccGeneralGameFunctions::Hook_MsgToString(uintptr_t MessageToDecode)
 							result = (char*)MessageStr[x].c_str();
 						}
 					}
+				}
 				if (msg != (std::string)(char*)MessageToDecode) result = (char*)msg.c_str();
 			}
 		}
@@ -637,21 +654,26 @@ uintptr_t ccGeneralGameFunctions::Hook_MsgToString(uintptr_t MessageToDecode)
 	}
 	else
 	{
+		if (*(char*)MessageToDecode == '+')
+		{
+			return (MessageToDecode + 1);
+		}
+
 		return MessageToDecode;
 	}
 }
 
-typedef char *(__fastcall * message_to_string2)(char *);
+typedef char* (__fastcall* message_to_string2)(char*);
 message_to_string2 g_MessageToString2;
 
 uintptr_t ccGeneralGameFunctions::Hook_MsgToString_Alt(uintptr_t MessageToDecode)
 {
-	g_MessageToString2 = (message_to_string2)(d3dcompiler_47_og::moduleBase + 0xAB4770);
+	g_MessageToString2 = (message_to_string2)(d3dcompiler_47_og::moduleBase + 0xAB87D0);
 
-	if (ccGeneralGameFunctions::ViewMessageConversions == 0)
+	if (ccGeneralGameFunctions::ViewMessageConversions == 0 && strlen((char*)MessageToDecode) > 0 && *(char*)MessageToDecode != '+')
 	{
 		HookFunctions::UndoMessageInfoHook2();
-		char * result = g_MessageToString2((char*)MessageToDecode);
+		char* result = g_MessageToString2((char*)MessageToDecode);
 		HookFunctions::DoMessageInfoHook2();
 
 		if (MessageToDecode != 0)
@@ -660,13 +682,26 @@ uintptr_t ccGeneralGameFunctions::Hook_MsgToString_Alt(uintptr_t MessageToDecode
 
 			string message((char*)MessageToDecode);
 
-			
+			if (message == "network_agreement_EU_s-A" || message == "network_agreement_s-A")
+			{
+				result = (char*)GetModMessage().c_str();
+				finished = true;
+			}
+			else if (message == "network_agreementp2_EU_s-A" || message == "network_agreementp2_s-A")
+			{
+				result = "";
+				finished = true;
+			}
+
 			if (finished == false)
 			{
 				std::string msg = (std::string)(char*)MessageToDecode;
 
-				
-				
+				if (msg == "network_agreement_select") result = "Press any button to continue";
+				else if (msg == "network_agreement_ok") result = "";
+				else if (msg == "network_agreement_ng") result = "<icon btn_2 />";
+				else
+				{
 					for (int x = 0; x < MessageID.size(); x++)
 					{
 						if (msg == MessageID[x])
@@ -674,7 +709,7 @@ uintptr_t ccGeneralGameFunctions::Hook_MsgToString_Alt(uintptr_t MessageToDecode
 							result = (char*)MessageStr[x].c_str();
 						}
 					}
-				
+				}
 				if (msg != (std::string)(char*)MessageToDecode) result = (char*)msg.c_str();
 			}
 		}
@@ -683,9 +718,16 @@ uintptr_t ccGeneralGameFunctions::Hook_MsgToString_Alt(uintptr_t MessageToDecode
 	}
 	else
 	{
+
+		if (*(char*)MessageToDecode == '+')
+		{
+			return (MessageToDecode + 1);
+		}
+
 		return MessageToDecode;
 	}
 }
+
 
 // GAMEPAD FUNCTIONS
 bool ccGeneralGameFunctions::TestButton(WORD button)

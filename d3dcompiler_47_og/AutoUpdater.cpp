@@ -80,9 +80,9 @@ void AutoUpdater::dwFile()
     canUpdate = (status == "ready") ? true : false;
 
     if (canUpdate == 1 || canUpdate == 0) {
-        LPCSTR url = "https://pastebin.com/raw/35ytW4bF";
+        LPCSTR url = "https://pastebin.com/raw/TdJz2b89";
         LPCSTR fName = "version_server.txt";
-        string version_game = "001";
+        string version_game = "004";
         download_to = fullPath + fName;
         cout << "Downloading version diff to " << download_to << endl;
         //DeleteUrlCacheEntry(download_to.c_str());

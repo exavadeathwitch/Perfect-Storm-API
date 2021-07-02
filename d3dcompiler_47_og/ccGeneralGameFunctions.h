@@ -39,7 +39,7 @@ namespace moddingApi
 		// Dictionary
 		static vector<std::string> MessageID;
 		static vector<std::string> MessageStr;
-		static BYTE ViewMessageConversions;
+		static char ViewMessageConversions;
 
 		static uintptr_t Hook_MsgToString(uintptr_t);
 		static uintptr_t Hook_MsgToString_Alt(uintptr_t);

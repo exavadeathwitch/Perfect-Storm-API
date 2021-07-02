@@ -82,7 +82,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
     <GenerateManifest>false</GenerateManifest>
-    <LibraryPath>D:\Perfect Storm API\Perfect-Storm-API\d3dcompiler_47_og\lib;C:\Users\Ares\Downloads\ns4moddingapi-1.2b\ns4moddingapi-1.2b\d3dcompiler_47_og\lib;$(LibraryPath)</LibraryPath>
+    <LibraryPath>C:\Users\Ares\Documents\GitHub\Perfect-Storm-API\d3dcompiler_47_og\lib;D:\Perfect Storm API\Perfect-Storm-API\d3dcompiler_47_og\lib;C:\Users\Ares\Downloads\ns4moddingapi-1.2b\ns4moddingapi-1.2b\d3dcompiler_47_og\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>

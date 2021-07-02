@@ -28,17 +28,21 @@ BYTE originalInit2Info[17];
 bool Hook2(void*, void*, int);
 bool Hook3(void*, void*, int);
 
+int fc_msgtostring = 0xAB8720;
+int fc_msgtostring_3 = 0xAB87D0;
+
 // WRITE ALL THE FUNCTIONS YOU WANT TO HOOK IN HERE
 void HookFunctions::InitializeHooks()
 {
 	//ccPlayer::InitAwakening();
 	
 	//HookFunctions::Hook((void*)(d3dcompiler_47_og::moduleBase + 0x85CC80), (void*)ccGeneralGameFunctions::GetVersionStringAPI, 14); // GetVersionString hook
-
-	memcpy(originalMsgInfo, (void*)(d3dcompiler_47_og::moduleBase + 0xAB46C0), 19);
+	
+	memcpy(originalMsgInfo, (void*)(d3dcompiler_47_og::moduleBase + fc_msgtostring), 19); // Fixed
 	HookFunctions::DoMessageInfoHook();
-	memcpy(originalMsgInfo2, (void*)(d3dcompiler_47_og::moduleBase + 0xAB4770), 19);
+	memcpy(originalMsgInfo2, (void*)(d3dcompiler_47_og::moduleBase + fc_msgtostring_3), 19); // Fixed
 	HookFunctions::DoMessageInfoHook2();
+	
 	//cpktype shit
 	
 	// Awakening IDS:
@@ -70,30 +74,34 @@ void HookFunctions::InitializeHooks()
 	//ccCharacterFunctions::Hook_COND_BKKX();
 }
 
+// Fixed
 void HookFunctions::DoMessageInfoHook()
 {
-	HookFunctions::Hook((void*)(d3dcompiler_47_og::moduleBase + 0xAB46C0), (void*)ccGeneralGameFunctions::Hook_MsgToString, 19);
+	HookFunctions::Hook((void*)(d3dcompiler_47_og::moduleBase + fc_msgtostring), (void*)ccGeneralGameFunctions::Hook_MsgToString, 19);
 }
 
+// Fixed
 void HookFunctions::UndoMessageInfoHook()
 {
 	DWORD dwOld = 0;
-	VirtualProtect((void*)(d3dcompiler_47_og::moduleBase + 0xAB46C0), 17, PAGE_EXECUTE_READWRITE, &dwOld);
-	memcpy((void*)(d3dcompiler_47_og::moduleBase + 0xAB46C0), originalMsgInfo, 19);
-	VirtualProtect((void*)(d3dcompiler_47_og::moduleBase + 0xAB46C0), 17, dwOld, &dwOld);
+	VirtualProtect((void*)(d3dcompiler_47_og::moduleBase + fc_msgtostring), 19, PAGE_EXECUTE_READWRITE, &dwOld);
+	memcpy((void*)(d3dcompiler_47_og::moduleBase + fc_msgtostring), originalMsgInfo, 19);
+	VirtualProtect((void*)(d3dcompiler_47_og::moduleBase + fc_msgtostring), 19, dwOld, &dwOld);
 }
 
+// Fixed
 void HookFunctions::DoMessageInfoHook2()
 {
-	HookFunctions::Hook((void*)(d3dcompiler_47_og::moduleBase + 0xAB4770), (void*)ccGeneralGameFunctions::Hook_MsgToString_Alt, 19);
+	HookFunctions::Hook((void*)(d3dcompiler_47_og::moduleBase + fc_msgtostring_3), (void*)ccGeneralGameFunctions::Hook_MsgToString_Alt, 19);
 }
 
+// Fixed
 void HookFunctions::UndoMessageInfoHook2()
 {
 	DWORD dwOld = 0;
-	VirtualProtect((void*)(d3dcompiler_47_og::moduleBase + 0xAB4770), 19, PAGE_EXECUTE_READWRITE, &dwOld);
-	memcpy((void*)(d3dcompiler_47_og::moduleBase + 0xAB4770), originalMsgInfo2, 19);
-	VirtualProtect((void*)(d3dcompiler_47_og::moduleBase + 0xAB4770), 19, dwOld, &dwOld);
+	VirtualProtect((void*)(d3dcompiler_47_og::moduleBase + fc_msgtostring_3), 19, PAGE_EXECUTE_READWRITE, &dwOld);
+	memcpy((void*)(d3dcompiler_47_og::moduleBase + fc_msgtostring_3), originalMsgInfo2, 19);
+	VirtualProtect((void*)(d3dcompiler_47_og::moduleBase + fc_msgtostring_3), 19, dwOld, &dwOld);
 }
 
 // FUNCTION TO HOOK

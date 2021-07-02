@@ -4,6 +4,7 @@
 #include <fstream>
 #include <string>
 #include <vector>
+#include <array>
 #include <filesystem>
 #include <Xinput.h>
 #include "ccMain.h"
@@ -24,6 +25,34 @@ int Console_GetInt(char*);
 char * Console_GetString(char*);
 bool EnableAPI = false;
 
+std::uintptr_t moduleBase = (std::uintptr_t)GetModuleHandle(NULL);
+
+template <std::size_t size>
+auto write_bytes(const std::uintptr_t start, const std::array<std::uint8_t, size>& bytes) -> bool {
+	DWORD old_prot;
+
+	if (!VirtualProtect(reinterpret_cast<void*>(start), bytes.size(), PAGE_EXECUTE_READWRITE, &old_prot))
+		return false;
+
+	for (auto i = 0u; i < bytes.size(); ++i)
+		*reinterpret_cast<std::uint8_t*>(start + i) = bytes.at(i);
+
+	VirtualProtect(reinterpret_cast<void*>(start), bytes.size(), old_prot, &old_prot);
+	return true;
+}
+
+void WriteBytes() {
+		//Disable online microphone for yourself and disable hearing your opponent's microphone
+		write_bytes<3>(moduleBase + 0xB25794 + 0xC00, { 0x90, 0x90, 0x90 });
+		write_bytes<3>(moduleBase + 0xB25966 + 0xC00, { 0x90, 0x90, 0x90 });
+		write_bytes<5>(moduleBase + 0xB260B0 + 0xC00, { 0x90, 0x90, 0x90, 0x90, 0x90 });
+		write_bytes<5>(moduleBase + 0xB26863 + 0xC00, { 0x90, 0x90, 0x90, 0x90, 0x90 });
+		write_bytes<5>(moduleBase + 0xB26B45 + 0xC00, { 0x90, 0x90, 0x90, 0x90, 0x90 });
+		if (ModOption == 1)
+		{
+			write_bytes<1>(moduleBase + 0x101C001 + 0x400 + 0xC00, { 0x31 });
+		}
+	}
 // Main function of the API
 DWORD WINAPI ccMain::Main()
 {
@@ -43,6 +72,7 @@ DWORD WINAPI ccMain::Main()
 	// Enable the game thread (this is for player modification in game)
 	CreateThread(nullptr, 0, (LPTHREAD_START_ROUTINE)ccMain::LoopGame, (HMODULE)d3dcompiler_47_og::st_hModule, 0, nullptr);
 
+	/*
 	//Initialize MinHook
 	if (MH_Initialize() == MH_OK)
 	{
@@ -58,18 +88,17 @@ DWORD WINAPI ccMain::Main()
 		mem::PerfectStormHook();
 		if (Debug) cout << "Perfect Storm Lobby Function Hooked" << endl;
 	}
+	
 	//General Hooks
 	mem::GeneralHook();
+	*/
 	//Delete Junk
 	if (remove("PerfectStorm.7z") == 1)
 		cout << "Junk file PerfectStorm.7z deleted!" << endl;
-
-	//Hook Imgui
-	Hook::MainThread();
-	if (Debug) cout << "Imgui Hooked!" << endl;
-
+	//No Mic
+	WriteBytes();
 	// Loop console
-	if (Debug) cout << "Console is looping!" << endl;
+	//if (Debug) cout << "Console is looping!" << endl;
 	ccMain::LoopConsole();
 
 	return 0;
@@ -153,13 +182,12 @@ void ccMain::ReadApiFiles()
 	GetCurrentDirectory(_MAX_PATH, ApiPath);
 	int ActualLength = strlen(ApiPath);
 
-	strcat(ApiPath, "\\moddingapi\\");
+	strcat(ApiPath, "\\PSAPI\\");
 
 	char ConfigPath[_MAX_PATH];
 	strcpy(ConfigPath, ApiPath);
 	ActualLength = strlen(ConfigPath);
 	strcat(ConfigPath, "config.ini");
-
 	// Check if config ini exists
 	if (INVALID_FILE_ATTRIBUTES == GetFileAttributes(ConfigPath) && GetLastError() == ERROR_FILE_NOT_FOUND)
 	{
@@ -182,28 +210,22 @@ void ccMain::ReadApiFiles()
 			cout << "====== Welcome to STORM 4 MODDING CONSOLE ======" << endl;
 		}
 
+		cout << ConfigPath << endl;
 		if (GetPrivateProfileInt("General", "EnablePerfectStorm", 1, ConfigPath) == 1)
 		{
 			cout << "Perfect Storm Enabled!" << endl;
+			ModOption = 1;
 		}
 		else
 		{
-			cout << "Better 1.07 Enabled!" << endl;
+			cout << "Stock Storm Enabled!" << endl;
 			ModOption = 0;
 		}
-		if (GetPrivateProfileInt("General", "Debug", 1, ConfigPath) == 1)
+		if (GetPrivateProfileInt("General", "EnableAutoUpdater", 1, ConfigPath) == 1)
 		{
-			cout << "Debug Mode Enabled!" << endl;
-			Debug = 1;
-		}
-		else
-		{
-			if (GetPrivateProfileInt("General", "EnableAutoUpdater", 1, ConfigPath) == 1)
-			{
-				// Auto-Updater Code
-				AutoUpdater update;
-				update.dwFile();
-			}
+			// Auto-Updater Code
+			AutoUpdater update;
+			update.dwFile();
 		}
 		cout << "Config finished..." << endl;
 		// Start reading mods
@@ -270,10 +292,9 @@ void ccMain::ReadApiFiles()
 						string _ext = _file.substr(_file.length() - 4, 4);
 						if (_ext == "ns4o")
 						{
-							if (ModOption == 0)
+							if (ModOption == 1)
 							{
-								cout << "1.07 patched through exe" << endl;
-								ReadPatchFile(_file);
+								write_bytes<1>(moduleBase + 0x101C001 + 0x400 + 0xC00, { 0x31 });
 							}
 						}
 						else if (_ext == "ns4s")
@@ -432,7 +453,7 @@ void ccMain::ReloadParamFiles()
 	GetCurrentDirectory(_MAX_PATH, ApiPath);
 	int ActualLength = strlen(ApiPath);
 
-	strcat(ApiPath, "\\moddingapi\\");
+	strcat(ApiPath, "\\PSAPI\\");
 
 	char ConfigPath[_MAX_PATH];
 	strcpy(ConfigPath, ApiPath);
