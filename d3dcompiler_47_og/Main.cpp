@@ -25,7 +25,7 @@ DWORD WINAPI moddingApi::Main::MainThread() {
 //This is the function that initializes the reading of the config file.
 bool moddingApi::Main::InitConfig() {
 	char* ConfigPath = strcpy(new char[moddingApi::Main::GetStormDirectory().length() + 1], moddingApi::Main::GetStormDirectory().c_str());
-	strcat(ConfigPath, "\\PSAPI\\");
+	strcat(ConfigPath, "\\PSAPIBeta\\");
 	strcat(ConfigPath, "settings.ini");
 	std::ifstream ifile;
 	ifile.open(ConfigPath);

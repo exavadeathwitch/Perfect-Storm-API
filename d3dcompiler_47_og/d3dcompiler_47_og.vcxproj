@@ -75,7 +75,7 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <LibraryPath>D:\Perfect Storm API\Perfect-Storm-API\d3dcompiler_47_og\lib;$(LibraryPath)</LibraryPath>
+    <LibraryPath>C:\Users\absol\Documents\GitHub\Perfect-Storm-API\d3dcompiler_47_og\lib;D:\Perfect Storm API\Perfect-Storm-API\d3dcompiler_47_og\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
@@ -84,7 +84,7 @@
     <LinkIncremental>false</LinkIncremental>
     <GenerateManifest>false</GenerateManifest>
     <IncludePath>C:\Users\Ares\Documents\GitHub\Perfect-Storm-API\d3dcompiler_47_og\lib;$(ProjectDir)DirectX11Hook;$(ProjectDir)src\SDL2_mixer\SDL2_mixer-2.0.4\include;$(ProjectDir)src\SDL2\SDL2-2.0.12\include;$(IncludePath)</IncludePath>
-    <LibraryPath>D:\Perfect Storm API\Perfect-Storm-API\d3dcompiler_47_og\lib;C:\Users\Ares\Documents\GitHub\Perfect-Storm-API\d3dcompiler_47_og\lib;$(ProjectDir)DirectX11Hook;$(ProjectDir)src\SDL2_mixer\SDL2_mixer-2.0.4\lib\x64;$(ProjectDir)src\SDL2\SDL2-2.0.12\lib\x64;$(LibraryPath)</LibraryPath>
+    <LibraryPath>C:\Users\absol\Documents\GitHub\Perfect-Storm-API\d3dcompiler_47_og\lib;D:\Perfect Storm API\Perfect-Storm-API\d3dcompiler_47_og\lib;C:\Users\Ares\Documents\GitHub\Perfect-Storm-API\d3dcompiler_47_og\lib;$(ProjectDir)DirectX11Hook;$(ProjectDir)src\SDL2_mixer\SDL2_mixer-2.0.4\lib\x64;$(ProjectDir)src\SDL2\SDL2-2.0.12\lib\x64;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -146,6 +146,7 @@
       <LanguageStandard>stdcpp17</LanguageStandard>
       <WholeProgramOptimization>false</WholeProgramOptimization>
       <ProgramDataBaseFileName>$(TEMP)vc$(PlatformToolsetVersion).pdb</ProgramDataBaseFileName>
+      <CallingConvention>FastCall</CallingConvention>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -159,12 +160,15 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Console.cpp" />
+    <ClCompile Include="Functions.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="d3dcompiler_47_og.cpp" />
     <ClCompile Include="Memory.cpp" />
     <ClCompile Include="Message.cpp" />
     <ClCompile Include="minIni.c" />
+    <ClCompile Include="Scene.cpp" />
     <ClCompile Include="Settings.cpp" />
+    <ClCompile Include="Stage.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="d3dcompiler_47_og.def" />
@@ -174,6 +178,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Console.h" />
+    <ClInclude Include="Functions.h" />
     <ClInclude Include="Memory.h" />
     <ClInclude Include="Main.h" />
     <ClInclude Include="d3dcompiler_47_og.h" />
@@ -181,7 +186,9 @@
     <ClInclude Include="minGlue.h" />
     <ClInclude Include="MinHook.h" />
     <ClInclude Include="minIni.h" />
+    <ClInclude Include="Scene.h" />
     <ClInclude Include="Settings.h" />
+    <ClInclude Include="Stage.h" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="DirectX11Hook\__TemplateIcon.ico" />

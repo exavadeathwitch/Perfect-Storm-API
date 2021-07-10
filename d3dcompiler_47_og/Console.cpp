@@ -14,16 +14,26 @@ void moddingApi::Console::InitConsole() {
 	std::cout << "----------Console Enabled----------" << std::endl;
 }
 
+void enabletraining () {
+	std::cout << "Training Enabled" << std::endl;
+}
+
+std::string Commands[4] = { "matchmakechannel", "enabletraining", "showvalues", "help" };
 void moddingApi::Console::LoopConsole() {
 	bool loop = 1;
 	std::string input;
 	while (loop) {
 		std::cout << ">";
 		std::cin >> input;
-		if (input == "1") {
-			if (matchmakingFPS) {
-				matchmakingFPS = 0;
+		for (int i = 0; i <= sizeof(Commands) - 1; i++) {
+			if (Commands[i] == input) {
+				
+			}
+		}
+		if (input == "matchmakechannel") {
+			std::cout << "Set matchmaking channel: ";
+			std::cin >> matchmakingFPS;
+			std::cout << "Channel is: " << matchmakingFPS << std::endl;
 			}
 		}
 	}
-}
