@@ -17,7 +17,7 @@ DWORD WINAPI moddingApi::Main::MainThread() {
 		std::cout << "Config could not be read. Please make sure that your config.ini file is in " << moddingApi::Main::GetStormDirectory() << "\\PSAPI\\" << std::endl;
 		}
 		
-		
+
 	moddingApi::Console::LoopConsole();
 	return 0;
 }

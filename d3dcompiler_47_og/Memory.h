@@ -15,7 +15,7 @@ namespace moddingApi
 	{
 	public:
 		static uintptr_t moduleBase;
-		static std::string_view strFromAddrSmall(__int64 a1);
+		static std::string strFromAddrSmall(__int64 a1);
 		static std::string_view strFromAddrMax(__int64 a1);
 		static __int64 GetQword(__int64 qw);
 		static int GetDword(__int64 dw);

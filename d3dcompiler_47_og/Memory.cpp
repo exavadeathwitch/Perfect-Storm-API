@@ -54,7 +54,7 @@ signed __int64 __fastcall nDecreaseHealth(__int64 a1, __int64 a2, float Damage) 
 typedef __int64(__fastcall* getInfoFromMemoryString1)(__int64 a1, int a2);
 getInfoFromMemoryString1 ogetInfoFromMemoryString1 = NULL;
 
-std::string_view moddingApi::Memory::strFromAddrSmall(__int64 a1) {
+std::string moddingApi::Memory::strFromAddrSmall(__int64 a1) {
 	const std::size_t size = 6;
 	char chars[size] = "";
 	memcpy(chars, reinterpret_cast<char*>(a1), size);
@@ -91,14 +91,15 @@ newPlayerState onewPlayerState = NULL;
 
 __int64 __fastcall moddingApi::Memory::nnewPlayerState(__int64 a1, unsigned int a2, int a3, int a4)
 {
-
+	int playerNum = *(DWORD*)(a1 + 0xB08);
+	std::cout << "Player: " << playerNum << " State: " << a2 << std::endl;
+	return onewPlayerState(a1, a2, a3, a4);
 	//return onewPlayerState(a1, a2, a3, a4);
 	/*
 	if ((a2 == 63) && (*(DWORD*)(a1 + 0xCC0) == 8)) {
 		return 0;
 	}
 	*/
-	std::cout << "State: " << a2 << std::endl;
 	//Puppet Gkunai
 	//If a counter is inputted, and you are currently in a grab state, if the puppet has a shuriken attack ID, do nothing. Make the puppet have a shuriken state. Do nothing.
 	/*
@@ -119,7 +120,11 @@ __int64 __fastcall moddingApi::Memory::nnewPlayerState(__int64 a1, unsigned int 
 		a2 = 70;
 		return onewPlayerState(a1, a2, a3, a4);
 	}
-
+	/*
+	if ((a2 == 215) && (*(DWORD*)(a1 + 0xCC0) == 227)) {
+		return 0i64;
+	}
+	*/
 	//Chakra Shuriken Cover Fire Air
 	if ((a2 == 68) && (*(DWORD*)(a1 + 0xCC0) == 214)) {
 		a2 = 71;
@@ -202,6 +207,13 @@ auto moddingApi::Memory::write_bytes(const std::uintptr_t start, const std::arra
 
 typedef void(__fastcall* setNoChakraCirclePlayerState)(__int64 a1);
 setNoChakraCirclePlayerState oSetNoChakraCirclePlayerState = NULL;
+void outputInputs(__int64 playerAddr) {
+	__int64 inputPointer = playerAddr + 0x218;
+	int playerNum = *(DWORD*)(playerAddr + 0xB08);
+	int input = *(DWORD*)(inputPointer + 0x600);
+	std::cout << "Player: " << playerNum << std::endl;
+	std::cout << "Input: " << input << std::endl;
+}
 
 void nSetNoChakraCirclePlayerState(__int64 a1) {
 	__int64 playerAddr; // rbx@1
@@ -211,8 +223,11 @@ void nSetNoChakraCirclePlayerState(__int64 a1) {
 	signed int v5; // esi@4
 	__int64 v6; // rax@11
 	__int64 v7; // rax@23
+	//Input Code
+
 
 	playerAddr = a1;
+	outputInputs(playerAddr);
 	if (*(DWORD*)(a1 + 0xCC0) != 94)          // If the current state isn't 94
 	{
 		typedef __int64(__fastcall* sub_1407C0DD8) (__int64 a1, int a2);
@@ -249,9 +264,9 @@ void nSetNoChakraCirclePlayerState(__int64 a1) {
 			{
 				onewPlayerState(playerAddr, 64, 0, 1);
 			}
-		}
+		} 
 		if ((((*(int(__fastcall**)(__int64, signed __int64))(*(__int64*)playerAddr + 0x1398i64))(playerAddr, 1i64)
-			&& (osub_1407C0CE8(v2, 0i64) && v4 || (unsigned int)osub_1407C0DD8(v2, 9)))
+			&& (((osub_1407C0CE8(v2, 0i64) && v4)) || (unsigned int)osub_1407C0DD8(v2, 9)))
 			&& (((*(int(__fastcall**)(__int64))(*(__int64*)playerAddr + 0xEC8i64))(playerAddr)) || ((*(DWORD*)(playerAddr + 0xCC0) == 10) || (*(DWORD*)(playerAddr + 0xCC0) == 11) || (*(DWORD*)(playerAddr + 0xCC0) == 12)))))
 		{ 
 			onewPlayerState(playerAddr, 66, 0, 1);
@@ -281,7 +296,31 @@ typedef __int64(__fastcall playerAnim) (__int64 rcx, int a1, __int64 a2, unsigne
 playerAnim* oPlayerAnim = NULL;
 
 __int64 __fastcall nPlayerAnim(__int64 rcx, int a1, __int64 a2, unsigned int a3, float a4, int a5, int a6) {
-	
+	int playerNum = *(DWORD*)(rcx + 0xB0B);
+	/*
+	if ((a1 == 74) && ((*(DWORD*)(rcx + 0xCC8) == 227) || (*(DWORD*)(rcx + 0xCC0) == 227))) {
+		if (playerNum == 1) {
+			a1 = 914;
+			*(DWORD*)(rcx + 0x1080) = a1;//912
+			*(DWORD*)(rcx + 0x1084) = a5;
+			*(DWORD*)(rcx + 0x107C) = 1;
+			std::cout << "Entered relay state 1" << std::endl;
+			std::cout << "Player: " << playerNum << " Animation: " << a1 << std::endl;
+			return *(__int64*)(rcx + 0x208);
+		}
+	}
+	if (*(DWORD*)(rcx + 0xCC0) == 227 || *(DWORD*)(rcx + 0xCC8) == 227) {
+		if (playerNum == 1) {
+			*(DWORD*)(rcx + 0x1080) = 914;//912
+			*(DWORD*)(rcx + 0x1084) = a5;
+			*(DWORD*)(rcx + 0x107C) = 1;
+			std::cout << "Entered relay state 2" << std::endl;
+			std::cout << "Player: " << playerNum << " Animation: " << a1 << std::endl;
+			return *(__int64*)(rcx + 0x208);
+		}
+	}
+	*/
+	std::cout << "Player: " << playerNum << " Animation: " << a1 << std::endl;
 	oPlayerAnim(rcx, a1, a2, a3, a4, a5, a6);
 	return *(__int64*)(rcx + 0x208);
 }
@@ -941,6 +980,8 @@ int nDecideItemState(__int64 a1, unsigned int a2) {
 typedef __int64(__fastcall* SingleMoveBuffering) (__int64 a1, unsigned int a2);
 SingleMoveBuffering oSingleMoveBuffering = NULL;
 
+
+
 __int64 nSingleMoveBuffering(__int64 a1, unsigned int a2) {
 	__int64 v2; // r8@1
 	signed __int64 v3; // rdx@1
@@ -991,7 +1032,6 @@ __int64 nSingleMoveBuffering(__int64 a1, unsigned int a2) {
 	v3 = *(DWORD*)(a1 + 0x14104);
 	v4 = a1;
 	v5 = 0;
-	std::cout << "running" << std::endl;
 	if ((DWORD)v3 == 16)
 	{
 		v3 = 16i64;
@@ -1000,157 +1040,630 @@ __int64 nSingleMoveBuffering(__int64 a1, unsigned int a2) {
 
 	if (!(DWORD)v3)
 		goto LABEL_33;
-	
+	else {
+		return oSingleMoveBuffering(a1, a2);
+	}
 
-	if ((DWORD)v3 == 63)
-	{
-		if (*(DWORD*)(a1 + 0xCC0) == 66)
-		{
-			std::cout << "if (*(DWORD*)(a1 + 0xCC0) == 66)" << std::endl;
-			(*(void(__fastcall**)(__int64, signed __int64, __int64))(*(__int64*)a1 + 0xDA8i64))(a1, 63i64, v2);
-			v5 = 1;
-			osub_1407825B8(v4, 0xFFFFFFFFi64);
-			osub_140781860(v4);
-			v12 = *(DWORD*)(v4 + 0x14108);
-			if ((DWORD)v12 != 74)
-			{
-				std::cout << "((DWORD)v12 != 74)" << std::endl;
-				DWORD(v14) = 0;
-				osub_14077E64C(v4, v12, v11, 0xFFFFFFFFi64, v14, 0);
-			}
-			goto LABEL_33;
-		}
-			if (osub_140781414(a1, *(DWORD*)(a1 + 0x14108), v2)
-				&& (*(int(__fastcall**)(__int64, __int64))(*(__int64*)v4 + 0xE48i64))(v4, *(DWORD*)(v4 + 0x14108)))// setJumpState2PlayerState
-			{
-				*(DWORD*)(v4 + 0x14108) = 74;
-				osub_1407825B8(v4, 0xFFFFFFFFi64);
-				*(__int64*)(v4 + 0x164) = 0i64;
-				osub_140790E38(v4, 0i64);
-				*(DWORD*)(v4 + 364) = 0;
-				goto LABEL_23;
-			}
-		}
-		else
-		{
-			if ((DWORD)v3 != 66)
-			{
-				std::cout << "((DWORD)v3 != 66)" << std::endl;
-				if ((DWORD)v3 == 72)
-				{
-					std::cout << "((DWORD)v3 == 72)" << std::endl;
-					if (*(DWORD*)(a1 + 0xCC0) == 66)
-						goto LABEL_33;
-					v6 = 1;
-					if ((*(int(__fastcall**)(__int64, signed __int64, __int64))(*(__int64*)a1 + 0x11B8i64))(a1, v3, v2)
-						&& osub_14077DA68(v4, 247, 1i64))
-					{
-						std::cout << "((*(int(__fastcall**)(__int64, signed __int64, __int64))(*(__int64*)a1 + 0x11B8i64))(a1, v3, v2) && osub_14077DA68(v4, 247, 1i64))" << std::endl;
-						v6 = 0;
-					}
-					if (*(DWORD*)(v4 + 3260) && osub_14077DA68(v4, 247, 1i64))
-						std::cout << "(*(DWORD*)(v4 + 3260) && osub_14077DA68(v4, 247, 1i64))" << std::endl;
-						v6 = 0;
-						if (!v6)
-							std::cout << "!v6" << std::endl;
-						goto LABEL_33;
-					v3 = *(DWORD*)(v4 + 82180);
-				}
-				else
-				{
-					if ((DWORD)v3 == 77)
-					{
-						if (*(DWORD*)(a1 + 3264) != 66)
-						{
-							osub_1407C2EEC(a1, 1u);
-							goto LABEL_32;
-						}
+	
 					LABEL_33:
-						std::cout << "label 33" << std::endl;
-						std::cout << v3 << std::endl;
+						if (((*(DWORD*)(a1 + 0xCC0) == 63)) && (v3 == 72)) {
+							*(DWORD*)(a1 + 0xCC8) = 72;
+							*(DWORD*)(a1 + 0xCDC) = 1;
+						}
+						if (((*(DWORD*)(a1 + 0xCC0) == 63)) && (v3 == 16)) {
+							*(DWORD*)(a1 + 0xCC8) = 16;
+							*(DWORD*)(a1 + 0xCDC) = 1;
+						}
+						if (((*(DWORD*)(a1 + 0xCC0) == 63)) && (v3 == 17)) {
+							*(DWORD*)(a1 + 0xCC8) = 17;
+							*(DWORD*)(a1 + 0xCDC) = 1;
+						}
 						if (((*(DWORD*)(a1 + 0xCC0) == 66) || (*(DWORD*)(a1 + 0xCC0) == 63)) && (v3 == 0)) {
 							*(DWORD*)(a1 + 0xCC8) = 67;
 							*(DWORD*)(a1 + 0xCDC) = 1;
 						}
 						osub_1406B5D14(*(__int64*)(v4 + 0xFD90), 16, 10);
 						return (unsigned int)v5;
-					}
-					if ((DWORD)v3 == 78)
-					{
-						if (*(DWORD*)(a1 + 0xCC0) != 66)
-						{
-							osub_1407C2E9C(a1, 1i64);
 						LABEL_32:
-							std::cout << "label 32" << std::endl;
 							v5 = 1;
 							goto LABEL_33;
-						}
-						goto LABEL_33;
-					}
-				}
 			LABEL_31:
-				std::cout << "label 31" << std::endl;
 				(*(void(__fastcall**)(__int64, signed __int64, __int64))(*(__int64*)v4 + 3496i64))(v4, v3, v2);
-				if (((*(DWORD*)(a1 + 0xCC0) == 66) && (((v3 == 4) || (v3 == 5) || (v3 == 10) || (v3 == 11) || (v3 == 12))))) {
-					*(DWORD*)(a1 + 0xCC8) = v3;
-					*(DWORD*)(a1 + 0xCDC) = 1;
-				}
 				goto LABEL_32;
-			}
-			if (osub_140781414(a1, *(DWORD*)(a1 + 0x14108), 0))
-			{
-				DWORD(v14) = 0;
-				osub_14077E64C(v4, *(DWORD*)(v4 + 0x14108), v7, 0xFFFFFFFFi64, v14, 0);
-				*(DWORD*)(v4 + 0x14108) = 74;
-				osub_140794B08(v4);
-				++* (DWORD*)(v4 + 82172);
-				*(DWORD*)(v4 + 82176) = 0;
-				v8 = *(DWORD*)(v4 + 3264);
-				*(DWORD*)(v4 + 0xCCC) = 0;
-				*(DWORD*)(v4 + 0xCC0) = 66;
-				*(DWORD*)(v4 + 0xCC4) = v8;
-				v9 = *((BYTE*)(moddingApi::Memory::moduleBase + 0x1416663C8 - 0x1416663C8 + 0xC00) + 2370);
-				*(DWORD*)(v4 + 3272) = 0;
-				v10 = -(0xBB8 / v9);
-				*(DWORD*)(v4 + 3292) = 0;
-				*(DWORD*)(v4 + 3280) = v10;
-				*(DWORD*)(v4 + 3284) = v10;
-				osub_1407825B8(v4, 0xFFFFFFFFi64);
-			LABEL_23:
-				std::cout << "label 23" << std::endl;
-				osub_140781860(v4);
-				return (unsigned int)v5;
-			}
-		}
-		return (unsigned int)v5;
-	}
+			
+}
 
 signed typedef __int64(__fastcall* areYouComboing) (__int64 a1, unsigned int a2, unsigned int a3);
 areYouComboing oAreYouComboing = NULL;
 
 
-signed __int64 nAreYouComboing(__int64 a1, unsigned int playerState, unsigned int a3) {
-	return oAreYouComboing(a1, playerState, a3);
+signed __int64 nAreYouComboing(__int64 playerAddr, unsigned int playerState, unsigned int a3) {
+	/*
+	__int64 v4; // rbx@1
+	signed int v5; // ebp@1
+	int v6; // esi@1
+	int v7; // er15@1
+	int v8; // er12@1
+	__int64 playerAddr; // rdi@1
+	signed int v10; // er13@1
+	signed int v11; // er14@1
+	unsigned int v12; // eax@1
+	int v13; // eax@1
+	signed int v14; // ecx@1
+	int v15; // eax@6
+	unsigned int v17; // eax@18
+	__int64* v18; // rax@18
+	__int64 v19; // rbx@18
+	unsigned int v20; // eax@29
+	__int64* v21; // rax@29
+	BYTE* v22; // rcx@29
+	signed int v23; // er12@46
+	signed int v24; // er13@47
+	unsigned int v25; // eax@47
+	unsigned int v26; // eax@48
+	unsigned int v27; // eax@49
+	unsigned int v28; // eax@50
+	signed int v29; // er12@52
+	unsigned int v30; // eax@52
+	unsigned int v31; // eax@53
+	unsigned int v32; // eax@54
+	int v33; // eax@62
+	signed int v34; // er15@65
+	int v35; // eax@81
+	int v36; // eax@82
+	int v37; // eax@83
+	int v38; // eax@84
+	int v39; // [sp+80h] [bp+8h]@1
+	signed int v40; // [sp+88h] [bp+10h]@1
+	signed int v41; // [sp+98h] [bp+20h]@3
+	v34 = 0;
+	v39 = *(DWORD*)(playerAddr + 0x14114);
+	if (playerState == 66) {
+		if (*(DWORD*)(playerAddr + 0xCC0) == 66)
+			v34 = 1;
+		if (v34 && v39)
+		{
+			if ((*(int(__fastcall**)(__int64))(*(__int64*)playerAddr + 0xE78i64))(playerAddr))
+			{
+				if ((unsigned int)sub_1407C0C8C(playerAddr + 0x218))
+				{
+					sub_1407C0748(playerAddr + 0x218, 0);
+					if (a4 > 0.5)
+					{
+						v35 = sub_140792A00(playerAddr) - 1;
+						if (v35)
+						{
+							v36 = v35 - 1;
+							if (v36)
+							{
+								v37 = v36 - 1;
+								if (!v37)
+									goto LABEL_100;
+								v38 = v37 - 1;
+								if (!v38)
+								{
+									*(DWORD*)(playerAddr + 0x14188) = 4;
+									*(DWORD*)(playerAddr + 0x14104) = 12;
+									return (unsigned int)v5;
+								}
+								if (v38 == 1)
+								{
+								LABEL_100:
+									*(DWORD*)(playerAddr + 0x14104) = 10;
+									*(DWORD*)(playerAddr + 0x14188) = 3;
+									return (unsigned int)v5;
+								}
+								return 0;
+							}
+							*(DWORD*)(playerAddr + 82312) = 2;
+						}
+						else
+						{
+							*(DWORD*)(playerAddr + 82312) = 1;
+						}
+						*(DWORD*)(playerAddr + 0x14104) = v23;
+						return (unsigned int)v5;
+					}
+				}
+			}
+			if ((unsigned int)sub_1407AC910(playerAddr, a4))
+			{
+				*(_DWORD*)(playerAddr + 82180) = 13;
+				return (unsigned int)v5;
+			}
+			if ((*(int(__fastcall**)(__int64))(*(_QWORD*)playerAddr + 0xE68i64))(playerAddr)
+				&& (unsigned int)sub_1407C0C8C(playerAddr + 0x218))
+			{
+				sub_1407C0748(playerAddr + 0x218, 0);
+				LOBYTE(v6) = a4 > 0.1;
+				*(_DWORD*)(playerAddr + 0x14104) = v6 + 4;
+				return (unsigned int)v5;
+			}
+		}
+		return 0i64;
+	}
+else*/
+	return oAreYouComboing(playerAddr, playerState, a3);
+}
+
+
+
+__int64 __fastcall nCanYouShuriken(__int64 a1)
+{
+	__int64 v1; // rbx@1
+	signed int v2; // ecx@6
+	__int64 result; // rax@10
+
+
+	signed typedef __int64(__fastcall* sub_14076C79C) (__int64 a1);
+	sub_14076C79C osub_14076C79C = (sub_14076C79C)(moddingApi::Memory::moduleBase + 0x76BB9C + 0xC00);
+
+	typedef __int64(__fastcall* sub_14077DA68) (__int64 a1, int a2, __int64 a3);
+	sub_14077DA68 osub_14077DA68 = (sub_14077DA68)(moddingApi::Memory::moduleBase + 0x77CE68 + 0xC00);
+
+	v1 = a1;
+	result = 0;
+	if (*(DWORD*)(a1 + 0x14B30))
+	{
+		if ((*(int(__fastcall**)(__int64, signed __int64))(*(__int64*)a1 + 0x1398i64))(a1, 6i64))
+		{
+			if (!(unsigned int)osub_14076C79C(8i64))
+			{
+				if (osub_14077DA68(v1, 151, 1i64))
+				{
+					if (*(DWORD*)(v1 + 0x141EC))
+					{
+						v2 = *(DWORD*)(v1 + 0xCC0);
+						if (v2 > 0 && ((v2 <= 2 || v2 == 8 || v2 == 66 || v2 == 63))) //&& (*(int(__fastcall**)(__int64))(*(__int64*)v1 + 0xE60i64))(v1)))
+							result = 1;
+					}
+				}
+			}
+		}
+	}
+	return result;
+}
+
+typedef __int64(__thiscall checkNinjaMovePlayerState) (void* rcx, int a1, __int64 a2, __int64 a3);
+checkNinjaMovePlayerState *oCheckNinjaMovePlayerState = NULL;
+
+__int64 nCheckNinjaMovePlayerState(void* rcx, int a1, __int64 a2, __int64 a3) {
+	int v3; // ebp@1
+	__int64 playerAddr; // rbx@1
+	signed int v5; // esi@1
+	int v6; // eax@3
+	__int64 v7; // rcx@3
+	__int64* v8; // rdx@6
+	int v9; // edi@7
+	signed __int64 playerState; // rdx@23
+	__int64 v11; // rax@24
+	int v12; // eax@25
+	int v13; // eax@31
+	DWORD v14; // rax@33
+	int v15; // ecx@33
+	__int64 result; // rax@33
+	__int64 v17; // [sp+20h] [bp-28h]@10
+	int v18; // [sp+28h] [bp-20h]@11
+
+	typedef __int64(__fastcall* sub_1407C0DD8) (__int64 a1, int a2);
+	sub_1407C0DD8 osub_1407C0DD8 = (sub_1407C0DD8)(moddingApi::Memory::moduleBase + 0x7C01D8 + 0xC00);
+
+	typedef __int64(__fastcall* sub_1407C0748) (__int64 a1, int a2);
+	sub_1407C0748 osub_1407C0748 = (sub_1407C0748)(moddingApi::Memory::moduleBase + 0x7BFB48 + 0xC00);
+
+	typedef __int64(__fastcall* sub_140A046F0) (__int64 a1);
+	sub_140A046F0 osub_140A046F0 = (sub_140A046F0)(moddingApi::Memory::moduleBase + 0xA03AF0 + 0xC00);
+	
+	typedef __int64(__fastcall* sub_1407926B4) (__int64 a1, int a2);
+	sub_1407926B4 osub_1407926B4 = (sub_1407926B4)(moddingApi::Memory::moduleBase + 0x7C01D8 + 0xC00);
+
+	typedef int(__fastcall* sub_140A04DD0) ();
+	sub_140A04DD0 osub_140A04DD0 = (sub_140A04DD0)(moddingApi::Memory::moduleBase + 0xA041D0 + 0xC00);
+
+	typedef int(__fastcall* sub_140A04970) (__int64 a1);
+	sub_140A04970 osub_140A04970 = (sub_140A04970)(moddingApi::Memory::moduleBase + 0xA03D70 + 0xC00);
+
+	typedef __int64(__fastcall* sub_1407AE694) (__int64 a1);
+	sub_1407AE694 osub_1407AE694 = (sub_1407AE694)(moddingApi::Memory::moduleBase + 0x7ADA94 + 0xC00);
+
+	playerAddr = (__int64)rcx;
+	__int64 baseInputAddr = playerAddr + 0x218;
+	if ((*(int8_t*)(baseInputAddr + 0x602) != 0)) {
+		return oCheckNinjaMovePlayerState(rcx, a1, a2, a3);
+	}
+	if ((a3 == 0 && (a2 == 0 || a2 == 1 || a2 == 2)) || ((a2 == 0 || a2 == 1) && a3 == 1)) {
+	}
+	else {
+		return oCheckNinjaMovePlayerState(rcx, a1, a2, a3);
+	}
+	v3 = a1;
+	v5 = 0;
+	if (*(DWORD*)(playerAddr + 0xCC0) == 4 || *(DWORD*)(playerAddr + 0xCC0) == 5 || *(DWORD*)(playerAddr + 0xCC0) == 8) {
+		return oCheckNinjaMovePlayerState(rcx, a1, a2, a3);
+	}
+	if ((*(int (**)(void))(*(__int64*)playerAddr + 0xE78i64))() && (DWORD)(playerAddr + 0xCC0) != 9)
+	{
+		v6 = osub_1407C0DD8(playerAddr + 0x218, 0);
+		v7 = playerAddr + 0x218;
+		if (v6)
+		{
+			return oCheckNinjaMovePlayerState(rcx, a1, a2, a3);
+		}
+		else
+		{
+			osub_1407C0748(v7, 0);
+			if (*(float*)&a3 <= 0.5)
+			{
+				osub_140A04970(playerAddr + 0x1417C);
+				if (*(float*)&a3 < 1.0f) {
+					if (*(float*)&a3 < 0.0f) {
+						return oCheckNinjaMovePlayerState(rcx, a1, a2, a3);
+					}
+					if (*(DWORD*)(playerAddr + 0x14198) == 0) {
+						v5 = osub_1407AE694(playerAddr);
+						goto LABEL_33;
+					}
+				}
+				else {
+					return oCheckNinjaMovePlayerState(rcx, a1, a2, a3);
+				}
+			}
+			return oCheckNinjaMovePlayerState(rcx, a1, a2, a3);
+		}
+	}
+	else {
+		return oCheckNinjaMovePlayerState(rcx, a1, a2, a3);
+	}
+	LABEL_33:
+	*(DWORD*)(playerAddr + 0xCC8) = 4;
+	*(DWORD*)(playerAddr + 0xCDC) = 1;
+	result = (unsigned int)v5;
+	return result;
+	
+}
+
+typedef __int64(__fastcall* StateCdash) (void* rcx, __int64 a1, int a2, float a3);
+StateCdash oStateCdash = NULL;
+
+__int64 __fastcall nStateCdash(void* rcx, __int64 a1, int a2, float a3) {
+	int v3; // edi@1
+	__int64 playerAddr; // rbx@1
+	int v5; // edx@4
+	int v6; // edx@5
+	int v7; // edx@6
+	int v8; // eax@8
+	__int64 v9; // rdx@11
+	int v10; // ecx@11
+	int v11; // ecx@14
+	int v12; // ecx@15
+	int v13; // ecx@16
+	int v14; // ecx@17
+	int v15; // ecx@18
+	int v16; // ecx@19
+	__int64 v17; // rax@30
+	int v18; // eax@31
+	int v19; // eax@32
+	unsigned int v20; // eax@32
+	__int64 result; // rax@33
+
+
+	typedef int(__fastcall* sub_14079D800) (__int64 a1);
+	sub_14079D800 osub_14079D800 = (sub_14079D800)(moddingApi::Memory::moduleBase + 0x79CC00 + 0xC00);
+
+	typedef int(__fastcall* sub_14079D8F4) (__int64 a1);
+	sub_14079D8F4 osub_14079D8F4 = (sub_14079D8F4)(moddingApi::Memory::moduleBase + 0x79CCF4 + 0xC00);
+
+	signed typedef __int64(__fastcall* sub_14079E7B0) (__int64 a1);
+	sub_14079E7B0 osub_14079E7B0 = (sub_14079E7B0)(moddingApi::Memory::moduleBase + 0x79DBB0 + 0xC00);
+
+	typedef int(__fastcall* sub_14079DDA0) (__int64 a1);
+	sub_14079DDA0 osub_14079DDA0 = (sub_14079DDA0)(moddingApi::Memory::moduleBase + 0x79D1A0 + 0xC00);
+
+	typedef int(__fastcall* sub_14079E570) (__int64 a1, float a2, __int64 a3);
+	sub_14079E570 osub_14079E570 = (sub_14079E570)(moddingApi::Memory::moduleBase + 0x79D970 + 0xC00);
+
+	typedef int(__fastcall* sub_14079E568) (__int64 a1);
+	sub_14079E568 osub_14079E568 = (sub_14079E568)(moddingApi::Memory::moduleBase + 0x79D968 + 0xC00);
+
+	typedef int(__fastcall* sub_14079CF24) (__int64 a1);
+	sub_14079CF24 osub_14079CF24 = (sub_14079CF24)(moddingApi::Memory::moduleBase + 0x79C324 + 0xC00);
+
+	typedef __int64(__fastcall* sub_140A046F0) (__int64 a1);
+	sub_140A046F0 osub_140A046F0 = (sub_140A046F0)(moddingApi::Memory::moduleBase + 0xA03AF0 + 0xC00);
+
+	typedef __int64(__fastcall* sub_14079D280) (__int64 a1);
+	sub_14079D280 osub_14079D280 = (sub_14079D280)(moddingApi::Memory::moduleBase + 0x79C680 + 0xC00);
+
+	typedef __int64(__fastcall* sub_14079D544) (__int64 a1);
+	sub_14079D544 osub_14079D544 = (sub_14079D544)(moddingApi::Memory::moduleBase + 0x79C944 + 0xC00);
+
+	typedef int(__fastcall* sub_140764210) (__int64 a1, int a2);
+	sub_140764210 osub_140764210 = (sub_140764210)(moddingApi::Memory::moduleBase + 0x763610 + 0xC00);
+
+	signed typedef __int64(__fastcall* sub_14079D500) (__int64 a1);
+	sub_14079D500 osub_14079D500 = (sub_14079D500)(moddingApi::Memory::moduleBase + 0x79C900 + 0xC00);
+
+	typedef __int64(__fastcall sub_14079D590) (void* rcx, __int64 a1, float a2);
+	sub_14079D590* osub_14079D590 = (sub_14079D590*)(moddingApi::Memory::moduleBase + 0x79C990 + 0xC00);
+	
+	playerAddr = (__int64)rcx;
+	__int64 retval = oStateCdash(rcx, a1, a2, a3);
+	if (*(DWORD*)(playerAddr + 0xCCC) == 4) {
+		*(DWORD*)(playerAddr + 0xCCC) = 6;
+		return 6;
+	}
+	else {
+		return retval;
+	}
+
+	v3 = *(DWORD*)(playerAddr + 0xCCC);
+	playerAddr = a1;
+	if (v3 < 0)
+		v3 = 0;
+	if (v3) {
+		return oStateCdash(rcx, a1, a2, a3);
+	}
+	/*
+	if (a2)
+	{
+		std::cout << "a2: " << a2 << std::endl;
+		v5 = a2 - 1;
+		if (v5)
+		{
+			std::cout << "v5: " << v5 << std::endl;
+			v6 = v5 - 1;
+			if (!v6)
+			{
+				std::cout << "!v6" << std::endl;
+				osub_14079D800(a1);
+				goto LABEL_33;
+			}
+			v7 = v6 - 3;
+			if (!v7)
+			{
+				std::cout << "!v7" << std::endl;
+				osub_14079D8F4(a1);
+				goto LABEL_33;
+			}
+			if (v7 != 3)
+				std::cout << "v7 != 3" << std::endl;
+				goto LABEL_33;
+			v8 = osub_14079E7B0(a1);
+			goto LABEL_29;
+		}
+		osub_14079DDA0(a1);
+		v9 = *(DWORD*)(playerAddr + 3276);
+		if (v9 < 0)
+			v9 = 0;
+		if (v9)
+		{
+			std::cout << "v9: " << v9 << std::endl;
+			v10 = v9 - 1;
+			if (v10)
+			{
+				std::cout << "v10: " << v10 << std::endl;
+				v11 = v10 - 1;
+				if (!v11)
+				{
+					osub_14079E570(playerAddr, a3, v9);
+					goto LABEL_33;
+				}
+				v12 = v11 - 1;
+				if (!v12)
+				{
+					osub_14079E568(playerAddr);
+					goto LABEL_33;
+				}
+				v13 = v12 - 1;
+				if (v13)
+				{
+					v14 = v13 - 1;
+					if (v14)
+					{
+						v15 = v14 - 1;
+						if (v15)
+						{
+							if (v15 == 1)
+								osub_14079CF24(playerAddr);
+							goto LABEL_33;
+						}
+						v8 = osub_14079D280(playerAddr);
+					}
+					else
+					{
+						v8 = osub_14079D544(playerAddr);
+					}
+				}
+				else
+				{
+					v8 = osub_14079D500(playerAddr);
+				}
+			}
+			else
+			{
+				v8 = (*(int(__fastcall**)(__int64))(*(__int64*)playerAddr + 0x1580i64))(playerAddr);
+			}
+		}
+		else
+		{
+			v8 = (*(int(__fastcall**)(__int64))(*(__int64*)playerAddr + 0x1578i64))(playerAddr);
+		}
+	LABEL_29:
+		std::cout << "Label 29" << std::endl;
+		v3 = v8;
+		goto LABEL_33;
+	}
+	
+	v16 = (*(int (**)(void))(*(__int64*)a1 + 0xD88i64))();
+	if (v16)
+	{
+		v17 = (*(int(__fastcall**)(__int64))(*(__int64*)v16 + 24i64))(v16);
+		osub_140764210(playerAddr, v17);
+	}
+	*/
+	v17 = (*(int (**)(void))(*(__int64*)playerAddr + 0xD88i64))();
+	std::cout << "osub_14079D590(playerAddr, a3);" << std::endl;
+	if (v17)
+	{
+		v18 = (*(int(__fastcall**)(__int64))(*(__int64*)v17 + 0x18i64))(v17);
+		std::cout << "osub_14079D590(playerAddr, a3);" << std::endl;
+		osub_140764210(playerAddr, v18);
+		std::cout << "osub_14079D590(playerAddr, a3);" << std::endl;
+	}
+	std::cout << "osub_14079D590(playerAddr, a3);" << std::endl;
+	v19 = 7;
+	*(DWORD*)(playerAddr + 0xCCC) = v19;
+	v3 = v19;
+	std::cout << "osub_14079D590(playerAddr, a3);" << std::endl;
+	v20 = 0;//-(0xBB8u / *((BYTE*)((0x1416663C8 - 0x140000000 + 0xC00) + 2370)));
+	*(DWORD*)(playerAddr + 0xCD0) = 0;
+	*(DWORD*)(playerAddr + 0xCD4) = 4294967196;
+	std::cout << "pre 33: " << std::endl;
+LABEL_33:
+	std::cout << "v3: " << v3 << std::endl;
+	*(DWORD*)(playerAddr + 0xCCC) = v3;
+	//result = -(0xBB8u / *((BYTE*)((0x1416663C8 - 0x140000000 + 0xC00) + 2370)));
+	*(DWORD*)(playerAddr + 0xCD0) = 0;
+	*(DWORD*)(playerAddr + 0xCD4) = 0xFFFFFF9C;
+	return result;
+	if ((signed int)result < 0)
+		result = 0i64;
+	if (v3 != (DWORD)result)
+	{
+		*(DWORD*)(playerAddr + 0xCCC) = v3;
+		//result = -(0xBB8u / *((BYTE*)((0x1416663C8-0x140000000+0xC00) + 2370)));
+		*(DWORD*)(playerAddr + 0xCD0) = 0;
+		*(DWORD*)(playerAddr + 0xCD4) = 4294967196;
+	}
+	return result;
+}
+		
+typedef int(__fastcall* sub_1407AB468) (__int64 a1, unsigned int a2);
+sub_1407AB468 osub_1407AB468 = NULL;
+
+int __fastcall nsub_1407AB468(__int64 a1, unsigned int a2) {
+	int returnval = osub_1407AB468(a1, a2);
+	return returnval;
+}
+
+typedef int(__fastcall* sub_1407B07C8) (__int64 a1, int a2);
+sub_1407B07C8 osub_1407B07C8 = NULL;
+
+int nsub_1407B07C8(__int64 a1, int a2) {
+	int returnval = osub_1407B07C8(a1, a2);
+	if ((*(DWORD*)(a1 + 0xCC0) == 17) && (*(DWORD*)(a1 + 0xCC4) == 64) && (*(DWORD*)(a1 + 0xCCC) == 0)) {
+		*(DWORD*)(a1 + 0xCCC) = 1;
+	}
+	return returnval;
+}
+
+void __fastcall nsetPriorityToNot0(__int64 a1, int a2)
+{
+	if (a2 == 349)
+		a2 = 350;
+	if (*(DWORD*)(a1 + 0x14A90) == 1)
+		a2 = 351;
+	*(DWORD*)(a1 + 0x1403C) = a2;
+	*(DWORD*)(a1 + 0x14044) = a2;
 }
 
 	//Initializes our memory hooks through usage of the MinHook library. uintptr_t addresses MUST be local variables.
 void moddingApi::Memory::InitHooks() {
 	if (MH_Initialize() == MH_OK) {
 		//bool status;
+		
 		std::uintptr_t addrLoadCpkInit = (std::uintptr_t)(moddingApi::Memory::moduleBase + 0x854F3C + 0xC00);
-		std::uintptr_t addrNewPlayerState = (std::uintptr_t)(moddingApi::Memory::moduleBase + 0x7ADCB4 + 0xC00);
 		std::uintptr_t addrMessageInfo = (std::uintptr_t)(moddingApi::Memory::moduleBase + 0xAB8720 + 0xC00);
 		std::uintptr_t addrMemString = (std::uintptr_t)(moddingApi::Memory::moduleBase + 0xA01230 + 0xC00);
 		std::uintptr_t addrInitializeccSceneFreeBattleBegin = (std::uintptr_t)(moddingApi::Memory::moduleBase + 0x6DCC64 + 0xC00);
-		std::uintptr_t addrPlayerAnim = (std::uintptr_t)(moddingApi::Memory::moduleBase + 0x77D8A0 + 0xC00);
-		std::uintptr_t addrSetNoChakraCirclePlayerState = (std::uintptr_t)(moddingApi::Memory::moduleBase + 0x22A208 + 0xC00);
 		std::uintptr_t addrSetGrabPlayerState = (std::uintptr_t)(moddingApi::Memory::moduleBase + 0x7DF614 + 0xC00);
 		std::uintptr_t addrDecideItemState = (std::uintptr_t)(moddingApi::Memory::moduleBase + 0x7E09F4 + 0xC00);
 		std::uintptr_t addrSingleMoveBuffering = (std::uintptr_t)(moddingApi::Memory::moduleBase + 0x77EF30 + 0xC00);
 		std::uintptr_t addrAreYouComboing = (std::uintptr_t)(moddingApi::Memory::moduleBase + 0x7AD960 + 0xC00);
+		std::uintptr_t addrCanYouShuriken = (std::uintptr_t)(moddingApi::Memory::moduleBase + 0x7AD024 + 0xC00);
+		std::uintptr_t addrCheckNinjaMovePlayerState = (std::uintptr_t)(moddingApi::Memory::moduleBase + 0x7920CC + 0xC00);
+		std::uintptr_t addrStateCdash = (std::uintptr_t)(moddingApi::Memory::moduleBase + 0x7AFA38 + 0xC00);
+		std::uintptr_t addrsub_1407AB468 = (std::uintptr_t)(moddingApi::Memory::moduleBase + 0x7AA868 + 0xC00);
+		std::uintptr_t addrsub_1407B07C8 = (std::uintptr_t)(moddingApi::Memory::moduleBase + 0x7AFBC8 + 0xC00);
+		std::uintptr_t addrSetPriorityToNot0 = (std::uintptr_t)(moddingApi::Memory::moduleBase + 0x79BD44 + 0xC00);
+		std::uintptr_t addrNewPlayerState = (std::uintptr_t)(moddingApi::Memory::moduleBase + 0x7ADCB4 + 0xC00);
+		std::uintptr_t addrPlayerAnim = (std::uintptr_t)(moddingApi::Memory::moduleBase + 0x77D8A0 + 0xC00);
+		std::uintptr_t addrSetNoChakraCirclePlayerState = (std::uintptr_t)(moddingApi::Memory::moduleBase + 0x22A208 + 0xC00);
 		std::cout << "MinHook Initialized" << std::endl;
 		
-		bool status = MH_CreateHook((LPVOID)addrAreYouComboing, nAreYouComboing, (LPVOID*)(&oAreYouComboing));
+		bool status = MH_CreateHook((LPVOID)addrSetPriorityToNot0, nsetPriorityToNot0, (LPVOID*)(NULL));
+		if (status != MH_OK)
+		{
+			std::cout << "could not create hook PlayerAnim" << std::endl;
+		}
+
+		status = MH_EnableHook((LPVOID)addrSetPriorityToNot0);
+		if (status != MH_OK)
+		{
+			std::cout << "could not enable hook PlayerAnim" << std::endl;
+		}
+
+		status = MH_CreateHook((LPVOID)addrsub_1407AB468, nsub_1407AB468, (LPVOID*)(&osub_1407AB468));
+		if (status != MH_OK)
+		{
+			std::cout << "could not create hook PlayerAnim" << std::endl;
+		}
+
+		status = MH_EnableHook((LPVOID)addrsub_1407AB468);
+		if (status != MH_OK)
+		{
+			std::cout << "could not enable hook PlayerAnim" << std::endl;
+		}
+
+		status = MH_CreateHook((LPVOID)addrsub_1407B07C8, nsub_1407B07C8, (LPVOID*)(&osub_1407B07C8));
+		if (status != MH_OK)
+		{
+			std::cout << "could not create hook PlayerAnim" << std::endl;
+		}
+
+		status = MH_EnableHook((LPVOID)addrsub_1407B07C8);
+		if (status != MH_OK)
+		{
+			std::cout << "could not enable hook PlayerAnim" << std::endl;
+		}
+
+		status = MH_CreateHook((LPVOID)addrStateCdash, nStateCdash, (LPVOID*)(&oStateCdash));
+		if (status != MH_OK)
+		{
+			std::cout << "could not create hook PlayerAnim" << std::endl;
+		}
+
+		status = MH_EnableHook((LPVOID)addrStateCdash);
+		if (status != MH_OK)
+		{
+			std::cout << "could not enable hook PlayerAnim" << std::endl;
+		}
+
+		status = MH_CreateHook((LPVOID)addrCheckNinjaMovePlayerState, nCheckNinjaMovePlayerState, (LPVOID*)(&oCheckNinjaMovePlayerState));
+		if (status != MH_OK)
+		{
+			std::cout << "could not create hook PlayerAnim" << std::endl;
+		}
+
+		status = MH_EnableHook((LPVOID)addrCheckNinjaMovePlayerState);
+		if (status != MH_OK)
+		{
+			std::cout << "could not enable hook PlayerAnim" << std::endl;
+		}
+
+		status = MH_CreateHook((LPVOID)addrCanYouShuriken, nCanYouShuriken, (LPVOID*)(NULL));
+		if (status != MH_OK)
+		{
+			std::cout << "could not create hook PlayerAnim" << std::endl;
+		}
+
+		status = MH_EnableHook((LPVOID)addrCanYouShuriken);
+		if (status != MH_OK)
+		{
+			std::cout << "could not enable hook PlayerAnim" << std::endl;
+		}
+		
+		status = MH_CreateHook((LPVOID)addrAreYouComboing, nAreYouComboing, (LPVOID*)(&oAreYouComboing));
 		if (status != MH_OK)
 		{
 			std::cout << "could not create hook PlayerAnim" << std::endl;
@@ -1185,7 +1698,7 @@ void moddingApi::Memory::InitHooks() {
 		{
 			std::cout << "could not enable hook PlayerAnim" << std::endl;
 		}
-
+		
 		status = MH_CreateHook((LPVOID)addrSetGrabPlayerState, nSetGrabPlayerState, (LPVOID*)(&oSetGrabPlayerState));
 		if (status != MH_OK)
 		{
@@ -1197,7 +1710,7 @@ void moddingApi::Memory::InitHooks() {
 		{
 			std::cout << "could not enable hook PlayerAnim" << std::endl;
 		}
-
+		
 		status = MH_CreateHook((LPVOID)addrPlayerAnim, nPlayerAnim, (LPVOID*)(&oPlayerAnim));
 		if (status != MH_OK)
 		{
@@ -1221,7 +1734,7 @@ void moddingApi::Memory::InitHooks() {
 		{
 			std::cout << "could not enable hook PlayerAnim" << std::endl;
 		}
-
+		/*
 		status = MH_CreateHook((LPVOID)addrLoadCpkInit, &moddingApi::Settings::LoadCpkInitial, reinterpret_cast<LPVOID*>(&oInitCPKLoad));
 		if (status != MH_OK)
 		{
@@ -1233,7 +1746,7 @@ void moddingApi::Memory::InitHooks() {
 		{
 			std::cout << "could not enable hook LoadCpkInit" << std::endl;
 		}
-
+		*/
 		status = MH_CreateHook((LPVOID)addrNewPlayerState, &moddingApi::Memory::nnewPlayerState, reinterpret_cast<LPVOID*>(&onewPlayerState));
 		if (status != MH_OK)
 		{
@@ -1245,7 +1758,7 @@ void moddingApi::Memory::InitHooks() {
 		{
 			std::cout << "could not enable hook NewPlayerStat" << std::endl;
 		}
-
+		
 		status = MH_CreateHook((LPVOID)addrMemString, &moddingApi::Memory::getInfoFromMemoryString1, reinterpret_cast<LPVOID*>(&ogetInfoFromMemoryString1));
 		if (status != MH_OK)
 		{
@@ -1260,7 +1773,7 @@ void moddingApi::Memory::InitHooks() {
 		
 
 		moddingApi::Scene::sceneHooks();
-
+		
 
 		
 		/*
@@ -1289,7 +1802,6 @@ void moddingApi::Memory::InitHooks() {
 		*/
 	}
 }
-std::vector<BYTE> replace;
 
 
 
@@ -1306,6 +1818,17 @@ void moddingApi::Memory::WriteBytes() {
 	moddingApi::Memory::write_bytes<5>(moddingApi::Memory::moduleBase + 0xB260B0 + 0xC00, { 0x90, 0x90, 0x90, 0x90, 0x90 });
 	moddingApi::Memory::write_bytes<5>(moddingApi::Memory::moduleBase + 0xB26863 + 0xC00, { 0x90, 0x90, 0x90, 0x90, 0x90 });
 	moddingApi::Memory::write_bytes<5>(moddingApi::Memory::moduleBase + 0xB26B45 + 0xC00, { 0x90, 0x90, 0x90, 0x90, 0x90 });
+	
+	//Cancelling out of Tilt
+	moddingApi::Memory::write_bytes<4>(moddingApi::Memory::moduleBase + 0x77E621 + 0xC00, { 0x90, 0x90, 0x90, 0x90 });
+
+	//Old Support Style
+	moddingApi::Memory::write_bytes<21>(moddingApi::Memory::moduleBase + 0x7BF6F2 + 0xC00, { 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90 });
+	moddingApi::Memory::write_bytes<7>(moddingApi::Memory::moduleBase + 0x7C059A + 0xC00, { 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90});
+
+	//No More Black State
+	moddingApi::Memory::write_bytes<10>(moddingApi::Memory::moduleBase + 0x576C9E + 0xC00, { 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90 });
+	
 }
 
 
