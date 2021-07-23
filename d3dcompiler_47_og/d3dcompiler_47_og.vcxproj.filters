@@ -87,7 +87,7 @@
       <Filter>Header Files\General</Filter>
     </ClInclude>
     <ClInclude Include="Functions.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\General</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

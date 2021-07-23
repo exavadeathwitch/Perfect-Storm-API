@@ -92,7 +92,10 @@ newPlayerState onewPlayerState = NULL;
 __int64 __fastcall moddingApi::Memory::nnewPlayerState(__int64 a1, unsigned int a2, int a3, int a4)
 {
 	int playerNum = *(DWORD*)(a1 + 0xB08);
-	std::cout << "Player: " << playerNum << " State: " << a2 << std::endl;
+	if (a2 == 211) {
+		//*(DWORD*)(a1 + 0xFE50) = 1;
+		//*(DWORD*)(a1 + 0xFE74) = 0;
+	}
 	return onewPlayerState(a1, a2, a3, a4);
 	//return onewPlayerState(a1, a2, a3, a4);
 	/*
@@ -118,6 +121,7 @@ __int64 __fastcall moddingApi::Memory::nnewPlayerState(__int64 a1, unsigned int 
 	//Chakra Shuriken Cover Fire Ground
 	if ((a2 == 67) && (*(DWORD*)(a1 + 0xCC0) == 214)) {
 		a2 = 70;
+		std::cout << "Player: " << playerNum << " State: " << a2 << std::endl;
 		return onewPlayerState(a1, a2, a3, a4);
 	}
 	/*
@@ -128,12 +132,15 @@ __int64 __fastcall moddingApi::Memory::nnewPlayerState(__int64 a1, unsigned int 
 	//Chakra Shuriken Cover Fire Air
 	if ((a2 == 68) && (*(DWORD*)(a1 + 0xCC0) == 214)) {
 		a2 = 71;
+		std::cout << "Player: " << playerNum << " State: " << a2 << std::endl;
 		return onewPlayerState(a1, a2, a3, a4);
 	}
 	//Tilt, Shuriken, Chakra Shuriken, Grab Switch Priority
+	/*
 	if (a2 == 207 && (*(DWORD*)(a1 + 0xCC0) == 66 || *(DWORD*)(a1 + 0xCC0) == 67 || *(DWORD*)(a1 + 0xCC0) == 70|| *(DWORD*)(a1 + 0xCC0) == 72)){
 		return 0;
 	}
+	*/
 	/*
 	//Stun Lock Removal
 	if ((*(DWORD*)(a1 + 0xCC0) == 1 && (a2 == 112 || a2 == 2 || a2 == 63 || a2 == 132 || a2 == 4 || a2 == 5))) {
@@ -142,6 +149,7 @@ __int64 __fastcall moddingApi::Memory::nnewPlayerState(__int64 a1, unsigned int 
 		return 1;
 	}
 	*/
+	std::cout << "Player: " << playerNum << " State: " << a2 << std::endl;
 	return onewPlayerState(a1, a2, a3, a4);
 	/*
 	std::cout << "stuff: " + a2 << std::endl;
@@ -1567,10 +1575,48 @@ void __fastcall nsetPriorityToNot0(__int64 a1, int a2)
 	*(DWORD*)(a1 + 0x14044) = a2;
 }
 
+typedef int(__fastcall* writeSupportState)(__int64 a1, unsigned int a2);
+writeSupportState oWriteSupportState = NULL;
+
+int __fastcall nWriteSupportState(__int64 a1, unsigned int a2) {
+	if (*(DWORD*)(a1 + 0xCC0) == 214) {
+	if (a2 == 67)
+		a2 = 70;
+	if (a2 == 68)
+		a2 = 71;
+	}
+	return oWriteSupportState(a1, a2);
+}
+
+typedef int(__fastcall* writeTypeOfSwitchByte)(__int64 a1);
+writeTypeOfSwitchByte oWriteTypeOfSwitchByte = NULL;
+
+int __fastcall nWriteTypeOfSwitchByte(__int64 a1) {
+	int playerState = *(DWORD*)(a1 + 0xCC0);
+	if (playerState == 66 || playerState == 67 || playerState == 70 || playerState == 72) {
+		*(DWORD*)(a1 + 0x14C14) = 1;
+		return playerState;
+	}
+	else
+	return oWriteTypeOfSwitchByte(a1);
+}
+
+typedef __int64(__fastcall* setTriangleState)(__int64 a1);
+setTriangleState oSetTriangleState = NULL;
+
+__int64 nSetTriangleState(__int64 a1) {
+	int preChakraLoad = *(DWORD*)(a1 + 0xFE74);
+	__int64 retVal = oSetTriangleState(a1);
+	int postChakraLoad = *(DWORD*)(a1 + 0xFE74);
+	if (postChakraLoad > preChakraLoad + 1) {
+		*(DWORD*)(a1 + 0xFE74) = preChakraLoad + 1;
+	}
+	return retVal;
+}
 	//Initializes our memory hooks through usage of the MinHook library. uintptr_t addresses MUST be local variables.
 void moddingApi::Memory::InitHooks() {
 	if (MH_Initialize() == MH_OK) {
-		//bool status;
+		bool status;
 		
 		std::uintptr_t addrLoadCpkInit = (std::uintptr_t)(moddingApi::Memory::moduleBase + 0x854F3C + 0xC00);
 		std::uintptr_t addrMessageInfo = (std::uintptr_t)(moddingApi::Memory::moduleBase + 0xAB8720 + 0xC00);
@@ -1578,7 +1624,7 @@ void moddingApi::Memory::InitHooks() {
 		std::uintptr_t addrInitializeccSceneFreeBattleBegin = (std::uintptr_t)(moddingApi::Memory::moduleBase + 0x6DCC64 + 0xC00);
 		std::uintptr_t addrSetGrabPlayerState = (std::uintptr_t)(moddingApi::Memory::moduleBase + 0x7DF614 + 0xC00);
 		std::uintptr_t addrDecideItemState = (std::uintptr_t)(moddingApi::Memory::moduleBase + 0x7E09F4 + 0xC00);
-		std::uintptr_t addrSingleMoveBuffering = (std::uintptr_t)(moddingApi::Memory::moduleBase + 0x77EF30 + 0xC00);
+		//std::uintptr_t addrSingleMoveBuffering = (std::uintptr_t)(moddingApi::Memory::moduleBase + 0x77EF30 + 0xC00);
 		std::uintptr_t addrAreYouComboing = (std::uintptr_t)(moddingApi::Memory::moduleBase + 0x7AD960 + 0xC00);
 		std::uintptr_t addrCanYouShuriken = (std::uintptr_t)(moddingApi::Memory::moduleBase + 0x7AD024 + 0xC00);
 		std::uintptr_t addrCheckNinjaMovePlayerState = (std::uintptr_t)(moddingApi::Memory::moduleBase + 0x7920CC + 0xC00);
@@ -1589,9 +1635,48 @@ void moddingApi::Memory::InitHooks() {
 		std::uintptr_t addrNewPlayerState = (std::uintptr_t)(moddingApi::Memory::moduleBase + 0x7ADCB4 + 0xC00);
 		std::uintptr_t addrPlayerAnim = (std::uintptr_t)(moddingApi::Memory::moduleBase + 0x77D8A0 + 0xC00);
 		std::uintptr_t addrSetNoChakraCirclePlayerState = (std::uintptr_t)(moddingApi::Memory::moduleBase + 0x22A208 + 0xC00);
+		std::uintptr_t addrWriteTypeOfSwitchByte = (std::uintptr_t)(moddingApi::Memory::moduleBase + 0x5763A0 + 0xC00);
+		std::uintptr_t addrWriteSupportState = (std::uintptr_t)(moddingApi::Memory::moduleBase + 0x7E5C2C + 0xC00);
+		std::uintptr_t addrSetTriangleState = (std::uintptr_t)(moddingApi::Memory::moduleBase + 0x7C6AD8 + 0xC00);
 		std::cout << "MinHook Initialized" << std::endl;
+		/*
+		status = MH_CreateHook((LPVOID)addrSetTriangleState, nSetTriangleState, (LPVOID*)(&oSetTriangleState));
+		if (status != MH_OK)
+		{
+			std::cout << "could not create hook PlayerAnim" << std::endl;
+		}
 		
-		bool status = MH_CreateHook((LPVOID)addrSetPriorityToNot0, nsetPriorityToNot0, (LPVOID*)(NULL));
+		status = MH_EnableHook((LPVOID)addrSetTriangleState);
+		if (status != MH_OK)
+		{
+			std::cout << "could not enable hook PlayerAnim" << std::endl;
+		}
+		*/
+		status = MH_CreateHook((LPVOID)addrWriteTypeOfSwitchByte, nWriteTypeOfSwitchByte, (LPVOID*)(&oWriteTypeOfSwitchByte));
+		if (status != MH_OK)
+		{
+			std::cout << "could not create hook PlayerAnim" << std::endl;
+		}
+
+		status = MH_EnableHook((LPVOID)addrWriteTypeOfSwitchByte);
+		if (status != MH_OK)
+		{
+			std::cout << "could not enable hook PlayerAnim" << std::endl;
+		}
+
+		status = MH_CreateHook((LPVOID)addrWriteSupportState, nWriteSupportState, (LPVOID*)(&oWriteSupportState));
+		if (status != MH_OK)
+		{
+			std::cout << "could not create hook PlayerAnim" << std::endl;
+		}
+
+		status = MH_EnableHook((LPVOID)addrWriteSupportState);
+		if (status != MH_OK)
+		{
+			std::cout << "could not enable hook PlayerAnim" << std::endl;
+		}
+
+		status = MH_CreateHook((LPVOID)addrSetPriorityToNot0, nsetPriorityToNot0, (LPVOID*)(NULL));
 		if (status != MH_OK)
 		{
 			std::cout << "could not create hook PlayerAnim" << std::endl;
@@ -1674,7 +1759,7 @@ void moddingApi::Memory::InitHooks() {
 		{
 			std::cout << "could not enable hook PlayerAnim" << std::endl;
 		}
-
+		/*
 		 status = MH_CreateHook((LPVOID)addrSingleMoveBuffering, &nSingleMoveBuffering, reinterpret_cast<LPVOID*>(&oSingleMoveBuffering));
 		if (status != MH_OK)
 		{
@@ -1698,7 +1783,7 @@ void moddingApi::Memory::InitHooks() {
 		{
 			std::cout << "could not enable hook PlayerAnim" << std::endl;
 		}
-		
+		*/
 		status = MH_CreateHook((LPVOID)addrSetGrabPlayerState, nSetGrabPlayerState, (LPVOID*)(&oSetGrabPlayerState));
 		if (status != MH_OK)
 		{
@@ -1823,11 +1908,15 @@ void moddingApi::Memory::WriteBytes() {
 	moddingApi::Memory::write_bytes<4>(moddingApi::Memory::moduleBase + 0x77E621 + 0xC00, { 0x90, 0x90, 0x90, 0x90 });
 
 	//Old Support Style
-	moddingApi::Memory::write_bytes<21>(moddingApi::Memory::moduleBase + 0x7BF6F2 + 0xC00, { 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90 });
+	//moddingApi::Memory::write_bytes<21>(moddingApi::Memory::moduleBase + 0x7BF6F2 + 0xC00, { 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90 });
+	/*
 	moddingApi::Memory::write_bytes<7>(moddingApi::Memory::moduleBase + 0x7C059A + 0xC00, { 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90});
-
+	moddingApi::Memory::write_bytes<5>(moddingApi::Memory::moduleBase + 0x5741AD + 0xC00, { 0x90, 0x90, 0x90, 0x90, 0x90});
+	moddingApi::Memory::write_bytes<5>(moddingApi::Memory::moduleBase + 0x575C3E + 0xC00, { 0x90, 0x90, 0x90, 0x90, 0x90 });
+	moddingApi::Memory::write_bytes<5>(moddingApi::Memory::moduleBase + 0x573F90 + 0xC00, { 0x90, 0x90, 0x90, 0x90, 0x90 });
+	*/
 	//No More Black State
-	moddingApi::Memory::write_bytes<10>(moddingApi::Memory::moduleBase + 0x576C9E + 0xC00, { 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90 });
+	//moddingApi::Memory::write_bytes<10>(moddingApi::Memory::moduleBase + 0x576C9E + 0xC00, { 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90 });
 	
 }
 
