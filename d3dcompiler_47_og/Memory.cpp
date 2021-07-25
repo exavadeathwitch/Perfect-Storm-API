@@ -21,13 +21,6 @@ msgtest omsgtest = NULL;
 signed typedef int(__fastcall* msgtest2)();
 msgtest2 omsgtest2 = NULL;
 
-typedef __int64(__fastcall* checkFPSMatchmaking)();
-checkFPSMatchmaking ocheckFPSMatchmaking = NULL;
-
-__int64 ncheckFPSMatchmaking() {
-	return matchmakingFPS;
-}
-
 /*
 signed typedef __int64(__fastcall* DecreaseHealth) (__int64 a1, __int64 a2, float Damage);
 DecreaseHealth oDecreaseHealth = NULL;
@@ -93,8 +86,8 @@ __int64 __fastcall moddingApi::Memory::nnewPlayerState(__int64 a1, unsigned int 
 {
 	int playerNum = *(DWORD*)(a1 + 0xB08);
 	if (a2 == 211) {
-		//*(DWORD*)(a1 + 0xFE50) = 1;
-		//*(DWORD*)(a1 + 0xFE74) = 0;
+		*(DWORD*)(a1 + 0xFE50) = 1;
+		*(DWORD*)(a1 + 0xFE74) = 0;
 	}
 	return onewPlayerState(a1, a2, a3, a4);
 	//return onewPlayerState(a1, a2, a3, a4);
@@ -1613,6 +1606,14 @@ __int64 nSetTriangleState(__int64 a1) {
 	}
 	return retVal;
 }
+
+typedef __int64(__fastcall* checkFPSMatchmaking)();
+checkFPSMatchmaking ocheckFPSMatchmaking = NULL;
+
+__int64 ncheckFPSMatchmaking() {
+	return matchmakingFPS;
+}
+
 	//Initializes our memory hooks through usage of the MinHook library. uintptr_t addresses MUST be local variables.
 void moddingApi::Memory::InitHooks() {
 	if (MH_Initialize() == MH_OK) {
@@ -1638,7 +1639,21 @@ void moddingApi::Memory::InitHooks() {
 		std::uintptr_t addrWriteTypeOfSwitchByte = (std::uintptr_t)(moddingApi::Memory::moduleBase + 0x5763A0 + 0xC00);
 		std::uintptr_t addrWriteSupportState = (std::uintptr_t)(moddingApi::Memory::moduleBase + 0x7E5C2C + 0xC00);
 		std::uintptr_t addrSetTriangleState = (std::uintptr_t)(moddingApi::Memory::moduleBase + 0x7C6AD8 + 0xC00);
+		std::uintptr_t addrcheckFPSMatchmaking = (std::uintptr_t)(moddingApi::Memory::moduleBase + 0x6B39CC + 0xC00);
 		std::cout << "MinHook Initialized" << std::endl;
+
+		status = MH_CreateHook((LPVOID)addrcheckFPSMatchmaking, ncheckFPSMatchmaking, (LPVOID*)(&ocheckFPSMatchmaking));
+		if (status != MH_OK)
+		{
+			std::cout << "could not create hook PlayerAnim" << std::endl;
+		}
+
+		status = MH_EnableHook((LPVOID)addrcheckFPSMatchmaking);
+		if (status != MH_OK)
+		{
+			std::cout << "could not enable hook PlayerAnim" << std::endl;
+		}
+
 		/*
 		status = MH_CreateHook((LPVOID)addrSetTriangleState, nSetTriangleState, (LPVOID*)(&oSetTriangleState));
 		if (status != MH_OK)
@@ -1909,14 +1924,14 @@ void moddingApi::Memory::WriteBytes() {
 
 	//Old Support Style
 	//moddingApi::Memory::write_bytes<21>(moddingApi::Memory::moduleBase + 0x7BF6F2 + 0xC00, { 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90 });
-	/*
+	
 	moddingApi::Memory::write_bytes<7>(moddingApi::Memory::moduleBase + 0x7C059A + 0xC00, { 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90});
 	moddingApi::Memory::write_bytes<5>(moddingApi::Memory::moduleBase + 0x5741AD + 0xC00, { 0x90, 0x90, 0x90, 0x90, 0x90});
 	moddingApi::Memory::write_bytes<5>(moddingApi::Memory::moduleBase + 0x575C3E + 0xC00, { 0x90, 0x90, 0x90, 0x90, 0x90 });
 	moddingApi::Memory::write_bytes<5>(moddingApi::Memory::moduleBase + 0x573F90 + 0xC00, { 0x90, 0x90, 0x90, 0x90, 0x90 });
-	*/
+	
 	//No More Black State
-	//moddingApi::Memory::write_bytes<10>(moddingApi::Memory::moduleBase + 0x576C9E + 0xC00, { 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90 });
+	moddingApi::Memory::write_bytes<10>(moddingApi::Memory::moduleBase + 0x576C9E + 0xC00, { 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90 });
 	
 }
 
