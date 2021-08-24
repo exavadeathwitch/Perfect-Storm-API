@@ -7,12 +7,14 @@
 #include <stdlib.h>
 #include <string>
 
+
+inline std::string stageName;
 namespace moddingApi
 {
-
 	class Stage
 	{
 	public:
+		static void stageHooks();
 		static void getStageName(__int64 a1);
 	};
 }

@@ -58,7 +58,6 @@ void moddingApi::Scene::sceneHooks() {
 	}
 }
 
-
 __int64 moddingApi::Scene::nLoadccSceneTitle(__int64 a1) {
 	moddingApi::Scene::updateSceneName("ccSceneTitle");
 	return oLoadccSceneTitle(a1);

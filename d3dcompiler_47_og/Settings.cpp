@@ -10,6 +10,9 @@
 #include "Memory.h"
 #include "minGlue.h"
 #include "minIni.h"
+#include "MinHook.h"
+#include "Music.h"
+#include "SDL2/SDL2Music.h"
 
 std::vector<const char*> moddingApi::Settings::CpkToLoad;
 std::vector<int> moddingApi::Settings::CpkPriority;
@@ -22,7 +25,7 @@ void moddingApi::Settings::ReadConfig(char *ConfigPath) {
 
 	bool EnableConsole = ini_getl("General", "Console", -1, ConfigPath);
 	if (EnableConsole) {
-		moddingApi::Console::InitConsole();
+		//moddingApi::Console::InitConsole();
 		moddingApi::EnableConsole = 1;
 	}
 	
@@ -52,7 +55,35 @@ void moddingApi::Settings::ReadConfig(char *ConfigPath) {
 	moddingApi::Memory::WriteBytes();
 }
 
+typedef int(__fastcall* updateSettings)(__int64 a1);
+updateSettings oUpdateSettings = NULL;
 
+int __fastcall nUpdateSettings(__int64 a1) {
+
+	int retval = oUpdateSettings(a1);
+	musicVol = *(int8_t*)(moddingApi::Memory::moduleBase + 0x161FEEA);
+	std::cout << "volume" << musicVol << std::endl;
+	Mix_VolumeMusic(musicVol*.8);
+	return retval;
+}
+
+
+void moddingApi::Settings::settingsHooks() {
+	std::uintptr_t addrUpdateSettings = (std::uintptr_t)(moddingApi::Memory::moduleBase + 0x6A9210 + 0xC00);
+	bool status;
+	status = MH_CreateHook((LPVOID)addrUpdateSettings, nUpdateSettings, (LPVOID*)(&oUpdateSettings));
+	if (status != MH_OK)
+	{
+		std::cout << "could not create hook Update Settings" << std::endl;
+	}
+
+	status = MH_EnableHook((LPVOID)addrUpdateSettings);
+	if (status != MH_OK)
+	{
+		std::cout << "could not enable hook Update Settings" << std::endl;
+	}
+
+}
 void moddingApi::Settings::AddCpk() {
 	int priority = 14;
 	char* CpkPath = strcpy(new char[moddingApi::Main::GetStormDirectory().length() + 1], moddingApi::Main::GetStormDirectory().c_str());

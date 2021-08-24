@@ -3,7 +3,7 @@
 #pragma once
 
 #include <string>
-
+inline int musicVol = 20;
 namespace moddingApi
 {
 	inline bool EnableConsole;
@@ -13,7 +13,7 @@ namespace moddingApi
 	{
 	public:
 		static void ReadConfig(char *ConfigPath);
-
+		static void settingsHooks();
 		static int LoadCpkInitial();
 		static void AddCpk();
 		static std::vector<const char*> CpkToLoad;

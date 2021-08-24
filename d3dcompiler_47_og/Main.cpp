@@ -7,11 +7,12 @@
 #include "Console.h"
 #include "Settings.h"
 #include "Memory.h"
+#include "Music.h"
 
 //This is the function that runs after the dll is initialized and proxies the original DLL.
 //Runtime functions will be initiated such as hooks, setting up the console, and reading the config file.
 DWORD WINAPI moddingApi::Main::MainThread() {
-	//moddingApi::Console::InitConsole();
+	moddingApi::Console::InitConsole();
 	moddingApi::Memory::InitHooks();
 	moddingApi::Memory::WriteBytes();
 	if (!moddingApi::Main::InitConfig()) {

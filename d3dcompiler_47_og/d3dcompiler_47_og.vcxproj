@@ -83,7 +83,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
     <GenerateManifest>false</GenerateManifest>
-    <IncludePath>C:\Users\Ares\Documents\GitHub\Perfect-Storm-API\d3dcompiler_47_og\lib;$(ProjectDir)DirectX11Hook;$(ProjectDir)src\SDL2_mixer\SDL2_mixer-2.0.4\include;$(ProjectDir)src\SDL2\SDL2-2.0.12\include;$(IncludePath)</IncludePath>
+    <IncludePath>C:\Users\absol\Documents\GitHub\Perfect-Storm-API\d3dcompiler_47_og\src\SDL2\SDL2-2.0.12\lib\x64;C:\Users\absol\Documents\GitHub\Perfect-Storm-API\d3dcompiler_47_og\src\SDL2_mixer\SDL2_mixer-2.0.4\lib\x64;C:\Users\Ares\Documents\GitHub\Perfect-Storm-API\d3dcompiler_47_og\lib;$(ProjectDir)DirectX11Hook;$(ProjectDir)src\SDL2_mixer\SDL2_mixer-2.0.4\include;$(ProjectDir)src\SDL2\SDL2-2.0.12\include;$(IncludePath)</IncludePath>
     <LibraryPath>C:\Users\absol\Documents\GitHub\Perfect-Storm-API\d3dcompiler_47_og\lib;D:\Perfect Storm API\Perfect-Storm-API\d3dcompiler_47_og\lib;C:\Users\Ares\Documents\GitHub\Perfect-Storm-API\d3dcompiler_47_og\lib;$(ProjectDir)DirectX11Hook;$(ProjectDir)src\SDL2_mixer\SDL2_mixer-2.0.4\lib\x64;$(ProjectDir)src\SDL2\SDL2-2.0.12\lib\x64;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -155,7 +155,7 @@
       <OptimizeReferences>true</OptimizeReferences>
       <ModuleDefinitionFile>d3dcompiler_47_og.def</ModuleDefinitionFile>
       <AdditionalLibraryDirectories>D:\Perfect Storm API\Perfect-Storm-API\d3dcompiler_47_og;C:\Program Files %28x86%29\Steam\steamapps\common\NARUTO SHIPPUDEN Ultimate Ninja STORM 4\dll\d3dcompiler_47_og;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>winmm.lib;ws2_32.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;XInput.lib;D3dcompiler.lib;d3d11.lib;Wininet.lib;libMinHook-x64-v141-mtd.lib;CasualLibrary.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>winmm.lib;ws2_32.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;XInput.lib;D3dcompiler.lib;d3d11.lib;Wininet.lib;libMinHook-x64-v141-mtd.lib;CasualLibrary.lib;SDL2_mixer.lib;SDL2.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
@@ -166,7 +166,11 @@
     <ClCompile Include="Memory.cpp" />
     <ClCompile Include="Message.cpp" />
     <ClCompile Include="minIni.c" />
+    <ClCompile Include="Music.cpp" />
     <ClCompile Include="Scene.cpp" />
+    <ClCompile Include="SDL2Music.cpp" />
+    <ClCompile Include="SDL2\SDL2SoundEffects.cpp" />
+    <ClCompile Include="SDL2\SDLInit.cpp" />
     <ClCompile Include="Settings.cpp" />
     <ClCompile Include="Stage.cpp" />
   </ItemGroup>
@@ -186,7 +190,11 @@
     <ClInclude Include="minGlue.h" />
     <ClInclude Include="MinHook.h" />
     <ClInclude Include="minIni.h" />
+    <ClInclude Include="Music.h" />
     <ClInclude Include="Scene.h" />
+    <ClInclude Include="SDL2\SDL2Music.h" />
+    <ClInclude Include="SDL2\SDL2SoundEffects.h" />
+    <ClInclude Include="SDL2\SDLInit.h" />
     <ClInclude Include="Settings.h" />
     <ClInclude Include="Stage.h" />
   </ItemGroup>

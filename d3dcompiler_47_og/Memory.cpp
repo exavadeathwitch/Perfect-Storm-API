@@ -59,13 +59,8 @@ std::string moddingApi::Memory::strFromAddrSmall(__int64 a1) {
 	return name;
 }
 
-std::string_view moddingApi::Memory::strFromAddrMax(__int64 a1) {
-	const std::size_t size = 30;
-	char chars[size] = "";
-	memcpy(chars, reinterpret_cast<char*>(a1), size);
-	int sizeString = sizeof(chars) / sizeof(char);
-	std::string name = "";
-	const std::string_view state = reinterpret_cast<const char*>(a1);
+std::string moddingApi::Memory::strFromAddrMax(__int64 a1) {
+	const std::string state = reinterpret_cast<const char*>(a1);
 	/*
 	for (std::size_t i = 0; i < sizeString; i++) {
 		if ((moddingApi::Memory::read_bytes<1>(a1) == some_bytes) && (moddingApi::Memory::read_bytes<1>(a1-1) == some_bytes) {
@@ -81,7 +76,7 @@ __int64 __fastcall moddingApi::Memory::getInfoFromMemoryString1(__int64 a1, int 
 }
 typedef __int64(__fastcall* newPlayerState)(__int64 a1, unsigned int a2, int a3, int a4);
 newPlayerState onewPlayerState = NULL;
-
+inline __int64 testPlayerAddr = 0;
 __int64 __fastcall moddingApi::Memory::nnewPlayerState(__int64 a1, unsigned int a2, int a3, int a4)
 {
 	int playerNum = *(DWORD*)(a1 + 0xB08);
@@ -89,6 +84,8 @@ __int64 __fastcall moddingApi::Memory::nnewPlayerState(__int64 a1, unsigned int 
 		*(DWORD*)(a1 + 0xFE50) = 1;
 		*(DWORD*)(a1 + 0xFE74) = 0;
 	}
+	if (*(DWORD*)(a1 + 0xC8C) == 0x72)
+	testPlayerAddr = a1;
 	return onewPlayerState(a1, a2, a3, a4);
 	//return onewPlayerState(a1, a2, a3, a4);
 	/*
@@ -210,9 +207,7 @@ typedef void(__fastcall* setNoChakraCirclePlayerState)(__int64 a1);
 setNoChakraCirclePlayerState oSetNoChakraCirclePlayerState = NULL;
 void outputInputs(__int64 playerAddr) {
 	__int64 inputPointer = playerAddr + 0x218;
-	int playerNum = *(DWORD*)(playerAddr + 0xB08);
-	int input = *(DWORD*)(inputPointer + 0x600);
-	std::cout << "Player: " << playerNum << std::endl;
+	int input = *(DWORD*)(inputPointer + 0x404);
 	std::cout << "Input: " << input << std::endl;
 }
 
@@ -226,9 +221,10 @@ void nSetNoChakraCirclePlayerState(__int64 a1) {
 	__int64 v7; // rax@23
 	//Input Code
 
-
 	playerAddr = a1;
 	outputInputs(playerAddr);
+	if (*(DWORD*)(playerAddr + 0xCC0) == 92)
+		*(DWORD*)(playerAddr + 0xCC0) = 66;
 	if (*(DWORD*)(a1 + 0xCC0) != 94)          // If the current state isn't 94
 	{
 		typedef __int64(__fastcall* sub_1407C0DD8) (__int64 a1, int a2);
@@ -243,6 +239,12 @@ void nSetNoChakraCirclePlayerState(__int64 a1) {
 		signed typedef __int64(__fastcall* sub_1407C0CE8) (__int64 a1, int a2);
 		sub_1407C0CE8 osub_1407C0CE8 = (sub_1407C0CE8)(moddingApi::Memory::moduleBase + 0x7C00E8 + 0xC00);
 		v2 = a1 + 0x218;
+		
+		if ((*(DWORD*)(v2 + 0x404) == 1) && *(DWORD*)(playerAddr + 0xCC0) == 1) {
+			*(DWORD*)(playerAddr + 0xCC8) = 92;
+			*(DWORD*)(playerAddr + 0xCDC) = 1;
+		}
+		
 		v3 = 0;
 		if ((unsigned int)osub_1407C0DD8(a1 + 0x218, 8))
 			v3 = 1;
@@ -289,7 +291,6 @@ void nSetNoChakraCirclePlayerState(__int64 a1) {
 			}
 		}
 	}
-
 	oSetNoChakraCirclePlayerState(a1);
 }
 
@@ -297,7 +298,7 @@ typedef __int64(__fastcall playerAnim) (__int64 rcx, int a1, __int64 a2, unsigne
 playerAnim* oPlayerAnim = NULL;
 
 __int64 __fastcall nPlayerAnim(__int64 rcx, int a1, __int64 a2, unsigned int a3, float a4, int a5, int a6) {
-	int playerNum = *(DWORD*)(rcx + 0xB0B);
+	//int playerNum = *(DWORD*)(rcx + 0xB0B);
 	/*
 	if ((a1 == 74) && ((*(DWORD*)(rcx + 0xCC8) == 227) || (*(DWORD*)(rcx + 0xCC0) == 227))) {
 		if (playerNum == 1) {
@@ -321,14 +322,16 @@ __int64 __fastcall nPlayerAnim(__int64 rcx, int a1, __int64 a2, unsigned int a3,
 		}
 	}
 	*/
-	std::cout << "Player: " << playerNum << " Animation: " << a1 << std::endl;
 	oPlayerAnim(rcx, a1, a2, a3, a4, a5, a6);
+	if (a1 == 37 && *(DWORD*)(rcx + 0xCC0) == 16)
+		*(float*)(rcx + 0x1090) = 2.0f;
 	return *(__int64*)(rcx + 0x208);
 }
 
 typedef __int64(__fastcall setGrabPlayerState) (__int64 a1, float a2);
 setGrabPlayerState* oSetGrabPlayerState = NULL;
-
+bool isPuppetMaster(__int64 baseAddr);
+bool isCanGKunai(__int64 baseAddr);
 __int64 __fastcall nSetGrabPlayerState(__int64 a1, float a2) {
 
 	//return oSetGrabPlayerState(a1, a2);
@@ -430,7 +433,7 @@ __int64 __fastcall nSetGrabPlayerState(__int64 a1, float a2) {
 
 	typedef __int64(__fastcall* sub_1407C0FAC) (__int64 a1);
 	sub_1407C0FAC osub_1407C0FAC = (sub_1407C0FAC)(moddingApi::Memory::moduleBase + 0x7C03AC + 0xC00);
-
+	__int64 partnerAddr;
 	v2 = a1 + 0x218;
 	v3 = a1;
 	if (((*(DWORD*)(v3 + 0xCC0) == 10) || (*(DWORD*)(v3 + 0xCC0) == 11) || (*(DWORD*)(v3 + 0xCC0) == 12)) && (osub_1407C0FAC(v2) || (unsigned int)osub_1407C0DD8(v2, 12))) //|| ((*(DWORD*)(v3 + 0xCC0) == 10) || (*(DWORD*)(v3 + 0xCC0) == 11) || (*(DWORD*)(v3 + 0xCC0) == 12))
@@ -456,15 +459,29 @@ __int64 __fastcall nSetGrabPlayerState(__int64 a1, float a2) {
 			*(DWORD*)(v3 + 0xCDC) = 1;
 		}
 		result = (*(int(__fastcall**)(__int64))(*(__int64*)v3 + 0x1728i64))(v3);
-		if (result)
-			result = (*(int(__fastcall**)(__int64, signed __int64, __int64, signed __int64))(*(__int64*)v3 + 0xDE0i64))(
-				v3,
-				153i64,
-				0i64,
-				1i64);
-		return result;
+		if (result && isPuppetMaster(v3)) {
+			std::cout << "can do it" << std::endl;
+			if (isCanGKunai(v3) == 1) {
+			partnerAddr = *(__int64*)(v3 + 0x1050);
+			std::cout << "partaddr: " << std::hex << partnerAddr << std::endl;
+			*(DWORD*)(partnerAddr + 0xCC8) = 67;
+			*(DWORD*)(partnerAddr + 0xCDC) = 1;
+			}
+			return 0;
+		}
 	}
 	else {
+		result = (*(int(__fastcall**)(__int64))(*(__int64*)v3 + 0x1728i64))(v3);
+		if (result && isPuppetMaster(v3)) {
+			std::cout << "can do it" << std::endl;
+			if (isCanGKunai(v3) == 1) {
+				partnerAddr = *(__int64*)(v3 + 0x1050);
+				std::cout << "partaddr: " << std::hex << partnerAddr << std::endl;
+				*(DWORD*)(partnerAddr + 0xCC8) = 67;
+				*(DWORD*)(partnerAddr + 0xCDC) = 1;
+			}
+			return 0;
+		}
 		return oSetGrabPlayerState(a1, a2);
 	}
 	/*
@@ -864,6 +881,36 @@ LABEL_162:
 */
 }
 
+bool isCanGKunai(__int64 baseAddr) {
+	bool bla = 0;
+	float analogZone = *(float*)(baseAddr + 0x1B0 + 0x70);
+	__int64 partnerAddr = *(__int64*)(baseAddr + 0x1050);
+	if ((*(DWORD*)(partnerAddr + 0xCC0) != 67) && (analogZone >= .2f))
+		bla = 1;
+	std::cout << "can you bla: " << bla << std::endl;
+	return bla;
+}
+
+bool isPuppetMaster(__int64 baseAddr) {
+	if(*(DWORD*)(baseAddr + 0xC8C) == 0x10) //2knk
+	return 1;
+	if (*(DWORD*)(baseAddr + 0xC8C) == 0x1B) //2cyb
+	{
+		if (*(DWORD*)(baseAddr + 0xCBC) == 0) //if character isn't awakened
+			return 1;
+	}
+	if(*(DWORD*)(baseAddr + 0xC8C) == 0x1E) //2sco
+	{
+		if (*(DWORD*)(baseAddr + 0xCBC) == 0) //if character isn't awakened
+			return 1;
+	}
+	if(*(DWORD*)(baseAddr + 0xC8C) == 0x69) //1knk
+	return 1;
+	if(*(DWORD*)(baseAddr + 0xC8C) == 0xE3) //8knk
+	return 1;
+
+	return 0;
+}
 typedef int(__fastcall* decideItemState) (__int64 a1, unsigned int a2);
 decideItemState oDecideItemState = NULL;
 
@@ -914,7 +961,7 @@ int nDecideItemState(__int64 a1, unsigned int a2) {
 	}
 	v8 = (*(int(__fastcall**)(__int64, signed __int64))(*(__int64*)playerAddr + 0x1398i64))(playerAddr, 17i64) != 0 ? v5 : 0;
 	v9 = -*(DWORD*)(playerAddr + 0x14B30);
-	if (((*(DWORD*)(playerAddr + 0x14B30) != 0 ? v8 : 0) && v4 != -1) || (*(DWORD*)(playerAddr + 0xCC0) == 73)) //State Checking + If item slot is available
+	if ((((*(DWORD*)(playerAddr + 0x14B30) != 0 ? v8 : 0) || *(DWORD*)(playerAddr + 0xCC0) == 73)) && v4 != -1) //State Checking + If item slot is available
 	{
 		DWORD(v9) = (*(int(__fastcall**)(__int64, __int64))(*(__int64*)playerAddr + 0x1758i64))(
 			playerAddr,
@@ -924,10 +971,7 @@ int nDecideItemState(__int64 a1, unsigned int a2) {
 			v10 = moddingApi::Memory::moduleBase + 0x14161C8C8 - 0x140000000 + 0xC00;
 			v11 = osub_140529598((__int64)"BATTLE_ITEM150");// gb pill
 			v12 = osub_140529598((__int64)"BATTLE_ITEM192");
-			v13 = (*(int(__fastcall**)(__int64))(*(__int64*)playerAddr + 64i64))(playerAddr);
-			v14 = (*(int (**)(void))(*(__int64*)(playerAddr + 0xB00) + 32i64))();
-			v15 = osub_14074B034(104 * v13 + v10 + 24, (unsigned int)v14, v4);
-			if (v11 != v15 && v12 != v15)         // if it's not a gb pill&& v12 == v15
+			if (v4 != 0)         // if it's not a gb pill&& v12 == v15
 			{
 				DWORD(v9) = (*(int(__fastcall**)(__int64, __int64))(*(__int64*)playerAddr + 0x1760i64))(
 					playerAddr,
@@ -1269,7 +1313,19 @@ __int64 nCheckNinjaMovePlayerState(void* rcx, int a1, __int64 a2, __int64 a3) {
 
 	playerAddr = (__int64)rcx;
 	__int64 baseInputAddr = playerAddr + 0x218;
-	if ((*(int8_t*)(baseInputAddr + 0x602) != 0)) {
+
+	if (*(DWORD*)(playerAddr + 0xCC0) == 4 || *(DWORD*)(playerAddr + 0xCC0) == 5 || *(DWORD*)(playerAddr + 0xCC0) == 8) {
+		return oCheckNinjaMovePlayerState(rcx, a1, a2, a3);
+	}
+	float analogZone = *(float*)(playerAddr + 0x1B0 + 0x70);
+	std::cout << "analog: " << analogZone << std::endl;
+	if (analogZone < 0.5f) {
+	*(DWORD*)(playerAddr + 0xCC8) = 4;
+	*(DWORD*)(playerAddr + 0xCDC) = 1;
+	result = osub_1407AE694(playerAddr);
+	return result;
+	}
+	else {
 		return oCheckNinjaMovePlayerState(rcx, a1, a2, a3);
 	}
 	if ((a3 == 0 && (a2 == 0 || a2 == 1 || a2 == 2)) || ((a2 == 0 || a2 == 1) && a3 == 1)) {
@@ -1279,7 +1335,7 @@ __int64 nCheckNinjaMovePlayerState(void* rcx, int a1, __int64 a2, __int64 a3) {
 	}
 	v3 = a1;
 	v5 = 0;
-	if (*(DWORD*)(playerAddr + 0xCC0) == 4 || *(DWORD*)(playerAddr + 0xCC0) == 5 || *(DWORD*)(playerAddr + 0xCC0) == 8) {
+	if (*(DWORD*)(playerAddr + 0xCC0) == 4 || *(DWORD*)(playerAddr + 0xCC0) == 5 || *(DWORD*)(playerAddr + 0xCC0) == 8 || *(DWORD*)(playerAddr + 0xCC0) == 69) {
 		return oCheckNinjaMovePlayerState(rcx, a1, a2, a3);
 	}
 	if ((*(int (**)(void))(*(__int64*)playerAddr + 0xE78i64))() && (DWORD)(playerAddr + 0xCC0) != 9)
@@ -1386,7 +1442,7 @@ __int64 __fastcall nStateCdash(void* rcx, __int64 a1, int a2, float a3) {
 
 	typedef __int64(__fastcall sub_14079D590) (void* rcx, __int64 a1, float a2);
 	sub_14079D590* osub_14079D590 = (sub_14079D590*)(moddingApi::Memory::moduleBase + 0x79C990 + 0xC00);
-	
+	return oStateCdash(rcx, a1, a2, a3);
 	playerAddr = (__int64)rcx;
 	__int64 retval = oStateCdash(rcx, a1, a2, a3);
 	if (*(DWORD*)(playerAddr + 0xCCC) == 4) {
@@ -1607,6 +1663,27 @@ __int64 nSetTriangleState(__int64 a1) {
 	return retVal;
 }
 
+typedef __int64(__fastcall* getPlayerStateAddresses)(__int64 a1);
+getPlayerStateAddresses oGetPlayerStateAddresses = NULL;
+
+__int64 __fastcall nGetPlayerStateAddresses(__int64 a1) {
+		//std::cout << "test " << testPlayerAddr << std::endl;
+	return oGetPlayerStateAddresses(a1);
+}
+
+typedef int(__fastcall* comboGuardBreak)(__int64 a1, __int64 a2, __int64 a3, __int64 a4);
+comboGuardBreak oComboGuardBreak = NULL;
+
+int nComboGuardBreak(__int64 a1, __int64 a2, __int64 a3, __int64 a4) {
+	if (*(DWORD*)(a1 + 0xC14) == 1701736302) {
+		if (*(DWORD*)(a1 + 0xC8C) == 0)
+			return oComboGuardBreak(testPlayerAddr, a2, a3, a4);
+		else
+		return oComboGuardBreak(a1, a2, a3, a4);
+	}
+	return oComboGuardBreak(a1, a2, a3, a4);
+}
+
 typedef __int64(__fastcall* checkFPSMatchmaking)();
 checkFPSMatchmaking ocheckFPSMatchmaking = NULL;
 
@@ -1614,11 +1691,34 @@ __int64 ncheckFPSMatchmaking() {
 	return matchmakingFPS;
 }
 
+typedef int(__fastcall* getMinAwakeningHealth)(__int64 a1);
+getMinAwakeningHealth oGetMinAwakeningHealth = NULL;
+
+int __fastcall nGetMinAwakeningHealth(__int64 a1)
+{
+	__int64 v1; // rax@1
+	float v2; // xmm6@2
+	__int64 baseAddr = a1 - 0x183E0;
+	return oGetMinAwakeningHealth(a1);
+	std::cout << "baseAddr: " << std::hex << baseAddr << std::endl;
+	std::cout << "id2: " << std::hex << a1 << std::endl;
+	typedef int(__fastcall* getDPPAddr)(unsigned int a1);
+	getDPPAddr oGetDPPAddr = (getDPPAddr)(moddingApi::Memory::moduleBase + 0x528CF4 + 0xC00);
+
+	v1 = oGetDPPAddr(*(DWORD*)(*(__int64*)(a1 + 0x20) + 0xC8Ci64));
+	if (*(DWORD*)(a1 + 0xCC0 - 0x183E0) == 1)
+		v2 = 0.0f;
+	if (*(DWORD*)(a1 + 0xCC0 - 0x183E0) != 1)
+		v2 = 100.0f;
+		//v2 = *(float*)(v1 + 0x1F4);
+	return v1;
+}
+
 	//Initializes our memory hooks through usage of the MinHook library. uintptr_t addresses MUST be local variables.
 void moddingApi::Memory::InitHooks() {
 	if (MH_Initialize() == MH_OK) {
 		bool status;
-		
+		moddingApi::Stage::stageHooks();
 		std::uintptr_t addrLoadCpkInit = (std::uintptr_t)(moddingApi::Memory::moduleBase + 0x854F3C + 0xC00);
 		std::uintptr_t addrMessageInfo = (std::uintptr_t)(moddingApi::Memory::moduleBase + 0xAB8720 + 0xC00);
 		std::uintptr_t addrMemString = (std::uintptr_t)(moddingApi::Memory::moduleBase + 0xA01230 + 0xC00);
@@ -1640,7 +1740,46 @@ void moddingApi::Memory::InitHooks() {
 		std::uintptr_t addrWriteSupportState = (std::uintptr_t)(moddingApi::Memory::moduleBase + 0x7E5C2C + 0xC00);
 		std::uintptr_t addrSetTriangleState = (std::uintptr_t)(moddingApi::Memory::moduleBase + 0x7C6AD8 + 0xC00);
 		std::uintptr_t addrcheckFPSMatchmaking = (std::uintptr_t)(moddingApi::Memory::moduleBase + 0x6B39CC + 0xC00);
+		std::uintptr_t addrGetPlayerStateAddresses = (std::uintptr_t)(moddingApi::Memory::moduleBase + 0x6B5F20 + 0xC00);
+		std::uintptr_t addrComboGuardBreak = (std::uintptr_t)(moddingApi::Memory::moduleBase + 0x78138C + 0xC00);
+		std::uintptr_t addrGetMinAwakeningHealth = (std::uintptr_t)(moddingApi::Memory::moduleBase + 0x784220 + 0xC00);
 		std::cout << "MinHook Initialized" << std::endl;
+
+		status = MH_CreateHook((LPVOID)addrGetMinAwakeningHealth, nGetMinAwakeningHealth, (LPVOID*)(&oGetMinAwakeningHealth));
+		if (status != MH_OK)
+		{
+			std::cout << "could not create hook PlayerAnim" << std::endl;
+		}
+
+		status = MH_EnableHook((LPVOID)addrGetMinAwakeningHealth);
+		if (status != MH_OK)
+		{
+			std::cout << "could not enable hook PlayerAnim" << std::endl;
+		}
+
+		status = MH_CreateHook((LPVOID)addrGetPlayerStateAddresses, nGetPlayerStateAddresses, (LPVOID*)(&oGetPlayerStateAddresses));
+		if (status != MH_OK)
+		{
+			std::cout << "could not create hook PlayerAnim" << std::endl;
+		}
+
+		status = MH_EnableHook((LPVOID)addrGetPlayerStateAddresses);
+		if (status != MH_OK)
+		{
+			std::cout << "could not enable hook PlayerAnim" << std::endl;
+		}
+
+		status = MH_CreateHook((LPVOID)addrComboGuardBreak, nComboGuardBreak, (LPVOID*)(&oComboGuardBreak));
+		if (status != MH_OK)
+		{
+			std::cout << "could not create hook PlayerAnim" << std::endl;
+		}
+
+		status = MH_EnableHook((LPVOID)addrComboGuardBreak);
+		if (status != MH_OK)
+		{
+			std::cout << "could not enable hook PlayerAnim" << std::endl;
+		}
 
 		status = MH_CreateHook((LPVOID)addrcheckFPSMatchmaking, ncheckFPSMatchmaking, (LPVOID*)(&ocheckFPSMatchmaking));
 		if (status != MH_OK)
@@ -1786,7 +1925,8 @@ void moddingApi::Memory::InitHooks() {
 		{
 			std::cout << "could not enable hook PlayerAnim" << std::endl;
 		}
-		
+
+		*/
 		status = MH_CreateHook((LPVOID)addrDecideItemState, nDecideItemState, (LPVOID*)(&oDecideItemState));
 		if (status != MH_OK)
 		{
@@ -1798,7 +1938,7 @@ void moddingApi::Memory::InitHooks() {
 		{
 			std::cout << "could not enable hook PlayerAnim" << std::endl;
 		}
-		*/
+
 		status = MH_CreateHook((LPVOID)addrSetGrabPlayerState, nSetGrabPlayerState, (LPVOID*)(&oSetGrabPlayerState));
 		if (status != MH_OK)
 		{
@@ -1870,10 +2010,11 @@ void moddingApi::Memory::InitHooks() {
 		{
 			std::cout << "could not enable hook NewPlayerStat" << std::endl;
 		}
-		
+		moddingApi::Settings::settingsHooks();
+
+
 
 		moddingApi::Scene::sceneHooks();
-		
 
 		
 		/*
@@ -1933,6 +2074,9 @@ void moddingApi::Memory::WriteBytes() {
 	//No More Black State
 	moddingApi::Memory::write_bytes<10>(moddingApi::Memory::moduleBase + 0x576C9E + 0xC00, { 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90 });
 	
+	//No Armor Break
+	moddingApi::Memory::write_bytes<5>(moddingApi::Memory::moduleBase + 0x74A837 + 0xC00, { 0x90, 0x90, 0x90, 0x90, 0x90 });
+
 }
 
 

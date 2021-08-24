@@ -51,6 +51,18 @@
     <ClCompile Include="Functions.cpp">
       <Filter>Source Files\General</Filter>
     </ClCompile>
+    <ClCompile Include="Music.cpp">
+      <Filter>Source Files\General</Filter>
+    </ClCompile>
+    <ClCompile Include="SDL2\SDL2SoundEffects.cpp">
+      <Filter>Source Files\General</Filter>
+    </ClCompile>
+    <ClCompile Include="SDL2\SDLInit.cpp">
+      <Filter>Source Files\General</Filter>
+    </ClCompile>
+    <ClCompile Include="SDL2Music.cpp">
+      <Filter>Source Files\General</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="d3dcompiler_47_og.h">
@@ -87,6 +99,18 @@
       <Filter>Header Files\General</Filter>
     </ClInclude>
     <ClInclude Include="Functions.h">
+      <Filter>Header Files\General</Filter>
+    </ClInclude>
+    <ClInclude Include="SDL2\SDL2Music.h">
+      <Filter>Header Files\General</Filter>
+    </ClInclude>
+    <ClInclude Include="SDL2\SDL2SoundEffects.h">
+      <Filter>Header Files\General</Filter>
+    </ClInclude>
+    <ClInclude Include="SDL2\SDLInit.h">
+      <Filter>Header Files\General</Filter>
+    </ClInclude>
+    <ClInclude Include="Music.h">
       <Filter>Header Files\General</Filter>
     </ClInclude>
   </ItemGroup>
