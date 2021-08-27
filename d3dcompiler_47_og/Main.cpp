@@ -45,4 +45,3 @@ std::string moddingApi::Main::GetStormDirectory() {
 	GetModuleFileName(NULL, buffer, MAX_PATH);
 	return std::string(buffer) .substr(0, std::string(buffer) .find_last_of("\\/"));
 }
-

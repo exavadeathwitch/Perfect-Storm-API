@@ -1,4 +1,77 @@
-﻿  Stage.cpp
+﻿  Memory.cpp
+C:\Users\absol\Documents\GitHub\Perfect-Storm-API\d3dcompiler_47_og\Memory.cpp(459,28): warning C4244: '=': conversion from '__int64' to 'DWORD', possible loss of data
+C:\Users\absol\Documents\GitHub\Perfect-Storm-API\d3dcompiler_47_og\Memory.cpp(465,28): warning C4244: '=': conversion from '__int64' to 'DWORD', possible loss of data
+C:\Users\absol\Documents\GitHub\Perfect-Storm-API\d3dcompiler_47_og\Memory.cpp(378,13): warning C4101: 'v35': unreferenced local variable
+C:\Users\absol\Documents\GitHub\Perfect-Storm-API\d3dcompiler_47_og\Memory.cpp(374,6): warning C4101: 'v31': unreferenced local variable
+C:\Users\absol\Documents\GitHub\Perfect-Storm-API\d3dcompiler_47_og\Memory.cpp(366,17): warning C4101: 'v23': unreferenced local variable
+C:\Users\absol\Documents\GitHub\Perfect-Storm-API\d3dcompiler_47_og\Memory.cpp(372,10): warning C4101: 'v29': unreferenced local variable
+C:\Users\absol\Documents\GitHub\Perfect-Storm-API\d3dcompiler_47_og\Memory.cpp(370,13): warning C4101: 'v27': unreferenced local variable
+C:\Users\absol\Documents\GitHub\Perfect-Storm-API\d3dcompiler_47_og\Memory.cpp(355,6): warning C4101: 'v12': unreferenced local variable
+C:\Users\absol\Documents\GitHub\Perfect-Storm-API\d3dcompiler_47_og\Memory.cpp(375,10): warning C4101: 'v32': unreferenced local variable
+C:\Users\absol\Documents\GitHub\Perfect-Storm-API\d3dcompiler_47_og\Memory.cpp(380,7): warning C4101: 'v37': unreferenced local variable
+C:\Users\absol\Documents\GitHub\Perfect-Storm-API\d3dcompiler_47_og\Memory.cpp(369,17): warning C4101: 'v26': unreferenced local variable
+C:\Users\absol\Documents\GitHub\Perfect-Storm-API\d3dcompiler_47_og\Memory.cpp(367,13): warning C4101: 'v24': unreferenced local variable
+C:\Users\absol\Documents\GitHub\Perfect-Storm-API\d3dcompiler_47_og\Memory.cpp(350,13): warning C4101: 'v7': unreferenced local variable
+C:\Users\absol\Documents\GitHub\Perfect-Storm-API\d3dcompiler_47_og\Memory.cpp(381,8): warning C4101: 'v38': unreferenced local variable
+C:\Users\absol\Documents\GitHub\Perfect-Storm-API\d3dcompiler_47_og\Memory.cpp(354,6): warning C4101: 'v11': unreferenced local variable
+C:\Users\absol\Documents\GitHub\Perfect-Storm-API\d3dcompiler_47_og\Memory.cpp(365,10): warning C4101: 'v22': unreferenced local variable
+C:\Users\absol\Documents\GitHub\Perfect-Storm-API\d3dcompiler_47_og\Memory.cpp(360,10): warning C4101: 'v17': unreferenced local variable
+C:\Users\absol\Documents\GitHub\Perfect-Storm-API\d3dcompiler_47_og\Memory.cpp(359,13): warning C4101: 'v16': unreferenced local variable
+C:\Users\absol\Documents\GitHub\Perfect-Storm-API\d3dcompiler_47_og\Memory.cpp(353,6): warning C4101: 'v10': unreferenced local variable
+C:\Users\absol\Documents\GitHub\Perfect-Storm-API\d3dcompiler_47_og\Memory.cpp(351,6): warning C4101: 'v8': unreferenced local variable
+C:\Users\absol\Documents\GitHub\Perfect-Storm-API\d3dcompiler_47_og\Memory.cpp(373,17): warning C4101: 'v30': unreferenced local variable
+C:\Users\absol\Documents\GitHub\Perfect-Storm-API\d3dcompiler_47_og\Memory.cpp(363,10): warning C4101: 'v20': unreferenced local variable
+C:\Users\absol\Documents\GitHub\Perfect-Storm-API\d3dcompiler_47_og\Memory.cpp(349,17): warning C4101: 'v6': unreferenced local variable
+C:\Users\absol\Documents\GitHub\Perfect-Storm-API\d3dcompiler_47_og\Memory.cpp(377,17): warning C4101: 'v34': unreferenced local variable
+C:\Users\absol\Documents\GitHub\Perfect-Storm-API\d3dcompiler_47_og\Memory.cpp(358,13): warning C4101: 'v15': unreferenced local variable
+C:\Users\absol\Documents\GitHub\Perfect-Storm-API\d3dcompiler_47_og\Memory.cpp(356,10): warning C4101: 'v13': unreferenced local variable
+C:\Users\absol\Documents\GitHub\Perfect-Storm-API\d3dcompiler_47_og\Memory.cpp(347,13): warning C4101: 'v4': unreferenced local variable
+C:\Users\absol\Documents\GitHub\Perfect-Storm-API\d3dcompiler_47_og\Memory.cpp(376,17): warning C4101: 'v33': unreferenced local variable
+C:\Users\absol\Documents\GitHub\Perfect-Storm-API\d3dcompiler_47_og\Memory.cpp(368,6): warning C4101: 'v25': unreferenced local variable
+C:\Users\absol\Documents\GitHub\Perfect-Storm-API\d3dcompiler_47_og\Memory.cpp(371,10): warning C4101: 'v28': unreferenced local variable
+C:\Users\absol\Documents\GitHub\Perfect-Storm-API\d3dcompiler_47_og\Memory.cpp(357,13): warning C4101: 'v14': unreferenced local variable
+C:\Users\absol\Documents\GitHub\Perfect-Storm-API\d3dcompiler_47_og\Memory.cpp(352,6): warning C4101: 'v9': unreferenced local variable
+C:\Users\absol\Documents\GitHub\Perfect-Storm-API\d3dcompiler_47_og\Memory.cpp(348,13): warning C4101: 'v5': unreferenced local variable
+C:\Users\absol\Documents\GitHub\Perfect-Storm-API\d3dcompiler_47_og\Memory.cpp(970,39): warning C4146: unary minus operator applied to unsigned type, result still unsigned
+C:\Users\absol\Documents\GitHub\Perfect-Storm-API\d3dcompiler_47_og\Memory.cpp(1029,9): warning C4244: 'return': conversion from 'unsigned __int64' to 'int', possible loss of data
+C:\Users\absol\Documents\GitHub\Perfect-Storm-API\d3dcompiler_47_og\Memory.cpp(938,10): warning C4101: 'v15': unreferenced local variable
+C:\Users\absol\Documents\GitHub\Perfect-Storm-API\d3dcompiler_47_og\Memory.cpp(936,10): warning C4101: 'v13': unreferenced local variable
+C:\Users\absol\Documents\GitHub\Perfect-Storm-API\d3dcompiler_47_og\Memory.cpp(937,6): warning C4101: 'v14': unreferenced local variable
+C:\Users\absol\Documents\GitHub\Perfect-Storm-API\d3dcompiler_47_og\Memory.cpp(1048,10): warning C4101: 'v12': unreferenced local variable
+C:\Users\absol\Documents\GitHub\Perfect-Storm-API\d3dcompiler_47_og\Memory.cpp(1043,10): warning C4101: 'v7': unreferenced local variable
+C:\Users\absol\Documents\GitHub\Perfect-Storm-API\d3dcompiler_47_og\Memory.cpp(1047,10): warning C4101: 'v11': unreferenced local variable
+C:\Users\absol\Documents\GitHub\Perfect-Storm-API\d3dcompiler_47_og\Memory.cpp(1046,15): warning C4101: 'v10': unreferenced local variable
+C:\Users\absol\Documents\GitHub\Perfect-Storm-API\d3dcompiler_47_og\Memory.cpp(1044,6): warning C4101: 'v8': unreferenced local variable
+C:\Users\absol\Documents\GitHub\Perfect-Storm-API\d3dcompiler_47_og\Memory.cpp(1042,13): warning C4101: 'v6': unreferenced local variable
+C:\Users\absol\Documents\GitHub\Perfect-Storm-API\d3dcompiler_47_og\Memory.cpp(1049,10): warning C4101: 'v14': unreferenced local variable
+C:\Users\absol\Documents\GitHub\Perfect-Storm-API\d3dcompiler_47_og\Memory.cpp(1045,15): warning C4101: 'v9': unreferenced local variable
+C:\Users\absol\Documents\GitHub\Perfect-Storm-API\d3dcompiler_47_og\Memory.cpp(1359,22): warning C4244: '=': conversion from '__int64' to 'int', possible loss of data
+C:\Users\absol\Documents\GitHub\Perfect-Storm-API\d3dcompiler_47_og\Memory.cpp(1376,26): warning C4244: '=': conversion from '__int64' to 'int', possible loss of data
+C:\Users\absol\Documents\GitHub\Perfect-Storm-API\d3dcompiler_47_og\Memory.cpp(1301,6): warning C4101: 'v12': unreferenced local variable
+C:\Users\absol\Documents\GitHub\Perfect-Storm-API\d3dcompiler_47_og\Memory.cpp(1307,6): warning C4101: 'v18': unreferenced local variable
+C:\Users\absol\Documents\GitHub\Perfect-Storm-API\d3dcompiler_47_og\Memory.cpp(1300,10): warning C4101: 'v11': unreferenced local variable
+C:\Users\absol\Documents\GitHub\Perfect-Storm-API\d3dcompiler_47_og\Memory.cpp(1306,10): warning C4101: 'v17': unreferenced local variable
+C:\Users\absol\Documents\GitHub\Perfect-Storm-API\d3dcompiler_47_og\Memory.cpp(1297,11): warning C4101: 'v8': unreferenced local variable
+C:\Users\absol\Documents\GitHub\Perfect-Storm-API\d3dcompiler_47_og\Memory.cpp(1304,6): warning C4101: 'v15': unreferenced local variable
+C:\Users\absol\Documents\GitHub\Perfect-Storm-API\d3dcompiler_47_og\Memory.cpp(1302,6): warning C4101: 'v13': unreferenced local variable
+C:\Users\absol\Documents\GitHub\Perfect-Storm-API\d3dcompiler_47_og\Memory.cpp(1303,8): warning C4101: 'v14': unreferenced local variable
+C:\Users\absol\Documents\GitHub\Perfect-Storm-API\d3dcompiler_47_og\Memory.cpp(1299,17): warning C4101: 'playerState': unreferenced local variable
+C:\Users\absol\Documents\GitHub\Perfect-Storm-API\d3dcompiler_47_og\Memory.cpp(1298,6): warning C4101: 'v9': unreferenced local variable
+C:\Users\absol\Documents\GitHub\Perfect-Storm-API\d3dcompiler_47_og\Memory.cpp(1595,9): warning C4102: 'LABEL_33': unreferenced label
+C:\Users\absol\Documents\GitHub\Perfect-Storm-API\d3dcompiler_47_og\Memory.cpp(1411,6): warning C4101: 'v12': unreferenced local variable
+C:\Users\absol\Documents\GitHub\Perfect-Storm-API\d3dcompiler_47_og\Memory.cpp(1406,6): warning C4101: 'v7': unreferenced local variable
+C:\Users\absol\Documents\GitHub\Perfect-Storm-API\d3dcompiler_47_og\Memory.cpp(1410,6): warning C4101: 'v11': unreferenced local variable
+C:\Users\absol\Documents\GitHub\Perfect-Storm-API\d3dcompiler_47_og\Memory.cpp(1415,6): warning C4101: 'v16': unreferenced local variable
+C:\Users\absol\Documents\GitHub\Perfect-Storm-API\d3dcompiler_47_og\Memory.cpp(1409,6): warning C4101: 'v10': unreferenced local variable
+C:\Users\absol\Documents\GitHub\Perfect-Storm-API\d3dcompiler_47_og\Memory.cpp(1407,6): warning C4101: 'v8': unreferenced local variable
+C:\Users\absol\Documents\GitHub\Perfect-Storm-API\d3dcompiler_47_og\Memory.cpp(1405,6): warning C4101: 'v6': unreferenced local variable
+C:\Users\absol\Documents\GitHub\Perfect-Storm-API\d3dcompiler_47_og\Memory.cpp(1414,6): warning C4101: 'v15': unreferenced local variable
+C:\Users\absol\Documents\GitHub\Perfect-Storm-API\d3dcompiler_47_og\Memory.cpp(1412,6): warning C4101: 'v13': unreferenced local variable
+C:\Users\absol\Documents\GitHub\Perfect-Storm-API\d3dcompiler_47_og\Memory.cpp(1413,6): warning C4101: 'v14': unreferenced local variable
+C:\Users\absol\Documents\GitHub\Perfect-Storm-API\d3dcompiler_47_og\Memory.cpp(1408,10): warning C4101: 'v9': unreferenced local variable
+C:\Users\absol\Documents\GitHub\Perfect-Storm-API\d3dcompiler_47_og\Memory.cpp(1404,6): warning C4101: 'v5': unreferenced local variable
+C:\Users\absol\Documents\GitHub\Perfect-Storm-API\d3dcompiler_47_og\Memory.cpp(1731,9): warning C4244: 'return': conversion from '__int64' to 'int', possible loss of data
+C:\Users\absol\Documents\GitHub\Perfect-Storm-API\d3dcompiler_47_og\Memory.cpp(889): warning C4715: 'nSetGrabPlayerState': not all control paths return a value
      Creating library C:\Users\absol\Documents\GitHub\Perfect-Storm-API\x64\Release\d3dcompiler_47.lib and object C:\Users\absol\Documents\GitHub\Perfect-Storm-API\x64\Release\d3dcompiler_47.exp
 d3dcompiler_47.exp : warning LNK4070: /OUT:d3dcompiler_47_og.dll directive in .EXP differs from output filename 'C:\Users\absol\Documents\GitHub\Perfect-Storm-API\x64\Release\d3dcompiler_47.dll'; ignoring directive
 LINK : warning LNK4098: defaultlib 'LIBCMTD' conflicts with use of other libs; use /NODEFAULTLIB:library

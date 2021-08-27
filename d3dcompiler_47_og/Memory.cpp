@@ -83,9 +83,17 @@ __int64 __fastcall moddingApi::Memory::nnewPlayerState(__int64 a1, unsigned int 
 	if (a2 == 211) {
 		*(DWORD*)(a1 + 0xFE50) = 1;
 		*(DWORD*)(a1 + 0xFE74) = 0;
+		__int64 inputPointer = a1 + 0x218;
+		*(DWORD*)(inputPointer + 0x404) = 0;
+		*(DWORD*)(inputPointer + 0x408) = 0;
+		*(DWORD*)(inputPointer + 0x40C) = 0;
 	}
-	if (*(DWORD*)(a1 + 0xC8C) == 0x72)
-	testPlayerAddr = a1;
+	if (a2 == 217) {
+		*(DWORD*)(a1 + 0x14C60) = 0;
+	}
+	if (a2 == 1) {
+		*(DWORD*)(a1 + 0x14C60) = 0;
+	}
 	return onewPlayerState(a1, a2, a3, a4);
 	//return onewPlayerState(a1, a2, a3, a4);
 	/*
@@ -207,7 +215,7 @@ typedef void(__fastcall* setNoChakraCirclePlayerState)(__int64 a1);
 setNoChakraCirclePlayerState oSetNoChakraCirclePlayerState = NULL;
 void outputInputs(__int64 playerAddr) {
 	__int64 inputPointer = playerAddr + 0x218;
-	int input = *(DWORD*)(inputPointer + 0x404);
+	int input = *(DWORD*)(inputPointer + 0x408);
 	std::cout << "Input: " << input << std::endl;
 }
 
@@ -222,7 +230,6 @@ void nSetNoChakraCirclePlayerState(__int64 a1) {
 	//Input Code
 
 	playerAddr = a1;
-	outputInputs(playerAddr);
 	if (*(DWORD*)(playerAddr + 0xCC0) == 92)
 		*(DWORD*)(playerAddr + 0xCC0) = 66;
 	if (*(DWORD*)(a1 + 0xCC0) != 94)          // If the current state isn't 94
@@ -1123,6 +1130,15 @@ areYouComboing oAreYouComboing = NULL;
 
 
 signed __int64 nAreYouComboing(__int64 playerAddr, unsigned int playerState, unsigned int a3) {
+
+
+	std::uintptr_t addrGameRate = (std::uintptr_t)(moddingApi::Memory::moduleBase + 0x161A334);
+	std::cout << *(float*)(addrGameRate) << std::endl;
+	if (*(float*)(addrGameRate) == 0.4f && *(DWORD*)(playerAddr + 0xCC0) == 66) {
+		*(DWORD*)(playerAddr + 0x14C60) = 0;
+		std::cout << "black state written" << std::endl;
+	}
+	outputInputs(playerAddr);
 	/*
 	__int64 v4; // rbx@1
 	signed int v5; // ebp@1
@@ -1600,6 +1616,7 @@ sub_1407AB468 osub_1407AB468 = NULL;
 
 int __fastcall nsub_1407AB468(__int64 a1, unsigned int a2) {
 	int returnval = osub_1407AB468(a1, a2);
+	std::cout << "nsub" << std::endl;
 	return returnval;
 }
 
@@ -2064,18 +2081,17 @@ void moddingApi::Memory::WriteBytes() {
 	moddingApi::Memory::write_bytes<4>(moddingApi::Memory::moduleBase + 0x77E621 + 0xC00, { 0x90, 0x90, 0x90, 0x90 });
 
 	//Old Support Style
-	//moddingApi::Memory::write_bytes<21>(moddingApi::Memory::moduleBase + 0x7BF6F2 + 0xC00, { 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90 });
-	
 	moddingApi::Memory::write_bytes<7>(moddingApi::Memory::moduleBase + 0x7C059A + 0xC00, { 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90});
 	moddingApi::Memory::write_bytes<5>(moddingApi::Memory::moduleBase + 0x5741AD + 0xC00, { 0x90, 0x90, 0x90, 0x90, 0x90});
 	moddingApi::Memory::write_bytes<5>(moddingApi::Memory::moduleBase + 0x575C3E + 0xC00, { 0x90, 0x90, 0x90, 0x90, 0x90 });
 	moddingApi::Memory::write_bytes<5>(moddingApi::Memory::moduleBase + 0x573F90 + 0xC00, { 0x90, 0x90, 0x90, 0x90, 0x90 });
 	
 	//No More Black State
-	moddingApi::Memory::write_bytes<10>(moddingApi::Memory::moduleBase + 0x576C9E + 0xC00, { 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90 });
+	//moddingApi::Memory::write_bytes<10>(moddingApi::Memory::moduleBase + 0x576C9E + 0xC00, { 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90 });
 	
 	//No Armor Break
 	moddingApi::Memory::write_bytes<5>(moddingApi::Memory::moduleBase + 0x74A837 + 0xC00, { 0x90, 0x90, 0x90, 0x90, 0x90 });
+
 
 }
 
