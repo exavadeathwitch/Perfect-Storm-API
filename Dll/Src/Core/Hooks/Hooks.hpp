@@ -11,6 +11,6 @@ namespace hooks {
 
 	namespace functions {
 		LRESULT __stdcall hkPresent(IDXGISwapChain* swapChain, UINT syncInterval, UINT flags);
-		LRESULT __stdcall hkWndProc(HWND hwnd, UINT msg, LPARAM lParam, WPARAM wParam);
+		LRESULT __stdcall hkWndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam);
 	}
 }

@@ -1,0 +1,90 @@
+.code
+extern proxyFunctions:QWORD
+D3DAssembleThunk proc
+		jmp proxyFunctions[0*8]
+D3DAssembleThunk endp
+DebugSetMuteThunk proc
+		jmp proxyFunctions[1*8]
+DebugSetMuteThunk endp
+D3DCompileThunk proc
+		jmp proxyFunctions[2*8]
+D3DCompileThunk endp
+D3DCompile2Thunk proc
+		jmp proxyFunctions[3*8]
+D3DCompile2Thunk endp
+D3DCompileFromFileThunk proc
+		jmp proxyFunctions[4*8]
+D3DCompileFromFileThunk endp
+D3DCompressShadersThunk proc
+		jmp proxyFunctions[5*8]
+D3DCompressShadersThunk endp
+D3DCreateBlobThunk proc
+		jmp proxyFunctions[6*8]
+D3DCreateBlobThunk endp
+D3DCreateFunctionLinkingGraphThunk proc
+		jmp proxyFunctions[7*8]
+D3DCreateFunctionLinkingGraphThunk endp
+D3DCreateLinkerThunk proc
+		jmp proxyFunctions[8*8]
+D3DCreateLinkerThunk endp
+D3DDecompressShadersThunk proc
+		jmp proxyFunctions[9*8]
+D3DDecompressShadersThunk endp
+D3DDisassembleThunk proc
+		jmp proxyFunctions[10*8]
+D3DDisassembleThunk endp
+D3DDisassemble10EffectThunk proc
+		jmp proxyFunctions[11*8]
+D3DDisassemble10EffectThunk endp
+D3DDisassemble11TraceThunk proc
+		jmp proxyFunctions[12*8]
+D3DDisassemble11TraceThunk endp
+D3DDisassembleRegionThunk proc
+		jmp proxyFunctions[13*8]
+D3DDisassembleRegionThunk endp
+D3DGetBlobPartThunk proc
+		jmp proxyFunctions[14*8]
+D3DGetBlobPartThunk endp
+D3DGetDebugInfoThunk proc
+		jmp proxyFunctions[15*8]
+D3DGetDebugInfoThunk endp
+D3DGetInputAndOutputSignatureBlobThunk proc
+		jmp proxyFunctions[16*8]
+D3DGetInputAndOutputSignatureBlobThunk endp
+D3DGetInputSignatureBlobThunk proc
+		jmp proxyFunctions[17*8]
+D3DGetInputSignatureBlobThunk endp
+D3DGetOutputSignatureBlobThunk proc
+		jmp proxyFunctions[18*8]
+D3DGetOutputSignatureBlobThunk endp
+D3DGetTraceInstructionOffsetsThunk proc
+		jmp proxyFunctions[19*8]
+D3DGetTraceInstructionOffsetsThunk endp
+D3DLoadModuleThunk proc
+		jmp proxyFunctions[20*8]
+D3DLoadModuleThunk endp
+D3DPreprocessThunk proc
+		jmp proxyFunctions[21*8]
+D3DPreprocessThunk endp
+D3DReadFileToBlobThunk proc
+		jmp proxyFunctions[22*8]
+D3DReadFileToBlobThunk endp
+D3DReflectThunk proc
+		jmp proxyFunctions[23*8]
+D3DReflectThunk endp
+D3DReflectLibraryThunk proc
+		jmp proxyFunctions[24*8]
+D3DReflectLibraryThunk endp
+D3DReturnFailure1Thunk proc
+		jmp proxyFunctions[25*8]
+D3DReturnFailure1Thunk endp
+D3DSetBlobPartThunk proc
+		jmp proxyFunctions[26*8]
+D3DSetBlobPartThunk endp
+D3DStripShaderThunk proc
+		jmp proxyFunctions[27*8]
+D3DStripShaderThunk endp
+D3DWriteBlobToFileThunk proc
+		jmp proxyFunctions[28*8]
+D3DWriteBlobToFileThunk endp
+end

@@ -1,0 +1,31 @@
+LIBRARY d3dcompiler_47.dll
+EXPORTS
+		D3DAssemble=D3DAssembleThunk @1
+		DebugSetMute=DebugSetMuteThunk @2
+		D3DCompile=D3DCompileThunk @3
+		D3DCompile2=D3DCompile2Thunk @4
+		D3DCompileFromFile=D3DCompileFromFileThunk @5
+		D3DCompressShaders=D3DCompressShadersThunk @6
+		D3DCreateBlob=D3DCreateBlobThunk @7
+		D3DCreateFunctionLinkingGraph=D3DCreateFunctionLinkingGraphThunk @8
+		D3DCreateLinker=D3DCreateLinkerThunk @9
+		D3DDecompressShaders=D3DDecompressShadersThunk @10
+		D3DDisassemble=D3DDisassembleThunk @11
+		D3DDisassemble10Effect=D3DDisassemble10EffectThunk @12
+		D3DDisassemble11Trace=D3DDisassemble11TraceThunk @13
+		D3DDisassembleRegion=D3DDisassembleRegionThunk @14
+		D3DGetBlobPart=D3DGetBlobPartThunk @15
+		D3DGetDebugInfo=D3DGetDebugInfoThunk @16
+		D3DGetInputAndOutputSignatureBlob=D3DGetInputAndOutputSignatureBlobThunk @17
+		D3DGetInputSignatureBlob=D3DGetInputSignatureBlobThunk @18
+		D3DGetOutputSignatureBlob=D3DGetOutputSignatureBlobThunk @19
+		D3DGetTraceInstructionOffsets=D3DGetTraceInstructionOffsetsThunk @20
+		D3DLoadModule=D3DLoadModuleThunk @21
+		D3DPreprocess=D3DPreprocessThunk @22
+		D3DReadFileToBlob=D3DReadFileToBlobThunk @23
+		D3DReflect=D3DReflectThunk @24
+		D3DReflectLibrary=D3DReflectLibraryThunk @25
+		D3DReturnFailure1=D3DReturnFailure1Thunk @26
+		D3DSetBlobPart=D3DSetBlobPartThunk @27
+		D3DStripShader=D3DStripShaderThunk @28
+		D3DWriteBlobToFile=D3DWriteBlobToFileThunk @29
