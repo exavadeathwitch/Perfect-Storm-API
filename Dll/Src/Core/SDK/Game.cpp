@@ -9,7 +9,7 @@ namespace sdk::game {
 		IDXGISwapChain* swapChain{};
 		ID3D11Device* device{};
 		ID3D11DeviceContext* deviceContext{};
-
+		
 		D3D_FEATURE_LEVEL featureLevel{};
 		const D3D_FEATURE_LEVEL featureLevels[] = {D3D_FEATURE_LEVEL_10_1, D3D_FEATURE_LEVEL_11_0};
 		DXGI_SWAP_CHAIN_DESC swapChainDesc{};

@@ -255,10 +255,12 @@
     <ClInclude Include="Src\Core\SDK\Game.hpp" />
     <ClInclude Include="Src\Core\Settings\Settings.hpp" />
     <ClInclude Include="src\pch.hpp" />
+    <ClInclude Include="Src\Player\Mechanics\mech.hpp" />
     <ClInclude Include="src\util\console\Console.hpp" />
     <ClInclude Include="src\Util\Hook\HookManager.hpp" />
     <ClInclude Include="src\Util\Memory\Address.hpp" />
     <ClInclude Include="Src\Util\Memory\Memory.hpp" />
+    <ClInclude Include="Src\Util\Memory\Modify.hpp" />
     <ClInclude Include="Src\Util\Memory\Signature.hpp" />
     <ClInclude Include="Src\Util\Process\Module.hpp" />
     <ClInclude Include="Src\Util\Process\Process.hpp" />
@@ -296,6 +298,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Beta|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Developer|x64'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="Src\Player\Mechanics\mech.cpp" />
     <ClCompile Include="src\util\console\Console.cpp" />
     <ClCompile Include="src\Util\Hook\HookManager.cpp" />
     <ClCompile Include="Src\Util\Process\Module.cpp" />

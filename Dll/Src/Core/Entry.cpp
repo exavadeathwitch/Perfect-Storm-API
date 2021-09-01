@@ -8,6 +8,8 @@
 
 #include "Util/Console/Console.hpp"
 
+#include "Util/Memory/Modify.hpp"
+
 extern "C" std::uintptr_t proxyFunctions[29] = {};
 
 static constexpr const char* proxyFuncNames[29] = {
@@ -53,19 +55,43 @@ DWORD __stdcall modEntry(void* const imageBase) {
 
     util::console::initialize("lol");
 
-    printf_s("[+] init\n");
+	globals::moduleBase = (uintptr_t)GetModuleHandle(NULL);
+    
+	printf_s("[+] init\n");
 
     if (!sdk::game::initialize())
         std::abort();
 
     hooks::initialize();
 
+	//TESTING READ/WRITE FUNCTIONS
+	std::uint8_t FC1[7] = { 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0 };
+	std::uint8_t FC2[5] = { 0x0, 0x0, 0x0, 0x0, 0x0 };
+	std::uint8_t FC3[5] = { 0x0, 0x0, 0x0, 0x0, 0x0 };
+	std::uint8_t FC4[5] = { 0x0, 0x0, 0x0, 0x0, 0x0 };
+
+	//Read
+	util::memory::Modify::read_bytes<7>(globals::moduleBase + 0x7C059A + 0xC00), FC1;
+	util::memory::Modify::read_bytes<7>(globals::moduleBase + 0x5741AD + 0xC00), FC2;
+	util::memory::Modify::read_bytes<7>(globals::moduleBase + 0x575C3E + 0xC00), FC3;
+	util::memory::Modify::read_bytes<7>(globals::moduleBase + 0x573F90 + 0xC00), FC4;
+	//Write
+	util::memory::Modify::write_bytes<7>(globals::moduleBase + 0x7C059A + 0xC00, { 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90 });
+	util::memory::Modify::write_bytes<5>(globals::moduleBase + 0x5741AD + 0xC00, { 0x90, 0x90, 0x90, 0x90, 0x90 });
+	util::memory::Modify::write_bytes<5>(globals::moduleBase + 0x575C3E + 0xC00, { 0x90, 0x90, 0x90, 0x90, 0x90 });
+	util::memory::Modify::write_bytes<5>(globals::moduleBase + 0x573F90 + 0xC00, { 0x90, 0x90, 0x90, 0x90, 0x90 });
+
+	//Write
+	util::memory::Modify::write_bytes<7>(globals::moduleBase + 0x7C059A + 0xC00, { FC1[0], FC1[1], FC1[2], FC1[3], FC1[4], FC1[5], FC1[6] });
+	util::memory::Modify::write_bytes<5>(globals::moduleBase + 0x5741AD + 0xC00, { FC2[0], FC2[1], FC2[2], FC2[3], FC2[4] });
+	util::memory::Modify::write_bytes<5>(globals::moduleBase + 0x575C3E + 0xC00, { FC3[0], FC3[1], FC3[2], FC3[3], FC3[4] });
+	util::memory::Modify::write_bytes<5>(globals::moduleBase + 0x573F90 + 0xC00, { FC4[0], FC4[1], FC4[2], FC4[3], FC4[4] });
+
     while (!GetAsyncKeyState(VK_END))
         Sleep(50);
 
     hooks::uninitialize();
     util::console::uninitialize();
-
 	FreeLibrary(oD3DCompiler);
 
     FreeLibraryAndExitThread(static_cast<HMODULE>(imageBase), EXIT_SUCCESS);
