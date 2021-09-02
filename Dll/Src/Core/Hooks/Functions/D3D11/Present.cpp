@@ -14,6 +14,8 @@ namespace hooks {
 
 		if (showWindow)
 			ShowCursor(true);
+		else
+			ShowCursor(false);
 
 		std::call_once(init, [&swapChain]() {
 			ID3D11Texture2D* backBuffer{};

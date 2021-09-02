@@ -10,7 +10,7 @@
 
 namespace globals {
 
-	static uintptr_t moduleBase;
+	static uintptr_t moduleBase = (uintptr_t)GetModuleHandle(NULL);
 	inline std::unique_ptr<console::Console> modConsole = std::make_unique<console::Console>();
 	inline std::unique_ptr<settings::LoadedSettings> settings = std::make_unique<settings::LoadedSettings>();
 	inline std::unique_ptr<util::process::Process> process = std::make_unique<util::process::Process>("NSUNS4.exe");

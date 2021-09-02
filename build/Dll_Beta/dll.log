@@ -1,0 +1,13 @@
+﻿  Entry.cpp
+     Creating library C:\Users\absol\Documents\GitHub\Perfect-Storm-API\bin\Dll_Beta\d3dcompiler_47.lib and object C:\Users\absol\Documents\GitHub\Perfect-Storm-API\bin\Dll_Beta\d3dcompiler_47.exp
+  Generating code
+  Previous IPDB not found, fall back to full compilation.
+  All 2805 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
+  Finished generating code
+imgui.lib(imgui.obj) : warning LNK4099: PDB 'imgui.pdb' was not found with 'imgui.lib(imgui.obj)' or at 'C:\Users\absol\Documents\GitHub\Perfect-Storm-API\bin\Dll_Beta\imgui.pdb'; linking object as if no debug info
+imgui.lib(imgui_widgets.obj) : warning LNK4099: PDB 'imgui.pdb' was not found with 'imgui.lib(imgui_widgets.obj)' or at 'C:\Users\absol\Documents\GitHub\Perfect-Storm-API\bin\Dll_Beta\imgui.pdb'; linking object as if no debug info
+imgui.lib(imgui_impl_win32.obj) : warning LNK4099: PDB 'imgui.pdb' was not found with 'imgui.lib(imgui_impl_win32.obj)' or at 'C:\Users\absol\Documents\GitHub\Perfect-Storm-API\bin\Dll_Beta\imgui.pdb'; linking object as if no debug info
+imgui.lib(imgui_impl_dx11.obj) : warning LNK4099: PDB 'imgui.pdb' was not found with 'imgui.lib(imgui_impl_dx11.obj)' or at 'C:\Users\absol\Documents\GitHub\Perfect-Storm-API\bin\Dll_Beta\imgui.pdb'; linking object as if no debug info
+imgui.lib(imgui_draw.obj) : warning LNK4099: PDB '' was not found with 'imgui.lib(imgui_draw.obj)' or at ''; linking object as if no debug info
+imgui.lib(imgui_tables.obj) : warning LNK4099: PDB 'imgui.pdb' was not found with 'imgui.lib(imgui_tables.obj)' or at 'C:\Users\absol\Documents\GitHub\Perfect-Storm-API\bin\Dll_Beta\imgui.pdb'; linking object as if no debug info
+  dll.vcxproj -> C:\Users\absol\Documents\GitHub\Perfect-Storm-API\bin\Dll_Beta\d3dcompiler_47.dll

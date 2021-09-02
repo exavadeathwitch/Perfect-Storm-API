@@ -64,17 +64,12 @@ DWORD __stdcall modEntry(void* const imageBase) {
 
     hooks::initialize();
 
-	//TESTING READ/WRITE FUNCTIONS
-	std::uint8_t FC1[7] = { 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0 };
-	std::uint8_t FC2[5] = { 0x0, 0x0, 0x0, 0x0, 0x0 };
-	std::uint8_t FC3[5] = { 0x0, 0x0, 0x0, 0x0, 0x0 };
-	std::uint8_t FC4[5] = { 0x0, 0x0, 0x0, 0x0, 0x0 };
-
 	//Read
-	util::memory::Modify::read_bytes<7>(globals::moduleBase + 0x7C059A + 0xC00), FC1;
-	util::memory::Modify::read_bytes<7>(globals::moduleBase + 0x5741AD + 0xC00), FC2;
-	util::memory::Modify::read_bytes<7>(globals::moduleBase + 0x575C3E + 0xC00), FC3;
-	util::memory::Modify::read_bytes<7>(globals::moduleBase + 0x573F90 + 0xC00), FC4;
+	const auto FC1 = util::memory::Modify::read_bytes<7>(globals::moduleBase + 0x7C059A + 0xC00);
+	const auto FC2 = util::memory::Modify::read_bytes<7>(globals::moduleBase + 0x5741AD + 0xC00);
+	const auto FC3 = util::memory::Modify::read_bytes<7>(globals::moduleBase + 0x575C3E + 0xC00);
+	const auto FC4 = util::memory::Modify::read_bytes<7>(globals::moduleBase + 0x573F90 + 0xC00);
+
 	//Write
 	util::memory::Modify::write_bytes<7>(globals::moduleBase + 0x7C059A + 0xC00, { 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90 });
 	util::memory::Modify::write_bytes<5>(globals::moduleBase + 0x5741AD + 0xC00, { 0x90, 0x90, 0x90, 0x90, 0x90 });
