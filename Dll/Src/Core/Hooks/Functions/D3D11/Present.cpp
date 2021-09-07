@@ -48,7 +48,7 @@ namespace hooks {
 		sdk::game::deviceContext->OMSetRenderTargets(1, &g_RenderTargetView, nullptr);
 
 		ImGui_ImplDX11_RenderDrawData(ImGui::GetDrawData());
-
+		printf_s("Present End\n");
 		return globals::hookManager->callOriginal<decltype(&hkPresent)>(hkPresent, swapChain, syncInterval, flags);
 	}
 }

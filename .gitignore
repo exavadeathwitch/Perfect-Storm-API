@@ -7,3 +7,4 @@
 /build/Dll_Release
 build/Dll_Debug/d3dcompiler_47.pch
 *.pch
+*.pdb

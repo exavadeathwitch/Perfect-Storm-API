@@ -44,11 +44,14 @@ namespace sdk::game {
 	bool initialize() noexcept {
 		if (!setSwapChainVtbl())
 			return false;
-
+	
 		gameWindow = FindWindowA(nullptr, "NSUNS4");
 
-		if (!gameWindow)
-			return false;
+		while (!gameWindow) {
+			gameWindow = FindWindowA(nullptr, "NSUNS4");
+			printf_s("Couldn't find window\n");
+			Sleep(2000);
+		}
 
 		return true;
 	}

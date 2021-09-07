@@ -11,7 +11,7 @@ namespace hooks {
 		globals::hookManager->initialize();
 
 		globals::hookManager->addEntry(sdk::game::swapChainVtbl[8], functions::hkPresent);
-		
+		/*
 
 		globals::hookManager->addEntry((std::uintptr_t)(globals::moduleBase + 0x7ADCB4 + 0xC00), mechanics::functions::newPlayerState);
 		
@@ -40,7 +40,7 @@ namespace hooks {
 		globals::hookManager->addEntry((std::uintptr_t)(globals::moduleBase + 0x5763A0 + 0xC00), mechanics::functions::writeSwitchByte);
 		
 		globals::hookManager->addEntry((std::uintptr_t)(globals::moduleBase + 0x78138C + 0xC00), mechanics::functions::comboGuardBreak);
-
+		*/
 		globals::hookManager->hookAllEntries();
 
 		ogWndProc = std::bit_cast<WNDPROC>(GetWindowLongPtrA(sdk::game::gameWindow, GWLP_WNDPROC));
