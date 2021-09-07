@@ -195,7 +195,7 @@
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>false</GenerateDebugInformation>
       <EnableUAC>false</EnableUAC>
-      <AdditionalDependencies>minhook.x64.lib;imgui.lib;SDL2.lib;SDL2main.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>minhook.x64.lib;imgui.lib;SDL2.lib;SDL2main.lib;SDL2_mixer.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>$(ProjectDir)thirdparty\lib\Release\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <ModuleDefinitionFile>$(ProjectDir)Dll.def</ModuleDefinitionFile>
     </Link>
@@ -249,12 +249,15 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Src\Battle\battle.hpp" />
     <ClInclude Include="Src\Core\ModConsole\ModConsole.hpp" />
     <ClInclude Include="Src\Core\Globals.hpp" />
     <ClInclude Include="Src\Core\Hooks\Hooks.hpp" />
     <ClInclude Include="Src\Core\SDK\Game.hpp" />
     <ClInclude Include="Src\Core\Settings\Settings.hpp" />
+    <ClInclude Include="Src\General\general.hpp" />
     <ClInclude Include="src\pch.hpp" />
+    <ClInclude Include="Src\Player\IDs\id.hpp" />
     <ClInclude Include="Src\Player\Mechanics\mech.hpp" />
     <ClInclude Include="src\util\console\Console.hpp" />
     <ClInclude Include="src\Util\Hook\HookManager.hpp" />
@@ -262,8 +265,10 @@
     <ClInclude Include="Src\Util\Memory\Memory.hpp" />
     <ClInclude Include="Src\Util\Memory\Modify.hpp" />
     <ClInclude Include="Src\Util\Memory\Signature.hpp" />
+    <ClInclude Include="Src\Util\Memory\String.hpp" />
     <ClInclude Include="Src\Util\Process\Module.hpp" />
     <ClInclude Include="Src\Util\Process\Process.hpp" />
+    <ClInclude Include="Src\Util\Sound\Music.hpp" />
     <ClInclude Include="Src\Util\Util.hpp" />
     <ClInclude Include="Thirdparty\imgui\include\imconfig.h" />
     <ClInclude Include="Thirdparty\imgui\include\imgui.h" />
@@ -369,11 +374,12 @@
     <ClInclude Include="Thirdparty\sdl2\include\SDL_version.h" />
     <ClInclude Include="Thirdparty\sdl2\include\SDL_video.h" />
     <ClInclude Include="Thirdparty\sdl2\include\SDL_vulkan.h" />
-    <ClInclude Include="Thirdparty\sdl2\SDL2Music.h" />
-    <ClInclude Include="Thirdparty\sdl2\SDL2SoundEffects.h" />
-    <ClInclude Include="Thirdparty\sdl2\SDLInit.h" />
+    <ClInclude Include="Src\Util\Sound\SDL2Music.h" />
+    <ClInclude Include="Src\Util\Sound\SDL2SoundEffects.h" />
+    <ClInclude Include="Src\Util\Sound\SDLInit.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Src\Battle\battle.cpp" />
     <ClCompile Include="Src\Core\ModConsole\ModConsole.cpp" />
     <ClCompile Include="src\Core\Entry.cpp" />
     <ClCompile Include="Src\Core\Hooks\Functions\D3D11\Present.cpp" />
@@ -381,6 +387,7 @@
     <ClCompile Include="Src\Core\Hooks\Hooks.cpp" />
     <ClCompile Include="Src\Core\SDK\Game.cpp" />
     <ClCompile Include="Src\Core\Settings\Settings.cpp" />
+    <ClCompile Include="Src\General\general.cpp" />
     <ClCompile Include="src\pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Public|x64'">Create</PrecompiledHeader>
@@ -388,13 +395,15 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Beta|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Developer|x64'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="Src\Player\IDs\id.cpp" />
     <ClCompile Include="Src\Player\Mechanics\mech.cpp" />
     <ClCompile Include="src\util\console\Console.cpp" />
     <ClCompile Include="src\Util\Hook\HookManager.cpp" />
     <ClCompile Include="Src\Util\Process\Module.cpp" />
-    <ClCompile Include="Thirdparty\sdl2\SDL2Music.cpp" />
-    <ClCompile Include="Thirdparty\sdl2\SDL2SoundEffects.cpp" />
-    <ClCompile Include="Thirdparty\sdl2\SDLInit.cpp" />
+    <ClCompile Include="Src\Util\Sound\Music.cpp" />
+    <ClCompile Include="Src\Util\Sound\SDL2Music.cpp" />
+    <ClCompile Include="Src\Util\Sound\SDL2SoundEffects.cpp" />
+    <ClCompile Include="Src\Util\Sound\SDLInit.cpp" />
   </ItemGroup>
   <ItemGroup>
     <MASM Include="Dll.asm" />

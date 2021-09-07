@@ -1,8 +1,10 @@
-#include "sdl2/SDL2Music.h"
-#include "sdl2/SDLInit.h"
-#include <sdl2/include/SDL.h>
-
 #include "pch.hpp"
+
+#include "Util/Sound/SDL2Music.h"
+#include "Util/Sound/SDLInit.h"
+#include <sdl2/include/SDL.h>
+int musicVol = 16;
+
 SDL2Music::SDL2Music()
 {
 	SDLInit::initSDLSound();

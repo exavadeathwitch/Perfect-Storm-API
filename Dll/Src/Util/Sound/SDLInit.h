@@ -1,4 +1,6 @@
 #pragma once
+
+#include "pch.hpp"
 class SDLInit
 {
 public:

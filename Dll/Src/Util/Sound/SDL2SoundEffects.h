@@ -1,5 +1,7 @@
 #pragma once
-#include <SDL_mixer.h>
+
+#include "pch.hpp"
+#include "sdl2/include/SDL_mixer.h"
 #include <vector>
 class SDL2SoundEffects
 {

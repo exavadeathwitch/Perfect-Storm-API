@@ -1,8 +1,9 @@
-#include "sdl2/SDLInit.h"
-#include <sdl2/include/SDL_mixer.h>
-#include <sdl2/include/SDL.h>
-
 #include "pch.hpp"
+
+#include "Util/Sound/SDLInit.h"
+#include "sdl2/include/SDL_mixer.h"
+#include "sdl2/include/SDL.h"
+
 static SDLInit* sdlsound = nullptr;
 
 void SDLInit::initSDLSound()

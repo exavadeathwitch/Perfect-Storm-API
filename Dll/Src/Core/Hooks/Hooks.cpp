@@ -4,46 +4,7 @@
 
 #include "Core/Globals.hpp"
 
-
-_int64 __fastcall nCanYouShuriken(__int64 a1)
-{
-	/*
-	int retval = globals::hookManager->getOriginal<decltype(&nCanYouShuriken)>(nCanYouShuriken, a1);
-		return retval;
-*/
-	__int64 v1; // rbx@1
-	signed int v2; // ecx@6
-	__int64 result; // rax@10
-
-
-	signed typedef __int64(__fastcall* sub_14076C79C) (__int64 a1);
-	sub_14076C79C osub_14076C79C = (sub_14076C79C)(globals::moduleBase + 0x76BB9C + 0xC00);
-
-	typedef __int64(__fastcall* sub_14077DA68) (__int64 a1, int a2, __int64 a3);
-	sub_14077DA68 osub_14077DA68 = (sub_14077DA68)(globals::moduleBase + 0x77CE68 + 0xC00);
-
-	v1 = a1;
-	result = 0;
-	if (*(DWORD*)(a1 + 0x14B30))
-	{
-		if ((*(int(__fastcall**)(__int64, signed __int64))(*(__int64*)a1 + 0x1398i64))(a1, 6i64))
-		{
-			if (!(unsigned int)osub_14076C79C(8i64))
-			{
-				if (osub_14077DA68(v1, 151, 1i64))
-				{
-					if (*(DWORD*)(v1 + 0x141EC))
-					{
-						v2 = *(DWORD*)(v1 + 0xCC0);
-						if (v2 > 0 && ((v2 <= 2 || v2 == 8 || v2 == 66 || v2 == 63))) //&& (*(int(__fastcall**)(__int64))(*(__int64*)v1 + 0xE60i64))(v1)))
-							result = 1;
-					}
-				}
-			}
-		}
-	}
-	return result;
-}
+#include "Player/Mechanics/mech.hpp"
 
 namespace hooks {
 	void initialize() noexcept {
@@ -51,7 +12,34 @@ namespace hooks {
 
 		globals::hookManager->addEntry(sdk::game::swapChainVtbl[8], functions::hkPresent);
 		
-		globals::hookManager->addEntry((std::uintptr_t)(globals::moduleBase + 0x7AD024 + 0xC00), nCanYouShuriken);
+
+		globals::hookManager->addEntry((std::uintptr_t)(globals::moduleBase + 0x7ADCB4 + 0xC00), mechanics::functions::newPlayerState);
+		
+		globals::hookManager->addEntry((std::uintptr_t)(globals::moduleBase + 0x7AD024 + 0xC00), mechanics::functions::canYouShuriken);
+		
+		globals::hookManager->addEntry((std::uintptr_t)(globals::moduleBase + 0x22A208 + 0xC00), mechanics::functions::setNoChakraCirclePlayerState);
+
+		globals::hookManager->addEntry((std::uintptr_t)(globals::moduleBase + 0x77D8A0 + 0xC00), mechanics::functions::newPlayerAnim);
+
+		globals::hookManager->addEntry((std::uintptr_t)(globals::moduleBase + 0x7DF614 + 0xC00), mechanics::functions::setMultiInputPlayerState);
+
+		globals::hookManager->addEntry((std::uintptr_t)(globals::moduleBase + 0x7E09F4 + 0xC00), mechanics::functions::itemState);
+
+		globals::hookManager->addEntry((std::uintptr_t)(globals::moduleBase + 0x7AD960 + 0xC00), mechanics::functions::areYouComboing);
+
+		globals::hookManager->addEntry((std::uintptr_t)(globals::moduleBase + 0x7920CC + 0xC00), mechanics::functions::movementChain);
+
+		globals::hookManager->addEntry((std::uintptr_t)(globals::moduleBase + 0x7AFA38 + 0xC00), mechanics::functions::cdashState);
+
+		globals::hookManager->addEntry((std::uintptr_t)(globals::moduleBase + 0x7AFBC8 + 0xC00), mechanics::functions::backACD);
+
+		globals::hookManager->addEntry((std::uintptr_t)(globals::moduleBase + 0x79BD44 + 0xC00), mechanics::functions::setDashPriority);
+
+		globals::hookManager->addEntry((std::uintptr_t)(globals::moduleBase + 0x7E5C2C + 0xC00), mechanics::functions::writeSupportState);
+
+		globals::hookManager->addEntry((std::uintptr_t)(globals::moduleBase + 0x5763A0 + 0xC00), mechanics::functions::writeSwitchByte);
+		
+		globals::hookManager->addEntry((std::uintptr_t)(globals::moduleBase + 0x78138C + 0xC00), mechanics::functions::comboGuardBreak);
 
 		globals::hookManager->hookAllEntries();
 

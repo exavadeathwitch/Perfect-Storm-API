@@ -1,6 +1,7 @@
 #pragma once
 #include <sdl2/include/SDL_mixer.h>
 #include <vector>
+#include "pch.hpp"
 class SDL2Music
 {
 public:

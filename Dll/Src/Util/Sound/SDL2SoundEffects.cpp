@@ -1,9 +1,12 @@
-#include "sdl2/SDL2SoundEffects.h"
-#include <sdl2/include/SDL.h>
-#include <iostream>
-#include "sdl2/SDLInit.h"
-
 #include "pch.hpp"
+
+
+#include "Util/Sound/SDL2SoundEffects.h"
+#include "sdl2/include/SDL.h"
+#include <iostream>
+#include "Util/Sound/SDLInit.h"
+
+
 SDL2SoundEffects::SDL2SoundEffects()
 {
 	SDLInit::initSDLSound();

@@ -10,6 +10,9 @@
 
 #include "Util/Memory/Modify.hpp"
 
+#include "Util/Sound/SDL2Music.h"
+
+#include <string>
 extern "C" std::uintptr_t proxyFunctions[29] = {};
 
 static constexpr const char* proxyFuncNames[29] = {
@@ -64,6 +67,14 @@ DWORD __stdcall modEntry(void* const imageBase) {
 
     hooks::initialize();
 
+	/*music playing test
+		SDL2Music music;
+		std::string filepath = "test.wav";
+		std::string str_obj(filepath);
+		char* filepath_arr = &str_obj[0];
+		music.addMusicTrack(filepath_arr);
+		music.playMusicTrack(0);
+	*/
 	//Read
 	const auto FC1 = util::memory::Modify::read_bytes<7>(globals::moduleBase + 0x7C059A + 0xC00);
 	const auto FC2 = util::memory::Modify::read_bytes<7>(globals::moduleBase + 0x5741AD + 0xC00);
@@ -75,13 +86,21 @@ DWORD __stdcall modEntry(void* const imageBase) {
 	util::memory::Modify::write_bytes<5>(globals::moduleBase + 0x5741AD + 0xC00, { 0x90, 0x90, 0x90, 0x90, 0x90 });
 	util::memory::Modify::write_bytes<5>(globals::moduleBase + 0x575C3E + 0xC00, { 0x90, 0x90, 0x90, 0x90, 0x90 });
 	util::memory::Modify::write_bytes<5>(globals::moduleBase + 0x573F90 + 0xC00, { 0x90, 0x90, 0x90, 0x90, 0x90 });
+	util::memory::Modify::write_bytes<4>(globals::moduleBase + 0x77E621 + 0xC00, { 0x90, 0x90, 0x90, 0x90 });
+	util::memory::Modify::write_bytes<5>(globals::moduleBase + 0x74A837 + 0xC00, { 0x90, 0x90, 0x90, 0x90, 0x90 });
+	
+	
+	util::memory::Modify::write_bytes<6>(globals::moduleBase + 0x732C77, { 0x90, 0x90, 0x90, 0x90, 0x90, 0x90 });
+	util::memory::Modify::write_bytes<2>(globals::moduleBase + 0x732F9A, { 0x90, 0x90 });
+	util::memory::Modify::write_bytes<4>(globals::moduleBase + 0x732CEF, { 0x90, 0x90, 0x90, 0x90 });
 
 	//Write
+	/*
 	util::memory::Modify::write_bytes<7>(globals::moduleBase + 0x7C059A + 0xC00, { FC1[0], FC1[1], FC1[2], FC1[3], FC1[4], FC1[5], FC1[6] });
 	util::memory::Modify::write_bytes<5>(globals::moduleBase + 0x5741AD + 0xC00, { FC2[0], FC2[1], FC2[2], FC2[3], FC2[4] });
 	util::memory::Modify::write_bytes<5>(globals::moduleBase + 0x575C3E + 0xC00, { FC3[0], FC3[1], FC3[2], FC3[3], FC3[4] });
 	util::memory::Modify::write_bytes<5>(globals::moduleBase + 0x573F90 + 0xC00, { FC4[0], FC4[1], FC4[2], FC4[3], FC4[4] });
-
+	*/
     while (!GetAsyncKeyState(VK_END))
         Sleep(50);
 
