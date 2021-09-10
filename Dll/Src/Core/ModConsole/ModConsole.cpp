@@ -5,9 +5,9 @@
 #include "imgui/include/imgui.h"
 
 namespace console {
-	void Console::render() noexcept {
+	bool Console::render() noexcept {
 		if (!m_ShouldRender)
-			return;
+			return 0;
 
 		if (ImGui::Begin("Perfect Storm Console", &m_ShouldRender, ImGuiWindowFlags_NoScrollbar | ImGuiWindowFlags_NoCollapse)) {
 			ImGui::SetCursorPosY(ImGui::GetWindowHeight() - 25.f);
@@ -40,6 +40,7 @@ namespace console {
 			command.clear();
 
 		}ImGui::End();
+		return 1;
 	}
 
 	void Console::buildCommands() noexcept {
@@ -53,6 +54,16 @@ namespace console {
 				   = [&, this]() -> void {
 			m_Messages.clear();
 		}});
+
+		addCommand({ .m_Name = "mechtable", .m_Description = "Displays a table with mechanical toggles", .m_Action
+				   = [&, this]() -> void {
+
+		} });
+		/*
+		addCommand({ .m_Name = "onlinetrain", .m_Description = "Enables online training mode", .m_Action
+				   = [&, this]() -> void {
+			m_Messages.clear();
+		} });*/
 	}
 
 	void Console::addCommand(const Command& command) noexcept {

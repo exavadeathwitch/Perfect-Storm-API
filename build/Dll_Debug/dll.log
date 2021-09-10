@@ -1,8 +1,1 @@
-﻿  Assembling Dll.asm...
-  Present.cpp
-  WndProc.cpp
-  Hooks.cpp
-  Game.cpp
-  Entry.cpp
-  Generating Code...
-  dll.vcxproj -> C:\Users\theep\Documents\GitHub\Perfect-Storm-API\bin\Dll_Debug\d3dcompiler_47.dll
+﻿LINK : fatal error LNK1104: cannot open file 'minhook.x64d.lib'

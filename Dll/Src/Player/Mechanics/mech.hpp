@@ -1,8 +1,12 @@
 #pragma once
 
+#include "Util/Memory/Modify.hpp"
 //Adding Toggles for Each Individual Mechanic
 
 namespace mechanics {
+	//imgui table to display mechanical toggles
+	inline bool mechTable = 0;
+
 	//Chakraless Circle Attacks Function
 	inline bool enableNMTilt = 1;
 	inline bool enableTaunt = 1;
@@ -20,7 +24,10 @@ namespace mechanics {
 
 	//Full Combo Switch Function
 	inline bool enableFullComboSwitch = 1;
-
+	const std::array<unsigned char, 7> FC1 = util::memory::Modify::read_bytes<7>(globals::moduleBase + 0x7C059A + 0xC00);
+	const std::array<unsigned char, 7> FC2 = util::memory::Modify::read_bytes<7>(globals::moduleBase + 0x5741AD + 0xC00);
+	const std::array<unsigned char, 7> FC3 = util::memory::Modify::read_bytes<7>(globals::moduleBase + 0x575C3E + 0xC00);
+	const std::array<unsigned char, 7> FC4 = util::memory::Modify::read_bytes<7>(globals::moduleBase + 0x573F90 + 0xC00);
 	//Can You Fast Air Chakra Dash or Instant(Gens/S3) Air Chakra Dash
 	inline bool enableFastACD = 1;
 	inline bool enableInstantACD = 0;

@@ -250,6 +250,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="Src\Battle\battle.hpp" />
+    <ClInclude Include="Src\Core\Hooks\Functions\D3D11\stb_image.h" />
     <ClInclude Include="Src\Core\ModConsole\ModConsole.hpp" />
     <ClInclude Include="Src\Core\Globals.hpp" />
     <ClInclude Include="Src\Core\Hooks\Hooks.hpp" />

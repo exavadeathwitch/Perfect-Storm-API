@@ -3,6 +3,7 @@
 #include <functional>
 
 namespace console {
+	inline bool enabled = 0;
 	class Console {
 	public:
 		struct Command {
@@ -11,7 +12,7 @@ namespace console {
 			std::function<void()> m_Action;
 		};
 	public:
-		void render() noexcept;
+		bool render() noexcept;
 		void buildCommands() noexcept;
 		void addCommand(const Command& command) noexcept;
 		void runCommand(std::string_view name) noexcept;

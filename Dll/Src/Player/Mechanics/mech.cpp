@@ -272,7 +272,7 @@ int mechanics::functions::itemState(__int64 a1, unsigned int a2) {
 		v5 = 0;
 	}
 	v8 = (*(int(__fastcall**)(__int64, signed __int64))(*(__int64*)playerAddr + 0x1398i64))(playerAddr, 17i64) != 0 ? v5 : 0;
-	v9 = *(DWORD*)(playerAddr + 0x14B30);
+	v9 = -*(DWORD*)(playerAddr + 0x14B30);
 	if ((((*(DWORD*)(playerAddr + 0x14B30) != 0 ? v8 : 0) || *(DWORD*)(playerAddr + 0xCC0) == 73)) && v4 != -1) //State Checking + If item slot is available
 	{
 		DWORD(v9) = (*(int(__fastcall**)(__int64, __int64))(*(__int64*)playerAddr + 0x1758i64))(
