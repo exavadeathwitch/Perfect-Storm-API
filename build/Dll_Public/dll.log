@@ -1,33 +1,105 @@
-﻿  Assembling Dll.asm...
-  pch.cpp
-  battle.cpp
-  Present.cpp
-C:\Users\absol\Documents\GitHub\Perfect-Storm-API\Dll\Src\Core\Hooks\Functions\D3D11\Present.cpp(100,2): error C2065: 'g_pd3dDevice': undeclared identifier
-C:\Users\absol\Documents\GitHub\Perfect-Storm-API\Dll\Src\Core\Hooks\Functions\D3D11\Present.cpp(109,2): error C2065: 'g_pd3dDevice': undeclared identifier
-  WndProc.cpp
-  Hooks.cpp
-  ModConsole.cpp
-  Game.cpp
-  Settings.cpp
-  general.cpp
-  id.cpp
-  mech.cpp
-C:\Users\absol\Documents\GitHub\Perfect-Storm-API\Dll\Src\Player\Mechanics\mech.cpp(191,28): warning C4244: '=': conversion from '__int64' to 'DWORD', possible loss of data
-C:\Users\absol\Documents\GitHub\Perfect-Storm-API\Dll\Src\Player\Mechanics\mech.cpp(196,28): warning C4244: '=': conversion from '__int64' to 'DWORD', possible loss of data
-C:\Users\absol\Documents\GitHub\Perfect-Storm-API\Dll\Src\Player\Mechanics\mech.cpp(275,7): error C4146: unary minus operator applied to unsigned type, result still unsigned
-C:\Users\absol\Documents\GitHub\Perfect-Storm-API\Dll\Src\Player\Mechanics\mech.cpp(334,9): warning C4244: 'return': conversion from 'unsigned __int64' to 'int', possible loss of data
-C:\Users\absol\Documents\GitHub\Perfect-Storm-API\Dll\Src\Player\Mechanics\mech.cpp(243,10): warning C4101: 'v15': unreferenced local variable
-C:\Users\absol\Documents\GitHub\Perfect-Storm-API\Dll\Src\Player\Mechanics\mech.cpp(241,10): warning C4101: 'v13': unreferenced local variable
-C:\Users\absol\Documents\GitHub\Perfect-Storm-API\Dll\Src\Player\Mechanics\mech.cpp(242,6): warning C4101: 'v14': unreferenced local variable
-C:\Users\absol\Documents\GitHub\Perfect-Storm-API\Dll\Src\Player\Mechanics\mech.cpp(408,22): warning C4244: '=': conversion from '__int64' to 'int', possible loss of data
-C:\Users\absol\Documents\GitHub\Perfect-Storm-API\Dll\Src\Player\Mechanics\mech.cpp(425,26): warning C4244: '=': conversion from '__int64' to 'int', possible loss of data
-C:\Users\absol\Documents\GitHub\Perfect-Storm-API\Dll\Src\Player\Mechanics\mech.cpp(352,11): warning C4101: 'v8': unreferenced local variable
-C:\Users\absol\Documents\GitHub\Perfect-Storm-API\Dll\Src\Player\Mechanics\mech.cpp(353,17): warning C4101: 'playerState': unreferenced local variable
-  Module.cpp
-  Music.cpp
-  SDL2Music.cpp
-  SDL2SoundEffects.cpp
-  SDLInit.cpp
-  Entry.cpp
-  HookManager.cpp
-  Console.cpp
+﻿  Present.cpp
+C:\Users\absol\Documents\GitHub\Perfect-Storm-API\Dll\Src\Core\Hooks\Functions\D3D11\Present.cpp(55,65): warning C4244: 'argument': conversion from 'DWORD' to 'float', possible loss of data
+C:\Users\absol\Documents\GitHub\Perfect-Storm-API\Dll\Src\Core\Hooks\Functions\D3D11\Present.cpp(73,51): warning C4551: function call missing argument list
+Present.obj : warning LNK4006: "char const * const Textures::imagename01" (?imagename01@Textures@@3PEBDEB) already defined in ModConsole.obj; second definition ignored
+Present.obj : warning LNK4006: "struct ID3D11ShaderResourceView * Textures::test" (?test@Textures@@3PEAUID3D11ShaderResourceView@@EA) already defined in ModConsole.obj; second definition ignored
+Present.obj : warning LNK4006: "int Textures::image01JpgW" (?image01JpgW@Textures@@3HA) already defined in ModConsole.obj; second definition ignored
+Present.obj : warning LNK4006: "int Textures::image01JpgH" (?image01JpgH@Textures@@3HA) already defined in ModConsole.obj; second definition ignored
+Present.obj : warning LNK4006: stbi_is_16_bit_from_callbacks already defined in ModConsole.obj; second definition ignored
+Present.obj : warning LNK4006: stbi_is_16_bit_from_memory already defined in ModConsole.obj; second definition ignored
+Present.obj : warning LNK4006: stbi_info_from_callbacks already defined in ModConsole.obj; second definition ignored
+Present.obj : warning LNK4006: stbi_info_from_memory already defined in ModConsole.obj; second definition ignored
+Present.obj : warning LNK4006: stbi_is_16_bit_from_file already defined in ModConsole.obj; second definition ignored
+Present.obj : warning LNK4006: stbi_is_16_bit already defined in ModConsole.obj; second definition ignored
+Present.obj : warning LNK4006: stbi_info_from_file already defined in ModConsole.obj; second definition ignored
+Present.obj : warning LNK4006: stbi_info already defined in ModConsole.obj; second definition ignored
+Present.obj : warning LNK4006: stbi_convert_iphone_png_to_rgb_thread already defined in ModConsole.obj; second definition ignored
+Present.obj : warning LNK4006: "void __cdecl stbi__unpremultiply_on_load_thread(int)" (?stbi__unpremultiply_on_load_thread@@YAXH@Z) already defined in ModConsole.obj; second definition ignored
+Present.obj : warning LNK4006: stbi_convert_iphone_png_to_rgb already defined in ModConsole.obj; second definition ignored
+Present.obj : warning LNK4006: stbi_set_unpremultiply_on_load already defined in ModConsole.obj; second definition ignored
+Present.obj : warning LNK4006: stbi_zlib_decode_noheader_buffer already defined in ModConsole.obj; second definition ignored
+Present.obj : warning LNK4006: stbi_zlib_decode_noheader_malloc already defined in ModConsole.obj; second definition ignored
+Present.obj : warning LNK4006: stbi_zlib_decode_buffer already defined in ModConsole.obj; second definition ignored
+Present.obj : warning LNK4006: stbi_zlib_decode_malloc_guesssize_headerflag already defined in ModConsole.obj; second definition ignored
+Present.obj : warning LNK4006: stbi_zlib_decode_malloc already defined in ModConsole.obj; second definition ignored
+Present.obj : warning LNK4006: stbi_zlib_decode_malloc_guesssize already defined in ModConsole.obj; second definition ignored
+Present.obj : warning LNK4006: stbi_hdr_to_ldr_scale already defined in ModConsole.obj; second definition ignored
+Present.obj : warning LNK4006: stbi_hdr_to_ldr_gamma already defined in ModConsole.obj; second definition ignored
+Present.obj : warning LNK4006: stbi_ldr_to_hdr_scale already defined in ModConsole.obj; second definition ignored
+Present.obj : warning LNK4006: stbi_ldr_to_hdr_gamma already defined in ModConsole.obj; second definition ignored
+Present.obj : warning LNK4006: stbi_is_hdr_from_callbacks already defined in ModConsole.obj; second definition ignored
+Present.obj : warning LNK4006: stbi_is_hdr_from_file already defined in ModConsole.obj; second definition ignored
+Present.obj : warning LNK4006: stbi_is_hdr already defined in ModConsole.obj; second definition ignored
+Present.obj : warning LNK4006: stbi_is_hdr_from_memory already defined in ModConsole.obj; second definition ignored
+Present.obj : warning LNK4006: stbi_loadf_from_file already defined in ModConsole.obj; second definition ignored
+Present.obj : warning LNK4006: stbi_loadf already defined in ModConsole.obj; second definition ignored
+Present.obj : warning LNK4006: stbi_loadf_from_callbacks already defined in ModConsole.obj; second definition ignored
+Present.obj : warning LNK4006: stbi_loadf_from_memory already defined in ModConsole.obj; second definition ignored
+Present.obj : warning LNK4006: stbi_load_gif_from_memory already defined in ModConsole.obj; second definition ignored
+Present.obj : warning LNK4006: stbi_load_from_callbacks already defined in ModConsole.obj; second definition ignored
+Present.obj : warning LNK4006: stbi_load_from_memory already defined in ModConsole.obj; second definition ignored
+Present.obj : warning LNK4006: stbi_load_16_from_callbacks already defined in ModConsole.obj; second definition ignored
+Present.obj : warning LNK4006: stbi_load_16_from_memory already defined in ModConsole.obj; second definition ignored
+Present.obj : warning LNK4006: stbi_load_16 already defined in ModConsole.obj; second definition ignored
+Present.obj : warning LNK4006: stbi_load_from_file_16 already defined in ModConsole.obj; second definition ignored
+Present.obj : warning LNK4006: stbi_load_from_file already defined in ModConsole.obj; second definition ignored
+Present.obj : warning LNK4006: stbi_load already defined in ModConsole.obj; second definition ignored
+Present.obj : warning LNK4006: stbi_set_flip_vertically_on_load_thread already defined in ModConsole.obj; second definition ignored
+Present.obj : warning LNK4006: stbi_set_flip_vertically_on_load already defined in ModConsole.obj; second definition ignored
+Present.obj : warning LNK4006: stbi_image_free already defined in ModConsole.obj; second definition ignored
+Present.obj : warning LNK4006: stbi_failure_reason already defined in ModConsole.obj; second definition ignored
+Textures.obj : warning LNK4006: "char const * const Textures::imagename01" (?imagename01@Textures@@3PEBDEB) already defined in ModConsole.obj; second definition ignored
+Textures.obj : warning LNK4006: "struct ID3D11ShaderResourceView * Textures::test" (?test@Textures@@3PEAUID3D11ShaderResourceView@@EA) already defined in ModConsole.obj; second definition ignored
+Textures.obj : warning LNK4006: "int Textures::image01JpgW" (?image01JpgW@Textures@@3HA) already defined in ModConsole.obj; second definition ignored
+Textures.obj : warning LNK4006: "int Textures::image01JpgH" (?image01JpgH@Textures@@3HA) already defined in ModConsole.obj; second definition ignored
+Textures.obj : warning LNK4006: stbi_is_16_bit_from_callbacks already defined in ModConsole.obj; second definition ignored
+Textures.obj : warning LNK4006: stbi_is_16_bit_from_memory already defined in ModConsole.obj; second definition ignored
+Textures.obj : warning LNK4006: stbi_info_from_callbacks already defined in ModConsole.obj; second definition ignored
+Textures.obj : warning LNK4006: stbi_info_from_memory already defined in ModConsole.obj; second definition ignored
+Textures.obj : warning LNK4006: stbi_is_16_bit_from_file already defined in ModConsole.obj; second definition ignored
+Textures.obj : warning LNK4006: stbi_is_16_bit already defined in ModConsole.obj; second definition ignored
+Textures.obj : warning LNK4006: stbi_info_from_file already defined in ModConsole.obj; second definition ignored
+Textures.obj : warning LNK4006: stbi_info already defined in ModConsole.obj; second definition ignored
+Textures.obj : warning LNK4006: stbi_convert_iphone_png_to_rgb_thread already defined in ModConsole.obj; second definition ignored
+Textures.obj : warning LNK4006: "void __cdecl stbi__unpremultiply_on_load_thread(int)" (?stbi__unpremultiply_on_load_thread@@YAXH@Z) already defined in ModConsole.obj; second definition ignored
+Textures.obj : warning LNK4006: stbi_convert_iphone_png_to_rgb already defined in ModConsole.obj; second definition ignored
+Textures.obj : warning LNK4006: stbi_set_unpremultiply_on_load already defined in ModConsole.obj; second definition ignored
+Textures.obj : warning LNK4006: stbi_zlib_decode_noheader_buffer already defined in ModConsole.obj; second definition ignored
+Textures.obj : warning LNK4006: stbi_zlib_decode_noheader_malloc already defined in ModConsole.obj; second definition ignored
+Textures.obj : warning LNK4006: stbi_zlib_decode_buffer already defined in ModConsole.obj; second definition ignored
+Textures.obj : warning LNK4006: stbi_zlib_decode_malloc_guesssize_headerflag already defined in ModConsole.obj; second definition ignored
+Textures.obj : warning LNK4006: stbi_zlib_decode_malloc already defined in ModConsole.obj; second definition ignored
+Textures.obj : warning LNK4006: stbi_zlib_decode_malloc_guesssize already defined in ModConsole.obj; second definition ignored
+Textures.obj : warning LNK4006: stbi_hdr_to_ldr_scale already defined in ModConsole.obj; second definition ignored
+Textures.obj : warning LNK4006: stbi_hdr_to_ldr_gamma already defined in ModConsole.obj; second definition ignored
+Textures.obj : warning LNK4006: stbi_ldr_to_hdr_scale already defined in ModConsole.obj; second definition ignored
+Textures.obj : warning LNK4006: stbi_ldr_to_hdr_gamma already defined in ModConsole.obj; second definition ignored
+Textures.obj : warning LNK4006: stbi_is_hdr_from_callbacks already defined in ModConsole.obj; second definition ignored
+Textures.obj : warning LNK4006: stbi_is_hdr_from_file already defined in ModConsole.obj; second definition ignored
+Textures.obj : warning LNK4006: stbi_is_hdr already defined in ModConsole.obj; second definition ignored
+Textures.obj : warning LNK4006: stbi_is_hdr_from_memory already defined in ModConsole.obj; second definition ignored
+Textures.obj : warning LNK4006: stbi_loadf_from_file already defined in ModConsole.obj; second definition ignored
+Textures.obj : warning LNK4006: stbi_loadf already defined in ModConsole.obj; second definition ignored
+Textures.obj : warning LNK4006: stbi_loadf_from_callbacks already defined in ModConsole.obj; second definition ignored
+Textures.obj : warning LNK4006: stbi_loadf_from_memory already defined in ModConsole.obj; second definition ignored
+Textures.obj : warning LNK4006: stbi_load_gif_from_memory already defined in ModConsole.obj; second definition ignored
+Textures.obj : warning LNK4006: stbi_load_from_callbacks already defined in ModConsole.obj; second definition ignored
+Textures.obj : warning LNK4006: stbi_load_from_memory already defined in ModConsole.obj; second definition ignored
+Textures.obj : warning LNK4006: stbi_load_16_from_callbacks already defined in ModConsole.obj; second definition ignored
+Textures.obj : warning LNK4006: stbi_load_16_from_memory already defined in ModConsole.obj; second definition ignored
+Textures.obj : warning LNK4006: stbi_load_16 already defined in ModConsole.obj; second definition ignored
+Textures.obj : warning LNK4006: stbi_load_from_file_16 already defined in ModConsole.obj; second definition ignored
+Textures.obj : warning LNK4006: stbi_load_from_file already defined in ModConsole.obj; second definition ignored
+Textures.obj : warning LNK4006: stbi_load already defined in ModConsole.obj; second definition ignored
+Textures.obj : warning LNK4006: stbi_set_flip_vertically_on_load_thread already defined in ModConsole.obj; second definition ignored
+Textures.obj : warning LNK4006: stbi_set_flip_vertically_on_load already defined in ModConsole.obj; second definition ignored
+Textures.obj : warning LNK4006: stbi_image_free already defined in ModConsole.obj; second definition ignored
+Textures.obj : warning LNK4006: stbi_failure_reason already defined in ModConsole.obj; second definition ignored
+     Creating library C:\Users\absol\Documents\GitHub\Perfect-Storm-API\bin\Dll_Public\d3dcompiler_47.lib and object C:\Users\absol\Documents\GitHub\Perfect-Storm-API\bin\Dll_Public\d3dcompiler_47.exp
+C:\Users\absol\Documents\GitHub\Perfect-Storm-API\bin\Dll_Public\d3dcompiler_47.dll : warning LNK4088: image being generated due to /FORCE option; image may not run
+  Generating code
+  6 of 4233 functions ( 0.1%) were compiled, the rest were copied from previous compilation.
+    0 functions were new in current compilation
+    35 functions had inline decision re-evaluated but remain unchanged
+  Finished generating code
+  dll.vcxproj -> C:\Users\absol\Documents\GitHub\Perfect-Storm-API\bin\Dll_Public\d3dcompiler_47.dll

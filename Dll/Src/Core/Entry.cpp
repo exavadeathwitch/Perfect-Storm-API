@@ -69,6 +69,7 @@ DWORD __stdcall modEntry(void* const imageBase) {
 	
     hooks::initialize();
 	
+	settings::onStartup();
 	/*music playing test
 		SDL2Music music;
 		std::string filepath = "test.wav";

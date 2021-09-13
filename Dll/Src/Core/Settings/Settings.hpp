@@ -5,6 +5,7 @@ namespace settings {
 		bool m_ShouldEnableConsole{};
 		std::string m_Version{};
 		bool m_ShouldAutoUpdate{};
+		int m_frameDelayPosition{};
 	};
 
 	void onStartup() noexcept;

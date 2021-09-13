@@ -6,13 +6,15 @@
 
 #include "Player/Mechanics/mech.hpp"
 
+#include "Net/net.hpp"
+
+#include "Battle/battle.hpp"
 namespace hooks {
 	void initialize() noexcept {
 		globals::hookManager->initialize();
 
 		globals::hookManager->addEntry(sdk::game::swapChainVtbl[8], functions::hkPresent);
-		/*
-
+		
 		globals::hookManager->addEntry((std::uintptr_t)(globals::moduleBase + 0x7ADCB4 + 0xC00), mechanics::functions::newPlayerState);
 		
 		globals::hookManager->addEntry((std::uintptr_t)(globals::moduleBase + 0x7AD024 + 0xC00), mechanics::functions::canYouShuriken);
@@ -40,7 +42,19 @@ namespace hooks {
 		globals::hookManager->addEntry((std::uintptr_t)(globals::moduleBase + 0x5763A0 + 0xC00), mechanics::functions::writeSwitchByte);
 		
 		globals::hookManager->addEntry((std::uintptr_t)(globals::moduleBase + 0x78138C + 0xC00), mechanics::functions::comboGuardBreak);
-		*/
+
+		globals::hookManager->addEntry((std::uintptr_t)(globals::moduleBase + 0xAEF4F0 + 0xC00), Net::functions::calculateFrame);
+
+		globals::hookManager->addEntry((std::uintptr_t)(globals::moduleBase + 0xAF29E0 + 0xC00), Net::functions::randomNet);
+
+		globals::hookManager->addEntry((std::uintptr_t)(globals::moduleBase + 0xAEF2A0 + 0xC00), Net::functions::sub_140AEFEA0);
+
+		globals::hookManager->addEntry((std::uintptr_t)(globals::moduleBase + 0x74C648 + 0xC00), Battle::functions::matchCount);
+		
+		globals::hookManager->addEntry((std::uintptr_t)(globals::moduleBase + 0x70C478 + 0xC00), Battle::functions::battleEnd);
+
+		globals::hookManager->addEntry((std::uintptr_t)(globals::moduleBase + 0x6E1310 + 0xC00), Battle::functions::loadDisconnectPopUp);
+		
 		globals::hookManager->hookAllEntries();
 
 		ogWndProc = std::bit_cast<WNDPROC>(GetWindowLongPtrA(sdk::game::gameWindow, GWLP_WNDPROC));

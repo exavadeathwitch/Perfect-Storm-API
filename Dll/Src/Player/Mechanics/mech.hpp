@@ -8,19 +8,19 @@ namespace mechanics {
 	inline bool mechTable = 0;
 
 	//Chakraless Circle Attacks Function
-	inline bool enableNMTilt = 1;
-	inline bool enableTaunt = 1;
-	inline bool enableGKunaiAirCombo = 1;
+	inline bool enableNMTilt = 0;
+	inline bool enableTaunt = 0;
+	inline bool enableGKunaiAirCombo = 0;
 
 	//Grab/Counter Function
 	inline bool enableNMGrab = 1;
-	inline bool enableGKunai = 1;
+	inline bool enableGKunai = 0;
 
 	//Can You Shuriken Function
 	inline bool enableShurikenComboTilt = 1;
 
 	//Cancelling Out of Tilts Function
-	inline bool enableTiltCancels = 1;
+	inline bool enableTiltCancels = 0;
 
 	//Full Combo Switch Function
 	inline bool enableFullComboSwitch = 1;

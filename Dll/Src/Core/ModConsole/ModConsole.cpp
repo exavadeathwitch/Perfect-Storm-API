@@ -2,6 +2,8 @@
 
 #include "ModConsole.hpp"
 
+#include "Textures/Textures.hpp"
+
 #include "imgui/include/imgui.h"
 
 namespace console {
@@ -11,6 +13,7 @@ namespace console {
 
 		if (ImGui::Begin("Perfect Storm Console", &m_ShouldRender, ImGuiWindowFlags_NoScrollbar | ImGuiWindowFlags_NoCollapse)) {
 			ImGui::SetCursorPosY(ImGui::GetWindowHeight() - 25.f);
+
 
 			std::string command;
 			command.resize(50);

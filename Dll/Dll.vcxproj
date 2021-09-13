@@ -158,7 +158,7 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>_PUBLIC;ULTIMATESTORM_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_PUBLIC;ULTIMATESTORM_EXPORTS;_WINDOWS;_USRDLL;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.hpp</PrecompiledHeaderFile>
@@ -174,6 +174,7 @@
       <AdditionalDependencies>minhook.x64.lib;imgui.lib;SDL2.lib;SDL2main.lib;SDL2_mixer.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>$(ProjectDir)thirdparty\lib\Release\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <ModuleDefinitionFile>$(ProjectDir)Dll.def</ModuleDefinitionFile>
+      <AdditionalOptions>/FORCE:MULTIPLE %(AdditionalOptions)</AdditionalOptions>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -250,12 +251,16 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="Src\Battle\battle.hpp" />
-    <ClInclude Include="Src\Core\Hooks\Functions\D3D11\stb_image.h" />
+    <ClInclude Include="Src\Net\net.hpp" />
+    <ClInclude Include="Src\Textures\Textures.hpp" />
+    <ClInclude Include="Src\Util\Display\Display.hpp" />
+    <ClInclude Include="Thirdparty\stb\stb_image.h" />
     <ClInclude Include="Src\Core\ModConsole\ModConsole.hpp" />
     <ClInclude Include="Src\Core\Globals.hpp" />
     <ClInclude Include="Src\Core\Hooks\Hooks.hpp" />
     <ClInclude Include="Src\Core\SDK\Game.hpp" />
     <ClInclude Include="Src\Core\Settings\Settings.hpp" />
+    <ClInclude Include="Src\GameSettings\gameSettings.hpp" />
     <ClInclude Include="Src\General\general.hpp" />
     <ClInclude Include="src\pch.hpp" />
     <ClInclude Include="Src\Player\IDs\id.hpp" />
@@ -388,7 +393,9 @@
     <ClCompile Include="Src\Core\Hooks\Hooks.cpp" />
     <ClCompile Include="Src\Core\SDK\Game.cpp" />
     <ClCompile Include="Src\Core\Settings\Settings.cpp" />
+    <ClCompile Include="Src\GameSettings\gameSettings.cpp" />
     <ClCompile Include="Src\General\general.cpp" />
+    <ClCompile Include="Src\Net\net.cpp" />
     <ClCompile Include="src\pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Public|x64'">Create</PrecompiledHeader>
@@ -398,6 +405,7 @@
     </ClCompile>
     <ClCompile Include="Src\Player\IDs\id.cpp" />
     <ClCompile Include="Src\Player\Mechanics\mech.cpp" />
+    <ClCompile Include="Src\Textures\Textures.cpp" />
     <ClCompile Include="src\util\console\Console.cpp" />
     <ClCompile Include="src\Util\Hook\HookManager.cpp" />
     <ClCompile Include="Src\Util\Process\Module.cpp" />

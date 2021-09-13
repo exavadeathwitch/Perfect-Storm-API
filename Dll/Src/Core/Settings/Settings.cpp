@@ -28,6 +28,7 @@ namespace settings {
 		settings["General"]["Console"] = true;
 		settings["General"]["Version"] = "Default";
 		settings["General"]["Auto-Update"] = true;
+		settings["General"]["Frame Delay Position"] = 0;
 
 		fileOut << settings.dump(1);
 	}
@@ -40,6 +41,7 @@ namespace settings {
 		settings["General"]["Console"] = globals::settings->m_ShouldEnableConsole;
 		settings["General"]["Version"] = globals::settings->m_Version;
 		settings["General"]["Auto-Update"] = globals::settings->m_ShouldAutoUpdate;
+		settings["General"]["Frame Delay Position"] = globals::settings->m_frameDelayPosition;
 
 		fileOut << settings.dump(1);
 	}
@@ -56,5 +58,6 @@ namespace settings {
 		globals::settings->m_ShouldEnableConsole = parsedJson["General"]["Console"].get<bool>();
 		globals::settings->m_Version = parsedJson["General"]["Version"].get<std::string>();
 		globals::settings->m_ShouldAutoUpdate = parsedJson["General"]["Auto-Update"].get<bool>();
+		globals::settings->m_frameDelayPosition = parsedJson["General"]["Frame Delay Position"].get<int>();
 	}
 }
