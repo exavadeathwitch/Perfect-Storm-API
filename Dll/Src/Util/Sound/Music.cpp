@@ -10,13 +10,23 @@
 
 #include <filesystem>
 
+#include <time.h>
+
 void music::functions::playMusicTrackTest() {
 	SDL2Music music;
-	std::string filepath = "test.wav";
-	std::string str_obj(filepath);
-	char* filepath_arr = &str_obj[0];
-	music.addMusicTrack(filepath_arr);
-	music.playMusicTrack(0);
+	std::string dirpath = General::defaultFilepath + "\\sound\\music\\stage";
+	std::string str_obj(dirpath);
+	char* dirpath_arr = &str_obj[0];
+
+	srand(time(NULL));
+
+	int numtracks = 0;
+	for (const auto& file : std::filesystem::directory_iterator(dirpath)) {
+
+		music.addMusicTrack(file.path().string().c_str());
+		numtracks++;
+	}
+	music.playMusicTrack(rand() % numtracks);
 }
 /*
 void music::functions::playStageMusicTrack() {

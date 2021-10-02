@@ -14,6 +14,8 @@
 
 #include "Util/Sound/SDL2Music.h"
 
+#include "Util/Sound/Music.hpp"
+
 #include <string>
 extern "C" std::uintptr_t proxyFunctions[29] = {};
 
@@ -70,6 +72,8 @@ DWORD __stdcall modEntry(void* const imageBase) {
     hooks::initialize();
 	
 	settings::onStartup();
+	music::functions m;
+	m.playMusicTrackTest();
 	/*music playing test
 		SDL2Music music;
 		std::string filepath = "test.wav";
