@@ -29,7 +29,8 @@ namespace settings {
 		settings["General"]["Version"] = "Default";
 		settings["General"]["Auto-Update"] = true;
 		settings["General"]["Frame Delay Position"] = 0;
-
+		settings["General"]["Enable Online Training"] = false;
+		settings["General"]["Custom Menu Music"] = false;
 		fileOut << settings.dump(1);
 	}
 
@@ -42,7 +43,8 @@ namespace settings {
 		settings["General"]["Version"] = globals::settings->m_Version;
 		settings["General"]["Auto-Update"] = globals::settings->m_ShouldAutoUpdate;
 		settings["General"]["Frame Delay Position"] = globals::settings->m_frameDelayPosition;
-
+		settings["General"]["Enable Online Training"] = globals::settings->m_enableTraining;
+		settings["General"]["Custom Menu Music"] = globals::settings->m_customMusicToggle;
 		fileOut << settings.dump(1);
 	}
 
@@ -59,5 +61,7 @@ namespace settings {
 		globals::settings->m_Version = parsedJson["General"]["Version"].get<std::string>();
 		globals::settings->m_ShouldAutoUpdate = parsedJson["General"]["Auto-Update"].get<bool>();
 		globals::settings->m_frameDelayPosition = parsedJson["General"]["Frame Delay Position"].get<int>();
+		globals::settings->m_enableTraining = parsedJson["General"]["Enable Online Training"].get<bool>();
+		globals::settings->m_customMusicToggle = parsedJson["General"]["Custom Menu Music"].get<bool>();
 	}
 }

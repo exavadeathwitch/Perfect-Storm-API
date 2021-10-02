@@ -4,7 +4,11 @@
 
 #include "Player/IDs/id.hpp"
 
+#include "imgui/include/imgui_impl_dx11.h"
+
 #include <iostream>
+
+//Toggles menu that controls 
 //This function controls when the character can perform a shuriken. We've modified it so it can be performed out of a combo and tilt, like in Naruto Storm Revolution.
 __int64 __fastcall mechanics::functions::canYouShuriken(__int64 a1) {
 	if (!mechanics::enableShurikenComboTilt) {

@@ -1,32 +1,4 @@
-﻿  Present.cpp
-C:\Users\absol\Documents\GitHub\Perfect-Storm-API\Dll\src\Util\Memory\Modify.hpp(65,9): warning C4551: function call missing argument list
-C:\Users\absol\Documents\GitHub\Perfect-Storm-API\Dll\Src\Core\Hooks\Functions\D3D11\Present.cpp(67,65): warning C4244: 'argument': conversion from 'DWORD' to 'float', possible loss of data
-C:\Users\absol\Documents\GitHub\Perfect-Storm-API\Dll\Src\Core\Hooks\Functions\D3D11\Present.cpp(121,119): warning C4244: 'argument': conversion from 'DWORD' to 'float', possible loss of data
-C:\Users\absol\Documents\GitHub\Perfect-Storm-API\Dll\Src\Core\Hooks\Functions\D3D11\Present.cpp(121,70): warning C4244: 'argument': conversion from 'DWORD' to 'float', possible loss of data
-C:\Users\absol\Documents\GitHub\Perfect-Storm-API\Dll\Src\Core\Hooks\Functions\D3D11\Present.cpp(139,116): warning C4244: 'argument': conversion from 'DWORD' to 'float', possible loss of data
-C:\Users\absol\Documents\GitHub\Perfect-Storm-API\Dll\Src\Core\Hooks\Functions\D3D11\Present.cpp(139,68): warning C4244: 'argument': conversion from 'DWORD' to 'float', possible loss of data
-  Hooks.cpp
-C:\Users\absol\Documents\GitHub\Perfect-Storm-API\Dll\src\Util\Memory\Modify.hpp(65,9): warning C4551: function call missing argument list
-  gameSettings.cpp
-C:\Users\absol\Documents\GitHub\Perfect-Storm-API\Dll\src\Util\Memory\Modify.hpp(65,9): warning C4551: function call missing argument list
-  Input.cpp
-C:\Users\absol\Documents\GitHub\Perfect-Storm-API\Dll\src\Util\Memory\Modify.hpp(65,9): warning C4551: function call missing argument list
-  oTraining.cpp
-C:\Users\absol\Documents\GitHub\Perfect-Storm-API\Dll\src\Util\Memory\Modify.hpp(65,9): warning C4551: function call missing argument list
-  mech.cpp
-C:\Users\absol\Documents\GitHub\Perfect-Storm-API\Dll\src\Util\Memory\Modify.hpp(65,9): warning C4551: function call missing argument list
-C:\Users\absol\Documents\GitHub\Perfect-Storm-API\Dll\Src\Player\Mechanics\mech.cpp(193,28): warning C4244: '=': conversion from '__int64' to 'DWORD', possible loss of data
-C:\Users\absol\Documents\GitHub\Perfect-Storm-API\Dll\Src\Player\Mechanics\mech.cpp(198,28): warning C4244: '=': conversion from '__int64' to 'DWORD', possible loss of data
-C:\Users\absol\Documents\GitHub\Perfect-Storm-API\Dll\Src\Player\Mechanics\mech.cpp(336,9): warning C4244: 'return': conversion from 'unsigned __int64' to 'int', possible loss of data
-C:\Users\absol\Documents\GitHub\Perfect-Storm-API\Dll\Src\Player\Mechanics\mech.cpp(245,10): warning C4101: 'v15': unreferenced local variable
-C:\Users\absol\Documents\GitHub\Perfect-Storm-API\Dll\Src\Player\Mechanics\mech.cpp(243,10): warning C4101: 'v13': unreferenced local variable
-C:\Users\absol\Documents\GitHub\Perfect-Storm-API\Dll\Src\Player\Mechanics\mech.cpp(244,6): warning C4101: 'v14': unreferenced local variable
-C:\Users\absol\Documents\GitHub\Perfect-Storm-API\Dll\Src\Player\Mechanics\mech.cpp(410,22): warning C4244: '=': conversion from '__int64' to 'int', possible loss of data
-C:\Users\absol\Documents\GitHub\Perfect-Storm-API\Dll\Src\Player\Mechanics\mech.cpp(427,26): warning C4244: '=': conversion from '__int64' to 'int', possible loss of data
-C:\Users\absol\Documents\GitHub\Perfect-Storm-API\Dll\Src\Player\Mechanics\mech.cpp(354,11): warning C4101: 'v8': unreferenced local variable
-C:\Users\absol\Documents\GitHub\Perfect-Storm-API\Dll\Src\Player\Mechanics\mech.cpp(355,17): warning C4101: 'playerState': unreferenced local variable
-  Entry.cpp
-C:\Users\absol\Documents\GitHub\Perfect-Storm-API\Dll\src\Util\Memory\Modify.hpp(65,9): warning C4551: function call missing argument list
+﻿  Settings.cpp
 Present.obj : warning LNK4006: "char const * const Textures::imagename01" (?imagename01@Textures@@3PEBDEB) already defined in ModConsole.obj; second definition ignored
 Present.obj : warning LNK4006: "struct ID3D11ShaderResourceView * Textures::test" (?test@Textures@@3PEAUID3D11ShaderResourceView@@EA) already defined in ModConsole.obj; second definition ignored
 Present.obj : warning LNK4006: "int Textures::image01JpgW" (?image01JpgW@Textures@@3HA) already defined in ModConsole.obj; second definition ignored
@@ -121,11 +93,14 @@ Textures.obj : warning LNK4006: stbi_set_flip_vertically_on_load_thread already 
 Textures.obj : warning LNK4006: stbi_set_flip_vertically_on_load already defined in ModConsole.obj; second definition ignored
 Textures.obj : warning LNK4006: stbi_image_free already defined in ModConsole.obj; second definition ignored
 Textures.obj : warning LNK4006: stbi_failure_reason already defined in ModConsole.obj; second definition ignored
+Music.obj : warning LNK4006: "class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> > General::defaultFilepath" (?defaultFilepath@General@@3V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@A) already defined in Present.obj; second definition ignored
      Creating library C:\Users\absol\Documents\GitHub\Perfect-Storm-API\bin\Dll_Public\d3dcompiler_47.lib and object C:\Users\absol\Documents\GitHub\Perfect-Storm-API\bin\Dll_Public\d3dcompiler_47.exp
 C:\Users\absol\Documents\GitHub\Perfect-Storm-API\bin\Dll_Public\d3dcompiler_47.dll : warning LNK4088: image being generated due to /FORCE option; image may not run
   Generating code
-  Compiler switch has changed, fall back to full compilation.
-C:\Users\absol\Documents\GitHub\Perfect-Storm-API\Dll\Src\Player\Mechanics\mech.cpp(223): warning C4715: 'mechanics::functions::setMultiInputPlayerState': not all control paths return a value
-  All 4466 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
+  8 of 4332 functions ( 0.2%) were compiled, the rest were copied from previous compilation.
+    0 functions were new in current compilation
+    59 functions had inline decision re-evaluated but remain unchanged
   Finished generating code
+* CIL library *(* CIL module *) : warning LNK4006: "class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> > General::defaultFilepath" (?defaultFilepath@General@@3V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@A) already defined in * CIL library *(* CIL module *); second definition ignored
+C:\Users\absol\Documents\GitHub\Perfect-Storm-API\bin\Dll_Public\d3dcompiler_47.dll : warning LNK4088: image being generated due to /FORCE option; image may not run
   dll.vcxproj -> C:\Users\absol\Documents\GitHub\Perfect-Storm-API\bin\Dll_Public\d3dcompiler_47.dll

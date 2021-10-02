@@ -8,6 +8,8 @@
 
 #include "Textures/Textures.hpp"
 
+#include "General/general.hpp"
+
 #include "Util/Display/Display.hpp"
 
 #include "GameSettings/gameSettings.hpp"
@@ -66,14 +68,16 @@ namespace hooks {
 			globals::modConsole->buildCommands();
 
 			ImGuiIO& io = ImGui::GetIO();
-			io.Fonts->AddFontFromFileTTF("fonts.ttf", gameSettings::xRes / 40);//gameSettings::xRes/48);
+			io.Fonts->AddFontFromFileTTF(".\\Perfect Storm\\ui\\font\\FOT-Reggae Std B.ttf", gameSettings::xRes / 40);//gameSettings::xRes/48);
 			io.IniFilename = NULL;
-																			   
+
+			//Texture Loading Goes Here
+				/*
 			bool ret = util::display::load::loadTextureFromFile("On.png", &dtrainingModeIcon, &trainingModeIconW, &trainingModeIconH);
 			IM_ASSERT(ret);
 			ret = util::display::load::loadTextureFromFile("Off.png", &dtrainingModeIcon2, &trainingModeIcon2W, &trainingModeIcon2H);
 			IM_ASSERT(ret);
-			
+			*/
 			freopen("conin$", "r", stdin);
 			freopen("conout$", "w", stdout);
 			freopen("conout$", "w", stderr);
@@ -99,14 +103,28 @@ namespace hooks {
 			else
 				movesetToggle = 1;
 		}
-		if (movesetToggle = 1) {
+		if (movesetToggle == 1) {
 			ImGui::Begin("Moveset Toggles");
 			ImGui::Checkbox("NM Tilt", &mechanics::enableNMTilt);
 			ImGui::Checkbox("GKunai Air Combo", &mechanics::enableGKunaiAirCombo);
-			ImGui::Checkbox("NM Tilt", &mechanics::enableNMTilt);
-			ImGui::Checkbox("GKunai Air Combo", &mechanics::enableGKunaiAirCombo);
-		
+			ImGui::Checkbox("Ninja Move Grab", &mechanics::enableNMGrab);
+			ImGui::Checkbox("Enable GKunai", &mechanics::enableGKunai);
+			ImGui::Checkbox("Enable Shuriken From Combo/Tilt", &mechanics::enableShurikenComboTilt);
+			ImGui::Checkbox("Enable Tilt Cancels", &mechanics::enableTiltCancels);
+			ImGui::Checkbox("Enable Full Combo Switch", &mechanics::enableFullComboSwitch);
+			ImGui::Checkbox("Enable Fast Air Chakra Dash", &mechanics::enableFastACD);
+			ImGui::Checkbox("Air Back Chakra Dash Spark", &mechanics::enableABCDSpark);
+			ImGui::Checkbox("Back Chakra Dash Priority", &mechanics::enableDashPriority);
+			ImGui::Checkbox("Rev Ninja Move", &mechanics::enableRevNM);
+			ImGui::Checkbox("Rev Ninja Move Kunai", &mechanics::enableRevNMK);
+			ImGui::Checkbox("Cover Fire Chakra Shuriken", &mechanics::enableCFCS);
+			ImGui::Checkbox("Guard to Item", &mechanics::enableGTI);
+			ImGui::Checkbox("Tilt Switch", &mechanics::enableTiltSwitch);
+			ImGui::Checkbox("Grab Switch", &mechanics::enableGrabSwitch);
+			ImGui::Checkbox("Shuriken Switch", &mechanics::enableShurikenSwitch);
+			ImGui::Checkbox("Chakra Shuriken Switch", &mechanics::enableChakraShurikenSwitch);
 		}
+		/*
 		if (framecount == 0) {
 			if (Input::functions::getMenuInput() == 1) {
 				if (trainingModeIcon2) {
@@ -119,6 +137,7 @@ namespace hooks {
 				}
 			}
 		}
+		*/
 		//std::cout << trainingModeIcon2 << std::endl;
 		if (trainingModeIcon2) {
 
@@ -157,7 +176,7 @@ namespace hooks {
 
 		//}
 		if (Battle::inBattle && Net::functions::onOnline()) {
-			if (Battle::onlineTraining)
+			if (globals::settings->m_frameDelayPosition == true)
 				OTraining::functions::enableOnlineTraining();
 
 			ImGuiWindowFlags window_flags = 0;

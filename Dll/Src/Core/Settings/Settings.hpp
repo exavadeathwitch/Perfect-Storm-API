@@ -6,6 +6,8 @@ namespace settings {
 		std::string m_Version{};
 		bool m_ShouldAutoUpdate{};
 		int m_frameDelayPosition{};
+		bool m_enableTraining{};
+		bool m_customMusicToggle{};
 	};
 
 	void onStartup() noexcept;

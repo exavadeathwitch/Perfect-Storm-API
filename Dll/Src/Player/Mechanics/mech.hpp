@@ -73,5 +73,6 @@ namespace mechanics {
 		static int __fastcall writeSupportState(__int64 a1, unsigned int a2);
 		static int __fastcall writeSwitchByte(__int64 a1);
 		static int comboGuardBreak(__int64 a1, __int64 a2, __int64 a3, __int64 a4);
+		static void mechanicsMenu();
 	};
 }
