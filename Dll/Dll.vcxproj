@@ -251,7 +251,11 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="Src\Battle\battle.hpp" />
+    <ClInclude Include="Src\Input\Input.hpp" />
     <ClInclude Include="Src\Net\net.hpp" />
+    <ClInclude Include="Src\Net\Online Training\oTraining.hpp" />
+    <ClInclude Include="Src\Player\Properties\prop.hpp" />
+    <ClInclude Include="Src\Scene\Scene.hpp" />
     <ClInclude Include="Src\Textures\Textures.hpp" />
     <ClInclude Include="Src\Util\Display\Display.hpp" />
     <ClInclude Include="Thirdparty\stb\stb_image.h" />
@@ -395,7 +399,9 @@
     <ClCompile Include="Src\Core\Settings\Settings.cpp" />
     <ClCompile Include="Src\GameSettings\gameSettings.cpp" />
     <ClCompile Include="Src\General\general.cpp" />
+    <ClCompile Include="Src\Input\Input.cpp" />
     <ClCompile Include="Src\Net\net.cpp" />
+    <ClCompile Include="Src\Net\Online Training\oTraining.cpp" />
     <ClCompile Include="src\pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Public|x64'">Create</PrecompiledHeader>
@@ -405,6 +411,8 @@
     </ClCompile>
     <ClCompile Include="Src\Player\IDs\id.cpp" />
     <ClCompile Include="Src\Player\Mechanics\mech.cpp" />
+    <ClCompile Include="Src\Player\Properties\prop.cpp" />
+    <ClCompile Include="Src\Scene\Scene.cpp" />
     <ClCompile Include="Src\Textures\Textures.cpp" />
     <ClCompile Include="src\util\console\Console.cpp" />
     <ClCompile Include="src\Util\Hook\HookManager.cpp" />

@@ -4,6 +4,7 @@
 
 #include "Player/IDs/id.hpp"
 
+#include <iostream>
 //This function controls when the character can perform a shuriken. We've modified it so it can be performed out of a combo and tilt, like in Naruto Storm Revolution.
 __int64 __fastcall mechanics::functions::canYouShuriken(__int64 a1) {
 	if (!mechanics::enableShurikenComboTilt) {
@@ -61,6 +62,7 @@ __int64 __fastcall mechanics::functions::newPlayerState(__int64 a1, unsigned int
 	}
 	if (*(DWORD*)(a1 + 0xC8C) == 0x72) //If character is Six Paths Madara
 		mechanics::limboCloneAddr = a1;
+
 	return globals::hookManager->callOriginal<decltype(&mechanics::functions::newPlayerState)>(mechanics::functions::newPlayerState, a1, a2, a3, a4);
 }
 

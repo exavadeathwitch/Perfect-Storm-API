@@ -54,7 +54,7 @@ DWORD* __fastcall Net::functions::sub_140AEFEA0(__int64 a1, __int64 a2, int a3)
 }
 
 bool Net::functions::onOnline() {
-	if (*(DWORD*)(globals::moduleBase + 0x1608D40) >= 1)
+	if (*(uint8_t*)(globals::moduleBase + 0x1608D40) == 1)
 		return 1;
 	return 0;
 }

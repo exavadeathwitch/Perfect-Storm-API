@@ -4,7 +4,7 @@
 #include <windows.h>
 #include <array>
 #include <string>
-
+#include <iostream>
 //Modifying Bytes in Memory, reading and writing, mainly used for nopping/modifying exe code
 
 namespace util::memory {
@@ -34,6 +34,38 @@ namespace util::memory {
 			return read_bytes;
 		}
 
+		template<typename T>
+		static void writePointer(const std::uintptr_t base, const std::vector<std::uintptr_t>& offsets, const T val) {
+			auto tmp = base;
+
+			for (const auto& off : offsets) {
+				tmp = *reinterpret_cast<std::uintptr_t*>(tmp);
+
+				if (!tmp)
+					return;
+
+				tmp += off;
+			}
+
+			*reinterpret_cast<T*>(tmp) = val;
+		}
+
+		static std::uintptr_t readPointer(const std::uintptr_t base, const std::vector<std::uintptr_t>& offsets) {
+			auto tmp = base;
+
+			for (const auto& off : offsets) {
+				tmp = *reinterpret_cast<std::uintptr_t*>(tmp);
+				
+				if (!tmp)
+					return 0;
+
+				tmp += off;
+			}
+			//std::cout << std::hex << tmp << std::endl;
+			std::dec;
+			return tmp;
+			//*reinterpret_cast<T*>(tmp) = val;
+		}
 	private:
 		
 	};

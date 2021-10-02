@@ -9,6 +9,8 @@
 #include "Net/net.hpp"
 
 #include "Battle/battle.hpp"
+
+#include "Player/Properties/prop.hpp"
 namespace hooks {
 	void initialize() noexcept {
 		globals::hookManager->initialize();
@@ -54,6 +56,22 @@ namespace hooks {
 		globals::hookManager->addEntry((std::uintptr_t)(globals::moduleBase + 0x70C478 + 0xC00), Battle::functions::battleEnd);
 
 		globals::hookManager->addEntry((std::uintptr_t)(globals::moduleBase + 0x6E1310 + 0xC00), Battle::functions::loadDisconnectPopUp);
+		
+		globals::hookManager->addEntry((std::uintptr_t)(globals::moduleBase + 0x74A8D4 + 0xC00), prop::functions::decreaseHealth);
+		
+		globals::hookManager->addEntry((std::uintptr_t)(globals::moduleBase + 0x74A854 + 0xC00), prop::functions::decreaseChakra);
+		
+		globals::hookManager->addEntry((std::uintptr_t)(globals::moduleBase + 0x74A954 + 0xC00), prop::functions::decreaseSupportGaugeS);
+
+		globals::hookManager->addEntry((std::uintptr_t)(globals::moduleBase + 0x74AE3C + 0xC00), prop::functions::decreaseSupportGaugeLS);
+
+		globals::hookManager->addEntry((std::uintptr_t)(globals::moduleBase + 0x76BE98 + 0xC00), prop::functions::decreaseGuardHealth);
+
+		globals::hookManager->addEntry((std::uintptr_t)(globals::moduleBase + 0x74AC10 + 0xC00), prop::functions::decreaseSubs);
+		
+		globals::hookManager->addEntry((std::uintptr_t)(globals::moduleBase + 0x74AD24 + 0xC00), prop::functions::decreaseTools);
+
+		globals::hookManager->addEntry((std::uintptr_t)(globals::moduleBase + 0x74AAF8 + 0xC00), prop::functions::increaseStormGauge);
 		
 		globals::hookManager->hookAllEntries();
 
