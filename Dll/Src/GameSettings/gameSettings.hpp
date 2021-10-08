@@ -11,6 +11,6 @@ namespace gameSettings {
 	class functions {
 	public:
 		static void updateSettings();
-		
+		static int newSettings(__int64 a1);
 	};
 }

@@ -11,6 +11,11 @@
 #include "Battle/battle.hpp"
 
 #include "Player/Properties/prop.hpp"
+
+#include "Stage/Stage.hpp"
+
+#include "General/general.hpp"
+
 namespace hooks {
 	void initialize() noexcept {
 		globals::hookManager->initialize();
@@ -45,11 +50,15 @@ namespace hooks {
 		
 		globals::hookManager->addEntry((std::uintptr_t)(globals::moduleBase + 0x78138C + 0xC00), mechanics::functions::comboGuardBreak);
 
+		globals::hookManager->addEntry((std::uintptr_t)(globals::moduleBase + 0x5754FC + 0xC00), mechanics::functions::changeGameRateFromBlueDashHit);
+
 		globals::hookManager->addEntry((std::uintptr_t)(globals::moduleBase + 0xAEF4F0 + 0xC00), Net::functions::calculateFrame);
 
 		globals::hookManager->addEntry((std::uintptr_t)(globals::moduleBase + 0xAF29E0 + 0xC00), Net::functions::randomNet);
 
 		globals::hookManager->addEntry((std::uintptr_t)(globals::moduleBase + 0xAEF2A0 + 0xC00), Net::functions::sub_140AEFEA0);
+
+		globals::hookManager->addEntry((std::uintptr_t)(globals::moduleBase + 0x6B39CC + 0xC00), Net::functions::checkFPSMatchmaking);
 
 		globals::hookManager->addEntry((std::uintptr_t)(globals::moduleBase + 0x74C648 + 0xC00), Battle::functions::matchCount);
 		
@@ -72,16 +81,22 @@ namespace hooks {
 		globals::hookManager->addEntry((std::uintptr_t)(globals::moduleBase + 0x74AD24 + 0xC00), prop::functions::decreaseTools);
 
 		globals::hookManager->addEntry((std::uintptr_t)(globals::moduleBase + 0x74AAF8 + 0xC00), prop::functions::increaseStormGauge);
-		
+
+		globals::hookManager->addEntry((std::uintptr_t)(globals::moduleBase + 0xA01230 + 0xC00), General::functions::getMemString);
+
+		globals::hookManager->addEntry((std::uintptr_t)(globals::moduleBase + 0xA43730 + 0xC00), General::functions::noMusicTrack);
+
+		globals::hookManager->addEntry((std::uintptr_t)(globals::moduleBase + 0x854F3C + 0xC00), General::functions::loadCpkInitial);
+
 		globals::hookManager->hookAllEntries();
 
-		ogWndProc = std::bit_cast<WNDPROC>(GetWindowLongPtrA(sdk::game::gameWindow, GWLP_WNDPROC));
+		ogWndProc = reinterpret_cast<WNDPROC>(GetWindowLongPtrA(sdk::game::gameWindow, GWLP_WNDPROC));
 
-		SetWindowLongPtrA(sdk::game::gameWindow, GWLP_WNDPROC, std::bit_cast<LONG_PTR>(&functions::hkWndProc));
+		SetWindowLongPtrA(sdk::game::gameWindow, GWLP_WNDPROC, reinterpret_cast<LONG_PTR>(&functions::hkWndProc));
 	}
 
 	void uninitialize() noexcept {
-		SetWindowLongPtrA(sdk::game::gameWindow, GWLP_WNDPROC, std::bit_cast<LONG_PTR>(ogWndProc));
+		SetWindowLongPtrA(sdk::game::gameWindow, GWLP_WNDPROC, reinterpret_cast<LONG_PTR>(ogWndProc));
 
 		globals::hookManager->unhookAllEntries();
 		globals::hookManager->uninitialize();

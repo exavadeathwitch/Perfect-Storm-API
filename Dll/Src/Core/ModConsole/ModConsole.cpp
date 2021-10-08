@@ -6,6 +6,8 @@
 
 #include "imgui/include/imgui.h"
 
+#include "Util/Sound/Music.hpp"
+
 namespace console {
 	bool Console::render() noexcept {
 		if (!m_ShouldRender)
@@ -29,8 +31,8 @@ namespace console {
 
 					if (m_Commands.find(command) != m_Commands.end())
 						runCommand(command);
-					else
-						m_Messages.emplace_back(std::format("\"{}\" is not a valid command!\n", command));
+					//else
+						//m_Messages.emplace_back(std::format("\"{}\" is not a valid command!\n", command));
 				}
 			}
 
@@ -47,6 +49,7 @@ namespace console {
 	}
 
 	void Console::buildCommands() noexcept {
+		/*
 		addCommand({.m_Name = "help", .m_Description = "Displays this message", .m_Action
 				   = [&, this]() -> void {
 			for (const auto& current : m_Commands | std::views::values)
@@ -58,15 +61,17 @@ namespace console {
 			m_Messages.clear();
 		}});
 
-		addCommand({ .m_Name = "mechtable", .m_Description = "Displays a table with mechanical toggles", .m_Action
+		addCommand({ .m_Name = "Sound Test", .m_Description = "Plays a sound to test SDL2 mixer functionality", .m_Action
 				   = [&, this]() -> void {
+				music::functions m;
+				m.playMusicTrackTest();
 
 		} });
 		/*
 		addCommand({ .m_Name = "onlinetrain", .m_Description = "Enables online training mode", .m_Action
 				   = [&, this]() -> void {
 			m_Messages.clear();
-		} });*/
+		} });
 	}
 
 	void Console::addCommand(const Command& command) noexcept {
@@ -75,5 +80,5 @@ namespace console {
 
 	void Console::runCommand(const std::string_view name) noexcept {
 		m_Commands[name].m_Action();
-	}
+	}*/
 }

@@ -4,6 +4,10 @@
 
 #include <iostream>
 
+#include "GameSettings/gameSettings.hpp"
+
+#include "Core/Settings/Settings.hpp"
+
 signed __int64 __fastcall Net::functions::calculateFrame(__int64 a1, int a2) {
 	__int64 retval = globals::hookManager->callOriginal<decltype(&Net::functions::calculateFrame)>(Net::functions::calculateFrame, a1, a2);
 	return retval;
@@ -57,4 +61,18 @@ bool Net::functions::onOnline() {
 	if (*(uint8_t*)(globals::moduleBase + 0x1608D40) == 1)
 		return 1;
 	return 0;
+}
+
+__int64 Net::functions::checkFPSMatchmaking() {
+	gameSettings::functions::updateSettings();
+	int matchmaking = 0;
+	if (gameSettings::fps == 30)
+		matchmaking++;
+	if (gameSettings::fps == 60)
+		matchmaking+=10;
+	if (globals::settings->m_Version == "Enhanced")
+		matchmaking+=4;
+	if (globals::settings->m_enableTraining)
+		matchmaking++;
+	return matchmaking;
 }

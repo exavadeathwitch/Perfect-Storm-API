@@ -65,3 +65,13 @@ void SDL2Music::Halt_Music()
 {
 	Mix_HaltMusic();
 }
+
+int SDL2Music::Playing_Music()
+{
+	return Mix_PlayingMusic();
+}
+
+void SDL2Music::Fade_Out(int ms)
+{
+	Mix_FadeOutMusic(ms);
+}

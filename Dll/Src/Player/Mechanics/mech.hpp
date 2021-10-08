@@ -21,6 +21,7 @@ namespace mechanics {
 
 	//Cancelling Out of Tilts Function
 	inline bool enableTiltCancels = 0;
+	const std::array<unsigned char, 4> TC1 = util::memory::Modify::read_bytes<4>(globals::moduleBase + 0x77E621 + 0xC00);
 
 	//Full Combo Switch Function
 	inline bool enableFullComboSwitch = 1;
@@ -57,6 +58,13 @@ namespace mechanics {
 	//Six Paths Madara Awakening Crash Fix
 	inline __int64 limboCloneAddr;
 
+	//Full Combo Switch Shadow State
+	inline bool fullComboSwitchShadowState = 0;
+
+	//Byte writing
+	inline bool fullComboSwitchBytes = 0;
+	inline bool tiltNMJumpBytes = 0;
+
 	class functions {
 	public:
 		static __int64 __fastcall canYouShuriken(__int64 a1);
@@ -73,6 +81,8 @@ namespace mechanics {
 		static int __fastcall writeSupportState(__int64 a1, unsigned int a2);
 		static int __fastcall writeSwitchByte(__int64 a1);
 		static int comboGuardBreak(__int64 a1, __int64 a2, __int64 a3, __int64 a4);
+		static signed int __fastcall changeGameRateFromBlueDashHit(__int64 a1);
 		static void mechanicsMenu();
+		static void initializeMechanics();
 	};
 }

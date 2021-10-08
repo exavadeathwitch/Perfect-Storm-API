@@ -6,9 +6,54 @@
 
 #include "imgui/include/imgui_impl_dx11.h"
 
+#include "GameSettings/gameSettings.hpp"
+
 #include <iostream>
 
-//Toggles menu that controls 
+//Initializes game mechanics depending on the version of the game selected.
+void mechanics::functions::initializeMechanics() {
+	if (globals::settings->m_Version == "Enhanced") {
+		mechanics::enableNMTilt = 0;
+		mechanics::enableGKunaiAirCombo = 0;
+		mechanics::enableNMGrab = 1;
+		mechanics::enableGKunai = 0;
+		mechanics::enableShurikenComboTilt = 1;
+		mechanics::enableTiltCancels = 0;
+		mechanics::enableFullComboSwitch = 0;
+		mechanics::enableFastACD = 1;
+		mechanics::enableABCDSpark = 1;
+		mechanics::enableDashPriority = 1;
+		mechanics::enableRevNM = 1;
+		mechanics::enableRevNMK = 1;
+		mechanics::enableCFCS = 1;
+		mechanics::enableGTI = 1;
+		mechanics::enableTiltSwitch = 1;
+		mechanics::enableGrabSwitch = 1;
+		mechanics::enableShurikenSwitch = 1;
+		mechanics::enableChakraShurikenSwitch = 1;
+	}
+	else {
+	mechanics::enableNMTilt = 1;
+	mechanics::enableGKunaiAirCombo = 1;
+	mechanics::enableNMGrab = 1;
+	mechanics::enableGKunai = 1;
+	mechanics::enableShurikenComboTilt = 1;
+	mechanics::enableTiltCancels = 1;
+	mechanics::enableFullComboSwitch = 1;
+	mechanics::enableFastACD = 1;
+	mechanics::enableABCDSpark = 1;
+	mechanics::enableDashPriority = 1;
+	mechanics::enableRevNM = 1;
+	mechanics::enableRevNMK = 1;
+	mechanics::enableCFCS = 1;
+	mechanics::enableGTI = 1;
+	mechanics::enableTiltSwitch = 1;
+	mechanics::enableGrabSwitch = 1;
+	mechanics::enableShurikenSwitch = 1;
+	mechanics::enableChakraShurikenSwitch = 1;
+	}
+}
+
 //This function controls when the character can perform a shuriken. We've modified it so it can be performed out of a combo and tilt, like in Naruto Storm Revolution.
 __int64 __fastcall mechanics::functions::canYouShuriken(__int64 a1) {
 	if (!mechanics::enableShurikenComboTilt) {
@@ -343,8 +388,10 @@ int mechanics::functions::itemState(__int64 a1, unsigned int a2) {
 //Function that runs every frame that affects all characters in a combo state. Modifications are for disabling shadow state with full combo switch.
 signed __int64 mechanics::functions::areYouComboing(__int64 playerAddr, unsigned int playerState, unsigned int a3) {
 	std::uintptr_t addrGameRate = (std::uintptr_t)(globals::moduleBase + 0x161A334);
-	if (*(float*)(addrGameRate) == 0.4f && *(DWORD*)(playerAddr + 0xCC0) == 66) 
+	if (mechanics::fullComboSwitchShadowState && *(DWORD*)(playerAddr + 0xCC0) == 63) {
 		*(DWORD*)(playerAddr + 0x14C60) = 0;
+		std::cout << "fuck the shadow" << std::endl;
+	}
 	return globals::hookManager->callOriginal<decltype(&mechanics::functions::areYouComboing)>(mechanics::functions::areYouComboing, playerAddr, playerState, a3);
 }
 
@@ -517,4 +564,18 @@ int mechanics::functions::comboGuardBreak(__int64 a1, __int64 a2, __int64 a3, __
 			return globals::hookManager->callOriginal<decltype(&mechanics::functions::comboGuardBreak)>(mechanics::functions::comboGuardBreak, a1, a2, a3, a4);
 	}
 	return globals::hookManager->callOriginal<decltype(&mechanics::functions::comboGuardBreak)>(mechanics::functions::comboGuardBreak, a1, a2, a3, a4);
+}
+
+//Runs when a blue dash hits the opponent. Modifications include a tracker for removing shadow state for full combo switch.
+signed int __fastcall mechanics::functions::changeGameRateFromBlueDashHit(__int64 a1) {
+	int retval = globals::hookManager->callOriginal<decltype(&mechanics::functions::changeGameRateFromBlueDashHit)>(mechanics::functions::changeGameRateFromBlueDashHit, a1);
+	std::uintptr_t addrGameRate = (std::uintptr_t)(globals::moduleBase + 0x161A334);
+	if (mechanics::enableFullComboSwitch) {
+		if (*(float*)(addrGameRate) == 0.4f) {
+			std::cout << ".4f" << std::endl;
+			mechanics::fullComboSwitchShadowState = 1;
+		}
+	}
+	return retval;
+	
 }

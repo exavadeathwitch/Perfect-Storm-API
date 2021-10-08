@@ -16,7 +16,11 @@
 
 #include "Util/Sound/Music.hpp"
 
+#include "General/general.hpp"
+
 #include <string>
+
+#include <vector>
 extern "C" std::uintptr_t proxyFunctions[29] = {};
 
 static constexpr const char* proxyFuncNames[29] = {
@@ -72,8 +76,32 @@ DWORD __stdcall modEntry(void* const imageBase) {
     hooks::initialize();
 	
 	settings::onStartup();
-	music::functions m;
-	m.playMusicTrackTest();
+	mechanics::functions::initializeMechanics();
+	/*
+	General::CpkToLoad.push_back(".\\Perfect Storm\\test.cpk");
+	General::CpkPriority.push_back(14);
+	*/
+	//Disable online microphone for yourself and disable hearing your opponent's microphone
+	util::memory::Modify::write_bytes<3>(globals::moduleBase + 0xB25794 + 0xC00, { 0x90, 0x90, 0x90 });
+	util::memory::Modify::write_bytes<3>(globals::moduleBase + 0xB25966 + 0xC00, { 0x90, 0x90, 0x90 });
+	util::memory::Modify::write_bytes<5>(globals::moduleBase + 0xB260B0 + 0xC00, { 0x90, 0x90, 0x90, 0x90, 0x90 });
+	util::memory::Modify::write_bytes<5>(globals::moduleBase + 0xB26863 + 0xC00, { 0x90, 0x90, 0x90, 0x90, 0x90 });
+	util::memory::Modify::write_bytes<5>(globals::moduleBase + 0xB26B45 + 0xC00, { 0x90, 0x90, 0x90, 0x90, 0x90 });
+	/*
+	util::memory::Modify::write_bytes<7>(globals::moduleBase + 0x7C059A + 0xC00, { 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90 });
+	util::memory::Modify::write_bytes<5>(globals::moduleBase + 0x5741AD + 0xC00, { 0x90, 0x90, 0x90, 0x90, 0x90 });
+	util::memory::Modify::write_bytes<5>(globals::moduleBase + 0x575C3E + 0xC00, { 0x90, 0x90, 0x90, 0x90, 0x90 });
+	util::memory::Modify::write_bytes<5>(globals::moduleBase + 0x573F90 + 0xC00, { 0x90, 0x90, 0x90, 0x90, 0x90 });
+	*/
+	
+	/*
+	util::memory::Modify::write_bytes<5>(globals::moduleBase + 0x74A837 + 0xC00, { 0x90, 0x90, 0x90, 0x90, 0x90 });
+
+
+	util::memory::Modify::write_bytes<6>(globals::moduleBase + 0x732C77, { 0x90, 0x90, 0x90, 0x90, 0x90, 0x90 });
+	util::memory::Modify::write_bytes<2>(globals::moduleBase + 0x732F9A, { 0x90, 0x90 });
+	util::memory::Modify::write_bytes<4>(globals::moduleBase + 0x732CEF, { 0x90, 0x90, 0x90, 0x90 });
+	//m.playMusicTrackTest();
 	/*music playing test
 		SDL2Music music;
 		std::string filepath = "test.wav";
