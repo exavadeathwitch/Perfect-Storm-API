@@ -21,4 +21,5 @@ void OTraining::functions::enableOnlineTraining() {
 		ImGui::Checkbox("Unlimited Substitution", &tcheckBox[3]);
 		ImGui::Checkbox("Unlimited Ninja Tools", &tcheckBox[4]);
 		ImGui::Combo("Storm Gauge", &selectedSGItem, SGitems, IM_ARRAYSIZE(SGitems));
+		ImGui::End();
 }

@@ -3,6 +3,7 @@
 namespace Battle {
 	inline bool inBattle = 0;
 	inline bool onlineTraining = 0;
+	DWORD matchCount = 0;
 	class functions {
 	public:
 		static int __fastcall matchCount(__int64 rcx, __int64 a1, float a2);

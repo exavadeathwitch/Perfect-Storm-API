@@ -29,6 +29,7 @@
 #include "Player/Mechanics/mech.hpp"
 
 #include <iostream>
+int framecount = 0;
 bool movesetToggle = 0;
 bool trainingModeIcon = 0;
 bool trainingModeIcon2 = 0;
@@ -41,7 +42,6 @@ ID3D11ShaderResourceView* dtrainingModeIcon = NULL;
 ID3D11ShaderResourceView* dtrainingModeIcon2 = NULL;
 static ID3D11RenderTargetView* g_RenderTargetView;
 
-int framecount = 0;
 static bool showWindow = true;
 namespace hooks {
 	LRESULT __stdcall functions::hkPresent(IDXGISwapChain* swapChain, UINT syncInterval, UINT flags) {
@@ -59,7 +59,6 @@ namespace hooks {
 			swapChain->GetBuffer(0, __uuidof(ID3D11Texture2D), (LPVOID*)&backBuffer);
 			sdk::game::device->CreateRenderTargetView(backBuffer, nullptr, &g_RenderTargetView);
 			backBuffer->Release();
-
 			ImGui::CreateContext();
 
 			ImGui_ImplWin32_Init(sdk::game::gameWindow);
@@ -91,18 +90,14 @@ namespace hooks {
 		ImGui::NewFrame();
 
 
-		if ((GetAsyncKeyState(VK_ESCAPE) & 0x01)) {
-			if (console::enabled)
-				console::enabled = 0;
-			else
-				console::enabled = 1;
-		}	
+		/*
 		if ((GetAsyncKeyState(VK_TAB) & 0x01)) {
 			if (movesetToggle)
 				movesetToggle = 0;
 			else
 				movesetToggle = 1;
 		}
+		*/
 		if (movesetToggle == 1) {
 			ImGui::Begin("Moveset Toggles");
 			ImGui::Checkbox("NM Tilt", &mechanics::enableNMTilt);
@@ -158,7 +153,7 @@ namespace hooks {
 
 		}
 		//if (trainingModeIcon) {
-
+		/*
 			ImGuiWindowFlags window_flags = 0;
 			window_flags |= ImGuiWindowFlags_NoBackground;
 			window_flags |= ImGuiWindowFlags_NoTitleBar;
@@ -173,12 +168,21 @@ namespace hooks {
 
 			ImGui::Image((void*)dtrainingModeIcon, ImVec2(trainingModeIconW / (gameSettings::xRes / 150), trainingModeIconH / (gameSettings::xRes / 150)));
 			ImGui::End();
-
+			*/
 		//}
 		if (Battle::inBattle && Net::functions::onOnline()) {
-			if (globals::settings->m_frameDelayPosition == true)
+			//if (globals::settings->m_frameDelayPosition == true)
+			
+			if (globals::settings->m_enableTraining) {
+				if ((GetAsyncKeyState(VK_ESCAPE) & 0x01)) {
+					if (console::enabled)
+						console::enabled = 0;
+					else
+						console::enabled = 1;
+				}
+				if (console::enabled)
 				OTraining::functions::enableOnlineTraining();
-
+			}
 			ImGuiWindowFlags window_flags = 0;
 			window_flags |= ImGuiWindowFlags_NoBackground;
 			window_flags |= ImGuiWindowFlags_NoTitleBar;
@@ -196,7 +200,6 @@ namespace hooks {
 				ImGui::Text("Delay: %d", Net::frameDelay);
 			if (Net::frameDelay >= 10)
 				ImGui::Text("Delay: %d*", Net::frameDelay);
-
 			ImGui::End();
 			//ImGui::Image((void*)my_texture, ImVec2(my_image_width, my_image_height));
 

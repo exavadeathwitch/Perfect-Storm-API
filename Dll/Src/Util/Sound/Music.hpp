@@ -6,5 +6,6 @@ namespace music {
 	public: 
 		void playMusicTrackTest();
 		void playStageMusicTrack();
+		void playMenuMusicTrack(int trackNum);
 	};
 }

@@ -9,12 +9,15 @@
 #include "Util/Sound/SDL2Music.h"
 
 #include "Util/Sound/Music.hpp"
+
+#include "Core/ModConsole/ModConsole.hpp"
+
+#include "Net/Online Training/oTraining.hpp"
+
 //This function increases the match count variable. Modifications include music playing at the start of the round, making shadow state work for full combo switch, and changing regions in memory for mechanics that are enabled through doing so.
 int __fastcall Battle::functions::matchCount(__int64 rcx, __int64 a1, float a2) {
 	typedef __int64(__fastcall* sub_14074E240) (__int64 a1);
 	sub_14074E240 osub_14074E240 = (sub_14074E240)(globals::moduleBase + 0x74D640 + 0xC00);
-
-
 	std::uintptr_t addrGameRate = (std::uintptr_t)(globals::moduleBase + 0x161A334);
 	if (mechanics::enableFullComboSwitch) {
 		if (!mechanics::fullComboSwitchBytes) {
@@ -52,15 +55,26 @@ int __fastcall Battle::functions::matchCount(__int64 rcx, __int64 a1, float a2) 
 			mechanics::tiltNMJumpBytes = 0;
 		}
 	}
-
+	Battle::matchCount = *(DWORD*)(rcx + 4 * osub_14074E240(globals::moduleBase + 0x14161C8C8 - 0x140000000 + 0xC00) + 0x80);
+	//std::cout << Battle::matchCount << std::endl;
+	//Battle Starts
 	if (*(DWORD*)(rcx + 4 * osub_14074E240(globals::moduleBase + 0x14161C8C8 - 0x140000000 + 0xC00) + 0x80) == 1) {
 		SDL2Music music;
 		if (music.Playing_Music() != 0) {
 			music.Halt_Music();
 		}
 		Battle::inBattle = 1;
+		console::enabled = 1;
 		music::functions m;
 		m.playStageMusicTrack();
+
+		OTraining::selectedLItem = 0;
+		OTraining::tcheckBox[0] = false;
+		OTraining::tcheckBox[1] = false;
+		OTraining::tcheckBox[2] = false;
+		OTraining::tcheckBox[3] = false;
+		OTraining::tcheckBox[4] = false;
+		OTraining::selectedSGItem = 0;
 	}
 	return globals::hookManager->callOriginal<decltype(&Battle::functions::matchCount)>(Battle::functions::matchCount, rcx, a1, a2);
 }
@@ -70,11 +84,28 @@ __int64 __fastcall Battle::functions::battleEnd(__int64 a1, int a2, __int64 a3, 
 	SDL2Music music;
 	music.Halt_Music();
 	Battle::inBattle = 0;
+	console::enabled = 0;
+	OTraining::selectedLItem = 0;
+	OTraining::tcheckBox[0] = false;
+	OTraining::tcheckBox[1] = false;
+	OTraining::tcheckBox[2] = false;
+	OTraining::tcheckBox[3] = false;
+	OTraining::tcheckBox[4] = false;
+	OTraining::selectedSGItem = 0;
 	return globals::hookManager->callOriginal<decltype(&Battle::functions::battleEnd)>(Battle::functions::battleEnd, a1, a2, a3, a4);
 }
 
 //This function is used for when the battle disconnects during an online match. Modifications include stopping the BGM when this occurs.
 __int64 __fastcall Battle::functions::loadDisconnectPopUp(__int64 a1) {
 	Battle::inBattle = 0;
+	console::enabled = 0;
+	OTraining::selectedLItem = 0;
+	OTraining::tcheckBox[0] = false;
+	OTraining::tcheckBox[1] = false;
+	OTraining::tcheckBox[2] = false;
+	OTraining::tcheckBox[3] = false;
+	OTraining::tcheckBox[4] = false;
+	OTraining::selectedSGItem = 0;
+
 	return globals::hookManager->callOriginal<decltype(&Battle::functions::loadDisconnectPopUp)>(Battle::functions::loadDisconnectPopUp, a1);
 }

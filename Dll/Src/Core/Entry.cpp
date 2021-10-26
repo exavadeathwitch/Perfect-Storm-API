@@ -21,6 +21,18 @@
 #include <string>
 
 #include <vector>
+
+#include <stdio.h>
+
+#include <filesystem>
+
+#include <fstream>
+
+#include "Hooks/Hooks.hpp"
+
+
+#include "Core/Globals.hpp"
+
 extern "C" std::uintptr_t proxyFunctions[29] = {};
 
 static constexpr const char* proxyFuncNames[29] = {
@@ -58,6 +70,8 @@ static constexpr const char* proxyFuncNames[29] = {
 DWORD __stdcall modEntry(void* const imageBase) {
 	const HMODULE oD3DCompiler = LoadLibraryA("d3dcompiler_47_o.dll");
 
+	globals::moduleBase = (uintptr_t)GetModuleHandle(NULL);
+
 	if (!oD3DCompiler)
 		return FALSE;
 
@@ -66,20 +80,29 @@ DWORD __stdcall modEntry(void* const imageBase) {
 
     util::console::initialize("lol");
 
-	globals::moduleBase = (uintptr_t)GetModuleHandle(NULL);
-    
 	printf_s("[+] init\n");
+	General::CpkToLoad.push_back(".\\Perfect Storm\\data\\blabby.cpk");
+	General::CpkPriority.push_back(20);
+	if (globals::settings->m_Version == "Enhanced") {
+	}
+	else {
+		General::CpkToLoad.push_back(".\\Perfect Storm\\data\\Perfect Storm.cpk");
+		General::CpkPriority.push_back(20);
+	}
+	globals::hookManager->initialize();
+	globals::hookManager->addEntry((std::uintptr_t)(globals::moduleBase + 0x854F3C + 0xC00), General::functions::loadCpkInitial);
+	globals::hookManager->hookAllEntries();
+	if (!sdk::game::initialize())
+		std::abort();
+	hooks::initialize();
 
-    if (!sdk::game::initialize())
-        std::abort();
-	
-    hooks::initialize();
 	
 	settings::onStartup();
 	mechanics::functions::initializeMechanics();
 	/*
-	General::CpkToLoad.push_back(".\\Perfect Storm\\test.cpk");
-	General::CpkPriority.push_back(14);
+	char buffer[MAX_PATH];
+	GetModuleFileName(NULL, buffer, MAX_PATH);
+	std::string(buffer).substr(0, std::string(buffer).find_last_of("\\/"));
 	*/
 	//Disable online microphone for yourself and disable hearing your opponent's microphone
 	util::memory::Modify::write_bytes<3>(globals::moduleBase + 0xB25794 + 0xC00, { 0x90, 0x90, 0x90 });

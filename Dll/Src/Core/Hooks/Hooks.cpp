@@ -16,10 +16,15 @@
 
 #include "General/general.hpp"
 
+#include "Camera/Camera.hpp"
+
+#include "GameSettings/gameSettings.hpp"
+
 namespace hooks {
 	void initialize() noexcept {
-		globals::hookManager->initialize();
 
+		//globals::hookManager->addEntry((std::uintptr_t)(globals::moduleBase + 0x854F3C + 0xC00), General::functions::loadCpkInitial);
+		
 		globals::hookManager->addEntry(sdk::game::swapChainVtbl[8], functions::hkPresent);
 		
 		globals::hookManager->addEntry((std::uintptr_t)(globals::moduleBase + 0x7ADCB4 + 0xC00), mechanics::functions::newPlayerState);
@@ -86,10 +91,20 @@ namespace hooks {
 
 		globals::hookManager->addEntry((std::uintptr_t)(globals::moduleBase + 0xA43730 + 0xC00), General::functions::noMusicTrack);
 
-		globals::hookManager->addEntry((std::uintptr_t)(globals::moduleBase + 0x854F3C + 0xC00), General::functions::loadCpkInitial);
+		globals::hookManager->addEntry((std::uintptr_t)(globals::moduleBase + 0x1EC9C + 0xC00), General::functions::musicTrack);
 
+		globals::hookManager->addEntry((std::uintptr_t)(globals::moduleBase + 0x861AC8 + 0xC00), General::functions::retTitleVer);
+
+		//globals::hookManager->addEntry((std::uintptr_t)(globals::moduleBase + 0xAB7C80 + 0xC00), General::functions::makeGameNotFocus);
+
+		//globals::hookManager->addEntry((std::uintptr_t)(globals::moduleBase + 0xAB7C50 + 0xC00), General::functions::makeGameFocus);
+
+		globals::hookManager->addEntry((std::uintptr_t)(globals::moduleBase + 0x6A9210 + 0xC00), gameSettings::functions::newSettings);
+
+		globals::hookManager->addEntry((std::uintptr_t)(globals::moduleBase + 0x8540EC + 0xC00), Camera::functions::writeFOVMenu);
+		
 		globals::hookManager->hookAllEntries();
-
+		
 		ogWndProc = reinterpret_cast<WNDPROC>(GetWindowLongPtrA(sdk::game::gameWindow, GWLP_WNDPROC));
 
 		SetWindowLongPtrA(sdk::game::gameWindow, GWLP_WNDPROC, reinterpret_cast<LONG_PTR>(&functions::hkWndProc));

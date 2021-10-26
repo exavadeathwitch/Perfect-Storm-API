@@ -31,8 +31,8 @@ namespace console {
 
 					if (m_Commands.find(command) != m_Commands.end())
 						runCommand(command);
-					//else
-						//m_Messages.emplace_back(std::format("\"{}\" is not a valid command!\n", command));
+					else
+						m_Messages.emplace_back(std::format("\"{}\" is not a valid command!\n", command));
 				}
 			}
 
@@ -49,7 +49,7 @@ namespace console {
 	}
 
 	void Console::buildCommands() noexcept {
-		/*
+		
 		addCommand({.m_Name = "help", .m_Description = "Displays this message", .m_Action
 				   = [&, this]() -> void {
 			for (const auto& current : m_Commands | std::views::values)
@@ -67,7 +67,7 @@ namespace console {
 				m.playMusicTrackTest();
 
 		} });
-		/*
+		
 		addCommand({ .m_Name = "onlinetrain", .m_Description = "Enables online training mode", .m_Action
 				   = [&, this]() -> void {
 			m_Messages.clear();
@@ -80,5 +80,5 @@ namespace console {
 
 	void Console::runCommand(const std::string_view name) noexcept {
 		m_Commands[name].m_Action();
-	}*/
+	}
 }

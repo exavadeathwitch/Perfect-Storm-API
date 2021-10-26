@@ -390,7 +390,7 @@ signed __int64 mechanics::functions::areYouComboing(__int64 playerAddr, unsigned
 	std::uintptr_t addrGameRate = (std::uintptr_t)(globals::moduleBase + 0x161A334);
 	if (mechanics::fullComboSwitchShadowState && *(DWORD*)(playerAddr + 0xCC0) == 63) {
 		*(DWORD*)(playerAddr + 0x14C60) = 0;
-		std::cout << "fuck the shadow" << std::endl;
+		//std::cout << "fuck the shadow" << std::endl;
 	}
 	return globals::hookManager->callOriginal<decltype(&mechanics::functions::areYouComboing)>(mechanics::functions::areYouComboing, playerAddr, playerState, a3);
 }
@@ -572,7 +572,7 @@ signed int __fastcall mechanics::functions::changeGameRateFromBlueDashHit(__int6
 	std::uintptr_t addrGameRate = (std::uintptr_t)(globals::moduleBase + 0x161A334);
 	if (mechanics::enableFullComboSwitch) {
 		if (*(float*)(addrGameRate) == 0.4f) {
-			std::cout << ".4f" << std::endl;
+			//std::cout << ".4f" << std::endl;
 			mechanics::fullComboSwitchShadowState = 1;
 		}
 	}
