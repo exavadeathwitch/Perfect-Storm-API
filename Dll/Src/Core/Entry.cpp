@@ -93,6 +93,7 @@ DWORD __stdcall modEntry(void* const imageBase) {
 		General::CpkToLoad.push_back(".\\Perfect Storm\\data\\Perfect Storm.cpk");
 		General::CpkPriority.push_back(20);
 	}*/
+	util::memory::Modify::write_bytes<5>(globals::moduleBase + 0x797749 + 0xC00, { 0x90, 0x90, 0x90, 0x90, 0x90 });
 	globals::hookManager->initialize();
 	//globals::hookManager->addEntry((std::uintptr_t)(globals::moduleBase + 0x854F3C + 0xC00), General::functions::loadCpkInitial);
 	globals::hookManager->hookAllEntries();

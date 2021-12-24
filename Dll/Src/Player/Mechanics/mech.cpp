@@ -55,9 +55,9 @@ mechanics::enableChakraShurikenSwitch = 1;
 }
 
 //This function controls the air spark ability. Modifications include a fix to characters sparking in place.
-__int64 __fastcall mechanics::functions::airSpark(__int64 a1) {
+__int64 __fastcall mechanics::functions::airSpark(__int64 a1, float a2) {
 	__int64 v1; // rdi@1
-	__int64 v3; // rax@3
+	//__int64 v3; // rax@3
 	const char* v4; // r9@3
 	__int64 v6; // r8@5
 	__int64 v7; // rdx@5
@@ -75,13 +75,13 @@ __int64 __fastcall mechanics::functions::airSpark(__int64 a1) {
 	sub_140779804 osub_140779804 = (sub_140779804)(globals::moduleBase + 0x778C04 + 0xC00);
 	typedef int(__fastcall* sub_140796A34) (__int64 a1);
 	sub_140796A34 osub_140796A34 = (sub_140796A34)(globals::moduleBase + 0x795E34 + 0xC00);
-	typedef __int64(__fastcall* sub_140797A24) (__int64 a1, unsigned int a2);
+	typedef __int64(__fastcall* sub_140797A24) (__int64 a1, unsigned int a2, float a3);
 	sub_140797A24 osub_140797A24 = (sub_140797A24)(globals::moduleBase + 0x796E24 + 0xC00);
 	typedef int(__fastcall* sub_1407A98AC) (__int64 a1);
 	sub_1407A98AC osub_1407A98AC = (sub_1407A98AC)(globals::moduleBase + 0x7A8CAC + 0xC00);
 	typedef void(__fastcall* sub_140792F80) (__int64 a1, signed int a2);
 	sub_140792F80 osub_140792F80 = (sub_140792F80)(globals::moduleBase + 0x792380 + 0xC00);
-	
+	/*
 	v1 = a1;
 	osub_14078FBB8(a1);
 	DWORD(v5) = osub_140778CB4(v1, 96i64, 1i64);
@@ -90,13 +90,15 @@ __int64 __fastcall mechanics::functions::airSpark(__int64 a1) {
 	if (!v5)
 		v7 = 38i64;
 	//osub_140779804(v1, v7, v6, 0xFFFFFFFFi64, v16, 0);
-	DWORD(v2) = osub_140796A34(v1);
-	if (v2)
-		osub_140797A24(v1, 1u);
+	
 	osub_1407A98AC(v1);
 	*(DWORD*)(v1 + 4268) = 0;
 	osub_140792F80(v1, 7i64);
-	const auto retval = globals::hookManager->getOriginal<decltype(&mechanics::functions::airSpark)>(mechanics::functions::airSpark)(a1);
+	*/
+	const auto retval = globals::hookManager->getOriginal<decltype(&mechanics::functions::airSpark)>(mechanics::functions::airSpark)(a1, a2);
+	DWORD(v3) = osub_140796A34(a1);
+	if (v3)
+		osub_140797A24(a1, 1u, a2);
 	return retval;
 }
 //This function controls when the character can perform a shuriken. We've modified it so it can be performed out of a combo and tilt, like in Naruto Storm Revolution.
