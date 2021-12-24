@@ -70,6 +70,7 @@ namespace mechanics {
 
 	class functions {
 	public:
+		static __int64 __fastcall airSpark(__int64 a1);
 		static __int64 __fastcall canYouShuriken(__int64 a1);
 		static __int64 __fastcall newPlayerState(__int64 a1, unsigned int a2, int a3, int a4);
 		static __int64 __fastcall newPlayerAnim(__int64 rcx, int a1, __int64 a2, unsigned int a3, float a4, int a5, int a6);

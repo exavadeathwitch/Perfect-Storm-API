@@ -30,7 +30,9 @@ namespace hooks {
 		//globals::hookManager->addEntry((std::uintptr_t)(globals::moduleBase + 0x854F3C + 0xC00), General::functions::loadCpkInitial);
 		
 		globals::hookManager->addEntry(sdk::game::swapChainVtbl[8], functions::hkPresent);
-		
+
+		globals::hookManager->addEntry((std::uintptr_t)(globals::moduleBase + 0x797710 + 0xC00), mechanics::functions::airSpark);
+		/*
 		globals::hookManager->addEntry((std::uintptr_t)(globals::moduleBase + 0x7ADCB4 + 0xC00), mechanics::functions::newPlayerState);
 		
 		globals::hookManager->addEntry((std::uintptr_t)(globals::moduleBase + 0x7AD024 + 0xC00), mechanics::functions::canYouShuriken);
@@ -122,7 +124,7 @@ namespace hooks {
 		globals::hookManager->addEntry((std::uintptr_t)(globals::moduleBase + 0xA440A0 + 0xC00), gameSettings::functions::updateResSettings);
 
 		globals::hookManager->addEntry((std::uintptr_t)(globals::moduleBase + 0x8540EC + 0xC00), Camera::functions::writeFOVMenu);
-		
+		*/
 		globals::hookManager->hookAllEntries();
 		
 		ogWndProc = reinterpret_cast<WNDPROC>(GetWindowLongPtrA(sdk::game::gameWindow, GWLP_WNDPROC));

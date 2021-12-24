@@ -86,14 +86,15 @@ DWORD __stdcall modEntry(void* const imageBase) {
 	freopen("conout$", "w", stdout);
 	freopen("conout$", "w", stderr);
 	settings::onStartup();
+	/*
 	General::CpkToLoad.push_back(".\\Perfect Storm\\data\\blabby.cpk");
 	General::CpkPriority.push_back(20);
 	if (globals::settings->m_Version != "Enhanced") {
 		General::CpkToLoad.push_back(".\\Perfect Storm\\data\\Perfect Storm.cpk");
 		General::CpkPriority.push_back(20);
-	}
+	}*/
 	globals::hookManager->initialize();
-	globals::hookManager->addEntry((std::uintptr_t)(globals::moduleBase + 0x854F3C + 0xC00), General::functions::loadCpkInitial);
+	//globals::hookManager->addEntry((std::uintptr_t)(globals::moduleBase + 0x854F3C + 0xC00), General::functions::loadCpkInitial);
 	globals::hookManager->hookAllEntries();
 	if (!sdk::game::initialize())
 		std::abort();
@@ -101,12 +102,12 @@ DWORD __stdcall modEntry(void* const imageBase) {
 
 	
 
-	mechanics::functions::initializeMechanics();
+	//mechanics::functions::initializeMechanics();
 	/*
 	char buffer[MAX_PATH];
 	GetModuleFileName(NULL, buffer, MAX_PATH);
 	std::string(buffer).substr(0, std::string(buffer).find_last_of("\\/"));
-	*/
+	
 	//Disable online microphone for yourself and disable hearing your opponent's microphone
 	util::memory::Modify::write_bytes<3>(globals::moduleBase + 0xB25794 + 0xC00, { 0x90, 0x90, 0x90 });
 	util::memory::Modify::write_bytes<3>(globals::moduleBase + 0xB25966 + 0xC00, { 0x90, 0x90, 0x90 });
@@ -122,7 +123,7 @@ DWORD __stdcall modEntry(void* const imageBase) {
 	util::memory::Modify::write_bytes<1>(globals::moduleBase + 0x5B3465 + 0xC00, { 0x5 });
 	//No sub banking
 	util::memory::Modify::write_bytes<3>(globals::moduleBase + 0xB25966 + 0xC00, { 0x90, 0x90, 0x90 });
-
+	*/
 	/*
 	util::memory::Modify::write_bytes<7>(globals::moduleBase + 0x7C059A + 0xC00, { 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90 });
 	util::memory::Modify::write_bytes<5>(globals::moduleBase + 0x5741AD + 0xC00, { 0x90, 0x90, 0x90, 0x90, 0x90 });

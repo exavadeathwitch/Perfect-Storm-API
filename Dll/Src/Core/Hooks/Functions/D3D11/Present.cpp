@@ -168,7 +168,7 @@ namespace hooks {
 			*/
 	//}
 
-		*(DWORD*)(globals::moduleBase + 0x163BBD0) = 1;
+		//*(DWORD*)(globals::moduleBase + 0x163BBD0) = 1;
 		if (Battle::inBattle && Net::functions::onOnline()) {
 			//if (globals::settings->m_frameDelayPosition == true)
 			
