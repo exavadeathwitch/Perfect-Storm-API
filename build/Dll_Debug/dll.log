@@ -1,1 +1,28 @@
-﻿LINK : fatal error LNK1104: cannot open file 'minhook.x64d.lib'
+﻿  Assembling Dll.asm...
+battle.obj : warning LNK4075: ignoring '/EDITANDCONTINUE' due to '/INCREMENTAL:NO' specification
+Present.obj : error LNK2005: "char const * const Textures::imagename01" (?imagename01@Textures@@3PEBDEB) already defined in ModConsole.obj
+Present.obj : error LNK2005: "struct ID3D11ShaderResourceView * Textures::test" (?test@Textures@@3PEAUID3D11ShaderResourceView@@EA) already defined in ModConsole.obj
+Present.obj : error LNK2005: "int Textures::image01JpgW" (?image01JpgW@Textures@@3HA) already defined in ModConsole.obj
+Present.obj : error LNK2005: "int Textures::image01JpgH" (?image01JpgH@Textures@@3HA) already defined in ModConsole.obj
+Present.obj : error LNK2005: "unsigned long Battle::matchCount" (?matchCount@Battle@@3KA) already defined in battle.obj
+Present.obj : error LNK2005: "class std::vector<char const *,class std::allocator<char const *> > General::CpkToLoad" (?CpkToLoad@General@@3V?$vector@PEBDV?$allocator@PEBD@std@@@std@@A) already defined in Entry.obj
+Present.obj : error LNK2005: "class std::vector<int,class std::allocator<int> > General::CpkPriority" (?CpkPriority@General@@3V?$vector@HV?$allocator@H@std@@@std@@A) already defined in Entry.obj
+Present.obj : error LNK2005: "class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> > General::defaultFilepath" (?defaultFilepath@General@@3V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@A) already defined in Entry.obj
+Hooks.obj : error LNK2005: "unsigned long Battle::matchCount" (?matchCount@Battle@@3KA) already defined in battle.obj
+Hooks.obj : error LNK2005: "class std::vector<char const *,class std::allocator<char const *> > General::CpkToLoad" (?CpkToLoad@General@@3V?$vector@PEBDV?$allocator@PEBD@std@@@std@@A) already defined in Entry.obj
+Hooks.obj : error LNK2005: "class std::vector<int,class std::allocator<int> > General::CpkPriority" (?CpkPriority@General@@3V?$vector@HV?$allocator@H@std@@@std@@A) already defined in Entry.obj
+Hooks.obj : error LNK2005: "class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> > General::defaultFilepath" (?defaultFilepath@General@@3V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@A) already defined in Entry.obj
+general.obj : error LNK2005: "unsigned long Battle::matchCount" (?matchCount@Battle@@3KA) already defined in battle.obj
+general.obj : error LNK2005: "class std::vector<char const *,class std::allocator<char const *> > General::CpkToLoad" (?CpkToLoad@General@@3V?$vector@PEBDV?$allocator@PEBD@std@@@std@@A) already defined in Entry.obj
+general.obj : error LNK2005: "class std::vector<int,class std::allocator<int> > General::CpkPriority" (?CpkPriority@General@@3V?$vector@HV?$allocator@H@std@@@std@@A) already defined in Entry.obj
+general.obj : error LNK2005: "class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> > General::defaultFilepath" (?defaultFilepath@General@@3V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@A) already defined in Entry.obj
+Textures.obj : error LNK2005: "char const * const Textures::imagename01" (?imagename01@Textures@@3PEBDEB) already defined in ModConsole.obj
+Textures.obj : error LNK2005: "struct ID3D11ShaderResourceView * Textures::test" (?test@Textures@@3PEAUID3D11ShaderResourceView@@EA) already defined in ModConsole.obj
+Textures.obj : error LNK2005: "int Textures::image01JpgW" (?image01JpgW@Textures@@3HA) already defined in ModConsole.obj
+Textures.obj : error LNK2005: "int Textures::image01JpgH" (?image01JpgH@Textures@@3HA) already defined in ModConsole.obj
+Music.obj : error LNK2005: "unsigned long Battle::matchCount" (?matchCount@Battle@@3KA) already defined in battle.obj
+Music.obj : error LNK2005: "class std::vector<char const *,class std::allocator<char const *> > General::CpkToLoad" (?CpkToLoad@General@@3V?$vector@PEBDV?$allocator@PEBD@std@@@std@@A) already defined in Entry.obj
+Music.obj : error LNK2005: "class std::vector<int,class std::allocator<int> > General::CpkPriority" (?CpkPriority@General@@3V?$vector@HV?$allocator@H@std@@@std@@A) already defined in Entry.obj
+Music.obj : error LNK2005: "class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> > General::defaultFilepath" (?defaultFilepath@General@@3V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@A) already defined in Entry.obj
+     Creating library C:\Users\absol\Documents\GitHub\Perfect-Storm-API\bin\Dll_Debug\d3dcompiler_47.lib and object C:\Users\absol\Documents\GitHub\Perfect-Storm-API\bin\Dll_Debug\d3dcompiler_47.exp
+C:\Users\absol\Documents\GitHub\Perfect-Storm-API\bin\Dll_Debug\d3dcompiler_47.dll : fatal error LNK1169: one or more multiply defined symbols found

@@ -14,6 +14,7 @@ void OTraining::functions::enableOnlineTraining() {
 	util::memory::Modify::writePointer((std::uintptr_t)(globals::moduleBase + 0x0161C8C8), { 0x1E8 }, (DWORD)(-1));
 		ImGui::Begin("Training Mode");
 		ImGui::Text("Both players need to enable the same settings to avoid desyncs.");
+		ImGui::Text("Press the escape key to toggle the training menu.");
 		ImGui::Combo("Life", &selectedLItem, Litems, IM_ARRAYSIZE(Litems));
 		ImGui::Checkbox("Unlimited Chakra", &tcheckBox[0]);
 		ImGui::Checkbox("Unlimited Support", &tcheckBox[1]);

@@ -1,4 +1,31 @@
-﻿  Charsel.cpp
+﻿  general.cpp
+C:\Users\absol\Documents\GitHub\Perfect-Storm-API\Dll\Src\General\general.cpp(93,14): warning C4101: 'v21': unreferenced local variable
+C:\Users\absol\Documents\GitHub\Perfect-Storm-API\Dll\Src\General\general.cpp(95,14): warning C4101: 'v23': unreferenced local variable
+C:\Users\absol\Documents\GitHub\Perfect-Storm-API\Dll\Src\General\general.cpp(91,14): warning C4101: 'v19': unreferenced local variable
+C:\Users\absol\Documents\GitHub\Perfect-Storm-API\Dll\Src\General\general.cpp(99,10): warning C4101: 'v27': unreferenced local variable
+C:\Users\absol\Documents\GitHub\Perfect-Storm-API\Dll\Src\General\general.cpp(98,13): warning C4101: 'v26': unreferenced local variable
+C:\Users\absol\Documents\GitHub\Perfect-Storm-API\Dll\Src\General\general.cpp(96,6): warning C4101: 'v24': unreferenced local variable
+C:\Users\absol\Documents\GitHub\Perfect-Storm-API\Dll\Src\General\general.cpp(80,8): warning C4101: 'v7': unreferenced local variable
+C:\Users\absol\Documents\GitHub\Perfect-Storm-API\Dll\Src\General\general.cpp(90,6): warning C4101: 'v18': unreferenced local variable
+C:\Users\absol\Documents\GitHub\Perfect-Storm-API\Dll\Src\General\general.cpp(75,15): warning C4101: 'ActualVersion': unreferenced local variable
+C:\Users\absol\Documents\GitHub\Perfect-Storm-API\Dll\Src\General\general.cpp(94,6): warning C4101: 'v22': unreferenced local variable
+C:\Users\absol\Documents\GitHub\Perfect-Storm-API\Dll\Src\General\general.cpp(89,14): warning C4101: 'v17': unreferenced local variable
+C:\Users\absol\Documents\GitHub\Perfect-Storm-API\Dll\Src\General\general.cpp(88,19): warning C4101: 'v16': unreferenced local variable
+C:\Users\absol\Documents\GitHub\Perfect-Storm-API\Dll\Src\General\general.cpp(81,8): warning C4101: 'v8': unreferenced local variable
+C:\Users\absol\Documents\GitHub\Perfect-Storm-API\Dll\Src\General\general.cpp(92,6): warning C4101: 'v20': unreferenced local variable
+C:\Users\absol\Documents\GitHub\Perfect-Storm-API\Dll\Src\General\general.cpp(79,14): warning C4101: 'v6': unreferenced local variable
+C:\Users\absol\Documents\GitHub\Perfect-Storm-API\Dll\Src\General\general.cpp(87,14): warning C4101: 'v15': unreferenced local variable
+C:\Users\absol\Documents\GitHub\Perfect-Storm-API\Dll\Src\General\general.cpp(77,10): warning C4101: 'v4': unreferenced local variable
+C:\Users\absol\Documents\GitHub\Perfect-Storm-API\Dll\Src\General\general.cpp(74,10): warning C4101: 'v1': unreferenced local variable
+C:\Users\absol\Documents\GitHub\Perfect-Storm-API\Dll\Src\General\general.cpp(97,11): warning C4101: 'v25': unreferenced local variable
+C:\Users\absol\Documents\GitHub\Perfect-Storm-API\Dll\Src\General\general.cpp(85,8): warning C4101: 'Memory': unreferenced local variable
+C:\Users\absol\Documents\GitHub\Perfect-Storm-API\Dll\Src\General\general.cpp(86,6): warning C4101: 'v14': unreferenced local variable
+C:\Users\absol\Documents\GitHub\Perfect-Storm-API\Dll\Src\General\general.cpp(82,6): warning C4101: 'v9': unreferenced local variable
+C:\Users\absol\Documents\GitHub\Perfect-Storm-API\Dll\Src\General\general.cpp(78,17): warning C4101: 'v5': unreferenced local variable
+C:\Users\absol\Documents\GitHub\Perfect-Storm-API\Dll\Src\General\general.cpp(193,24): warning C4244: '=': conversion from '__int64' to 'unsigned int', possible loss of data
+C:\Users\absol\Documents\GitHub\Perfect-Storm-API\Dll\Src\General\general.cpp(196,38): warning C4244: 'argument': conversion from '__int64' to 'unsigned int', possible loss of data
+C:\Users\absol\Documents\GitHub\Perfect-Storm-API\Dll\Src\General\general.cpp(215,9): warning C4018: '>=': signed/unsigned mismatch
+C:\Users\absol\Documents\GitHub\Perfect-Storm-API\Dll\Src\General\general.cpp(227,22): warning C4244: '=': conversion from '__int64' to 'unsigned int', possible loss of data
 Present.obj : warning LNK4006: "char const * const Textures::imagename01" (?imagename01@Textures@@3PEBDEB) already defined in ModConsole.obj; second definition ignored
 Present.obj : warning LNK4006: "struct ID3D11ShaderResourceView * Textures::test" (?test@Textures@@3PEAUID3D11ShaderResourceView@@EA) already defined in ModConsole.obj; second definition ignored
 Present.obj : warning LNK4006: "int Textures::image01JpgW" (?image01JpgW@Textures@@3HA) already defined in ModConsole.obj; second definition ignored
@@ -58,6 +85,9 @@ general.obj : warning LNK4006: "class std::vector<char const *,class std::alloca
 general.obj : warning LNK4006: "class std::vector<int,class std::allocator<int> > General::CpkPriority" (?CpkPriority@General@@3V?$vector@HV?$allocator@H@std@@@std@@A) already defined in Entry.obj; second definition ignored
 general.obj : warning LNK4006: "class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> > General::defaultFilepath" (?defaultFilepath@General@@3V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@A) already defined in Entry.obj; second definition ignored
 general.obj : warning LNK4006: "unsigned long Battle::matchCount" (?matchCount@Battle@@3KA) already defined in battle.obj; second definition ignored
+Stage.obj : warning LNK4006: "bool __cdecl util::endsWith(class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> > const &,class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> > const &)" (?endsWith@util@@YA_NAEBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@0@Z) already defined in Settings.obj; second definition ignored
+Stage.obj : warning LNK4006: "class std::filesystem::path __cdecl util::getSettingsPath(void)" (?getSettingsPath@util@@YA?AVpath@filesystem@std@@XZ) already defined in Settings.obj; second definition ignored
+Stage.obj : warning LNK4006: "class std::filesystem::path __cdecl util::getModPath(void)" (?getModPath@util@@YA?AVpath@filesystem@std@@XZ) already defined in Settings.obj; second definition ignored
 Textures.obj : warning LNK4006: "char const * const Textures::imagename01" (?imagename01@Textures@@3PEBDEB) already defined in ModConsole.obj; second definition ignored
 Textures.obj : warning LNK4006: "struct ID3D11ShaderResourceView * Textures::test" (?test@Textures@@3PEAUID3D11ShaderResourceView@@EA) already defined in ModConsole.obj; second definition ignored
 Textures.obj : warning LNK4006: "int Textures::image01JpgW" (?image01JpgW@Textures@@3HA) already defined in ModConsole.obj; second definition ignored
@@ -112,9 +142,9 @@ Music.obj : warning LNK4006: "unsigned long Battle::matchCount" (?matchCount@Bat
      Creating library C:\Users\absol\Documents\GitHub\Perfect-Storm-API\bin\Dll_Public\d3dcompiler_47.lib and object C:\Users\absol\Documents\GitHub\Perfect-Storm-API\bin\Dll_Public\d3dcompiler_47.exp
 C:\Users\absol\Documents\GitHub\Perfect-Storm-API\bin\Dll_Public\d3dcompiler_47.dll : warning LNK4088: image being generated due to /FORCE option; image may not run
   Generating code
-  104 of 4691 functions ( 2.2%) were compiled, the rest were copied from previous compilation.
-    9 functions were new in current compilation
-    299 functions had inline decision re-evaluated but remain unchanged
+  5 of 4716 functions ( 0.1%) were compiled, the rest were copied from previous compilation.
+    0 functions were new in current compilation
+    22 functions had inline decision re-evaluated but remain unchanged
   Finished generating code
 * CIL library *(* CIL module *) : warning LNK4006: "class std::vector<char const *,class std::allocator<char const *> > General::CpkToLoad" (?CpkToLoad@General@@3V?$vector@PEBDV?$allocator@PEBD@std@@@std@@A) already defined in * CIL library *(* CIL module *); second definition ignored
 * CIL library *(* CIL module *) : warning LNK4006: "class std::vector<int,class std::allocator<int> > General::CpkPriority" (?CpkPriority@General@@3V?$vector@HV?$allocator@H@std@@@std@@A) already defined in * CIL library *(* CIL module *); second definition ignored

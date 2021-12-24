@@ -55,14 +55,16 @@ int __fastcall Battle::functions::matchCount(__int64 rcx, __int64 a1, float a2) 
 			mechanics::tiltNMJumpBytes = 0;
 		}
 	}
+	Battle::inBattle = 1;
 	Battle::matchCount = *(DWORD*)(rcx + 4 * osub_14074E240(globals::moduleBase + 0x14161C8C8 - 0x140000000 + 0xC00) + 0x80);
-	//std::cout << Battle::matchCount << std::endl;
+	//std::cout << "matchcount: " << Battle::matchCount << std::endl;
 	//Battle Starts
 	if (*(DWORD*)(rcx + 4 * osub_14074E240(globals::moduleBase + 0x14161C8C8 - 0x140000000 + 0xC00) + 0x80) == 1) {
 		SDL2Music music;
 		if (music.Playing_Music() != 0) {
 			music.Halt_Music();
 		}
+		//util::memory::Modify::write_bytes<5>(globals::moduleBase + 0xA4357B + 0xC00, { 0x90, 0x90, 0x90, 0x90, 0x90 });
 		Battle::inBattle = 1;
 		console::enabled = 1;
 		music::functions m;

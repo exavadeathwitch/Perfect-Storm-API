@@ -8,6 +8,8 @@
 
 #include "Net/net.hpp"
 
+#include "Player/Input/input.hpp"
+
 #include "Battle/battle.hpp"
 
 #include "Player/Properties/prop.hpp"
@@ -19,6 +21,8 @@
 #include "Camera/Camera.hpp"
 
 #include "GameSettings/gameSettings.hpp"
+
+#include "Player/IDs/id.hpp"
 
 namespace hooks {
 	void initialize() noexcept {
@@ -34,7 +38,7 @@ namespace hooks {
 		globals::hookManager->addEntry((std::uintptr_t)(globals::moduleBase + 0x22A208 + 0xC00), mechanics::functions::setNoChakraCirclePlayerState);
 
 		globals::hookManager->addEntry((std::uintptr_t)(globals::moduleBase + 0x77D8A0 + 0xC00), mechanics::functions::newPlayerAnim);
-
+		
 		globals::hookManager->addEntry((std::uintptr_t)(globals::moduleBase + 0x7DF614 + 0xC00), mechanics::functions::setMultiInputPlayerState);
 
 		globals::hookManager->addEntry((std::uintptr_t)(globals::moduleBase + 0x7E09F4 + 0xC00), mechanics::functions::itemState);
@@ -42,7 +46,7 @@ namespace hooks {
 		globals::hookManager->addEntry((std::uintptr_t)(globals::moduleBase + 0x7AD960 + 0xC00), mechanics::functions::areYouComboing);
 
 		globals::hookManager->addEntry((std::uintptr_t)(globals::moduleBase + 0x7920CC + 0xC00), mechanics::functions::movementChain);
-
+		
 		globals::hookManager->addEntry((std::uintptr_t)(globals::moduleBase + 0x7AFA38 + 0xC00), mechanics::functions::cdashState);
 
 		globals::hookManager->addEntry((std::uintptr_t)(globals::moduleBase + 0x7AFBC8 + 0xC00), mechanics::functions::backACD);
@@ -56,6 +60,16 @@ namespace hooks {
 		globals::hookManager->addEntry((std::uintptr_t)(globals::moduleBase + 0x78138C + 0xC00), mechanics::functions::comboGuardBreak);
 
 		globals::hookManager->addEntry((std::uintptr_t)(globals::moduleBase + 0x5754FC + 0xC00), mechanics::functions::changeGameRateFromBlueDashHit);
+
+		globals::hookManager->addEntry((std::uintptr_t)(globals::moduleBase + 0x7AC928 + 0xC00), mechanics::functions::canTilt);
+		
+		globals::hookManager->addEntry((std::uintptr_t)(globals::moduleBase + 0x7AD504 + 0xC00), mechanics::functions::canGrab);
+
+		globals::hookManager->addEntry((std::uintptr_t)(globals::moduleBase + 0x7AC110 + 0xC00), mechanics::functions::canAC1);
+
+		//globals::hookManager->addEntry((std::uintptr_t)(globals::moduleBase + 0x7CA258 + 0xC00), mechanics::functions::counterState);
+
+		globals::hookManager->addEntry((std::uintptr_t)(globals::moduleBase + 0x7E04E0 + 0xC00), input::functions::applyPlayerInput);
 
 		globals::hookManager->addEntry((std::uintptr_t)(globals::moduleBase + 0xAEF4F0 + 0xC00), Net::functions::calculateFrame);
 
@@ -85,6 +99,8 @@ namespace hooks {
 		
 		globals::hookManager->addEntry((std::uintptr_t)(globals::moduleBase + 0x74AD24 + 0xC00), prop::functions::decreaseTools);
 
+		//globals::hookManager->addEntry((std::uintptr_t)(globals::moduleBase + 0x7DEBB0 + 0xC00), id::functions::sub_1407DF7B0);
+
 		globals::hookManager->addEntry((std::uintptr_t)(globals::moduleBase + 0x74AAF8 + 0xC00), prop::functions::increaseStormGauge);
 
 		globals::hookManager->addEntry((std::uintptr_t)(globals::moduleBase + 0xA01230 + 0xC00), General::functions::getMemString);
@@ -93,6 +109,8 @@ namespace hooks {
 
 		globals::hookManager->addEntry((std::uintptr_t)(globals::moduleBase + 0x1EC9C + 0xC00), General::functions::musicTrack);
 
+		globals::hookManager->addEntry((std::uintptr_t)(globals::moduleBase + 0xA434D0 + 0xC00), General::functions::musicTrack2);
+
 		globals::hookManager->addEntry((std::uintptr_t)(globals::moduleBase + 0x861AC8 + 0xC00), General::functions::retTitleVer);
 
 		//globals::hookManager->addEntry((std::uintptr_t)(globals::moduleBase + 0xAB7C80 + 0xC00), General::functions::makeGameNotFocus);
@@ -100,6 +118,8 @@ namespace hooks {
 		//globals::hookManager->addEntry((std::uintptr_t)(globals::moduleBase + 0xAB7C50 + 0xC00), General::functions::makeGameFocus);
 
 		globals::hookManager->addEntry((std::uintptr_t)(globals::moduleBase + 0x6A9210 + 0xC00), gameSettings::functions::newSettings);
+
+		globals::hookManager->addEntry((std::uintptr_t)(globals::moduleBase + 0xA440A0 + 0xC00), gameSettings::functions::updateResSettings);
 
 		globals::hookManager->addEntry((std::uintptr_t)(globals::moduleBase + 0x8540EC + 0xC00), Camera::functions::writeFOVMenu);
 		

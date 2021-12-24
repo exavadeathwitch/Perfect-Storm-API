@@ -40,25 +40,25 @@ void mechanics::functions::initializeMechanics() {
 	mechanics::enableShurikenComboTilt = 1;
 	mechanics::enableTiltCancels = 1;
 	mechanics::enableFullComboSwitch = 1;
-	mechanics::enableFastACD = 1;
-	mechanics::enableABCDSpark = 1;
-	mechanics::enableDashPriority = 1;
-	mechanics::enableRevNM = 1;
-	mechanics::enableRevNMK = 1;
-	mechanics::enableCFCS = 1;
-	mechanics::enableGTI = 1;
-	mechanics::enableTiltSwitch = 1;
-	mechanics::enableGrabSwitch = 1;
-	mechanics::enableShurikenSwitch = 1;
-	mechanics::enableChakraShurikenSwitch = 1;
+mechanics::enableFastACD = 1;
+mechanics::enableABCDSpark = 1;
+mechanics::enableDashPriority = 1;
+mechanics::enableRevNM = 1;
+mechanics::enableRevNMK = 1;
+mechanics::enableCFCS = 1;
+mechanics::enableGTI = 1;
+mechanics::enableTiltSwitch = 1;
+mechanics::enableGrabSwitch = 1;
+mechanics::enableShurikenSwitch = 1;
+mechanics::enableChakraShurikenSwitch = 1;
 	}
 }
 
 //This function controls when the character can perform a shuriken. We've modified it so it can be performed out of a combo and tilt, like in Naruto Storm Revolution.
 __int64 __fastcall mechanics::functions::canYouShuriken(__int64 a1) {
 	if (!mechanics::enableShurikenComboTilt) {
-	const auto retval = globals::hookManager->getOriginal<decltype(&mechanics::functions::canYouShuriken)>(mechanics::functions::canYouShuriken)(a1);
-	return retval;
+		const auto retval = globals::hookManager->getOriginal<decltype(&mechanics::functions::canYouShuriken)>(mechanics::functions::canYouShuriken)(a1);
+		return retval;
 	}
 
 	__int64 v1; // rbx@1
@@ -94,7 +94,31 @@ __int64 __fastcall mechanics::functions::canYouShuriken(__int64 a1) {
 //not perform charged jutsus, jutsu cancelling, and other unintended input-based mechanics. The shadow state of characters are removed
 //on certain states to fix glitches such as the strike back shadow state glitch. mechanics::limboCloneAddr is used to fix the Six Paths Madara awakening action crash bug.
 __int64 __fastcall mechanics::functions::newPlayerState(__int64 a1, unsigned int a2, int a3, int a4) {
+	signed typedef __int64(__fastcall* sub_14079B950) (__int64 a1);
+	sub_14079B950 osub_14079B950 = (sub_14079B950)(globals::moduleBase + 0x79AD50);
+
 	if (a2 == 211) {
+		*(DWORD*)(a1 + 0xFE50) = 1;
+		*(DWORD*)(a1 + 0xFE54) = 0;
+		*(DWORD*)(a1 + 0xFE74) = 0;
+		__int64 inputPointer = a1 + 0x218;
+		*(DWORD*)(inputPointer + 0x404) = 0;
+		*(DWORD*)(inputPointer + 0x408) = 0;
+		*(DWORD*)(inputPointer + 0x40C) = 0;
+	}	if (a2 == 73 && *(DWORD*)(a1 + 0xCC0) == 154 && *(DWORD*)(a1 + 0x140A8) < 50)
+		return 0;
+
+	*(float*)(a1 + 0x1090) = 1.0f;
+	if (a2 == 214) {
+		*(DWORD*)(a1 + 0xFE50) = 1;
+		*(DWORD*)(a1 + 0xFE54) = 0;
+		*(DWORD*)(a1 + 0xFE74) = 0;
+		__int64 inputPointer = a1 + 0x218;
+		*(DWORD*)(inputPointer + 0x404) = 0;
+		*(DWORD*)(inputPointer + 0x408) = 0;
+		*(DWORD*)(inputPointer + 0x40C) = 0;
+	}
+	if (a2 == 213 && *(DWORD*)(a1 + 0xCC0) == 211) {
 		*(DWORD*)(a1 + 0xFE50) = 1;
 		*(DWORD*)(a1 + 0xFE54) = 0;
 		*(DWORD*)(a1 + 0xFE74) = 0;
@@ -107,6 +131,7 @@ __int64 __fastcall mechanics::functions::newPlayerState(__int64 a1, unsigned int
 		*(DWORD*)(a1 + 0x14C60) = 0;
 	}
 	if (a2 == 1) {
+		//*(float*)(a1 + 0x1090) = 1.0f;
 		*(DWORD*)(a1 + 0x14C60) = 0;
 	}
 	if (*(DWORD*)(a1 + 0xC8C) == 0x72) //If character is Six Paths Madara
@@ -144,6 +169,7 @@ void mechanics::functions::setNoChakraCirclePlayerState(__int64 a1) {
 		sub_1407C0CE8 osub_1407C0CE8 = (sub_1407C0CE8)(globals::moduleBase + 0x7C00E8 + 0xC00);
 		v2 = a1 + 0x218;
 
+		//mechanics::functions::subCharge(playerAddr);
 		if ((*(DWORD*)(v2 + 0x404) == 1) && *(DWORD*)(playerAddr + 0xCC0) == 1 && (mechanics::enableTaunt)) {
 			*(DWORD*)(playerAddr + 0xCC8) = 92;
 			*(DWORD*)(playerAddr + 0xCDC) = 1;
@@ -159,23 +185,26 @@ void mechanics::functions::setNoChakraCirclePlayerState(__int64 a1) {
 			v4 = 1;
 		if (*(BYTE*)(playerAddr + 0x14DD8) & 0x10)
 			v5 = 1;
-		if ((v3 || v4) && ((*(int(__fastcall**)(__int64))(*(__int64*)playerAddr + 0xEA8i64))(playerAddr) || (mechanics::enableGKunaiAirCombo &&(*(DWORD*)(playerAddr + 0xCC0) == 4 || *(DWORD*)(playerAddr + 0xCC0) == 5 || *(DWORD*)(playerAddr + 0xCC0) == 6)))) {
+		if ((v3 || v4) && (*(int(__fastcall**)(__int64))(*(__int64*)playerAddr + 0xEA8i64))(playerAddr))
+		{
 			v6 = *(__int64*)playerAddr;
-			if (v5) {
-				mechanics::functions::newPlayerState(playerAddr, 64, 0, 0);
+			if (v5)
+			{
+				(*(void(__fastcall**)(__int64, signed __int64, __int64, __int64))(v6 + 0xDE0))(playerAddr, 64i64, 0i64, 0i64);
 				*(DWORD*)(playerAddr + 0x14DD8) = 0;
 			}
-			else {
-				mechanics::functions::newPlayerState(playerAddr, 64, 0, 1);
+			else
+			{
+				(*(void(__fastcall**)(__int64, signed __int64, __int64, signed __int64))(v6 + 0xDE0))(
+					playerAddr,
+					64i64,
+					0i64,
+					1i64);
 			}
 		}
 		if ((((*(int(__fastcall**)(__int64, signed __int64))(*(__int64*)playerAddr + 0x1398i64))(playerAddr, 1i64)
 			&& (((osub_1407C0CE8(v2, 0i64) && v4)) || (unsigned int)osub_1407C0DD8(v2, 9)))
-			&& (((*(int(__fastcall**)(__int64))(*(__int64*)playerAddr + 0xEC8i64))(playerAddr)) || ((*(DWORD*)(playerAddr + 0xCC0) == 10) || (*(DWORD*)(playerAddr + 0xCC0) == 11) || (*(DWORD*)(playerAddr + 0xCC0) == 12))))) {
-			if (!mechanics::enableNMTilt) {
-				globals::hookManager->getOriginal<decltype(&mechanics::functions::setNoChakraCirclePlayerState)>(mechanics::functions::setNoChakraCirclePlayerState)(a1);
-				return;
-			}
+			&& ((*(int(__fastcall**)(__int64))(*(__int64*)playerAddr + 0xEC8i64))(playerAddr)))) {
 				mechanics::functions::newPlayerState(playerAddr, 66, 0, 1);
 		}
 		if (v3 || v4) {
@@ -194,6 +223,62 @@ void mechanics::functions::setNoChakraCirclePlayerState(__int64 a1) {
 	globals::hookManager->getOriginal<decltype(&mechanics::functions::setNoChakraCirclePlayerState)>(mechanics::functions::setNoChakraCirclePlayerState)(a1);
 }
 
+signed __int64 __fastcall mechanics::functions::canAC1(__int64 a1) {
+	/*
+	typedef __int64(__fastcall* sub_14077DA68) (__int64 a1, int a2, __int64 a3);
+	sub_14077DA68 osub_14077DA68 = (sub_14077DA68)(globals::moduleBase + 0x77CE68 + 0xC00);
+
+	signed typedef __int64(__fastcall* sub_14076C79C) (__int64 a1);
+	sub_14076C79C osub_14076C79C = (sub_14076C79C)(globals::moduleBase + 0x76BB9C + 0xC00);
+
+	typedef __int64(__fastcall* sub_1405950E0) ();
+	sub_1405950E0 osub_1405950E0 = (sub_1405950E0)(globals::moduleBase + 0x5944E0 + 0xC00);
+
+	v1 = a1;
+	if ((unsigned int)osub_14076C79C(8)
+		|| !*(DWORD*)(v1 + 84784)
+		|| !osub_14077DA68(v1, 236, 1i64)
+		|| !(*(int(__fastcall**)(__int64, __int64))(*(__int64*)v1 + 5016i64))(v1, 0i64))
+	{
+		return 0i64;
+	}
+	int playerState = *(DWORD*)(a1 + 0xCC0);
+	if (4 <= playerState <= 6)
+		return 1;
+	*/
+	
+	const auto retval = globals::hookManager->getOriginal<decltype(&mechanics::functions::canAC1)>(mechanics::functions::canAC1)(a1);
+	if (id::functions::isInGKunai(a1) && mechanics::enableGKunaiAirCombo)
+		return 1;
+	else
+		return retval;
+}
+
+signed __int64 __fastcall mechanics::functions::canTilt(__int64 a1) {
+
+	typedef signed __int64(__fastcall* sub_14076C79C) (int a1);
+	sub_14076C79C osub_14076C79C = (sub_14076C79C)(globals::moduleBase + 0x76BB9C + 0xC00);
+
+	typedef int(__fastcall* sub_14079C384) (__int64 a1);
+	sub_14079C384 osub_14079C384 = (sub_14079C384)(globals::moduleBase + 0x79B784 + 0xC00);
+
+	if (!mechanics::enableNMTilt)
+		return globals::hookManager->getOriginal<decltype(&mechanics::functions::canTilt)>(mechanics::functions::canTilt)(a1);
+
+	if (!(*(int(__fastcall**)(__int64, signed __int64))(*(__int64*)a1 + 5016i64))(a1, 1i64)
+		|| (unsigned int)osub_14076C79C(8)
+		|| (*(int(__fastcall**)(__int64))(*(__int64*)a1 + 4536i64))(a1) && osub_14079C384(a1) && !*(DWORD*)(a1 + 82412)
+		|| !*(DWORD*)(a1 + 0x14B30))
+	{
+		return 0i64;
+	}
+	int playerState = *(DWORD*)(a1 + 0xCC0);
+	if (10 <= playerState <= 12)
+		return 1;
+	else
+		return globals::hookManager->getOriginal<decltype(&mechanics::functions::canTilt)>(mechanics::functions::canTilt)(a1);
+
+}
 //This function sets new player animations. This function is also used to increase the animation speed of the startup of air chakra dashes.
 __int64 __fastcall mechanics::functions::newPlayerAnim(__int64 rcx, int a1, __int64 a2, unsigned int a3, float a4, int a5, int a6) {
 	globals::hookManager->getOriginal<decltype(&mechanics::functions::newPlayerAnim)>(mechanics::functions::newPlayerAnim)(rcx, a1, a2, a3, a4, a5, a6);
@@ -224,11 +309,11 @@ __int64 __fastcall mechanics::functions::setMultiInputPlayerState(__int64 a1, fl
 
 	typedef __int64(__fastcall* sub_1407C0FAC) (__int64 a1);
 	sub_1407C0FAC osub_1407C0FAC = (sub_1407C0FAC)(globals::moduleBase + 0x7C03AC + 0xC00);
-
 	__int64 partnerAddr;
 	v2 = a1 + 0x218;
 	v3 = a1;
-	if (((*(DWORD*)(v3 + 0xCC0) == 10) || (*(DWORD*)(v3 + 0xCC0) == 11) || (*(DWORD*)(v3 + 0xCC0) == 12)) && (osub_1407C0FAC(v2) || (unsigned int)osub_1407C0DD8(v2, 12))) { //|| ((*(DWORD*)(v3 + 0xCC0) == 10) || (*(DWORD*)(v3 + 0xCC0) == 11) || (*(DWORD*)(v3 + 0xCC0) == 12))
+	if ((((*(DWORD*)(v3 + 0xCC0) == 10) || (*(DWORD*)(v3 + 0xCC0) == 11) || (*(DWORD*)(v3 + 0xCC0) == 12)) && mechanics::functions::canGrab(a1)) && (osub_1407C0FAC(v2) || (unsigned int)osub_1407C0DD8(v2, 12))) {
+		//|| ((*(DWORD*)(v3 + 0xCC0) == 10) || (*(DWORD*)(v3 + 0xCC0) == 11) || (*(DWORD*)(v3 + 0xCC0) == 12))
 		v18 = 0;
 		if (*(BYTE*)(v3 + 85464) & 0x20) {
 			v18 = 1;
@@ -250,6 +335,8 @@ __int64 __fastcall mechanics::functions::setMultiInputPlayerState(__int64 a1, fl
 		result = (*(int(__fastcall**)(__int64))(*(__int64*)v3 + 0x1728i64))(v3);
 		if (result && id::functions::isPuppetMaster(v3)) {
 			if (id::functions::isCanGKunai(v3) == 1) {
+				if (!mechanics::enableGKunai)
+					return globals::hookManager->getOriginal<decltype(&mechanics::functions::setMultiInputPlayerState)>(mechanics::functions::setMultiInputPlayerState)(a1, a2);
 				partnerAddr = *(__int64*)(v3 + 0x1050);
 				*(DWORD*)(partnerAddr + 0xCC8) = 67;
 				*(DWORD*)(partnerAddr + 0xCDC) = 1;
@@ -259,16 +346,65 @@ __int64 __fastcall mechanics::functions::setMultiInputPlayerState(__int64 a1, fl
 	}
 	else {
 		result = (*(int(__fastcall**)(__int64))(*(__int64*)v3 + 0x1728i64))(v3);
+		//mechanics::functions::pushBlock(v3);
 		if (result && id::functions::isPuppetMaster(v3)) {
 			if (id::functions::isCanGKunai(v3) == 1) {
+				if (!mechanics::enableGKunai)
+					return globals::hookManager->getOriginal<decltype(&mechanics::functions::setMultiInputPlayerState)>(mechanics::functions::setMultiInputPlayerState)(a1, a2);
 				partnerAddr = *(__int64*)(v3 + 0x1050);
 				*(DWORD*)(partnerAddr + 0xCC8) = 67;
 				*(DWORD*)(partnerAddr + 0xCDC) = 1;
 			}
 			return 0;
 		}
-		globals::hookManager->getOriginal<decltype(&mechanics::functions::setMultiInputPlayerState)>(mechanics::functions::setMultiInputPlayerState)(a1, a2);
+		return globals::hookManager->getOriginal<decltype(&mechanics::functions::setMultiInputPlayerState)>(mechanics::functions::setMultiInputPlayerState)(a1, a2);
 	}
+}
+
+__int64 __fastcall mechanics::functions::canGrab(__int64 a1) {
+	__int64 v1; // rbx@1
+	int v3; // eax@5
+
+	if (id::functions::isPartnerCharacter(a1))
+		return globals::hookManager->getOriginal<decltype(&mechanics::functions::canGrab)>(mechanics::functions::canGrab)(a1);
+	if (!mechanics::enableNMGrab)
+		return globals::hookManager->getOriginal<decltype(&mechanics::functions::canGrab)>(mechanics::functions::canGrab)(a1);
+	typedef __int64(__fastcall* sub_14077DA68) (__int64 a1, int a2, __int64 a3);
+	sub_14077DA68 osub_14077DA68 = (sub_14077DA68)(globals::moduleBase + 0x77CE68 + 0xC00);
+
+	signed typedef __int64(__fastcall* sub_14076C79C) (__int64 a1);
+	sub_14076C79C osub_14076C79C = (sub_14076C79C)(globals::moduleBase + 0x76BB9C + 0xC00);
+
+	typedef __int64(__fastcall* sub_1405950E0) ();
+	sub_1405950E0 osub_1405950E0 = (sub_1405950E0)(globals::moduleBase + 0x5944E0 + 0xC00);
+
+	v1 = a1;
+	if (!*(DWORD*)(a1 + 84784) || *(DWORD*)(a1 + 85192) && osub_1405950E0())
+		return 0i64;
+	//std::cout << "past first if" << std::endl;
+	v3 = *(DWORD*)(v1 + 0xC8C);
+	if (v3 != 41 && v3 != 102 && v3 != 230 && !osub_14077DA68(v1, 248, 1i64) && !osub_14077DA68(v1, 247, 1i64))
+		return 0i64;
+	//std::cout << "past second if" << std::endl;
+	if (!(*(int(__fastcall**)(__int64, signed __int64))(*(__int64*)v1 + 5016i64))(v1, 8i64))
+		return 0i64;
+	//std::cout << "past third if" << std::endl;
+	if ((unsigned int)osub_14076C79C(8))
+		return 0i64;
+	//std::cout << "past fourth if" << std::endl;
+	if ((unsigned int)(*(DWORD*)(v1 + 3272) - 74) <= 2)
+		return 0i64;
+	//std::cout << "past fifth if" << std::endl;
+	int playerState = *(DWORD*)(a1 + 0xCC0);
+	//std::cout << "past sixth if" << std::endl;
+	if (playerState == 8)
+		return 0;
+	//std::cout << "past seventh if" << std::endl;
+	if (playerState == 4 || playerState == 5 || playerState == 6)
+		return 0;
+	if (10 <= playerState <= 12)
+		return 1;
+	return globals::hookManager->getOriginal<decltype(&mechanics::functions::canGrab)>(mechanics::functions::canGrab)(a1);
 }
 
 //This function takes d-pad item inputs and sets the player state to nothing, item throw/use, and guardbreak pill.
@@ -332,6 +468,7 @@ int mechanics::functions::itemState(__int64 a1, unsigned int a2) {
 		if ((DWORD)v9)
 		{
 			v10 = globals::moduleBase + 0x14161C8C8 - 0x140000000 + 0xC00;
+			std::cout << v10 << std::endl;
 			v11 = osub_140529598((__int64)"BATTLE_ITEM150");// gb pill
 			v12 = osub_140529598((__int64)"BATTLE_ITEM192");
 			if (v4 != 0)         // if it's not a gb pill&& v12 == v15
@@ -559,7 +696,7 @@ int __fastcall mechanics::functions::writeSwitchByte(__int64 a1) {
 int mechanics::functions::comboGuardBreak(__int64 a1, __int64 a2, __int64 a3, __int64 a4) {
 	if (*(DWORD*)(a1 + 0xC14) == 1701736302) {
 		if (*(DWORD*)(a1 + 0xC8C) == 0)
-		return globals::hookManager->callOriginal<decltype(&mechanics::functions::comboGuardBreak)>(mechanics::functions::comboGuardBreak, mechanics::limboCloneAddr, a2, a3, a4);
+			return globals::hookManager->callOriginal<decltype(&mechanics::functions::comboGuardBreak)>(mechanics::functions::comboGuardBreak, mechanics::limboCloneAddr, a2, a3, a4);
 		else
 			return globals::hookManager->callOriginal<decltype(&mechanics::functions::comboGuardBreak)>(mechanics::functions::comboGuardBreak, a1, a2, a3, a4);
 	}
@@ -577,5 +714,207 @@ signed int __fastcall mechanics::functions::changeGameRateFromBlueDashHit(__int6
 		}
 	}
 	return retval;
-	
+
 }
+
+//Runs the sub charge function.
+void mechanics::functions::subCharge(__int64 baseAddr) {
+	if (id::functions::isPartnerCharacter(baseAddr))
+		return;
+	__int64 buttonAddr = baseAddr + 0x218;
+	__int64 healthAddr = id::functions::getHealthAddr(baseAddr);
+	float subGauge = *(float*)(healthAddr + 0x20);
+	if (*(DWORD*)(baseAddr + 0xCC0) == 1) {
+		if (*(uint8_t*)(buttonAddr + 0x409) == *(uint8_t*)(buttonAddr + 0x599)) {
+			if (subGauge < 100.0) {
+				*(float*)(healthAddr + 0x20) = subGauge + .5f;
+				*(float*)(baseAddr + 0x14B08) = 0;
+			}
+		}
+	}
+}
+
+//Runs the pushblock function.
+void mechanics::functions::pushBlock(__int64 baseAddr) {
+	if (*(DWORD*)(baseAddr + 0xCC0) != 74)
+		return;
+	typedef __int64(__fastcall* sub_1407C09B8) (__int64 a1);
+	sub_1407C09B8 osub_1407C09B8 = (sub_1407C09B8)(globals::moduleBase + 0x7BFDB8 + 0xC00);
+
+	typedef signed __int64(__fastcall* sub_14076C770) ();
+	sub_14076C770 osub_14076C770 = (sub_14076C770)(globals::moduleBase + 0x77CE68 + 0xC00);
+
+	typedef __int64(__fastcall* sub_1407C0DD8) (__int64 a1, int a2);
+	sub_1407C0DD8 osub_1407C0DD8 = (sub_1407C0DD8)(globals::moduleBase + 0x7C01D8 + 0xC00);
+	if (id::functions::isPuppetMaster(baseAddr))
+		return;
+	if (id::functions::isPartnerCharacter(baseAddr))
+		return;
+	__int64 healthAddr = id::functions::getHealthAddr(baseAddr);
+	float subGauge = *(float*)(healthAddr + 0x20);
+	int stuff = *(DWORD*)(baseAddr + 0x14B30) != 0 ? 1 : 0;
+	int v4 = (*(int(__fastcall**)(__int64, signed __int64))(*(__int64*)baseAddr + 5016i64))(baseAddr, 23i64) != 0 ? stuff : 0;
+	int blab = *(DWORD*)(baseAddr + 0x141EC) != 0 ? v4 : 0;
+	if (!(unsigned int)osub_1407C09B8(baseAddr + 0x218) && !(unsigned int)osub_1407C0DD8(baseAddr + 0x218, 36) || (unsigned int)osub_14076C770())
+		blab = 0;
+	if (blab == 1) {
+		if (*(DWORD*)(baseAddr + 0xCC0) == 74 && subGauge >= 12.5f) {
+			*(float*)(healthAddr + 0x20) = *(float*)(healthAddr + 0x20) - 12.5f;
+			*(DWORD*)(baseAddr + 0xCC8) = 154;
+			*(DWORD*)(baseAddr + 0xCDC) = 1;
+		}
+	}
+}
+
+int __fastcall mechanics::functions::counterState(__int64 a1, int a2) {
+	const auto retval = globals::hookManager->callOriginal<decltype(&mechanics::functions::counterState)>(mechanics::functions::counterState, a1, a2);
+	if (*(DWORD*)(a1 + 0xCC4) == 74) {
+		*(uint8_t*)(a1 + 0x140A0) = 1;
+		*(float*)(a1 + 0x140B0) = 5;
+		if (*(DWORD*)(a1 + 0x141A8) <= 10) {
+			*(DWORD*)(a1 + 0xCD0) = 0;
+			*(DWORD*)(a1 + 0xCD4) = 0;
+			*(DWORD*)(a1 + 0xFE60) = 0;
+			*(DWORD*)(a1 + 0xFE64) = 0;
+			*(float*)(a1 + 0x14B08) = 0;
+			*(float*)(a1 + 0x1090) = .5f;
+		}
+	}
+	return retval;
+}
+
+/*
+int __fastcall mechanics::functions::counterState(__int64 a1, int a2)
+{
+
+	//return globals::hookManager->callOriginal<decltype(&mechanics::functions::counterState)>(mechanics::functions::counterState, a1, a2);
+	DWORD v2; // rax@1
+	__int64 v3; // rdi@1
+	int v4; // edx@2
+	__int64 v5; // rax@8
+	__int64 v6; // r8@10
+	__int64 v7; // rdx@15
+	__int64* v8; // rax@17
+	__int64 v9; // rcx@17
+	__int64 v10; // xmm1@21
+	__int64 v11; // rax@21
+	__int64 v12; // xmm1@21
+	__int64 v13; // xmm1@21
+	__int64 v15; // [sp+20h] [bp-98h]@10
+	__int64 v16; // [sp+40h] [bp-78h]@17
+	__int64 v17; // [sp+50h] [bp-68h]@21
+	__int64 v18; // [sp+60h] [bp-58h]@21
+	__int64 v19; // [sp+70h] [bp-48h]@21
+	std::string v20; // [sp+80h] [bp-38h]@17
+	__int16 v21; // [sp+82h] [bp-36h]@17
+	__int16 v22; // [sp+86h] [bp-32h]@17
+	signed int v23; // [sp+88h] [bp-30h]@17
+	int v24; // [sp+8Ch] [bp-2Ch]@17
+	signed int v25; // [sp+90h] [bp-28h]@17
+	signed int v26; // [sp+94h] [bp-24h]@17
+	signed int v27; // [sp+98h] [bp-20h]@17
+	__int16 v28; // [sp+9Ch] [bp-1Ch]@17
+	void* retaddr; // [sp+B8h] [bp+0h]@1
+
+	typedef void(__fastcall* blab) (__int64 a1);
+	blab setPriorityto0 = (blab)(globals::moduleBase + 0x79BCFC + 0xC00);
+
+	typedef int(__fastcall* sub_1407AE974) (__int64 a1);
+	sub_1407AE974 osub_1407AE974 = (sub_1407AE974)(globals::moduleBase + 0x7ADD74 + 0xC00);
+
+	typedef int(__fastcall* sub_140593DAC) (__int64 a1, unsigned int a2);
+	sub_140593DAC osub_140593DAC = (sub_140593DAC)(globals::moduleBase + 0x5931AC + 0xC00);
+
+	typedef int(__fastcall* sub_140763B9C) (__int64 a1, int a2, __int64 a3);
+	sub_140763B9C osub_140763B9C = (sub_140763B9C)(globals::moduleBase + 0x7624E4 + 0xC00);
+
+	typedef signed __int64(__fastcall* sub_14077E64C) (__int64 a1, __int64 a2, __int64 a3, __int64 a4, __int64 a5, unsigned int a6);
+	sub_14077E64C osub_14077E64C = (sub_14077E64C)(globals::moduleBase + 0x77DA4C + 0xC00);
+
+	typedef __int64(__fastcall* sub_140A04DD0) ();
+	sub_140A04DD0 osub_140A04DD0 = (sub_140A04DD0)(globals::moduleBase + 0xA041D0 + 0xC00);
+
+	typedef __int64(__fastcall* sub_140AC0C30) (__int64 a1, int a2, __int64 a3, __int64 a4, int a5);
+	sub_140AC0C30 osub_140AC0C30 = (sub_140AC0C30)(globals::moduleBase + 0xAC0030 + 0xC00);
+
+	typedef int(__fastcall* sub_14076CDD4) (__int64 a1, int a2, unsigned int a3);
+	sub_14076CDD4 osub_14076CDD4 = (sub_14076CDD4)(globals::moduleBase + 0x76C1D4 + 0xC00);
+
+	typedef signed __int64(__fastcall* sub_140529BEC) (__int64 a1);
+	sub_140529BEC osub_140529BEC = (sub_140529BEC)(globals::moduleBase + 0x528FEC + 0xC00);
+
+	typedef void(__fastcall* blabby) (__int64 a1, int a2);
+	blabby setPriorityToNot0 = (blabby)(globals::moduleBase + 0x79BD44 + 0xC00);
+
+	typedef int(__fastcall* sub_14079BE5C) (__int64 a1, int a2);
+	sub_14079BE5C osub_14079BE5C = (sub_14079BE5C)(globals::moduleBase + 0x79B25C + 0xC00);
+
+	v3 = a1;
+	std::cout << "pre first if" << std::endl;
+	if (a2)
+	{
+		v2 = globals::hookManager->callOriginal<decltype(&mechanics::functions::counterState)>(mechanics::functions::counterState, a1, a2);
+	}
+	else
+	{
+		std::cout << "in else" << std::endl;
+		osub_140593DAC(a1, 0x2Bu);
+		std::cout << "after 1st" << std::endl;
+		v5 = (*(int(__fastcall**)(__int64))(*(__int64*)v3 + 3464i64))(v3);
+		std::cout << "after 2nd" << std::endl;
+		//if (v5)
+			//*(DWORD*)(v5 + 63856) = 1;
+		//osub_140763B9C(v3, 176i64, (__int64)"pelvis");
+		std::cout << "second if" << std::endl;
+		if (!(*(int(__fastcall**)(__int64))(*(__int64*)v3 + 4576i64))(v3)
+			|| *(DWORD*)(v3 + 0xC8C) == 25
+			|| *(DWORD*)(v3 + 0xC8C) == 56
+			|| *(DWORD*)(v3 + 0xC8C) == 85
+			|| *(DWORD*)(v3 + 0xC8C) == 96
+			|| (v7 = 87i64, *(DWORD*)(v3 + 0xC8C) == 193))
+		{
+			v7 = 71i64;
+		}
+		DWORD(v15) = 0;
+		osub_14077E64C(v3, v7, 0, 0xFFFFFFFFi64, v15, 0);
+		osub_140AC0C30(v3 + 62448, 0, v3 + 112, (__int64)osub_140A04DD0(), 1138819072);
+		(*(void(__fastcall**)(signed __int64, __int64))(*(__int64*)(v3 + 62448) + 8i64))(v3 + 62448, 0i64);
+		osub_14076CDD4(v3 + 82208, 1, 3u);
+		sprintf((char*)&v16, "none");
+		v9 = *(__int64*)(v3 + 85936);
+		v24 = 0;
+		v20 = -1;
+		v21 = 0;
+		v22 = 0;
+		v23 = 1065353216;
+		v25 = 1065353216;
+		v26 = 1065353216;
+		v27 = 1;
+		v28 = 0;
+		std::cout << "pre-third" << std::endl;
+		//if ((*(int (**)(void))(*(__int64*)v9 + 40i64))())
+			//v20 = "DAMAGE_ID_ATEMIHIT_SMASH";
+		//if ((*(int (**)(void))(**(__int64**)(v3 + 0x14FB8) + 40i64))())
+		//v20 = "DAMAGE_ID_ATEMIHIT_STAGGER";
+		//v10 = v17;
+		std::cout << "post-third" << std::endl;
+		v23 = 0;
+		v11 = *(__int64*)v3;
+		v26 = 1065353216;
+		v25 = 1065353216;
+		*(float*)(v3 + 82016) = *(float*)&v16;
+		*(float*)(v3 + 82032) = 0;
+		//v12 = v19;
+		v28 = 0;
+		*(float*)(v3 + 0x14080) = 0;
+		*(DWORD*)(v3 + 0x14090) = 1232;
+		v13 = *(float*)&v25;
+		*(std::string*)(v3 + 0x140A0) = 62;
+		*(float*)(v3 + 0x140B0) = 1.0f;
+		(*(void(__fastcall**)(__int64, signed __int64))(v11 + 4000))(v3, 16389i64);
+		setPriorityToNot0(v3, 600);
+		DWORD(v2) = osub_14079BE5C(v3, 31);
+	}
+	return (unsigned __int64)v2;
+}
+*/

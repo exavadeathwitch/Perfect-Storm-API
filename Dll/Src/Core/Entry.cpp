@@ -77,15 +77,18 @@ DWORD __stdcall modEntry(void* const imageBase) {
 
 	for (auto i = 0u; i < sizeof(proxyFunctions) / sizeof(*proxyFunctions); ++i)
 		proxyFunctions[i] = std::bit_cast<std::uintptr_t>(GetProcAddress(oD3DCompiler, proxyFuncNames[i]));
-
+	
     util::console::initialize("lol");
 
 	printf_s("[+] init\n");
+
+	freopen("conin$", "r", stdin);
+	freopen("conout$", "w", stdout);
+	freopen("conout$", "w", stderr);
+	settings::onStartup();
 	General::CpkToLoad.push_back(".\\Perfect Storm\\data\\blabby.cpk");
 	General::CpkPriority.push_back(20);
-	if (globals::settings->m_Version == "Enhanced") {
-	}
-	else {
+	if (globals::settings->m_Version != "Enhanced") {
 		General::CpkToLoad.push_back(".\\Perfect Storm\\data\\Perfect Storm.cpk");
 		General::CpkPriority.push_back(20);
 	}
@@ -97,7 +100,7 @@ DWORD __stdcall modEntry(void* const imageBase) {
 	hooks::initialize();
 
 	
-	settings::onStartup();
+
 	mechanics::functions::initializeMechanics();
 	/*
 	char buffer[MAX_PATH];
@@ -110,6 +113,16 @@ DWORD __stdcall modEntry(void* const imageBase) {
 	util::memory::Modify::write_bytes<5>(globals::moduleBase + 0xB260B0 + 0xC00, { 0x90, 0x90, 0x90, 0x90, 0x90 });
 	util::memory::Modify::write_bytes<5>(globals::moduleBase + 0xB26863 + 0xC00, { 0x90, 0x90, 0x90, 0x90, 0x90 });
 	util::memory::Modify::write_bytes<5>(globals::moduleBase + 0xB26B45 + 0xC00, { 0x90, 0x90, 0x90, 0x90, 0x90 });
+
+	util::memory::Modify::write_bytes<1>(globals::moduleBase + 0x1097095, { 0x35 });
+	util::memory::Modify::write_bytes<1>(globals::moduleBase + 0x11096B9, { 0x33 });
+
+	//Write endless timer bytes
+	util::memory::Modify::write_bytes<1>(globals::moduleBase + 0x5B336C + 0xC00, { 0x5 });
+	util::memory::Modify::write_bytes<1>(globals::moduleBase + 0x5B3465 + 0xC00, { 0x5 });
+	//No sub banking
+	util::memory::Modify::write_bytes<3>(globals::moduleBase + 0xB25966 + 0xC00, { 0x90, 0x90, 0x90 });
+
 	/*
 	util::memory::Modify::write_bytes<7>(globals::moduleBase + 0x7C059A + 0xC00, { 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90 });
 	util::memory::Modify::write_bytes<5>(globals::moduleBase + 0x5741AD + 0xC00, { 0x90, 0x90, 0x90, 0x90, 0x90 });

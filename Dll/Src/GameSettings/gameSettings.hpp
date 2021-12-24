@@ -12,5 +12,6 @@ namespace gameSettings {
 	public:
 		static void updateSettings();
 		static int newSettings(__int64 a1);
+		static __int64 updateResSettings(__int64 a1);
 	};
 }

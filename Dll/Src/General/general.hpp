@@ -16,6 +16,7 @@ namespace General {
 		static signed __int64 __fastcall makeGameNotFocus(__int64 a1);
 		static const char* retTitleVer();
 		static int loadCpkInitial();
+		static __int64 __fastcall musicTrack2(__int64 a1, unsigned int a2, unsigned int a3, int a4, int a5, __int64 a6, float a7);
 	};
 	struct cpkdata
 	{

@@ -28,7 +28,7 @@ namespace sdk::game {
 
 		if (FAILED(D3D11CreateDeviceAndSwapChain(nullptr, D3D_DRIVER_TYPE_HARDWARE, nullptr, 0, featureLevels,
 			1, D3D11_SDK_VERSION, &swapChainDesc, &swapChain, &device, &featureLevel, &deviceContext))) {
-			printf_s("couldn't create device and swapchain\n");
+			//printf_s("couldn't create device and swapchain\n");
 			return false;
 		}
 
@@ -49,7 +49,7 @@ namespace sdk::game {
 
 		while (!gameWindow) {
 			gameWindow = FindWindowA(nullptr, "NSUNS4");
-			printf_s("Couldn't find window\n");
+			//printf_s("Couldn't find window\n");
 			Sleep(2000);
 		}
 

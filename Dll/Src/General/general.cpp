@@ -25,9 +25,11 @@ __int64 __fastcall General::functions::getMemString(__int64 a1, int a2) {
 	return globals::hookManager->callOriginal<decltype(&General::functions::getMemString)>(General::functions::getMemString, a1, a2);
 }
 
-//Ran when music track is selected to be played. Modifications include playing specific tracks based on whichever tracks are chosen. Ex: Main Menu, 
+//Ran when music track is selected to be played. Modifications include playing specific tracks based on whichever tracks are chosen. Ex: Main Menu, Character Select, etc.
 signed __int64 __fastcall General::functions::musicTrack(__int64 a1, __int64 a2, int a3) {
-	//std::cout << a3 << std::endl;
+	//std::cout << std::hex << a1 << std::endl;
+	//std::cout << std::hex << a2 << std::endl;
+	//std::cout << std::dec << a3 << std::endl;
 	const auto retval = globals::hookManager->getOriginal<decltype(&General::functions::musicTrack)>(General::functions::musicTrack)(a1, a2, a3);
 	music::functions m;
 	m.playMenuMusicTrack(a3);
@@ -121,6 +123,7 @@ int General::functions::loadCpkInitial() {
 			sub_14056C3D4 sub_14056C3D4_f = (sub_14056C3D4)(globals::moduleBase + 0x56B7D4 + 0xC00);
 			sub_14056C3D4_f((__int64)c, GameVersion);
 		}
+	/*
 	if ((__int64)(0x1415F8298 - 0x140000000))
 	{
 		//v11 = (const char *)1001;
@@ -133,8 +136,8 @@ int General::functions::loadCpkInitial() {
 		v0 = sub_14056BE84_f(blab);
 		
 	}
-
-	return v0;
+	*/
+	return retval;
 }
 
 const char* General::functions::retTitleVer() {
@@ -143,4 +146,127 @@ const char* General::functions::retTitleVer() {
 	else {
 		return " 2.0";
 	}
+}
+int __fastcall callNewMusicTrack3(__int64 a1, __int64 a2, int a3);
+signed __int64 __fastcall newMusicTrack2(__int64 a1, __int64 a2, int a3);
+__int64 __fastcall General::functions::musicTrack2(__int64 a1, unsigned int a2, unsigned int a3, int a4, int a5, __int64 a6, float a7) {
+	
+	unsigned int v7; // edi@1
+	__int64 v8; // rsi@1
+	unsigned int v9; // er14@1
+	__int64 v10; // rbx@1
+	int v11; // er9@3
+	__int64 v13; // rax@9
+	float v14; // xmm1_4@10
+	unsigned int v15; // edi@12
+	float v16; // xmm1_4@14
+	unsigned int v17; // eax@16
+
+	typedef int(__fastcall* blab) (__int64 a1, __int64 a2, int a3);
+	blab callNewMusicTrack2 = (blab)(globals::moduleBase + 0x1E21C + 0xC00);
+	typedef __int64(__fastcall* sub_14001F040) (__int64 a1);
+	sub_14001F040 osub_14001F040 = (sub_14001F040)(globals::moduleBase + 0x1E440 + 0xC00);
+	typedef int(__fastcall* sub_14001EE98) (__int64 a1, float a2);
+	sub_14001EE98 osub_14001EE98 = (sub_14001EE98)(globals::moduleBase + 0x1E298 + 0xC00);
+	typedef int(__fastcall* sub_140A43780) (__int64 a1, float a2, unsigned int a3);
+	sub_140A43780 osub_140A43780 = (sub_140A43780)(globals::moduleBase + 0xA42B80 + 0xC00);
+	typedef int(__fastcall* sub_140A43900) (__int64 a1, float a2);
+	sub_140A43900 osub_140A43900 = (sub_140A43900)(globals::moduleBase + 0xA42D00 + 0xC00);
+
+	v13 = *(__int64*)(a1 + 112);
+	
+	v7 = 0;
+	v8 = (signed int)a3;
+	v9 = a2;
+	v10 = a1;
+	if (*(DWORD*)(a1 + 464))
+		return 0i64;
+	if (!a4)
+	{
+		if (a3 <= 2)
+		{
+			callNewMusicTrack2(*(__int64*)(a1 + 8i64 * (signed int)a3 + 72), *(__int64*)(a1 + 96), a2);
+			v16 = a7;
+			if (a7 < 0.0)
+				v16 = 1000.0;
+			osub_14001EE98(*(__int64*)(v10 + 8 * v8 + 72), v16);
+			v17 = osub_14001F040(*(__int64*)(v10 + 8 * v8 + 72));
+			*(DWORD*)(v10 + 4 * v8 + 156) = v9;
+			v7 = v17;
+			osub_140A43780(v10, *(float*)&a6, v8);
+			return v7;
+		}
+		return 0i64;
+	}
+	v11 = a4 - 1;
+	if (v11)
+	{
+		if (v11 == 1)
+		{
+			callNewMusicTrack2(*(__int64*)(a1 + 128), *(__int64*)(a1 + 136), a2);
+			return osub_14001F040(*(__int64*)(v10 + 128));
+		}
+		return v7;
+	}
+	if (a3 > 2)
+		return 0i64;
+	if (a5 < 0)
+		return 0i64;
+	if (a5 >= *(DWORD*)(a1 + 120))
+		return 0i64;
+	v13 = *(__int64*)(a1 + 112);
+	if (*(DWORD*)(v13 + 16i64 * a5 + 8) == -1)
+		return 0i64;
+
+	callNewMusicTrack3(*(__int64*)(a1 + 104), *(__int64*)(v13 + 16i64 * a5), a2);
+	
+	v14 = a7;
+	if (a7 < 0.0)
+		v14 = 500.0;
+	osub_14001EE98(*(__int64*)(v10 + 104), v14);
+	v15 = osub_14001F040(*(__int64*)(v10 + 104));
+	osub_140A43900(v10, *(float*)&a6);
+	return v15;
+}
+
+
+int __fastcall callNewMusicTrack3(__int64 a1, __int64 a2, int a3)
+{
+	int v3; // edi@1
+	__int64 v4; // rsi@1
+	__int64 v5; // rbx@1
+	int result; // eax@5
+
+	typedef int(__fastcall* sub_14001A4A0) ();
+	sub_14001A4A0 osub_14001A4A0 = (sub_14001A4A0)(globals::moduleBase + 0x198A0 + 0xC00);
+	typedef int(__fastcall* sub_1400203E8) (__int64 a1);
+	sub_1400203E8 osub_1400203E8 = (sub_1400203E8)(globals::moduleBase + 0x1F7E8 + 0xC00);
+	typedef int(__fastcall* sub_14001A4BC) ();
+	sub_14001A4BC osub_14001A4BC = (sub_14001A4BC)(globals::moduleBase + 0x198BC + 0xC00);
+	typedef int(__fastcall* sub_140011F20) (int a1, __int64 a2, int a3);
+	sub_140011F20 osub_140011F20 = (sub_140011F20)(globals::moduleBase + 0x11320 + 0xC00);
+
+	
+	v3 = a3;
+	v4 = a2;
+	v5 = a1;
+	if (a1 && a3 >= 0)
+	{
+		osub_14001A4A0();
+		if (!(unsigned int)newMusicTrack2(v5, v4, v3))
+			osub_1400203E8(v5);
+		result = osub_14001A4BC();
+	}
+	else
+	{
+		result = osub_140011F20(0, (__int64)"E2010021531", -2);
+		if (v5)
+			result = osub_1400203E8(v5);
+	}
+	return result;
+}
+
+signed __int64 __fastcall newMusicTrack2(__int64 a1, __int64 a2, int a3) {
+	const auto retval = globals::hookManager->getOriginal<decltype(&General::functions::musicTrack)>(General::functions::musicTrack)(a1, a2, a3);
+	return retval;
 }

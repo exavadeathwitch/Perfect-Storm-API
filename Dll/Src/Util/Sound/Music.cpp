@@ -66,10 +66,10 @@ void music::functions::playStageMusicTrack() {
 void music::functions::playMenuMusicTrack(int trackNum) {
 	std::string menuDir = "";
 	SDL2Music music;
-	if ((Battle::matchCount > 0) && (Battle::inBattle == 1) && Net::functions::onOnline())
-		return;
-	music.Halt_Music();
-	//std::cout << trackNum << std::endl;
+	//std::cout << "Track Number: " << trackNum << std::endl;
+	//if ((-1 < trackNum < 4) && (Battle::inBattle == 0) && (Battle::matchCount > 0))
+		//return;
+	//std::cout << "post switch" << std::endl;
 	switch (trackNum) {
 	case 0:
 		menuDir = "Main Menu";
@@ -85,11 +85,14 @@ void music::functions::playMenuMusicTrack(int trackNum) {
 		break;
 	case 4:
 		menuDir = "Win Screen";
+		util::memory::Modify::write_bytes<5>(globals::moduleBase + 0xA4357B + 0xC00, { 0xE8, 0x9C, 0xAC, 0x5D, 0xFF });
 		break;
 	default:
 		return;
 		break;
 	}
+
+	music.Halt_Music();
 	std::string dirpath = General::defaultFilepath + "\\sound\\music\\menu\\" + menuDir;
 	std::string str_obj(dirpath);
 	char* dirpath_arr = &str_obj[0];
@@ -102,6 +105,7 @@ void music::functions::playMenuMusicTrack(int trackNum) {
 		music.addMusicTrack(file.path().string().c_str());
 		numtracks++;
 	}
+	//std::cout << gameSettings::musicVol << std::endl;
 	Mix_VolumeMusic(gameSettings::musicVol / 1.25);
 	if (gameSettings::musicVol == 0)
 		Mix_VolumeMusic(0);

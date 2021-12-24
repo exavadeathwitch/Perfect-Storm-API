@@ -4,6 +4,9 @@
 //Adding Toggles for Each Individual Mechanic
 
 namespace mechanics {
+	//turn imgui on
+	inline bool imguiOn = 1;
+
 	//imgui table to display mechanical toggles
 	inline bool mechTable = 0;
 
@@ -84,5 +87,11 @@ namespace mechanics {
 		static signed int __fastcall changeGameRateFromBlueDashHit(__int64 a1);
 		static void mechanicsMenu();
 		static void initializeMechanics();
+		static signed __int64 __fastcall canTilt(__int64 a1);
+		static __int64 __fastcall canGrab(__int64 a1);
+		static signed __int64 __fastcall canAC1(__int64 a1);
+		static void subCharge(__int64 baseAddr);
+		static void pushBlock(__int64 baseAddr);
+		static int __fastcall counterState(__int64 a1, int a2);
 	};
 }

@@ -18,7 +18,7 @@
 
 #include "Battle/battle.hpp"
 
-#include "Input/Input.hpp"
+#include "Input/gInput.hpp"
 
 #include "Core/Settings/Settings.hpp"
 
@@ -41,10 +41,11 @@ ID3D11ShaderResourceView* my_texture = NULL;
 ID3D11ShaderResourceView* dtrainingModeIcon = NULL;
 ID3D11ShaderResourceView* dtrainingModeIcon2 = NULL;
 static ID3D11RenderTargetView* g_RenderTargetView;
-
+int thing = 0;
 static bool showWindow = true;
 namespace hooks {
 	LRESULT __stdcall functions::hkPresent(IDXGISwapChain* swapChain, UINT syncInterval, UINT flags) {
+		static const auto retval = globals::hookManager->callOriginal<decltype(&hkPresent)>(hkPresent, swapChain, syncInterval, flags);
 		static std::once_flag init;
 		gameSettings::functions::updateSettings();
 		if (showWindow)
@@ -56,6 +57,7 @@ namespace hooks {
 			ID3D11Texture2D* backBuffer{};
 			swapChain->GetDevice(__uuidof(ID3D11Device), std::bit_cast<void**>(&sdk::game::device));
 			sdk::game::device->GetImmediateContext(&sdk::game::deviceContext);
+			//return retval;
 			swapChain->GetBuffer(0, __uuidof(ID3D11Texture2D), (LPVOID*)&backBuffer);
 			sdk::game::device->CreateRenderTargetView(backBuffer, nullptr, &g_RenderTargetView);
 			backBuffer->Release();
@@ -77,19 +79,14 @@ namespace hooks {
 			ret = util::display::load::loadTextureFromFile("Off.png", &dtrainingModeIcon2, &trainingModeIcon2W, &trainingModeIcon2H);
 			IM_ASSERT(ret);
 			*/
-			freopen("conin$", "r", stdin);
-			freopen("conout$", "w", stdout);
-			freopen("conout$", "w", stderr);
 			});
 		if (framecount > 0)
 		framecount--;
 
 		ImGui_ImplDX11_NewFrame();
 		ImGui_ImplWin32_NewFrame();
-
+		*(DWORD*)(globals::moduleBase + 0x163BBD0) = 1;
 		ImGui::NewFrame();
-
-
 		/*
 		if ((GetAsyncKeyState(VK_TAB) & 0x01)) {
 			if (movesetToggle)
@@ -169,7 +166,9 @@ namespace hooks {
 			ImGui::Image((void*)dtrainingModeIcon, ImVec2(trainingModeIconW / (gameSettings::xRes / 150), trainingModeIconH / (gameSettings::xRes / 150)));
 			ImGui::End();
 			*/
-		//}
+	//}
+
+		*(DWORD*)(globals::moduleBase + 0x163BBD0) = 1;
 		if (Battle::inBattle && Net::functions::onOnline()) {
 			//if (globals::settings->m_frameDelayPosition == true)
 			
@@ -216,7 +215,9 @@ namespace hooks {
 		ImGui::EndFrame();
 		ImGui::Render();
 		sdk::game::deviceContext->OMSetRenderTargets(1, &g_RenderTargetView, nullptr);
-
+		Battle::inBattle = 0;
+		//std::cout << "thing: " << thing << std::endl;
+		//thing++;
 		ImGui_ImplDX11_RenderDrawData(ImGui::GetDrawData());
 		return globals::hookManager->callOriginal<decltype(&hkPresent)>(hkPresent, swapChain, syncInterval, flags);
 	}

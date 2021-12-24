@@ -1,6 +1,6 @@
 #pragma once
 
-namespace Input {
+namespace gInput {
 	class functions {
 	public:
 		static int getMenuInput();
