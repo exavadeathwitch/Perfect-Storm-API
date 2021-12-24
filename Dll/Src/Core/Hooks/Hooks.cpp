@@ -31,6 +31,8 @@ namespace hooks {
 		
 		globals::hookManager->addEntry(sdk::game::swapChainVtbl[8], functions::hkPresent);
 		
+		globals::hookManager->addEntry((std::uintptr_t)(globals::moduleBase + 0x79C680 + 0xC00), mechanics::functions::airSpark);
+
 		globals::hookManager->addEntry((std::uintptr_t)(globals::moduleBase + 0x7ADCB4 + 0xC00), mechanics::functions::newPlayerState);
 		
 		globals::hookManager->addEntry((std::uintptr_t)(globals::moduleBase + 0x7AD024 + 0xC00), mechanics::functions::canYouShuriken);

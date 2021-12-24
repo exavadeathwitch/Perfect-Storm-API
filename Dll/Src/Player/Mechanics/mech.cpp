@@ -54,6 +54,24 @@ mechanics::enableChakraShurikenSwitch = 1;
 	}
 }
 
+__int64 __fastcall mechanics::functions::airSpark(__int64 a1, float a2) {
+
+
+	typedef int(__fastcall* sub_14079B980) (__int64 a1);
+	sub_14079B980 osub_14079B980 = (sub_14079B980)(globals::moduleBase + 0x79AD80 + 0xC00);
+
+	typedef __int64(__fastcall* sub_14079C994) (__int64 a1, unsigned int a2, float a3);
+	sub_14079C994 osub_14079C994 = (sub_14079C994)(globals::moduleBase + 0x79BD94 + 0xC00);
+	std::cout << "wow" << std::endl;
+	const auto retval = globals::hookManager->getOriginal<decltype(&mechanics::functions::airSpark)>(mechanics::functions::airSpark)(a1, a2);
+	__int64 v2 = a1;
+	DWORD(v6) = osub_14079B980(v2);
+	if (v6) {
+		std::cout << "entered" << std::endl;
+		osub_14079C994(v2, 1u, a2);
+	}
+	return retval;
+}
 //This function controls when the character can perform a shuriken. We've modified it so it can be performed out of a combo and tilt, like in Naruto Storm Revolution.
 __int64 __fastcall mechanics::functions::canYouShuriken(__int64 a1) {
 	if (!mechanics::enableShurikenComboTilt) {

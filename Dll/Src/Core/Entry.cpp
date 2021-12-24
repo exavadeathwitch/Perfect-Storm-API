@@ -80,6 +80,8 @@ DWORD __stdcall modEntry(void* const imageBase) {
 	
     util::console::initialize("lol");
 
+	util::memory::Modify::write_bytes<5>(globals::moduleBase + 0x79C6EF + 0xC00, { 0x90, 0x90, 0x90, 0x90, 0x90 });
+
 	printf_s("[+] init\n");
 
 	freopen("conin$", "r", stdin);
