@@ -8,3 +8,5 @@
 build/Dll_Debug/d3dcompiler_47.pch
 *.pch
 *.pdb
+Dll/Dll.vcxproj
+build/Dll_Public/dll.log
