@@ -55,11 +55,12 @@ DWORD __stdcall modEntry(void* const imageBase) {
 
     printf_s("[+] init\n");
 
-    if (!sdk::game::initialize())
-        std::abort();
-
+	if (!sdk::game::initialize())
+		//std::abort();
+	settings::onStartup();
     hooks::initialize();
 
+	printf_s("hooks initialized\n");
     while (!GetAsyncKeyState(VK_END))
         Sleep(50);
 

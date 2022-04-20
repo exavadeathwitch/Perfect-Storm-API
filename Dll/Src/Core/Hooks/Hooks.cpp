@@ -22,3 +22,8 @@ namespace hooks {
 		globals::hookManager->uninitialize();
 	}
 }
+
+int __fastcall sub_14053CB50(__int64 a1)
+{
+	return (*(int (**)(void))(**(__int64**)(a1 + 0x28) + 8i64))();
+}

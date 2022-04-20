@@ -19,7 +19,7 @@ namespace sdk::game {
 		swapChainDesc.BufferDesc.Format = DXGI_FORMAT_R8G8B8A8_UNORM;
 		swapChainDesc.BufferDesc.Height = 100;
 		swapChainDesc.BufferDesc.Width = 100;
-		swapChainDesc.BufferDesc.RefreshRate = {60, 1};
+		swapChainDesc.BufferDesc.RefreshRate = {30, 1};
 		swapChainDesc.OutputWindow = GetForegroundWindow();
 		swapChainDesc.Windowed = TRUE;
 		swapChainDesc.SwapEffect = DXGI_SWAP_EFFECT_DISCARD;
@@ -33,7 +33,6 @@ namespace sdk::game {
 		}
 
 		swapChainVtbl = *reinterpret_cast<std::uintptr_t**>(swapChain);
-
 		swapChain->Release();
 		device->Release();
 		deviceContext->Release();
@@ -45,10 +44,13 @@ namespace sdk::game {
 		if (!setSwapChainVtbl())
 			return false;
 
-		gameWindow = FindWindowA(nullptr, "NSUNS4");
+		gameWindow = FindWindowA(nullptr, "NSUNS1");
 
-		if (!gameWindow)
-			return false;
+		while (!gameWindow) {
+			gameWindow = FindWindowA(nullptr, "NSUNS1");
+			printf_s("Couldn't find window\n");
+			Sleep(2000);
+		}
 
 		return true;
 	}
