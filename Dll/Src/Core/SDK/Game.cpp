@@ -43,7 +43,7 @@ namespace sdk::game {
 	bool initialize() noexcept {
 		if (!setSwapChainVtbl())
 			return false;
-
+		/*
 		gameWindow = FindWindowA(nullptr, "NSUNS1");
 
 		while (!gameWindow) {
@@ -51,7 +51,7 @@ namespace sdk::game {
 			printf_s("Couldn't find window\n");
 			Sleep(2000);
 		}
-
+		*/
 		return true;
 	}
 }

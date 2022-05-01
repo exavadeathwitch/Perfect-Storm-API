@@ -8,6 +8,7 @@
 
 #include "Util/Console/Console.hpp"
 
+#include <iostream>
 extern "C" std::uintptr_t proxyFunctions[29] = {};
 
 static constexpr const char* proxyFuncNames[29] = {
@@ -47,20 +48,28 @@ DWORD __stdcall modEntry(void* const imageBase) {
 
 	if (!oD3DCompiler)
 		return FALSE;
-
+	globals::moduleBase = (uintptr_t)GetModuleHandle(NULL);
 	for (auto i = 0u; i < sizeof(proxyFunctions) / sizeof(*proxyFunctions); ++i)
 		proxyFunctions[i] = std::bit_cast<std::uintptr_t>(GetProcAddress(oD3DCompiler, proxyFuncNames[i]));
-
+	/*
     util::console::initialize("lol");
 
     printf_s("[+] init\n");
 
+	freopen("conin$", "r", stdin);
+	freopen("conout$", "w", stdout);
+	freopen("conout$", "w", stderr);*/
 	if (!sdk::game::initialize())
 		//std::abort();
-	settings::onStartup();
+	//settings::onStartup();
     hooks::initialize();
 
 	printf_s("hooks initialized\n");
+	/*
+	int i = 1;
+	while (i == 1) {
+		std::cin >> globals::settings->m_ShouldAutoUpdate;
+	}*/
     while (!GetAsyncKeyState(VK_END))
         Sleep(50);
 

@@ -5,6 +5,8 @@
 #include "imgui/include/imgui_impl_dx11.h"
 #include "imgui/include/imgui_impl_win32.h"
 
+#include "Core/Engine/engine.hpp"
+#include "Rendering/render.hpp"
 static ID3D11RenderTargetView* g_RenderTargetView;
 
 namespace hooks {
@@ -37,9 +39,22 @@ namespace hooks {
 		ImGui::NewFrame();
 
 		//printf_s("shit\n");
-		ImGui::SetNextWindowSize({400, 400}, ImGuiCond_FirstUseEver);
-		globals::modConsole->render();
-
+		//ImGui::SetNextWindowSize({400, 400}, ImGuiCond_FirstUseEver);
+		//globals::modConsole->render();
+		/*
+		if ((GetAsyncKeyState(VK_ESCAPE) & 0x01)) {
+			printf_s("shit\n");
+			if (render::uiOn)
+				render::uiOn = 0;
+			else
+				render::uiOn = 1;
+		}*/
+		if ((GetAsyncKeyState(VK_ESCAPE) & 0x01)) {
+			if (render::uiOn)
+				render::uiOn = 0;
+			else
+				render::uiOn = 1;
+		}
 		ImGui::EndFrame();
 		ImGui::Render();
 

@@ -158,7 +158,7 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>_PUBLIC;ULTIMATESTORM_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_PUBLIC;ULTIMATESTORM_EXPORTS;_WINDOWS;_USRDLL;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.hpp</PrecompiledHeaderFile>
@@ -249,17 +249,23 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Src\Core\Engine\engine.hpp" />
     <ClInclude Include="Src\Core\ModConsole\ModConsole.hpp" />
     <ClInclude Include="Src\Core\Globals.hpp" />
     <ClInclude Include="Src\Core\Hooks\Hooks.hpp" />
     <ClInclude Include="Src\Core\SDK\Game.hpp" />
     <ClInclude Include="Src\Core\Settings\Settings.hpp" />
     <ClInclude Include="src\pch.hpp" />
+    <ClInclude Include="Src\Rendering\render.hpp">
+      <DeploymentContent>true</DeploymentContent>
+    </ClInclude>
     <ClInclude Include="src\util\console\Console.hpp" />
     <ClInclude Include="src\Util\Hook\HookManager.hpp" />
     <ClInclude Include="src\Util\Memory\Address.hpp" />
     <ClInclude Include="Src\Util\Memory\Memory.hpp" />
+    <ClInclude Include="Src\Util\Memory\Modify.hpp" />
     <ClInclude Include="Src\Util\Memory\Signature.hpp" />
+    <ClInclude Include="Src\Util\Memory\String.hpp" />
     <ClInclude Include="Src\Util\Process\Module.hpp" />
     <ClInclude Include="Src\Util\Process\Process.hpp" />
     <ClInclude Include="Src\Util\Util.hpp" />
@@ -282,6 +288,7 @@
     <ClInclude Include="thirdparty\minhook\src\trampoline.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Src\Core\Engine\engine.cpp" />
     <ClCompile Include="Src\Core\ModConsole\ModConsole.cpp" />
     <ClCompile Include="src\Core\Entry.cpp" />
     <ClCompile Include="Src\Core\Hooks\Functions\D3D11\Present.cpp" />
@@ -295,6 +302,9 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Beta|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Developer|x64'">Create</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="Src\Rendering\render.cpp">
+      <DeploymentContent>true</DeploymentContent>
     </ClCompile>
     <ClCompile Include="src\util\console\Console.cpp" />
     <ClCompile Include="src\Util\Hook\HookManager.cpp" />

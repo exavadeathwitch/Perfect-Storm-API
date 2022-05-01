@@ -53,8 +53,8 @@ namespace settings {
 
 		auto parsedJson = nlohmann::json::parse(buffer);
 
-		globals::settings->m_ShouldEnableConsole = parsedJson["General"]["Console"].get<bool>();
+		globals::settings->m_ShouldEnableConsole = parsedJson["General"]["Console"].get<int>();
 		globals::settings->m_Version = parsedJson["General"]["Version"].get<std::string>();
-		globals::settings->m_ShouldAutoUpdate = parsedJson["General"]["Auto-Update"].get<bool>();
+		globals::settings->m_ShouldAutoUpdate = parsedJson["General"]["Auto-Update"].get<int>();
 	}
 }
