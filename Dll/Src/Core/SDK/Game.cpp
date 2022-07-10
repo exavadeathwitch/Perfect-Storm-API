@@ -44,10 +44,10 @@ namespace sdk::game {
 		if (!setSwapChainVtbl())
 			return false;
 
-		gameWindow = FindWindowA(nullptr, "NSUNS1");
+		gameWindow = FindWindowA(nullptr, "NSUNS4");
 
 		while (!gameWindow) {
-			gameWindow = FindWindowA(nullptr, "NSUNS1");
+			gameWindow = FindWindowA(nullptr, "NSUNS4");
 			printf_s("Couldn't find window\n");
 			Sleep(2000);
 		}
