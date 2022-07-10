@@ -171,7 +171,7 @@
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>false</GenerateDebugInformation>
       <EnableUAC>false</EnableUAC>
-      <AdditionalDependencies>minhook.x64.lib;imgui.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>minhook.x64.lib;imgui.lib;GGPO.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>$(ProjectDir)thirdparty\lib\Release\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <ModuleDefinitionFile>$(ProjectDir)Dll.def</ModuleDefinitionFile>
     </Link>
@@ -250,9 +250,11 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="Src\Core\Engine\engine.hpp" />
+    <ClInclude Include="Src\Core\Gamepad\gamepad.hpp" />
     <ClInclude Include="Src\Core\ModConsole\ModConsole.hpp" />
     <ClInclude Include="Src\Core\Globals.hpp" />
     <ClInclude Include="Src\Core\Hooks\Hooks.hpp" />
+    <ClInclude Include="Src\Core\Online\online.hpp" />
     <ClInclude Include="Src\Core\SDK\Game.hpp" />
     <ClInclude Include="Src\Core\Settings\Settings.hpp" />
     <ClInclude Include="src\pch.hpp" />
@@ -269,6 +271,7 @@
     <ClInclude Include="Src\Util\Process\Module.hpp" />
     <ClInclude Include="Src\Util\Process\Process.hpp" />
     <ClInclude Include="Src\Util\Util.hpp" />
+    <ClInclude Include="Thirdparty\GGPO\ggponet.h" />
     <ClInclude Include="Thirdparty\imgui\include\imconfig.h" />
     <ClInclude Include="Thirdparty\imgui\include\imgui.h" />
     <ClInclude Include="Thirdparty\imgui\include\imgui_impl_dx11.h" />
@@ -289,6 +292,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Src\Core\Engine\engine.cpp" />
+    <ClCompile Include="Src\Core\Gamepad\gamepad.cpp" />
     <ClCompile Include="Src\Core\ModConsole\ModConsole.cpp" />
     <ClCompile Include="src\Core\Entry.cpp" />
     <ClCompile Include="Src\Core\Hooks\Functions\D3D11\Present.cpp" />

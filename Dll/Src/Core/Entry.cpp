@@ -8,6 +8,8 @@
 
 #include "Util/Console/Console.hpp"
 
+#include "Gamepad/gamepad.hpp"
+
 #include <iostream>
 extern "C" std::uintptr_t proxyFunctions[29] = {};
 
@@ -51,7 +53,8 @@ DWORD __stdcall modEntry(void* const imageBase) {
 	globals::moduleBase = (uintptr_t)GetModuleHandle(NULL);
 	for (auto i = 0u; i < sizeof(proxyFunctions) / sizeof(*proxyFunctions); ++i)
 		proxyFunctions[i] = std::bit_cast<std::uintptr_t>(GetProcAddress(oD3DCompiler, proxyFuncNames[i]));
-	/*
+	/*util::console::initialize("lol");
+	
     util::console::initialize("lol");
 
     printf_s("[+] init\n");
@@ -62,9 +65,15 @@ DWORD __stdcall modEntry(void* const imageBase) {
 	if (!sdk::game::initialize())
 		//std::abort();
 	//settings::onStartup();
-    hooks::initialize();
+	//util::console::initialize("lol");
+	//std::cout << "print" << std::endl;
+	//std::cout << &S1API::dummypad << std::endl;
+	//printf_s("[+] init\n");
 
 	printf_s("hooks initialized\n");
+
+    hooks::initialize();
+
 	/*
 	int i = 1;
 	while (i == 1) {
