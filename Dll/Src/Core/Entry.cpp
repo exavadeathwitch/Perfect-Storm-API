@@ -53,7 +53,15 @@ DWORD __stdcall modEntry(void* const imageBase) {
 	globals::moduleBase = (uintptr_t)GetModuleHandle(NULL);
 	for (auto i = 0u; i < sizeof(proxyFunctions) / sizeof(*proxyFunctions); ++i)
 		proxyFunctions[i] = std::bit_cast<std::uintptr_t>(GetProcAddress(oD3DCompiler, proxyFuncNames[i]));
-	/*util::console::initialize("lol");
+	
+	util::console::initialize("lol");
+
+	printf_s("[+] init\n");
+
+	freopen("conin$", "r", stdin);
+	freopen("conout$", "w", stdout);
+	freopen("conout$", "w", stderr);/*
+	util::console::initialize("lol");
 	
     util::console::initialize("lol");
 

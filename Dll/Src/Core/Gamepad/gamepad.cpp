@@ -6,6 +6,10 @@
 
 #include "Core/Online/online.hpp"
 
+#include "imgui/include/imgui.h"
+
+#include "half/half.hpp"
+
 #include <iostream>
 int __fastcall S1API::gamepad::gamepadLoop(__int64 a1)
 {
@@ -39,6 +43,25 @@ signed __int64 __fastcall S1API::gamepad::getPadAddr(__int64 a1, signed int padN
     signed int v4; // er9@1
     __int64 v5; // rax@9
     __int64 retval = globals::hookManager->callOriginal<decltype(&S1API::gamepad::getPadAddr)>(S1API::gamepad::getPadAddr, a1, padNum, a3);
+    return retval;
+    //std::cout << std::hex << &S1API::hostpad << std::dec << std::endl;
+    if (padNum == 0) {
+        S1API::pad pad = *reinterpret_cast<S1API::pad*>(retval);
+        S1API::hostpad.InstantInput = pad.InstantInput; // 4 Bytes
+        S1API::hostpad.ReleaseInput = pad.ReleaseInput; // 4 Bytes
+        S1API::hostpad.HeldInput = pad.HeldInput; // 4 Bytes
+        S1API::hostpad.leftanalogup = pad.leftanalogup; // 2 Bytes
+        S1API::hostpad.leftanalogdown = pad.leftanalogdown; // 2 Bytes
+        S1API::hostpad.leftanalogleft = pad.leftanalogleft; // 2 Bytes
+        S1API::hostpad.leftanalogright = pad.leftanalogright; // 2 Bytes
+        S1API::hostpad.rightanalogup = pad.rightanalogup; // 2 Bytes
+        S1API::hostpad.rightanalogdown = pad.rightanalogdown; // 2 Bytes
+        S1API::hostpad.rightanalogleft = pad.rightanalogleft; // 2 Bytes
+        S1API::hostpad.rightanalogright = pad.rightanalogright; // 2 Bytes
+        //S1API::hostpad.lefttriggerpressed = pad.lefttriggerpressed;
+        //S1API::hostpad.righttriggerpressed = pad.righttriggerpressed;
+        return (__int64)&S1API::hostpad;
+    }
     if (engine::inBattle == 1 && S1API::enableOnline == 1) {
         if (0 <= padNum <= 1) {
             if (*(DWORD*)(retval + 0x10) == 8)
@@ -51,3 +74,4 @@ signed __int64 __fastcall S1API::gamepad::getPadAddr(__int64 a1, signed int padN
     }
     return retval;
 }
+

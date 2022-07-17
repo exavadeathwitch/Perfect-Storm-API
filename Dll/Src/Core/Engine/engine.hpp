@@ -5,6 +5,7 @@
 namespace engine {
 	inline bool runEngine = 1;
 	inline bool inBattle = 0;
+	inline bool inDuel = 0;
 	inline bool charsel = 0;
 	inline bool triggerMenu = 0;
 	class Engine {

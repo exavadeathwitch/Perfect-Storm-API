@@ -12,14 +12,17 @@
 
 #include "Util/Memory/Modify.hpp"
 
+#include "Core/Gamepad/gamepad.hpp"
 int __fastcall engine::Engine::gamelogic(DWORD* a1) {
-	return globals::hookManager->callOriginal<decltype(&engine::Engine::gamelogic)>(engine::Engine::gamelogic, a1);
+	if (engine::runEngine)
+		return globals::hookManager->callOriginal<decltype(&engine::Engine::gamelogic)>(engine::Engine::gamelogic, a1);
+	return 0;
 };
 
 __int64 __fastcall engine::Engine::pauseState(__int64 a1) {
 	if (engine::runEngine)
 		return globals::hookManager->callOriginal<decltype(&engine::Engine::pauseState)>(engine::Engine::pauseState, a1);
-	return 0;
+	return 2;
 };
 
 int __fastcall engine::Engine::battleStart(__int64 a1, int a2) {
@@ -73,6 +76,10 @@ __int64 __fastcall engine::Engine::loadText(__int64 a1) {
 DWORD* __fastcall engine::Engine::initStuff(__int64* a1, __int64 a2, __int64 a3) {
 	if (util::memory::String::strFromAddr(a3) == "Join_STEAM") {
 		std::cout << "Character Select Started" << std::endl;
+		if (S1API::enableOnline) {
+			engine::runEngine = 0;
+			S1API::onlinemenu = 1;
+		}
 		engine::charsel = 1;
 	}
 	return globals::hookManager->callOriginal<decltype(&engine::Engine::initStuff)>(engine::Engine::initStuff, a1, a2, a3);
@@ -137,7 +144,6 @@ __int64 __fastcall engine::Engine::ccGameManager_Play(__int64 a1) {
 		//*(DWORD*)(a1 + 0x38) = 5;
 		//*(__int64*)(a1 + 0xD80) = occGameModeSel(ooperator_new_caller(0xF0ui64, (__int64)"source\\game.cpp", 0x4CD));
 	
-
 	return globals::hookManager->callOriginal<decltype(&engine::Engine::ccGameManager_Play)>(engine::Engine::ccGameManager_Play, a1);
 	return 0;
 }
@@ -199,9 +205,12 @@ int __fastcall engine::Engine::withoutwin(__int64 a1) {
 	//std::cout << std::hex << a2 << std::dec << std::endl;
 }
 __int64 __fastcall engine::Engine::gameduelmain(__int64 a1) {
-	std::cout << *(DWORD*)a1 << std::endl;
+	if(*(DWORD*)(a1) == 29)
+		engine::runEngine = 1;
+	if (S1API::enableOnline == 1) {
+		//S1API::test::getinputs(S1API::ggpo, S1API::host, S1API::client, (__int64)&S1API::hostpad, (__int64)&S1API::clientpad, S1API::player_handles[0], S1API::player_handles[1]);
+	}
 	if (engine::triggerMenu == 1) {
-		*(unsigned int*)(a1 + 0x38) = 5;
 		engine::Engine::LoadExpectedScene(*(__int64*)(globals::moduleBase + 0x86DD48), 1);
 		*(DWORD*)(a1) = 25;
 		*(DWORD*)(a1 + 0x404) = 0;

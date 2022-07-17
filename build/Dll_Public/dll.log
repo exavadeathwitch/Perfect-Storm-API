@@ -1,8 +1,13 @@
-﻿  Present.cpp
+﻿  gamepad.cpp
+C:\Users\Exavadeathwitch\Documents\GitHub\Perfect-Storm-API\Dll\Thirdparty\half\umHalf.inl(466,11): warning C5033: 'register' is no longer a supported storage class
+C:\Users\Exavadeathwitch\Documents\GitHub\Perfect-Storm-API\Dll\Src\Core\Gamepad\gamepad.cpp(66,15): warning C4804: '<=': unsafe use of type 'bool' in operation
+C:\Users\Exavadeathwitch\Documents\GitHub\Perfect-Storm-API\Dll\Src\Core\Gamepad\gamepad.cpp(42,12): warning C4101: 'v3': unreferenced local variable
+C:\Users\Exavadeathwitch\Documents\GitHub\Perfect-Storm-API\Dll\Src\Core\Gamepad\gamepad.cpp(43,16): warning C4101: 'v4': unreferenced local variable
+C:\Users\Exavadeathwitch\Documents\GitHub\Perfect-Storm-API\Dll\Src\Core\Gamepad\gamepad.cpp(44,13): warning C4101: 'v5': unreferenced local variable
      Creating library C:\Users\Exavadeathwitch\Documents\GitHub\Perfect-Storm-API\bin\Dll_Public\d3dcompiler_47.lib and object C:\Users\Exavadeathwitch\Documents\GitHub\Perfect-Storm-API\bin\Dll_Public\d3dcompiler_47.exp
   Generating code
-  5 of 3052 functions ( 0.2%) were compiled, the rest were copied from previous compilation.
+  4 of 3307 functions ( 0.1%) were compiled, the rest were copied from previous compilation.
     0 functions were new in current compilation
-    26 functions had inline decision re-evaluated but remain unchanged
+    24 functions had inline decision re-evaluated but remain unchanged
   Finished generating code
   dll.vcxproj -> C:\Users\Exavadeathwitch\Documents\GitHub\Perfect-Storm-API\bin\Dll_Public\d3dcompiler_47.dll

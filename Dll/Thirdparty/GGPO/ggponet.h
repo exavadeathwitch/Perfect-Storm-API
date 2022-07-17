@@ -30,11 +30,11 @@ extern "C" {
 #  define GGPO_API
 #endif
 
-#define GGPO_MAX_PLAYERS                  4
-#define GGPO_MAX_PREDICTION_FRAMES        8
-#define GGPO_MAX_SPECTATORS              32
+#define GGPO_MAX_PLAYERS                  2
+#define GGPO_MAX_PREDICTION_FRAMES        0
+#define GGPO_MAX_SPECTATORS              0
 
-#define GGPO_SPECTATOR_INPUT_INTERVAL     4
+#define GGPO_SPECTATOR_INPUT_INTERVAL     0
 
 typedef struct GGPOSession GGPOSession;
 
