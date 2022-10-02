@@ -12,9 +12,18 @@ namespace util::memory {
 			return state;
 		}
 		//Gets the first 5 characters from a string from a memory address.
-		static std::string strFromAddrSpec(__int64 a1) {
-			int sidze = 1;
-			const std::size_t size = 5;
+		static std::string strFromAddrSpec(__int64 a1, int a2) {
+			if (a2 <= 0)
+				return "";
+			std::string retval;
+			const std::string state = reinterpret_cast<const char*>(a1);
+			for (int i = 0; i < a2; i++) {
+				retval += state[i];
+			}
+			return retval;
+		}
+			/*
+			const std::size_t size = a2;
 			char chars[size] = "";
 			memcpy(chars, reinterpret_cast<char*>(a1), size);
 			int sizeString = sizeof(chars) / sizeof(char);
@@ -23,6 +32,6 @@ namespace util::memory {
 				name = name + chars[i];
 			}
 			return name;
-		}
+		}*/
 	};
 }

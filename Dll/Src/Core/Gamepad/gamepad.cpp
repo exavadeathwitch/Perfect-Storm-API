@@ -11,6 +11,8 @@
 #include "half/half.hpp"
 
 #include <iostream>
+
+#include "asio/asio.hpp"
 int __fastcall S1API::gamepad::gamepadLoop(__int64 a1)
 {
     typedef int(__fastcall* sub_1401396B0) (__int64 a1);
@@ -46,6 +48,7 @@ signed __int64 __fastcall S1API::gamepad::getPadAddr(__int64 a1, signed int padN
     return retval;
     //std::cout << std::hex << &S1API::hostpad << std::dec << std::endl;
     if (padNum == 0) {
+        std::cout << "blab" << std::endl;
         S1API::pad pad = *reinterpret_cast<S1API::pad*>(retval);
         S1API::hostpad.InstantInput = pad.InstantInput; // 4 Bytes
         S1API::hostpad.ReleaseInput = pad.ReleaseInput; // 4 Bytes

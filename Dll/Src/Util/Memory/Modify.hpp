@@ -64,7 +64,6 @@ namespace util::memory {
 			//std::cout << std::hex << tmp << std::endl;
 			std::dec;
 			return tmp;
-			//*reinterpret_cast<T*>(tmp) = val;
 		}
 	private:
 		

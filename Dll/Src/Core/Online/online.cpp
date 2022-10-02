@@ -1,23 +1,27 @@
 #include "pch.hpp"
 
-#include <winsock.h>
 #include "online.hpp"
 #include "Core/Gamepad/gamepad.hpp"
 #include "Core/Engine/engine.hpp"
+#include <iostream>
+#include "asio/asio.hpp"
 #pragma comment (lib, "Ws2_32.lib")
+using asio::ip::udp;
 std::string S1API::getip() {
-	WSADATA wsa_Data;
-	int wsa_ReturnCode = WSAStartup(0x101, &wsa_Data);
-
-	// Get the local hostname
-	char szHostName[255];
-	gethostname(szHostName, 255);
-	struct hostent* host_entry;
-	host_entry = gethostbyname(szHostName);
-	char* szLocalIP;
-	szLocalIP = inet_ntoa(*(struct in_addr*)*host_entry->h_addr_list);
-	WSACleanup();
-	return std::string(szLocalIP);
+	try {
+		asio::io_service netService;
+		udp::resolver   resolver(netService);
+		udp::resolver::query query(udp::v4(), "google.com", "");
+		udp::resolver::iterator endpoints = resolver.resolve(query);
+		udp::endpoint ep = *endpoints;
+		udp::socket socket(netService);
+		socket.connect(ep);
+		asio::ip::address addr = socket.local_endpoint().address();
+		return addr.to_string();
+	}
+	catch (std::exception& e) {
+		return "NULL";
+	}
 }
 
 void S1API::fillcallbacks() {

@@ -271,6 +271,7 @@
     <ClInclude Include="Src\Util\Process\Module.hpp" />
     <ClInclude Include="Src\Util\Process\Process.hpp" />
     <ClInclude Include="Src\Util\Util.hpp" />
+    <ClInclude Include="Thirdparty\asio\asio.hpp" />
     <ClInclude Include="Thirdparty\base64mod\base64.h" />
     <ClInclude Include="Thirdparty\curl\curl.h" />
     <ClInclude Include="Thirdparty\curl\curlver.h" />
