@@ -7,6 +7,7 @@ namespace hooks {
 		globals::hookManager->initialize();
 
 		globals::hookManager->addEntry(sdk::game::swapChainVtbl[8], functions::hkPresent);
+		globals::hookManager->addEntry(sdk::game::swapChainVtbl[13], functions::hkResizeBuffers);
 
 		globals::hookManager->hookAllEntries();
 
@@ -21,9 +22,4 @@ namespace hooks {
 		globals::hookManager->unhookAllEntries();
 		globals::hookManager->uninitialize();
 	}
-}
-
-int __fastcall sub_14053CB50(__int64 a1)
-{
-	return (*(int (**)(void))(**(__int64**)(a1 + 0x28) + 8i64))();
 }

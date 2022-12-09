@@ -19,7 +19,7 @@ namespace sdk::game {
 		swapChainDesc.BufferDesc.Format = DXGI_FORMAT_R8G8B8A8_UNORM;
 		swapChainDesc.BufferDesc.Height = 100;
 		swapChainDesc.BufferDesc.Width = 100;
-		swapChainDesc.BufferDesc.RefreshRate = {30, 1};
+		swapChainDesc.BufferDesc.RefreshRate = {60, 1};
 		swapChainDesc.OutputWindow = GetForegroundWindow();
 		swapChainDesc.Windowed = TRUE;
 		swapChainDesc.SwapEffect = DXGI_SWAP_EFFECT_DISCARD;
