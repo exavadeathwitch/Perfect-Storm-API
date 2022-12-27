@@ -8,6 +8,12 @@
 
 #include "Util/Console/Console.hpp"
 
+#include "Util/Memory/String.hpp"
+
+#include "DebugMenu/DebugMenu.hpp"
+
+#include "Game/Framework/Framework.hpp"
+
 extern "C" std::uintptr_t proxyFunctions[29] = {};
 
 static constexpr const char* proxyFuncNames[29] = {
@@ -47,22 +53,34 @@ DWORD __stdcall modEntry(void* const imageBase) {
 
 	if (!oD3DCompiler)
 		return FALSE;
-
+	globals::moduleBase = (uintptr_t)GetModuleHandle(NULL);
 	for (auto i = 0u; i < sizeof(proxyFunctions) / sizeof(*proxyFunctions); ++i)
 		proxyFunctions[i] = std::bit_cast<std::uintptr_t>(GetProcAddress(oD3DCompiler, proxyFuncNames[i]));
 
-    util::console::initialize("lol");
-
-    printf_s("[+] init\n");
+    util::console::initialize("Debug Console");
 
 	if (!sdk::game::initialize())
 		//std::abort();
+
 	settings::onStartup();
+	//globals::hookManager->addEntry((std::uintptr_t)(globals::moduleBase + 0xAB7D30 + 0xC00), Framework::MainLoop);
+	//globals::hookManager->hookEntry(Framework::MainLoop);
     hooks::initialize();
 
 	printf_s("hooks initialized\n");
-    while (!GetAsyncKeyState(VK_END))
-        Sleep(50);
+	while (!GetAsyncKeyState(VK_END)) {
+		if ((GetAsyncKeyState(VK_OEM_3) & 0x01)) {
+			if (enableDebugMenu == true) {
+				util::console::debugPrint("Debug Menu Disabled\n");
+				enableDebugMenu = false;
+			}
+			else {
+				util::console::debugPrint("Debug Menu Enabled\n");
+				enableDebugMenu = true;
+			}
+		}
+		//Sleep(50);
+	}
 
     hooks::uninitialize();
     util::console::uninitialize();
@@ -80,6 +98,7 @@ BOOL APIENTRY DllMain( HMODULE hModule,
     if (ul_reason_for_call == DLL_PROCESS_ATTACH) {
 		DisableThreadLibraryCalls(hModule);
 
+		printf_s("asdf\n");
         if (const HANDLE thread = CreateThread(nullptr, 0, modEntry, hModule, 0, nullptr))
             CloseHandle(thread);
     }

@@ -158,7 +158,7 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>_PUBLIC;ULTIMATESTORM_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_PUBLIC;ULTIMATESTORM_EXPORTS;_WINDOWS;_USRDLL;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.hpp</PrecompiledHeaderFile>
@@ -171,7 +171,7 @@
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>false</GenerateDebugInformation>
       <EnableUAC>false</EnableUAC>
-      <AdditionalDependencies>minhook.x64.lib;imgui.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>minhook.x64.lib;imgui.lib;SDL2.lib;SDL2_mixer.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>$(ProjectDir)thirdparty\lib\Release\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <ModuleDefinitionFile>$(ProjectDir)Dll.def</ModuleDefinitionFile>
     </Link>
@@ -249,20 +249,33 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Src\Core\DebugMenu\DebugMenu.hpp" />
+    <ClInclude Include="Src\Core\DebugMenu\GameSpeed\GameSpeed.hpp" />
+    <ClInclude Include="Src\Core\Window\Window.hpp" />
+    <ClInclude Include="Src\Game\cc\ccGameObject\ccGameObject.hpp" />
+    <ClInclude Include="Src\Game\ccTaskManager\ccTaskManager.hpp" />
     <ClInclude Include="Src\Core\ModConsole\ModConsole.hpp" />
     <ClInclude Include="Src\Core\Globals.hpp" />
     <ClInclude Include="Src\Core\Hooks\Hooks.hpp" />
     <ClInclude Include="Src\Core\SDK\Game.hpp" />
     <ClInclude Include="Src\Core\Settings\Settings.hpp" />
+    <ClInclude Include="Src\Game\ccTask\ccTask.hpp" />
+    <ClInclude Include="Src\Game\cc\ccPlayerSupport\ccPlayerSupport.hpp" />
+    <ClInclude Include="Src\Game\Framework\Framework.hpp" />
+    <ClInclude Include="Src\Game\misc\misc.hpp" />
+    <ClInclude Include="Src\Game\nuccSys\nuccSys.hpp" />
     <ClInclude Include="src\pch.hpp" />
     <ClInclude Include="src\util\console\Console.hpp" />
     <ClInclude Include="src\Util\Hook\HookManager.hpp" />
     <ClInclude Include="src\Util\Memory\Address.hpp" />
     <ClInclude Include="Src\Util\Memory\Memory.hpp" />
+    <ClInclude Include="Src\Util\Memory\Modify.hpp" />
     <ClInclude Include="Src\Util\Memory\Signature.hpp" />
+    <ClInclude Include="Src\Util\Memory\String.hpp" />
     <ClInclude Include="Src\Util\Process\Module.hpp" />
     <ClInclude Include="Src\Util\Process\Process.hpp" />
     <ClInclude Include="Src\Util\Util.hpp" />
+    <ClInclude Include="Thirdparty\imguiwidget\widget.hpp" />
     <ClInclude Include="Thirdparty\imgui\include\imconfig.h" />
     <ClInclude Include="Thirdparty\imgui\include\imgui.h" />
     <ClInclude Include="Thirdparty\imgui\include\imgui_impl_dx11.h" />
@@ -271,6 +284,98 @@
     <ClInclude Include="Thirdparty\imgui\include\imstb_rectpack.h" />
     <ClInclude Include="Thirdparty\imgui\include\imstb_textedit.h" />
     <ClInclude Include="Thirdparty\imgui\include\imstb_truetype.h" />
+    <ClInclude Include="Thirdparty\sdl2mixer\include\SDL_mixer.h" />
+    <ClInclude Include="Thirdparty\sdl2\include\begin_code.h" />
+    <ClInclude Include="Thirdparty\sdl2\include\close_code.h" />
+    <ClInclude Include="Thirdparty\sdl2\include\SDL.h" />
+    <ClInclude Include="Thirdparty\sdl2\include\SDL_assert.h" />
+    <ClInclude Include="Thirdparty\sdl2\include\SDL_atomic.h" />
+    <ClInclude Include="Thirdparty\sdl2\include\SDL_audio.h" />
+    <ClInclude Include="Thirdparty\sdl2\include\SDL_bits.h" />
+    <ClInclude Include="Thirdparty\sdl2\include\SDL_blendmode.h" />
+    <ClInclude Include="Thirdparty\sdl2\include\SDL_clipboard.h" />
+    <ClInclude Include="Thirdparty\sdl2\include\SDL_config.h" />
+    <ClInclude Include="Thirdparty\sdl2\include\SDL_config_android.h" />
+    <ClInclude Include="Thirdparty\sdl2\include\SDL_config_iphoneos.h" />
+    <ClInclude Include="Thirdparty\sdl2\include\SDL_config_macosx.h" />
+    <ClInclude Include="Thirdparty\sdl2\include\SDL_config_minimal.h" />
+    <ClInclude Include="Thirdparty\sdl2\include\SDL_config_pandora.h" />
+    <ClInclude Include="Thirdparty\sdl2\include\SDL_config_psp.h" />
+    <ClInclude Include="Thirdparty\sdl2\include\SDL_config_windows.h" />
+    <ClInclude Include="Thirdparty\sdl2\include\SDL_config_winrt.h" />
+    <ClInclude Include="Thirdparty\sdl2\include\SDL_config_wiz.h" />
+    <ClInclude Include="Thirdparty\sdl2\include\SDL_copying.h" />
+    <ClInclude Include="Thirdparty\sdl2\include\SDL_cpuinfo.h" />
+    <ClInclude Include="Thirdparty\sdl2\include\SDL_egl.h" />
+    <ClInclude Include="Thirdparty\sdl2\include\SDL_endian.h" />
+    <ClInclude Include="Thirdparty\sdl2\include\SDL_error.h" />
+    <ClInclude Include="Thirdparty\sdl2\include\SDL_events.h" />
+    <ClInclude Include="Thirdparty\sdl2\include\SDL_filesystem.h" />
+    <ClInclude Include="Thirdparty\sdl2\include\SDL_gamecontroller.h" />
+    <ClInclude Include="Thirdparty\sdl2\include\SDL_gesture.h" />
+    <ClInclude Include="Thirdparty\sdl2\include\SDL_guid.h" />
+    <ClInclude Include="Thirdparty\sdl2\include\SDL_haptic.h" />
+    <ClInclude Include="Thirdparty\sdl2\include\SDL_hidapi.h" />
+    <ClInclude Include="Thirdparty\sdl2\include\SDL_hints.h" />
+    <ClInclude Include="Thirdparty\sdl2\include\SDL_joystick.h" />
+    <ClInclude Include="Thirdparty\sdl2\include\SDL_keyboard.h" />
+    <ClInclude Include="Thirdparty\sdl2\include\SDL_keycode.h" />
+    <ClInclude Include="Thirdparty\sdl2\include\SDL_loadso.h" />
+    <ClInclude Include="Thirdparty\sdl2\include\SDL_locale.h" />
+    <ClInclude Include="Thirdparty\sdl2\include\SDL_log.h" />
+    <ClInclude Include="Thirdparty\sdl2\include\SDL_main.h" />
+    <ClInclude Include="Thirdparty\sdl2\include\SDL_messagebox.h" />
+    <ClInclude Include="Thirdparty\sdl2\include\SDL_metal.h" />
+    <ClInclude Include="Thirdparty\sdl2\include\SDL_misc.h" />
+    <ClInclude Include="Thirdparty\sdl2\include\SDL_mouse.h" />
+    <ClInclude Include="Thirdparty\sdl2\include\SDL_mutex.h" />
+    <ClInclude Include="Thirdparty\sdl2\include\SDL_name.h" />
+    <ClInclude Include="Thirdparty\sdl2\include\SDL_opengl.h" />
+    <ClInclude Include="Thirdparty\sdl2\include\SDL_opengles.h" />
+    <ClInclude Include="Thirdparty\sdl2\include\SDL_opengles2.h" />
+    <ClInclude Include="Thirdparty\sdl2\include\SDL_opengles2_gl2.h" />
+    <ClInclude Include="Thirdparty\sdl2\include\SDL_opengles2_gl2ext.h" />
+    <ClInclude Include="Thirdparty\sdl2\include\SDL_opengles2_gl2platform.h" />
+    <ClInclude Include="Thirdparty\sdl2\include\SDL_opengles2_khrplatform.h" />
+    <ClInclude Include="Thirdparty\sdl2\include\SDL_opengl_glext.h" />
+    <ClInclude Include="Thirdparty\sdl2\include\SDL_pixels.h" />
+    <ClInclude Include="Thirdparty\sdl2\include\SDL_platform.h" />
+    <ClInclude Include="Thirdparty\sdl2\include\SDL_power.h" />
+    <ClInclude Include="Thirdparty\sdl2\include\SDL_quit.h" />
+    <ClInclude Include="Thirdparty\sdl2\include\SDL_rect.h" />
+    <ClInclude Include="Thirdparty\sdl2\include\SDL_render.h" />
+    <ClInclude Include="Thirdparty\sdl2\include\SDL_revision.h" />
+    <ClInclude Include="Thirdparty\sdl2\include\SDL_rwops.h" />
+    <ClInclude Include="Thirdparty\sdl2\include\SDL_scancode.h" />
+    <ClInclude Include="Thirdparty\sdl2\include\SDL_sensor.h" />
+    <ClInclude Include="Thirdparty\sdl2\include\SDL_shape.h" />
+    <ClInclude Include="Thirdparty\sdl2\include\SDL_stdinc.h" />
+    <ClInclude Include="Thirdparty\sdl2\include\SDL_surface.h" />
+    <ClInclude Include="Thirdparty\sdl2\include\SDL_system.h" />
+    <ClInclude Include="Thirdparty\sdl2\include\SDL_syswm.h" />
+    <ClInclude Include="Thirdparty\sdl2\include\SDL_test.h" />
+    <ClInclude Include="Thirdparty\sdl2\include\SDL_test_assert.h" />
+    <ClInclude Include="Thirdparty\sdl2\include\SDL_test_common.h" />
+    <ClInclude Include="Thirdparty\sdl2\include\SDL_test_compare.h" />
+    <ClInclude Include="Thirdparty\sdl2\include\SDL_test_crc32.h" />
+    <ClInclude Include="Thirdparty\sdl2\include\SDL_test_font.h" />
+    <ClInclude Include="Thirdparty\sdl2\include\SDL_test_fuzzer.h" />
+    <ClInclude Include="Thirdparty\sdl2\include\SDL_test_harness.h" />
+    <ClInclude Include="Thirdparty\sdl2\include\SDL_test_images.h" />
+    <ClInclude Include="Thirdparty\sdl2\include\SDL_test_log.h" />
+    <ClInclude Include="Thirdparty\sdl2\include\SDL_test_md5.h" />
+    <ClInclude Include="Thirdparty\sdl2\include\SDL_test_memory.h" />
+    <ClInclude Include="Thirdparty\sdl2\include\SDL_test_random.h" />
+    <ClInclude Include="Thirdparty\sdl2\include\SDL_thread.h" />
+    <ClInclude Include="Thirdparty\sdl2\include\SDL_timer.h" />
+    <ClInclude Include="Thirdparty\sdl2\include\SDL_touch.h" />
+    <ClInclude Include="Thirdparty\sdl2\include\SDL_types.h" />
+    <ClInclude Include="Thirdparty\sdl2\include\SDL_version.h" />
+    <ClInclude Include="Thirdparty\sdl2\include\SDL_video.h" />
+    <ClInclude Include="Thirdparty\sdl2\include\SDL_vulkan.h" />
+    <ClInclude Include="Thirdparty\SpeedTest\ScanData.h" />
+    <ClInclude Include="Thirdparty\stb\stb_image.h" />
+    <ClInclude Include="Thirdparty\texture\texture.hpp" />
     <ClInclude Include="Thirdparty\json\single_include\json.hpp" />
     <ClInclude Include="Thirdparty\minhook\include\MinHook.h" />
     <ClInclude Include="thirdparty\minhook\src\buffer.h" />
@@ -282,6 +387,10 @@
     <ClInclude Include="thirdparty\minhook\src\trampoline.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Src\Core\DebugMenu\DebugMenu.cpp" />
+    <ClCompile Include="Src\Core\DebugMenu\GameSpeed\GameSpeed.cpp" />
+    <ClCompile Include="Src\Game\cc\ccGameObject\ccGameObject.cpp" />
+    <ClCompile Include="Src\Game\ccTaskManager\ccTaskManager.cpp" />
     <ClCompile Include="Src\Core\ModConsole\ModConsole.cpp" />
     <ClCompile Include="src\Core\Entry.cpp" />
     <ClCompile Include="Src\Core\Hooks\Functions\D3D11\Present.cpp" />
@@ -289,6 +398,11 @@
     <ClCompile Include="Src\Core\Hooks\Hooks.cpp" />
     <ClCompile Include="Src\Core\SDK\Game.cpp" />
     <ClCompile Include="Src\Core\Settings\Settings.cpp" />
+    <ClCompile Include="Src\Game\ccTask\ccTask.cpp" />
+    <ClCompile Include="Src\Game\cc\ccPlayerSupport\ccPlayerSupport.cpp" />
+    <ClCompile Include="Src\Game\Framework\Framework.cpp" />
+    <ClCompile Include="Src\Game\misc\misc.cpp" />
+    <ClCompile Include="Src\Game\nuccSys\nuccSys.cpp" />
     <ClCompile Include="src\pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Public|x64'">Create</PrecompiledHeader>
@@ -299,12 +413,24 @@
     <ClCompile Include="src\util\console\Console.cpp" />
     <ClCompile Include="src\Util\Hook\HookManager.cpp" />
     <ClCompile Include="Src\Util\Process\Module.cpp" />
+    <ClCompile Include="Thirdparty\imgui\include\imgui.cpp" />
+    <ClCompile Include="Thirdparty\imgui\include\imgui_demo.cpp" />
+    <ClCompile Include="Thirdparty\imgui\include\imgui_draw.cpp" />
+    <ClCompile Include="Thirdparty\imgui\include\imgui_impl_dx11.cpp" />
+    <ClCompile Include="Thirdparty\imgui\include\imgui_impl_win32.cpp" />
+    <ClCompile Include="Thirdparty\imgui\include\imgui_tables.cpp" />
+    <ClCompile Include="Thirdparty\imgui\include\imgui_widgets.cpp" />
+    <ClCompile Include="Thirdparty\SpeedTest\ScanData.cpp" />
+    <ClCompile Include="Thirdparty\SpeedTest\SpeedTest.cpp" />
   </ItemGroup>
   <ItemGroup>
     <MASM Include="Dll.asm" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Dll.def" />
+    <None Include="Thirdparty\sdl2\include\SDL_config.h.cmake" />
+    <None Include="Thirdparty\sdl2\include\SDL_config.h.in" />
+    <None Include="Thirdparty\sdl2\include\SDL_config_macosx.h.orig" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

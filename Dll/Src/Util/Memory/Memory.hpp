@@ -18,7 +18,7 @@ namespace util::memory {
 
 		return !result ? nullptr : result;
 	}
-
+	
 	template<std::size_t size>
 	Address findSignature(process::Module* mod, const std::array<std::uint8_t, size>& signatureBytes, const std::string_view sectionName = ".text") {
 		process::Module::Section* section = mod->getSection(sectionName);

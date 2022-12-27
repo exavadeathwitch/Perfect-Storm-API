@@ -13,4 +13,5 @@ namespace globals {
 	inline std::unique_ptr<settings::LoadedSettings> settings = std::make_unique<settings::LoadedSettings>();
 	inline std::unique_ptr<util::process::Process> process = std::make_unique<util::process::Process>("NSUNS4.exe");
 	inline std::unique_ptr<util::hook::HookManager> hookManager = std::make_unique<util::hook::HookManager>();
+	static std::uintptr_t moduleBase = (std::uintptr_t)GetModuleHandle(NULL);
 }

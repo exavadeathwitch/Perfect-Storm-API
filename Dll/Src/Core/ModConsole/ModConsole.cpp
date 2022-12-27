@@ -8,7 +8,8 @@ namespace console {
 	void Console::render() noexcept {
 		if (!m_ShouldRender)
 			return;
-
+		showConsole(NULL);
+		return;
 		if (ImGui::Begin("Perfect Storm Console", &m_ShouldRender, ImGuiWindowFlags_NoScrollbar | ImGuiWindowFlags_NoCollapse)) {
 			ImGui::SetCursorPosY(ImGui::GetWindowHeight() - 25.f);
 
@@ -61,5 +62,12 @@ namespace console {
 
 	void Console::runCommand(const std::string_view name) noexcept {
 		m_Commands[name].m_Action();
+	}
+
+	void Console::changeRender() {
+		if (this->m_ShouldRender == true)
+			this->m_ShouldRender = false;
+		else
+			this->m_ShouldRender = true;
 	}
 }

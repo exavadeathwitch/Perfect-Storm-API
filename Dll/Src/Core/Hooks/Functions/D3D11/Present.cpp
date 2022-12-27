@@ -5,8 +5,14 @@
 #include "imgui/include/imgui_impl_dx11.h"
 #include "imgui/include/imgui_impl_win32.h"
 
-ID3D11RenderTargetView* g_RenderTargetView;
+#include "Core/DebugMenu/DebugMenu.hpp"
 
+#include "sdl2/include/SDL.h"
+int resize = 1;
+signed typedef int(__fastcall* loadCpk) ();
+loadCpk oloadCpk = (loadCpk)(globals::moduleBase + 0x854F3C + 0xC00);
+ID3D11RenderTargetView* g_RenderTargetView;
+bool show_app_main_menu_bar;
 namespace hooks {
 	HRESULT __stdcall hooks::functions::hkResizeBuffers(IDXGISwapChain* pSwapChain, UINT BufferCount, UINT Width, UINT Height, DXGI_FORMAT NewFormat, UINT SwapChainFlags)
 	{
@@ -14,7 +20,7 @@ namespace hooks {
 			sdk::game::deviceContext->OMSetRenderTargets(0, 0, 0);
 			g_RenderTargetView->Release();
 		}
-
+		printf_s("hkresize\n");
 		HRESULT hr = globals::hookManager->callOriginal<decltype(&hkResizeBuffers)>(hkResizeBuffers, pSwapChain, BufferCount, Width, Height, NewFormat, SwapChainFlags);
 
 		ID3D11Texture2D* pBuffer;
@@ -44,6 +50,7 @@ namespace hooks {
 
 		if (showWindow)
 			ShowCursor(true);
+		
 		if (SUCCEEDED(swapChain->GetDevice(__uuidof(ID3D11Device), (void**)&sdk::game::device)))
 		{
 			std::call_once(init, [&swapChain]() {
@@ -71,11 +78,8 @@ namespace hooks {
 		ImGui_ImplWin32_NewFrame();
 
 		ImGui::NewFrame();
-
-		//printf_s("shit\n");
-		ImGui::SetNextWindowSize({400, 400}, ImGuiCond_FirstUseEver);
 		globals::modConsole->render();
-
+		DebugMenu::runDebugMenu();
 		ImGui::EndFrame();
 		ImGui::Render();
 
