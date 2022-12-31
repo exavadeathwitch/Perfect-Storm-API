@@ -5,6 +5,7 @@
 #include <d3d11.h>
 
 #include "stb/stb_image.h"
+
 class texture {
 	public:
 		int height;

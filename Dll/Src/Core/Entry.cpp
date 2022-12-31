@@ -14,6 +14,9 @@
 
 #include "Game/Framework/Framework.hpp"
 
+#include "Util/Util.hpp"
+
+#include "DebugMenu/DebugTitle/DebugTitle.hpp"
 extern "C" std::uintptr_t proxyFunctions[29] = {};
 
 static constexpr const char* proxyFuncNames[29] = {
@@ -56,18 +59,22 @@ DWORD __stdcall modEntry(void* const imageBase) {
 	globals::moduleBase = (uintptr_t)GetModuleHandle(NULL);
 	for (auto i = 0u; i < sizeof(proxyFunctions) / sizeof(*proxyFunctions); ++i)
 		proxyFunctions[i] = std::bit_cast<std::uintptr_t>(GetProcAddress(oD3DCompiler, proxyFuncNames[i]));
-
+	
     util::console::initialize("Debug Console");
 
 	if (!sdk::game::initialize())
+	{
+
+	}
 		//std::abort();
-
+	//DebugTitle::initConfig();
 	settings::onStartup();
-	//globals::hookManager->addEntry((std::uintptr_t)(globals::moduleBase + 0xAB7D30 + 0xC00), Framework::MainLoop);
-	//globals::hookManager->hookEntry(Framework::MainLoop);
-    hooks::initialize();
+	util::console::debugPrint("Settings initialized\n");
 
-	printf_s("hooks initialized\n");
+	//util::console::debugPrint(util::getSettingsPath().generic_string());
+    hooks::initialize();
+	util::console::debugPrint(std::to_string(c.R3framestep));
+	util::console::debugPrint("Hooks initialized\n");
 	while (!GetAsyncKeyState(VK_END)) {
 		if ((GetAsyncKeyState(VK_OEM_3) & 0x01)) {
 			if (enableDebugMenu == true) {

@@ -8,6 +8,12 @@
 #include "Core/DebugMenu/DebugMenu.hpp"
 
 #include "sdl2/include/SDL.h"
+
+#include "Core/DebugMenu/DebugTitle/DebugTitle.hpp"
+
+#include "Util/Util.hpp"
+
+#include "Util/Console/Console.hpp"
 int resize = 1;
 signed typedef int(__fastcall* loadCpk) ();
 loadCpk oloadCpk = (loadCpk)(globals::moduleBase + 0x854F3C + 0xC00);
@@ -63,11 +69,38 @@ namespace hooks {
 				sdk::game::device->CreateRenderTargetView(pBackBuffer, nullptr, &g_RenderTargetView);
 				pBackBuffer->Release();
 				ImGui::CreateContext();
-
+				ImGuiIO& io = ImGui::GetIO();
+				io.ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard;       // Enable Keyboard Controls
+				//io.ConfigFlags |= ImGuiConfigFlags_NavEnableGamepad;      // Enable Gamepad Controls
+				io.ConfigFlags |= ImGuiConfigFlags_DockingEnable;           // Enable Docking
+				//io.ConfigFlags |= ImGuiConfigFlags_ViewportsEnable;         // Enable Multi-Viewport / Platform Windows
 				ImGui_ImplWin32_Init(sdk::game::gameWindow);
 				ImGui_ImplDX11_Init(sdk::game::device, sdk::game::deviceContext);
-
-				globals::modConsole->buildCommands();
+				
+				std::string path = util::getModPath().generic_string() + "\\ui\\font\\";
+				std::replace(path.begin(), path.end(), '/', '\\');
+				util::console::debugPrint(path + "\n");
+				//io.Fonts->AddFontFromFileTTF((path + "FOT-Reggae Std B.ttf").c_str(), 14);
+				for (const auto& file : std::filesystem::directory_iterator(path)) {
+					if ((file.path().string()).ends_with(".ttf")) {
+						int font_size = 14;
+						std::string filenoend = file.path().string();
+						filenoend = std::regex_replace(filenoend, std::regex(".ttf"), ".txt");
+						std::ifstream f((filenoend).c_str());
+						if (f.good()) {
+							std::ifstream MyFile(filenoend);
+							std::string output;
+							getline(MyFile, output);
+							font_size = std::stoi(output);
+							MyFile.close();
+						}
+						io.Fonts->AddFontFromFileTTF(file.path().string().c_str(), font_size, NULL, io.Fonts->GetGlyphRangesJapanese());
+					}
+				}
+					//io.Fonts->AddFontFromFileTTF(((entry.path()).generic_string()).c_str(), 13);
+				//}
+				//globals::modConsole->buildCommands();
+				
 				});
 		}
 		else
@@ -78,15 +111,22 @@ namespace hooks {
 		ImGui_ImplWin32_NewFrame();
 
 		ImGui::NewFrame();
-		globals::modConsole->render();
-		DebugMenu::runDebugMenu();
+		if (!runTitle) {
+			DebugMenu::runDebugMenu();
+		}
+		DebugTitle::runDebugTitle();
 		ImGui::EndFrame();
 		ImGui::Render();
-
+		ImGui_ImplDX11_RenderDrawData(ImGui::GetDrawData());
 		sdk::game::deviceContext->OMSetRenderTargets(1, &g_RenderTargetView, nullptr);
 
-		ImGui_ImplDX11_RenderDrawData(ImGui::GetDrawData());
 
+		ImGuiIO& io = ImGui::GetIO();
+		if (io.ConfigFlags & ImGuiConfigFlags_ViewportsEnable)
+		{
+			ImGui::UpdatePlatformWindows();
+			ImGui::RenderPlatformWindowsDefault();
+		}
 		return globals::hookManager->callOriginal<decltype(&hkPresent)>(hkPresent, swapChain, syncInterval, flags);
 	}
 }

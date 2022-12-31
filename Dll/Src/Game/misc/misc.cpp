@@ -7,6 +7,8 @@
 #include "Util/Memory/Modify.hpp"
 
 #include "Core/DebugMenu/GameSpeed/GameSpeed.hpp"
+
+#include "Core/DebugMenu/DebugMenu.hpp"
 uint8_t call[] = { 0xE8, 0x37, 0xDD, 0xFF, 0xFF };
 bool retgarbage = false;
 int run = 0;
@@ -169,6 +171,53 @@ __int64 __fastcall misc::sub_7FF6C008CB70(__int64 a1, int a2) {
 void __fastcall misc::updatescreen(__int64 a1) {
 	//if (test5 == 0)
 		return globals::hookManager->callOriginal<decltype(&misc::updatescreen)>(misc::updatescreen, a1);
-	util::console::debugPrint("asdf\n");
 	return;
+}
+
+__int64 __fastcall misc::processkeyboardinput(__int64 a1) {
+	if (!c.enableKeyboard)
+		return 0x0;
+	return globals::hookManager->callOriginal<decltype(&misc::processkeyboardinput)>(misc::processkeyboardinput, a1);
+}
+
+__int64 __fastcall misc::nohud(__int64 a1) {
+	if (!r.enableHud)
+		return 0x0;
+	return globals::hookManager->callOriginal<decltype(&misc::nohud)>(misc::nohud, a1);
+}
+
+__int64 __fastcall misc::rostercoord(__int64 a1) {
+	ro.rosterrunning = 1;
+	if (ro.side == 1) {
+		ro.leftaddr = a1;
+	}
+	else if (ro.side == 2) {
+		ro.rightaddr = a1;
+	}
+	return globals::hookManager->callOriginal<decltype(&misc::rostercoord)>(misc::rostercoord, a1);
+}
+
+__int64 __fastcall misc::initCharselModel(__int64 a1)
+{
+	__int64* v1; // rbx
+	__int64 v2; // rdi
+	__int64 result; // rax
+
+	v1 = (__int64*)(a1 + 0x38);
+	v2 = 1i64;
+	while (v2 < 3)
+	{
+		ro.side = v2;
+		if (*v1)
+			result = misc::modelCtrl(*v1);
+		++v1;
+		++v2;
+	}
+	ro.side = 1;
+	return result;
+}
+
+
+__int64 __fastcall misc::modelCtrl(__int64 a1) {
+	return globals::hookManager->callOriginal<decltype(&misc::modelCtrl)>(misc::modelCtrl, a1);
 }

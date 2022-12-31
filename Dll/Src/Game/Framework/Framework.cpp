@@ -6,11 +6,11 @@
 
 #include "Game/ccTaskManager/ccTaskManager.hpp"
 
-
+#include "Core/DebugMenu/DebugMenu.hpp"
 int __fastcall Framework::MainLoop(__int64 a1) {
+    ro.rosterrunning = 0;
     mainlooppointer = a1;
-	if (sdk::game::findwindow)
-		return globals::hookManager->callOriginal<decltype(&Framework::MainLoop)>(Framework::MainLoop, a1);
+    return globals::hookManager->callOriginal<decltype(&Framework::MainLoop)>(Framework::MainLoop, a1);
     /*
     * typedef char(__fastcall* checkSystemCallback) ();
 checkSystemCallback ocheckSystemCallback = (checkSystemCallback)(globals::moduleBase + 0xA08C10 + 0xC00);

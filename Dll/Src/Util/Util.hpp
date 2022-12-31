@@ -3,11 +3,11 @@
 #include <filesystem>
 
 namespace util {
-	std::filesystem::path getModPath() noexcept {
-		return std::filesystem::current_path() / "Perfect Storm";
+	static std::filesystem::path getModPath() noexcept {
+		return std::filesystem::current_path() / "PSAPI";
 	}
 
-	std::filesystem::path getSettingsPath() noexcept {
-		return getModPath() / "settings.json";
+	static std::filesystem::path getSettingsPath() noexcept {
+		return getModPath() / "config.json";
 	}
 }

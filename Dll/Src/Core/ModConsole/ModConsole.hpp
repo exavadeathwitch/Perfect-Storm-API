@@ -376,8 +376,9 @@ struct Console
     }
 };
 
+inline Console modconsole;
+
 static void showConsole(bool* p_open)
 {
-    static Console console;
-    console.Draw("Console", p_open);
+    modconsole.Draw("Console", p_open);
 }

@@ -17,12 +17,14 @@
 #include <iostream>
 #include <memory>
 #include <mutex>
+#include <regex>
 #include <ranges>
 #include <string>
+#include <string_view>
 #include <stdexcept>
 #include <unordered_map>
 #include <vector>
-
+#include <filesystem>
 // Your stuff... (if you know the files rarely change, so something like logging etc)
 #include "Core/SDK/Game.hpp"
 #include "Core/Globals.hpp"

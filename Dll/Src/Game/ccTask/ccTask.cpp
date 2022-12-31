@@ -5,6 +5,8 @@
 #include "Util/Console/Console.hpp"
 
 __int64 __fastcall ccTask::Execute(DWORD* a1, int a2) {
+	return globals::hookManager->callOriginal<decltype(&ccTask::Execute)>(ccTask::Execute, a1, a2);
+	/*
 	int pass = 0;
 	//if ((*(__int64*)a1 + 0x18i64) == globals::moduleBase + 0xAB8330 + 0xC00)
 		//util::console::debugPrint("asdf\n");
@@ -25,5 +27,5 @@ __int64 __fastcall ccTask::Execute(DWORD* a1, int a2) {
 	//if (pass == 1)
 		//util::console::debugPrint((std::to_string(memaddr.size()) + " " + std::to_string(__int64(a1)) + "\n").c_str());
 	if (pass == 0)
-		return globals::hookManager->callOriginal<decltype(&ccTask::Execute)>(ccTask::Execute, a1, a2);
+		return globals::hookManager->callOriginal<decltype(&ccTask::Execute)>(ccTask::Execute, a1, a2);*/
 }

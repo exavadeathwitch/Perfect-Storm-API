@@ -54,7 +54,7 @@ namespace sdk::game {
 			Sleep(2000);
 		}
 		util::console::debugPrint("Found window\n");
-		sdk::game::findwindow = true;
+		//sdk::game::findwindow = true;
 		return true;
 	}
 }

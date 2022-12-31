@@ -249,9 +249,18 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Src\Class\gamepad.hpp" />
+    <ClInclude Include="Src\Class\rostercoord.hpp" />
+    <ClInclude Include="Src\Core\DebugMenu\Config\Config.hpp" />
+    <ClInclude Include="Src\Core\DebugMenu\ControllerUI\ControllerUI.hpp" />
     <ClInclude Include="Src\Core\DebugMenu\DebugMenu.hpp" />
+    <ClInclude Include="Src\Core\DebugMenu\DebugTitle\DebugTitle.hpp" />
     <ClInclude Include="Src\Core\DebugMenu\GameSpeed\GameSpeed.hpp" />
+    <ClInclude Include="Src\Core\DebugMenu\Render\Render.hpp" />
+    <ClInclude Include="Src\Core\DebugMenu\Roster\Roster.hpp" />
+    <ClInclude Include="Src\Core\Language\Language.hpp" />
     <ClInclude Include="Src\Core\Window\Window.hpp" />
+    <ClInclude Include="Src\Game\ccScene\ccSceneManager.hpp" />
     <ClInclude Include="Src\Game\cc\ccGameObject\ccGameObject.hpp" />
     <ClInclude Include="Src\Game\ccTaskManager\ccTaskManager.hpp" />
     <ClInclude Include="Src\Core\ModConsole\ModConsole.hpp" />
@@ -263,7 +272,9 @@
     <ClInclude Include="Src\Game\cc\ccPlayerSupport\ccPlayerSupport.hpp" />
     <ClInclude Include="Src\Game\Framework\Framework.hpp" />
     <ClInclude Include="Src\Game\misc\misc.hpp" />
-    <ClInclude Include="Src\Game\nuccSys\nuccSys.hpp" />
+    <ClInclude Include="Src\Game\nucc\nuccSys\nuccSys.hpp" />
+    <ClInclude Include="Src\Game\nucc\nuccLayer.hpp" />
+    <ClInclude Include="Src\Game\nucc\nuccFileLoadList.hpp" />
     <ClInclude Include="src\pch.hpp" />
     <ClInclude Include="src\util\console\Console.hpp" />
     <ClInclude Include="src\Util\Hook\HookManager.hpp" />
@@ -387,8 +398,14 @@
     <ClInclude Include="thirdparty\minhook\src\trampoline.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Src\Core\DebugMenu\Config\Config.cpp" />
+    <ClCompile Include="Src\Core\DebugMenu\ControllerUI\ControllerUI.cpp" />
     <ClCompile Include="Src\Core\DebugMenu\DebugMenu.cpp" />
+    <ClCompile Include="Src\Core\DebugMenu\DebugTitle\DebugTitle.cpp" />
     <ClCompile Include="Src\Core\DebugMenu\GameSpeed\GameSpeed.cpp" />
+    <ClCompile Include="Src\Core\DebugMenu\Render\Render.cpp" />
+    <ClCompile Include="Src\Core\DebugMenu\Roster\Roster.cpp" />
+    <ClCompile Include="Src\Game\ccScene\ccSceneManager.cpp" />
     <ClCompile Include="Src\Game\cc\ccGameObject\ccGameObject.cpp" />
     <ClCompile Include="Src\Game\ccTaskManager\ccTaskManager.cpp" />
     <ClCompile Include="Src\Core\ModConsole\ModConsole.cpp" />
@@ -402,7 +419,9 @@
     <ClCompile Include="Src\Game\cc\ccPlayerSupport\ccPlayerSupport.cpp" />
     <ClCompile Include="Src\Game\Framework\Framework.cpp" />
     <ClCompile Include="Src\Game\misc\misc.cpp" />
-    <ClCompile Include="Src\Game\nuccSys\nuccSys.cpp" />
+    <ClCompile Include="Src\Game\nucc\nuccSys\nuccSys.cpp" />
+    <ClCompile Include="Src\Game\nucc\nuccLayer.cpp" />
+    <ClCompile Include="Src\Game\nucc\nuccFileLoadList.cpp" />
     <ClCompile Include="src\pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Public|x64'">Create</PrecompiledHeader>

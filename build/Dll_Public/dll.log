@@ -1,9 +1,29 @@
-﻿  Entry.cpp
+﻿  DebugMenu.cpp
+  DebugTitle.cpp
+  Render.cpp
+  Roster.cpp
+  Present.cpp
+C:\Users\Exavadeathwitch\Documents\GitHub\Perfect-Storm-API\Dll\Src\Core\Hooks\Functions\D3D11\Present.cpp(44,14): warning C4244: '=': conversion from 'UINT' to 'FLOAT', possible loss of data
+C:\Users\Exavadeathwitch\Documents\GitHub\Perfect-Storm-API\Dll\Src\Core\Hooks\Functions\D3D11\Present.cpp(45,15): warning C4244: '=': conversion from 'UINT' to 'FLOAT', possible loss of data
+C:\Users\Exavadeathwitch\Documents\GitHub\Perfect-Storm-API\Dll\Src\Core\Hooks\Functions\D3D11\Present.cpp(97,66): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+  Settings.cpp
+  Framework.cpp
+  misc.cpp
+C:\Users\Exavadeathwitch\Documents\GitHub\Perfect-Storm-API\Dll\src\Util\Memory\Modify.hpp(61,9): warning C4551: function call missing argument list
+C:\Users\Exavadeathwitch\Documents\GitHub\Perfect-Storm-API\Dll\Src\Game\misc\misc.cpp(63,56): warning C4018: '>': signed/unsigned mismatch
+C:\Users\Exavadeathwitch\Documents\GitHub\Perfect-Storm-API\Dll\Src\Game\misc\misc.cpp(106,56): warning C4018: '>': signed/unsigned mismatch
+C:\Users\Exavadeathwitch\Documents\GitHub\Perfect-Storm-API\Dll\Src\Game\misc\misc.cpp(58,11): warning C4101: 'v11': unreferenced local variable
+C:\Users\Exavadeathwitch\Documents\GitHub\Perfect-Storm-API\Dll\Src\Game\misc\misc.cpp(210,13): warning C4244: '=': conversion from '__int64' to 'int', possible loss of data
+  nuccFileLoadList.cpp
+C:\Users\Exavadeathwitch\Documents\GitHub\Perfect-Storm-API\Dll\src\Util\Memory\String.hpp(20,1): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+  nuccLayer.cpp
+C:\Users\Exavadeathwitch\Documents\GitHub\Perfect-Storm-API\Dll\src\Util\Memory\String.hpp(20,1): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+  Entry.cpp
 C:\Users\Exavadeathwitch\Documents\GitHub\Perfect-Storm-API\Dll\src\Util\Memory\String.hpp(20,1): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
      Creating library C:\Users\Exavadeathwitch\Documents\GitHub\Perfect-Storm-API\bin\Dll_Public\d3dcompiler_47.lib and object C:\Users\Exavadeathwitch\Documents\GitHub\Perfect-Storm-API\bin\Dll_Public\d3dcompiler_47.exp
   Generating code
-  43 of 4740 functions ( 0.9%) were compiled, the rest were copied from previous compilation.
+  96 of 6064 functions ( 1.6%) were compiled, the rest were copied from previous compilation.
     0 functions were new in current compilation
-    41 functions had inline decision re-evaluated but remain unchanged
+    67 functions had inline decision re-evaluated but remain unchanged
   Finished generating code
   dll.vcxproj -> C:\Users\Exavadeathwitch\Documents\GitHub\Perfect-Storm-API\bin\Dll_Public\d3dcompiler_47.dll
