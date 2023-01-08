@@ -249,13 +249,19 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Src\Class\cond.hpp" />
+    <ClInclude Include="Src\Class\cpk.hpp" />
     <ClInclude Include="Src\Class\gamepad.hpp" />
+    <ClInclude Include="Src\Class\message.hpp" />
     <ClInclude Include="Src\Class\rostercoord.hpp" />
     <ClInclude Include="Src\Core\DebugMenu\Config\Config.hpp" />
+    <ClInclude Include="Src\Class\controllertexture.hpp" />
     <ClInclude Include="Src\Core\DebugMenu\ControllerUI\ControllerUI.hpp" />
     <ClInclude Include="Src\Core\DebugMenu\DebugMenu.hpp" />
+    <ClInclude Include="Src\Core\DebugMenu\MenuMessage\MenuMessage.hpp" />
     <ClInclude Include="Src\Core\DebugMenu\DebugTitle\DebugTitle.hpp" />
     <ClInclude Include="Src\Core\DebugMenu\GameSpeed\GameSpeed.hpp" />
+    <ClInclude Include="Src\Core\DebugMenu\Message\Message.hpp" />
     <ClInclude Include="Src\Core\DebugMenu\Render\Render.hpp" />
     <ClInclude Include="Src\Core\DebugMenu\Roster\Roster.hpp" />
     <ClInclude Include="Src\Core\Language\Language.hpp" />
@@ -269,7 +275,9 @@
     <ClInclude Include="Src\Core\SDK\Game.hpp" />
     <ClInclude Include="Src\Core\Settings\Settings.hpp" />
     <ClInclude Include="Src\Game\ccTask\ccTask.hpp" />
+    <ClInclude Include="Src\Game\cc\ccGame\ccGame.hpp" />
     <ClInclude Include="Src\Game\cc\ccPlayerSupport\ccPlayerSupport.hpp" />
+    <ClInclude Include="Src\Game\cc\ccUi\ccUi.hpp" />
     <ClInclude Include="Src\Game\Framework\Framework.hpp" />
     <ClInclude Include="Src\Game\misc\misc.hpp" />
     <ClInclude Include="Src\Game\nucc\nuccSys\nuccSys.hpp" />
@@ -277,6 +285,7 @@
     <ClInclude Include="Src\Game\nucc\nuccFileLoadList.hpp" />
     <ClInclude Include="src\pch.hpp" />
     <ClInclude Include="src\util\console\Console.hpp" />
+    <ClInclude Include="Src\Util\Display\Display.hpp" />
     <ClInclude Include="src\Util\Hook\HookManager.hpp" />
     <ClInclude Include="src\Util\Memory\Address.hpp" />
     <ClInclude Include="Src\Util\Memory\Memory.hpp" />
@@ -286,6 +295,7 @@
     <ClInclude Include="Src\Util\Process\Module.hpp" />
     <ClInclude Include="Src\Util\Process\Process.hpp" />
     <ClInclude Include="Src\Util\Util.hpp" />
+    <ClInclude Include="Thirdparty\imguimisc\cpp\imgui_stdlib.h" />
     <ClInclude Include="Thirdparty\imguiwidget\widget.hpp" />
     <ClInclude Include="Thirdparty\imgui\include\imconfig.h" />
     <ClInclude Include="Thirdparty\imgui\include\imgui.h" />
@@ -386,7 +396,9 @@
     <ClInclude Include="Thirdparty\sdl2\include\SDL_vulkan.h" />
     <ClInclude Include="Thirdparty\SpeedTest\ScanData.h" />
     <ClInclude Include="Thirdparty\stb\stb_image.h" />
-    <ClInclude Include="Thirdparty\texture\texture.hpp" />
+    <ClInclude Include="Thirdparty\texture\texture.hpp">
+      <DeploymentContent>true</DeploymentContent>
+    </ClInclude>
     <ClInclude Include="Thirdparty\json\single_include\json.hpp" />
     <ClInclude Include="Thirdparty\minhook\include\MinHook.h" />
     <ClInclude Include="thirdparty\minhook\src\buffer.h" />
@@ -403,6 +415,7 @@
     <ClCompile Include="Src\Core\DebugMenu\DebugMenu.cpp" />
     <ClCompile Include="Src\Core\DebugMenu\DebugTitle\DebugTitle.cpp" />
     <ClCompile Include="Src\Core\DebugMenu\GameSpeed\GameSpeed.cpp" />
+    <ClCompile Include="Src\Core\DebugMenu\Message\Message.cpp" />
     <ClCompile Include="Src\Core\DebugMenu\Render\Render.cpp" />
     <ClCompile Include="Src\Core\DebugMenu\Roster\Roster.cpp" />
     <ClCompile Include="Src\Game\ccScene\ccSceneManager.cpp" />
@@ -416,7 +429,9 @@
     <ClCompile Include="Src\Core\SDK\Game.cpp" />
     <ClCompile Include="Src\Core\Settings\Settings.cpp" />
     <ClCompile Include="Src\Game\ccTask\ccTask.cpp" />
+    <ClCompile Include="Src\Game\cc\ccGame\ccGame.cpp" />
     <ClCompile Include="Src\Game\cc\ccPlayerSupport\ccPlayerSupport.cpp" />
+    <ClCompile Include="Src\Game\cc\ccUi\ccUi.cpp" />
     <ClCompile Include="Src\Game\Framework\Framework.cpp" />
     <ClCompile Include="Src\Game\misc\misc.cpp" />
     <ClCompile Include="Src\Game\nucc\nuccSys\nuccSys.cpp" />
@@ -432,6 +447,7 @@
     <ClCompile Include="src\util\console\Console.cpp" />
     <ClCompile Include="src\Util\Hook\HookManager.cpp" />
     <ClCompile Include="Src\Util\Process\Module.cpp" />
+    <ClCompile Include="Thirdparty\imguimisc\cpp\imgui_stdlib.cpp" />
     <ClCompile Include="Thirdparty\imgui\include\imgui.cpp" />
     <ClCompile Include="Thirdparty\imgui\include\imgui_demo.cpp" />
     <ClCompile Include="Thirdparty\imgui\include\imgui_draw.cpp" />

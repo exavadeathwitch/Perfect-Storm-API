@@ -8,20 +8,21 @@
 
 #include "imguiwidget/widget.hpp"
 
+#include "Core/DebugMenu/MenuMessage/MenuMessage.hpp"
 void GameSpeed::runMenu() {
 	int prevgamespeed = gameSpeed;
 	ImGui::SliderInt(speedSetting[gameSpeed], &gameSpeed, 0, 4, "", ImGuiSliderFlags_NoInput);
 	if (prevgamespeed == 1 && prevgamespeed != gameSpeed)
 		alternate = 1;
-	ImGui::SameLine(); widget::HelpMarker("This slider controls the speed of the game. Does not speed up UI animations.");
-	ImGui::Checkbox("Enable Frame Step", &enableFrameStep);
-	ImGui::SameLine(); widget::HelpMarker("Checking this box will make the game freeze and enable frame by frame advancement.");
+	ImGui::SameLine(); widget::HelpMarker(gamespeedmessageset.getMessage(0).getconverted().c_str());
+	ImGui::Checkbox(gamespeedmessageset.getMessage(1).getconverted().c_str(), &enableFrameStep);
+	ImGui::SameLine(); widget::HelpMarker(gamespeedmessageset.getMessage(2).getconverted().c_str());
 	if (enableFrameStep) {
-		ImGui::SliderInt("Number of Frames", &frameStepCount, 1, 10, "%d", ImGuiSliderFlags_NoInput);
-		ImGui::SameLine(); widget::HelpMarker("This slider controls the number of game frames that are advanced when the button below is pressed.");
-		if (ImGui::Button(("Step " + std::to_string(frameStepCount) + " Frame").c_str()))
+		ImGui::SliderInt(gamespeedmessageset.getMessage(3).getconverted().c_str(), &frameStepCount, 1, 10, "%d", ImGuiSliderFlags_NoInput);
+		ImGui::SameLine(); widget::HelpMarker(gamespeedmessageset.getMessage(4).getconverted().c_str());
+		if (ImGui::Button(((gamespeedmessageset.getMessage(5).getconverted() + " ").c_str() + std::to_string(frameStepCount) + (gamespeedmessageset.getMessage(6).getconverted() + " ").c_str()).c_str()))
 			frameStep = true;
-		ImGui::SameLine(); widget::HelpMarker("Pressing this button will advance the game by the number of frames above.");
+		ImGui::SameLine(); widget::HelpMarker(gamespeedmessageset.getMessage(7).getconverted().c_str());
 	}
 	/*
 	ImGui::Text("Tasks");

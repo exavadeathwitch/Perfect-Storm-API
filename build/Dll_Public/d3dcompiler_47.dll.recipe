@@ -5,7 +5,11 @@
       <FullPath>C:\Users\Exavadeathwitch\Documents\GitHub\Perfect-Storm-API\bin\Dll_Public\d3dcompiler_47.dll</FullPath>
     </ProjectOutput>
   </ProjectOutputs>
-  <ContentFiles />
+  <ContentFiles>
+    <ContentFile>
+      <FullPath>C:\Users\Exavadeathwitch\Documents\GitHub\Perfect-Storm-API\Dll\Thirdparty\texture\texture.hpp</FullPath>
+    </ContentFile>
+  </ContentFiles>
   <SatelliteDlls />
   <NonRecipeFileRefs />
 </Project>

@@ -6,7 +6,7 @@
 namespace hooks {
 	void initialize() noexcept;
 	void uninitialize() noexcept;
-
+	void hookImportant();
 	inline WNDPROC ogWndProc = nullptr;
 
 	namespace functions {

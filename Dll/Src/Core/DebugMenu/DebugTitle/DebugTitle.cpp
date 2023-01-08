@@ -4,6 +4,7 @@
 
 #include "Core/DebugMenu/DebugMenu.hpp"
 
+#include "Core/DebugMenu/MenuMessage/MenuMessage.hpp"
 bool open = true;
 void DebugTitle::runDebugTitle() {
 	if (!runTitle)
@@ -34,13 +35,13 @@ void DebugTitle::runDebugTitle() {
 	ImGui::SetNextWindowSize(ImVec2(io.DisplaySize.x, io.DisplaySize.y));
 	ImGui::SetNextWindowPos(ImVec2(0, 0));
 	ImGui::Begin("b", &open, flags);
-	if (ImGui::Button("Boot to Game"))
+	if (ImGui::Button((debugmessageset.getMessage(0).getconverted()).c_str()))
 		runTitle = false;
-	if (ImGui::Button("Boot to Game(No Logos)")) {
+	if (ImGui::Button((debugmessageset.getMessage(1).getconverted()).c_str())) {
 		skipOpening = true;
 		runTitle = false;
 	}
-	if (ImGui::Button("Boot to Free Battle")) {
+	if (ImGui::Button((debugmessageset.getMessage(2).getconverted()).c_str())) {
 		bootFB = true;
 		runTitle = false;
 	}

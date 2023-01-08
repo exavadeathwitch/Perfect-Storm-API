@@ -62,12 +62,14 @@ DWORD __stdcall modEntry(void* const imageBase) {
 	
     util::console::initialize("Debug Console");
 
+	hooks::hookImportant();
 	if (!sdk::game::initialize())
 	{
 
 	}
 		//std::abort();
 	//DebugTitle::initConfig();
+
 	settings::onStartup();
 	util::console::debugPrint("Settings initialized\n");
 
@@ -105,7 +107,6 @@ BOOL APIENTRY DllMain( HMODULE hModule,
     if (ul_reason_for_call == DLL_PROCESS_ATTACH) {
 		DisableThreadLibraryCalls(hModule);
 
-		printf_s("asdf\n");
         if (const HANDLE thread = CreateThread(nullptr, 0, modEntry, hModule, 0, nullptr))
             CloseHandle(thread);
     }

@@ -7650,10 +7650,11 @@ bool ImGui::IsWindowHovered(ImGuiHoveredFlags flags)
 
 bool ImGui::IsWindowFocused(ImGuiFocusedFlags flags)
 {
+
     ImGuiContext& g = *GImGui;
+
     ImGuiWindow* ref_window = g.NavWindow;
     ImGuiWindow* cur_window = g.CurrentWindow;
-
     if (ref_window == NULL)
         return false;
     if (flags & ImGuiFocusedFlags_AnyWindow)

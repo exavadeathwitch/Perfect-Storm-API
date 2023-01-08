@@ -15,6 +15,7 @@
 #include <format>
 #include <fstream>
 #include <iostream>
+#include <istream>
 #include <memory>
 #include <mutex>
 #include <regex>

@@ -11,7 +11,6 @@
 #include "Util/Console/Console.hpp"
 namespace settings {
 	void onStartup() noexcept {
-		std::cout << "asdf\n";
 		const auto modPath = util::getModPath();
 
 		if (!std::filesystem::exists(modPath)) {
@@ -20,7 +19,6 @@ namespace settings {
 			applyDefaults();
 		}
 		else {
-			std::cout << "asdf\n";
 			load();
 		}
 	}

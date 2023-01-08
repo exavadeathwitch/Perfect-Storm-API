@@ -12,8 +12,8 @@ class rostercoord {
 		float dummyz;
 		float dummyy;
 		float x;
-		float z;
 		float y;
+		float z;
 		float dummyrot;
 		float rot;
 };

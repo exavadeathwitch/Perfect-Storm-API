@@ -13,6 +13,12 @@ class texture {
 		std::string path;
 		ID3D11ShaderResourceView* my_texture = NULL;
 		bool visible;
+        texture() {
+            this->height = 0;
+            this->width = 0;
+            this->path = "";
+            this->visible = true;
+        }
 		texture(int height, int width, std::string path, bool visible) {
 			this->height = height;
 			this->width = width;

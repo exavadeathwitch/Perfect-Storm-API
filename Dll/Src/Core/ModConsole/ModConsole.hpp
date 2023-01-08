@@ -4,24 +4,15 @@
 
 #include "imgui/include/imgui.h"
 
+#include "Core/DebugMenu/MenuMessage/MenuMessage.hpp"
+
 namespace console {
 	class Console {
 	public:
-		struct Command {
-			std::string_view m_Name;
-			std::string_view m_Description;
-			std::function<void()> m_Action;
-		};
-	public:
-		void changeRender();
-		void render() noexcept;
-		void buildCommands() noexcept;
-		void addCommand(const Command& command) noexcept;
-		void runCommand(std::string_view name) noexcept;
+        void render();
+        void changeRender();
 	private:
 		bool m_ShouldRender = false;
-		std::vector<std::string> m_Messages;
-		std::unordered_map<std::string_view, Command> m_Commands;
 	};
 }
 
@@ -43,13 +34,12 @@ struct Console
         HistoryPos = -1;
 
         // "CLASSIFY" is here to provide the test case where "C"+[tab] completes to "CL" and display multiple matches.
-        Commands.push_back("HELP");
-        Commands.push_back("HISTORY");
-        Commands.push_back("CLEAR");
-        Commands.push_back("CLASSIFY");
+        //Commands.push_back("HELP");
+        //Commands.push_back("HISTORY");
+        //Commands.push_back("CLEAR");
+        //Commands.push_back("CLASSIFY");
         AutoScroll = true;
         ScrollToBottom = false;
-        AddLog("Welcome to Dear ImGui!");
     }
     ~Console()
     {
@@ -86,11 +76,9 @@ struct Console
     void    Draw(const char* title, bool* p_open)
     {
         ImGui::SetNextWindowSize(ImVec2(520, 600), ImGuiCond_FirstUseEver);
-        if (!ImGui::Begin(title, p_open))
-        {
-            ImGui::End();
+        if (!*(bool*)p_open)
             return;
-        }
+        ImGui::Begin(title, p_open);
 
         // As a specific feature guaranteed by the library, after calling Begin() the last Item represent the title bar.
         // So e.g. IsItemHovered() will return true when hovering the title bar.
@@ -141,6 +129,7 @@ struct Console
         {
             if (ImGui::BeginPopupContextWindow())
             {
+                //if (ImGui::Selectable(consolemessageset.getMessage(1).getconverted().c_str())) ClearLog();
                 if (ImGui::Selectable("Clear")) ClearLog();
                 ImGui::EndPopup();
             }
@@ -207,7 +196,7 @@ struct Console
         // Command-line
         bool reclaim_focus = false;
         ImGuiInputTextFlags input_text_flags = ImGuiInputTextFlags_EnterReturnsTrue | ImGuiInputTextFlags_EscapeClearsAll | ImGuiInputTextFlags_CallbackCompletion | ImGuiInputTextFlags_CallbackHistory;
-        if (ImGui::InputText("Input", InputBuf, IM_ARRAYSIZE(InputBuf), input_text_flags, &TextEditCallbackStub, (void*)this))
+        if (ImGui::InputText(consolemessageset.getMessage(0).getconverted().c_str(), InputBuf, IM_ARRAYSIZE(InputBuf), input_text_flags, &TextEditCallbackStub, (void*)this))
         {
             char* s = InputBuf;
             Strtrim(s);
@@ -216,7 +205,9 @@ struct Console
             strcpy(s, "");
             reclaim_focus = true;
         }
-
+        ImGui::SameLine();
+        if (ImGui::Button(consolemessageset.getMessage(1).getconverted().c_str()))
+            ClearLog();
         // Auto-focus on window apparition
         ImGui::SetItemDefaultFocus();
         if (reclaim_focus)

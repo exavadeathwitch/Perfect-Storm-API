@@ -17,7 +17,7 @@ class Config : public modWindow
 		void createMenu() {
 			if (!this->enableMenu)
 				return;
-			ImGui::Begin(this->name.c_str(), NULL);
+			ImGui::Begin(this->name.c_str(), &this->enableMenu);
 			this->runMenu();
 			ImGui::End();
 		}
@@ -28,6 +28,8 @@ class Config : public modWindow
 		bool displayloadXFBIN = false;
 		bool enableKeyboard = false;
 		bool R3framestep = false;
+		bool displayOGMessageDebug = true;
+		bool displayOGMessageGame = false;
 		int lang = 0;
 		std::string langarr[13] = { "English", "French", "Italian", "German", "Spanish", "Arabic", "Polish", "Russian", "Japanese", "Portuguese", "Thai", "Korean", "Chinese(Traditional)" };
 };

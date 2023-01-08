@@ -14,11 +14,24 @@
 #include "Util/Util.hpp"
 
 #include "Util/Console/Console.hpp"
+
+#include "Core/Language/Language.hpp"
+
+#include "Util/Display/Display.hpp"
+
+#include "Core/DebugMenu/DebugMenu.hpp"
 int resize = 1;
 signed typedef int(__fastcall* loadCpk) ();
 loadCpk oloadCpk = (loadCpk)(globals::moduleBase + 0x854F3C + 0xC00);
 ID3D11RenderTargetView* g_RenderTargetView;
 bool show_app_main_menu_bar;
+void controllerUI::loadTextures() {
+	for (int x = 0; x < cui.textures.size(); x++) {
+		for (int y = 0; y < cui.textures[x].gettexturesize(); y++) {
+			util::display::load::loadTextureFromFile(cui.textures[x].gettexture(y).path.c_str(), &cui.textures[x].textures[y].my_texture, &cui.textures[x].textures[y].width, &cui.textures[x].textures[y].height);
+		}
+	}
+}
 namespace hooks {
 	HRESULT __stdcall hooks::functions::hkResizeBuffers(IDXGISwapChain* pSwapChain, UINT BufferCount, UINT Width, UINT Height, DXGI_FORMAT NewFormat, UINT SwapChainFlags)
 	{
@@ -70,16 +83,18 @@ namespace hooks {
 				pBackBuffer->Release();
 				ImGui::CreateContext();
 				ImGuiIO& io = ImGui::GetIO();
-				io.ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard;       // Enable Keyboard Controls
+				//io.ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard;       // Enable Keyboard Controls
 				//io.ConfigFlags |= ImGuiConfigFlags_NavEnableGamepad;      // Enable Gamepad Controls
 				io.ConfigFlags |= ImGuiConfigFlags_DockingEnable;           // Enable Docking
 				//io.ConfigFlags |= ImGuiConfigFlags_ViewportsEnable;         // Enable Multi-Viewport / Platform Windows
 				ImGui_ImplWin32_Init(sdk::game::gameWindow);
 				ImGui_ImplDX11_Init(sdk::game::device, sdk::game::deviceContext);
-				
+				menuSet.setLanguages();
+				translateAllSets();
+				cui.initTextures();
 				std::string path = util::getModPath().generic_string() + "\\ui\\font\\";
 				std::replace(path.begin(), path.end(), '/', '\\');
-				util::console::debugPrint(path + "\n");
+				//util::console::debugPrint(path + "\n");
 				//io.Fonts->AddFontFromFileTTF((path + "FOT-Reggae Std B.ttf").c_str(), 14);
 				for (const auto& file : std::filesystem::directory_iterator(path)) {
 					if ((file.path().string()).ends_with(".ttf")) {
@@ -106,10 +121,8 @@ namespace hooks {
 		else
 			return globals::hookManager->callOriginal<decltype(&hkPresent)>(hkPresent, swapChain, syncInterval, flags);
 
-
 		ImGui_ImplDX11_NewFrame();
 		ImGui_ImplWin32_NewFrame();
-
 		ImGui::NewFrame();
 		if (!runTitle) {
 			DebugMenu::runDebugMenu();
@@ -119,7 +132,6 @@ namespace hooks {
 		ImGui::Render();
 		ImGui_ImplDX11_RenderDrawData(ImGui::GetDrawData());
 		sdk::game::deviceContext->OMSetRenderTargets(1, &g_RenderTargetView, nullptr);
-
 
 		ImGuiIO& io = ImGui::GetIO();
 		if (io.ConfigFlags & ImGuiConfigFlags_ViewportsEnable)
