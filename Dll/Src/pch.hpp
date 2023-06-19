@@ -25,3 +25,5 @@
 // Your stuff... (if you know the files rarely change, so something like logging etc)
 #include "Core/SDK/Game.hpp"
 #include "Core/Globals.hpp"
+
+#include <iostream>

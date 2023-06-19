@@ -26,6 +26,27 @@ void SDL2Music::addMusicTrack(const char* path)
 	}
 }
 
+void SDL2Music::addChunk(const char* path)
+{
+	Mix_Chunk* tmp_chunk = Mix_LoadWAV(path);
+
+	if (tmp_chunk != nullptr)
+	{
+		mChunks.push_back(tmp_chunk);
+	}
+	else
+	{
+		SDL_LogError(SDL_LOG_CATEGORY_APPLICATION,
+			"Couldn't load audio: %s",
+			Mix_GetError());
+	}
+}
+
+Mix_Chunk* SDL2Music::getChunk(const int which)
+{
+	return mChunks.at(which);
+}
+
 void SDL2Music::playMusicTrack(const int which)
 {
 	//Mix_VolumeMusic(musicVol);
@@ -33,9 +54,22 @@ void SDL2Music::playMusicTrack(const int which)
 	{
 		return;
 	}
-
 	Mix_PlayMusic(mMusics.at(which), -1);
 	m_Playing = true;
+}
+
+void SDL2Music::playChannelTrack(const int which, unsigned int channel)
+{
+	//Mix_VolumeMusic(musicVol);
+	if (which > mChunks.size())
+	{
+		return;
+	}
+	Mix_PlayChannel(channel, mChunks.at(which), -1);
+}
+
+void SDL2Music::volume_Channel(unsigned int channel, int volume) {
+	Mix_Volume(channel, volume);
 }
 
 void SDL2Music::Play_Pause()

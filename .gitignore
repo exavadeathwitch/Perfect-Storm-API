@@ -9,3 +9,6 @@ build/Dll_Debug/d3dcompiler_47.pch
 *.pch
 *.pdb
 *.ipch
+*.ipch
+.vs/Perfect Storm/v17/ipch/223fd8ad9a8bf8e4.ipch
+.vs/Perfect Storm/v17/ipch/96c06e84e5181a8c.ipch

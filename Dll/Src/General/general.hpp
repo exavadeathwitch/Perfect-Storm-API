@@ -4,6 +4,9 @@
 
 #include <string>
 namespace General {
+	inline __int64 musicaddr = NULL;
+	inline int musictrack = NULL;
+	inline int prevtrack = NULL;
 	std::vector<const char*> CpkToLoad;
 	std::vector<int> CpkPriority;
 	std::string defaultFilepath = ".\\Perfect Storm\\";

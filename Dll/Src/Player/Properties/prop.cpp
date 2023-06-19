@@ -4,7 +4,12 @@
 
 #include "Net/Online Training/oTraining.hpp"
 
+#include "Util/Memory/Modify.hpp"
+
 #include <iostream>
+
+#include "Util/Memory/String.hpp"
+
 signed __int64 __fastcall prop::functions::decreaseHealth(__int64 a1, __int64 a2, float Damage)
 {
 	//return globals::hookManager->callOriginal<decltype(&prop::functions::decreaseHealth)>(prop::functions::decreaseHealth, a1, a2, Damage);
@@ -188,3 +193,126 @@ void __fastcall prop::functions::increaseStormGauge(__int64 BaseAddr, float Incr
 	if (OTraining::selectedSGItem == 0)
 		globals::hookManager->callOriginal<decltype(&prop::functions::increaseStormGauge)>(prop::functions::increaseStormGauge, BaseAddr, Increment);
 }
+
+__int64 __fastcall prop::functions::CtrlGuardEffect(__int64 a1, int a2)
+{
+	if (*(DWORD*)(a1 + 0xC8C) == 0x19) {
+		std::cout << "guard\n";
+		*(DWORD*)(a1 + 0xC8C) = 0x46;
+		//std::cout << *(DWORD*)(a1 + 0xC94) << std::endl;
+		//__int64 addrsubtrahend = 0x7AFE56 + globals::moduleBase;
+		/*
+		std::vector<uint8_t> arrayOfByte(4);
+		for (int i = 0; i < 4; i++)
+			arrayOfByte[3 - i] = ((__int64)name - addrsubtrahend >> (i * 8));
+
+		std::cout << std::hex << globals::moduleBase + 0x7AFE56 << std::endl;
+		std::cout << std::hex << (__int64)name << std::endl;
+		
+		util::memory::Modify::write_bytes<4>(globals::moduleBase + 0x7AF252 + 0xC00, { arrayOfByte[3], arrayOfByte[2], arrayOfByte[1], arrayOfByte[0] });
+		*/
+		
+		std::string bodname = "2itc00t0 trall";
+		std::string sname = ""; //Start
+		std::string lname = "2itceff1_dodge00"; //Guard Anim
+		std::string ename = ""; //Exit
+		std::string effname = "2itceff1.xfbin";
+		//std::string sname = "2skreff1_awa_core00"; //Start
+		//std::string lname = "2skreff1_awa_core00"; //Guard Anim
+		//std::string ename = "2skreff1_awa_core01"; //Exit
+		//std::string effname = "2skreff1.xfbin";
+
+		const std::array<unsigned char, 0x10> ogeffbytes = util::memory::Modify::read_bytes<0x10>(globals::moduleBase + 0xC00 + 0x10AB7F8 + 0x400);
+		for (int i = 0; i < 10; i++) {
+			if (i >= effname.length())
+				util::memory::Modify::write_bytes<1>(globals::moduleBase + 0xC00 + 0x10AB7F8 + 0x400 + i, { 0x0 });
+			else
+				util::memory::Modify::write_bytes<1>(globals::moduleBase + 0xC00 + 0x10AB7F8 + 0x400 + i, { uint8_t(effname[i]) });
+		}
+		const std::array<unsigned char, 0x10> ogbodbytes = util::memory::Modify::read_bytes<0x10>(globals::moduleBase + 0xC00 + 0xF08810 + 0x400);
+		for (int i = 0; i < 10; i ++) {
+			if (i >= bodname.length())
+				util::memory::Modify::write_bytes<1>(globals::moduleBase + 0xC00 + 0xF08810 + 0x400 + i, { 0x0 });
+			else
+				util::memory::Modify::write_bytes<1>(globals::moduleBase + 0xC00 + 0xF08810 + 0x400 + i, { uint8_t(bodname[i]) });
+		}
+		const std::array<unsigned char, 0x24> ogsbytes = util::memory::Modify::read_bytes<0x24>(globals::moduleBase + 0xC00 + 0x10AB4F8 + 0x400);
+		for (int i = 0; i < 24; i++) {
+			if (i >= sname.length())
+				util::memory::Modify::write_bytes<1>(globals::moduleBase + 0xC00 + 0x10AB4F8 + 0x400 + i, { 0x0 });
+			else
+				util::memory::Modify::write_bytes<1>(globals::moduleBase + 0xC00 + 0x10AB4F8 + 0x400 + i, { uint8_t(sname[i]) });
+		}
+
+		const std::array<unsigned char, 0x24> oglbytes = util::memory::Modify::read_bytes<0x24>(globals::moduleBase + 0xC00 + 0x10AB5B8 + 0x400);
+		for (int i = 0; i < 24; i++) {
+			if (i >= lname.length())
+				util::memory::Modify::write_bytes<1>(globals::moduleBase + 0xC00 + 0x10AB5B8 + 0x400 + i, { 0x0 });
+			else
+				util::memory::Modify::write_bytes<1>(globals::moduleBase + 0xC00 + 0x10AB5B8 + 0x400 + i, { uint8_t(lname[i]) });
+		}
+		const std::array<unsigned char, 0x24> ogebytes = util::memory::Modify::read_bytes<0x24>(globals::moduleBase + 0xC00 + 0x10AB678 + 0x400);
+		for (int i = 0; i < 24; i++) {
+			if (i >= ename.length())
+				util::memory::Modify::write_bytes<1>(globals::moduleBase + 0xC00 + 0x10AB678 + 0x400 + i, { 0x0 });
+			else
+				util::memory::Modify::write_bytes<1>(globals::moduleBase + 0xC00 + 0x10AB678 + 0x400 + i, { uint8_t(ename[i]) });
+		}
+		auto retval = globals::hookManager->callOriginal<decltype(&prop::functions::CtrlGuardEffect)>(prop::functions::CtrlGuardEffect, a1, a2);
+		*(DWORD*)(a1 + 0xC8C) = 0x19;
+		for (int i = 0; i < 10; i++) {
+			if (i >= ogeffbytes.size())
+				util::memory::Modify::write_bytes<1>(globals::moduleBase + 0xC00 + 0x10AB7F8 + 0x400 + i, { 0x0 });
+			else
+				util::memory::Modify::write_bytes<1>(globals::moduleBase + 0xC00 + 0x10AB7F8 + 0x400 + i, { ogeffbytes[i]});
+		}
+		for (int i = 0; i < 10; i++) {
+			if (i >= ogbodbytes.size())
+				util::memory::Modify::write_bytes<1>(globals::moduleBase + 0xC00 + 0xF08810 + 0x400 + i, { 0x0 });
+			else
+				util::memory::Modify::write_bytes<1>(globals::moduleBase + 0xC00 + 0xF08810 + 0x400 + i, { ogbodbytes[i]});
+		}
+
+		for (int i = 0; i < 24; i++) {
+			if (i >= ogsbytes.size())
+				util::memory::Modify::write_bytes<1>(globals::moduleBase + 0xC00 + 0x10AB4F8 + 0x400 + i, { 0x0 });
+			else
+				util::memory::Modify::write_bytes<1>(globals::moduleBase + 0xC00 + 0x10AB4F8 + 0x400 + i, { ogsbytes[i] });
+		}
+
+		for (int i = 0; i < 24; i++) {
+			if (i >= oglbytes.size())
+				util::memory::Modify::write_bytes<1>(globals::moduleBase + 0xC00 + 0x10AB5B8 + 0x400 + i, { 0x0 });
+			else
+				util::memory::Modify::write_bytes<1>(globals::moduleBase + 0xC00 + 0x10AB5B8 + 0x400 + i, { oglbytes[i] });
+		}
+
+		for (int i = 0; i < 24; i++) {
+			if (i >= ogebytes.size())
+				util::memory::Modify::write_bytes<1>(globals::moduleBase + 0xC00 + 0x10AB678 + 0x400 + i, { 0x0 });
+			else
+				util::memory::Modify::write_bytes<1>(globals::moduleBase + 0xC00 + 0x10AB678 + 0x400 + i, { ogebytes[i] });
+		}
+		return retval;
+	}
+	auto retval = globals::hookManager->callOriginal<decltype(&prop::functions::CtrlGuardEffect)>(prop::functions::CtrlGuardEffect, a1, a2);
+	
+	return retval;
+}
+
+int __fastcall prop::functions::susanoojump(__int64 a1)
+{
+	if (*(DWORD*)(a1 + 0xC8C) == 0xE8) {
+		*(DWORD*)(a1 + 0xC8C) = 0x55;
+		std::cout << "booooo\n";
+		auto retval = globals::hookManager->callOriginal<decltype(&prop::functions::susanoojump)>(prop::functions::susanoojump, a1);
+
+		*(DWORD*)(a1 + 0xC8C) = 0xE8;
+		return retval;
+	}
+	else {
+		std::cout << "yer\n";
+		return globals::hookManager->callOriginal<decltype(&prop::functions::susanoojump)>(prop::functions::susanoojump, a1);
+	}
+}
+

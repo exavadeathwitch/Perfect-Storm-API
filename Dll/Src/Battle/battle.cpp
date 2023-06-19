@@ -60,6 +60,7 @@ int __fastcall Battle::functions::matchCount(__int64 rcx, __int64 a1, float a2) 
 	//std::cout << "matchcount: " << Battle::matchCount << std::endl;
 	//Battle Starts
 	if (*(DWORD*)(rcx + 4 * osub_14074E240(globals::moduleBase + 0x14161C8C8 - 0x140000000 + 0xC00) + 0x80) == 1) {
+		/*
 		SDL2Music music;
 		if (music.Playing_Music() != 0) {
 			music.Halt_Music();
@@ -69,7 +70,7 @@ int __fastcall Battle::functions::matchCount(__int64 rcx, __int64 a1, float a2) 
 		console::enabled = 1;
 		music::functions m;
 		m.playStageMusicTrack();
-
+		*/
 		OTraining::selectedLItem = 0;
 		OTraining::tcheckBox[0] = false;
 		OTraining::tcheckBox[1] = false;

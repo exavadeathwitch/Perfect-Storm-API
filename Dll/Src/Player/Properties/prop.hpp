@@ -11,5 +11,7 @@ namespace prop {
 		static signed __int64 __fastcall decreaseSubs(__int64 a1, unsigned int a2, int Uselessvar, int NewSub);
 		static signed __int64 __fastcall decreaseTools(__int64 a1, unsigned int a2, int MaxTool, int NewTool);
 		static void __fastcall increaseStormGauge(__int64 BaseAddr, float Increment);
+		static __int64 __fastcall CtrlGuardEffect(__int64 a1, int a2);
+		static int __fastcall susanoojump(__int64 a1);
 	};
 }

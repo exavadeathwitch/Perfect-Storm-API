@@ -24,16 +24,29 @@ __int64 __fastcall General::functions::getMemString(__int64 a1, int a2) {
 	Stage::functions::getStageName(a1);
 	return globals::hookManager->callOriginal<decltype(&General::functions::getMemString)>(General::functions::getMemString, a1, a2);
 }
-
+int ran = 0;
 //Ran when music track is selected to be played. Modifications include playing specific tracks based on whichever tracks are chosen. Ex: Main Menu, Character Select, etc.
 signed __int64 __fastcall General::functions::musicTrack(__int64 a1, __int64 a2, int a3) {
-	//std::cout << std::hex << a1 << std::endl;
-	//std::cout << std::hex << a2 << std::endl;
-	//std::cout << std::dec << a3 << std::endl;
 	const auto retval = globals::hookManager->getOriginal<decltype(&General::functions::musicTrack)>(General::functions::musicTrack)(a1, a2, a3);
-	music::functions m;
-	m.playMenuMusicTrack(a3);
-
+	if (ran == 0) {
+		ran = 1;
+		*(uint8_t*)(a1 + 0x72) = 0;
+	}
+	std::cout << std::hex << a1 << std::endl;
+	std::cout << std::hex << a2 << std::endl;
+	std::cout << std::dec << a3 << std::endl;
+	std::cout << a1 + 0x72 << std::endl;
+	std::cout << *(uint8_t*)(a1 + 0x72) << std::endl;
+	if (*(uint8_t*)(a1 + 0x72) == 0) {
+		General::musicaddr = a1;
+		General::prevtrack = musictrack;
+		General::musictrack = a3;
+		music::functions m;
+		m.playMenuMusicTrack(a3);
+		std::cout << "donee" << std::endl;
+		return NULL;
+	}
+	std::cout << "asdfsdafsda" << std::endl;
 	return retval;
 }
 
@@ -141,11 +154,7 @@ int General::functions::loadCpkInitial() {
 }
 
 const char* General::functions::retTitleVer() {
-	if (globals::settings->m_Version == "Enhanced")
-		return " 1.09 Enhanced";
-	else {
-		return " 2.0";
-	}
+	return "2.0";
 }
 int __fastcall callNewMusicTrack3(__int64 a1, __int64 a2, int a3);
 signed __int64 __fastcall newMusicTrack2(__int64 a1, __int64 a2, int a3);

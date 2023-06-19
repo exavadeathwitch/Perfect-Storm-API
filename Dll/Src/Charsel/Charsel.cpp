@@ -27,3 +27,5 @@ void Charsel::functions::filterPresetID(__int64 basePresetAddr) {
 	for (auto i = Charsel::bannedPresets.begin(); i != Charsel::bannedPresets.size(); ++i)
 
 }*/
+
+

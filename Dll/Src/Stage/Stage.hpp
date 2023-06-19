@@ -10,5 +10,6 @@ namespace Stage {
     class functions {
     public:
         static void getStageName(__int64 a1);
+        static __int64 stageselect(__int64 a1, __int64 a2);
     };
 }

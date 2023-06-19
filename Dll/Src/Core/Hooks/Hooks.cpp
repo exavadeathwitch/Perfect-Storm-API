@@ -24,13 +24,30 @@
 
 #include "Player/IDs/id.hpp"
 
+#include "Scene/Scene.hpp"
+
+#include "Scene/gamemodeselect/gms.hpp"
+
+#include "Battle/commandlist.hpp"
+
+#include "Unlock/unlock.hpp"
+
 namespace hooks {
 	void initialize() noexcept {
-
-		//globals::hookManager->addEntry((std::uintptr_t)(globals::moduleBase + 0x854F3C + 0xC00), General::functions::loadCpkInitial);
-		
 		globals::hookManager->addEntry(sdk::game::swapChainVtbl[8], functions::hkPresent);
-		
+
+		//globals::hookManager->addEntry((std::uintptr_t)(globals::moduleBase + 0x7CA258 + 0xC00), mechanics::functions::counterState);
+
+		//globals::hookManager->addEntry((std::uintptr_t)(globals::moduleBase + 0x7DEBB0 + 0xC00), id::functions::sub_1407DF7B0);
+
+		//globals::hookManager->addEntry((std::uintptr_t)(globals::moduleBase + 0xA434D0 + 0xC00), General::functions::musicTrack2);
+
+		//globals::hookManager->addEntry((std::uintptr_t)(globals::moduleBase + 0xAB7C80 + 0xC00), General::functions::makeGameNotFocus);
+
+		//globals::hookManager->addEntry((std::uintptr_t)(globals::moduleBase + 0xAB7C50 + 0xC00), General::functions::makeGameFocus);
+
+		globals::hookManager->addEntry((std::uintptr_t)(globals::moduleBase + 0x51623C + 0xC00), ns4::unlock::sub_7FF6BFD16E3C);
+
 		globals::hookManager->addEntry((std::uintptr_t)(globals::moduleBase + 0x79C680 + 0xC00), mechanics::functions::airSpark);
 
 		globals::hookManager->addEntry((std::uintptr_t)(globals::moduleBase + 0x7ADCB4 + 0xC00), mechanics::functions::newPlayerState);
@@ -69,8 +86,6 @@ namespace hooks {
 
 		globals::hookManager->addEntry((std::uintptr_t)(globals::moduleBase + 0x7AC110 + 0xC00), mechanics::functions::canAC1);
 
-		//globals::hookManager->addEntry((std::uintptr_t)(globals::moduleBase + 0x7CA258 + 0xC00), mechanics::functions::counterState);
-
 		globals::hookManager->addEntry((std::uintptr_t)(globals::moduleBase + 0x7E04E0 + 0xC00), input::functions::applyPlayerInput);
 
 		globals::hookManager->addEntry((std::uintptr_t)(globals::moduleBase + 0xAEF4F0 + 0xC00), Net::functions::calculateFrame);
@@ -101,29 +116,53 @@ namespace hooks {
 		
 		globals::hookManager->addEntry((std::uintptr_t)(globals::moduleBase + 0x74AD24 + 0xC00), prop::functions::decreaseTools);
 
-		//globals::hookManager->addEntry((std::uintptr_t)(globals::moduleBase + 0x7DEBB0 + 0xC00), id::functions::sub_1407DF7B0);
-
 		globals::hookManager->addEntry((std::uintptr_t)(globals::moduleBase + 0x74AAF8 + 0xC00), prop::functions::increaseStormGauge);
+
+		globals::hookManager->addEntry((std::uintptr_t)(globals::moduleBase + 0x7AEEDC + 0xC00), prop::functions::CtrlGuardEffect);
+
+		globals::hookManager->addEntry((std::uintptr_t)(globals::moduleBase + 0x6543D8 + 0xC00), commandlist::functions::sub_140654FD8);
+
+		globals::hookManager->addEntry((std::uintptr_t)(globals::moduleBase + 0x653C48 + 0xC00), commandlist::functions::sub_140654848);
+		
+		globals::hookManager->addEntry((std::uintptr_t)(globals::moduleBase + 0x7FE4C4 + 0xC00), commandlist::functions::ccGetCharCode);
+
+		globals::hookManager->addEntry((std::uintptr_t)(globals::moduleBase + 0x1CAB1C + 0xC00), commandlist::functions::strcpy);
+
+		globals::hookManager->addEntry((std::uintptr_t)(globals::moduleBase + 0xAB8720 + 0xC00), commandlist::functions::ccUiGetMessage);
+
+		globals::hookManager->addEntry((std::uintptr_t)(globals::moduleBase + 0xAB8BB0 + 0xC00), commandlist::functions::ccReplaceStringTag);
+
+		//globals::hookManager->addEntry((std::uintptr_t)(globals::moduleBase + 0x77C048 + 0xC00), prop::functions::susanoojump);
 
 		globals::hookManager->addEntry((std::uintptr_t)(globals::moduleBase + 0xA01230 + 0xC00), General::functions::getMemString);
 
-		globals::hookManager->addEntry((std::uintptr_t)(globals::moduleBase + 0xA43730 + 0xC00), General::functions::noMusicTrack);
+		//globals::hookManager->addEntry((std::uintptr_t)(globals::moduleBase + 0xA43730 + 0xC00), General::functions::noMusicTrack);
 
-		globals::hookManager->addEntry((std::uintptr_t)(globals::moduleBase + 0x1EC9C + 0xC00), General::functions::musicTrack);
-
-		globals::hookManager->addEntry((std::uintptr_t)(globals::moduleBase + 0xA434D0 + 0xC00), General::functions::musicTrack2);
+		//globals::hookManager->addEntry((std::uintptr_t)(globals::moduleBase + 0x1EC9C + 0xC00), General::functions::musicTrack);
 
 		globals::hookManager->addEntry((std::uintptr_t)(globals::moduleBase + 0x861AC8 + 0xC00), General::functions::retTitleVer);
-
-		//globals::hookManager->addEntry((std::uintptr_t)(globals::moduleBase + 0xAB7C80 + 0xC00), General::functions::makeGameNotFocus);
-
-		//globals::hookManager->addEntry((std::uintptr_t)(globals::moduleBase + 0xAB7C50 + 0xC00), General::functions::makeGameFocus);
 
 		globals::hookManager->addEntry((std::uintptr_t)(globals::moduleBase + 0x6A9210 + 0xC00), gameSettings::functions::newSettings);
 
 		globals::hookManager->addEntry((std::uintptr_t)(globals::moduleBase + 0xA440A0 + 0xC00), gameSettings::functions::updateResSettings);
-
+		
 		globals::hookManager->addEntry((std::uintptr_t)(globals::moduleBase + 0x8540EC + 0xC00), Camera::functions::writeFOVMenu);
+		
+		//globals::hookManager->addEntry((std::uintptr_t)(globals::moduleBase + 0xD7D820 + 0xC00), gms::functions::readMenuChange);
+
+		//globals::hookManager->addEntry((std::uintptr_t)(globals::moduleBase + 0xD9F530 + 0xC00), gms::functions::sub_140DA0130);
+		
+		//globals::hookManager->addEntry((std::uintptr_t)(globals::moduleBase + 0xAB5BA0 + 0xC00), Scene::functions::ChangeCore);
+		
+		//globals::hookManager->addEntry((std::uintptr_t)(globals::moduleBase + 0x68B770 + 0xC00), Stage::functions::stageselect);
+		
+		globals::hookManager->addEntry((std::uintptr_t)(globals::moduleBase + 0x6E0134 + 0xC00), Scene::functions::ccSceneBootLogo);
+
+		globals::hookManager->addEntry((std::uintptr_t)(globals::moduleBase + 0x6E07C4 + 0xC00), Scene::functions::ccSceneTitle);
+
+		//globals::hookManager->addEntry((std::uintptr_t)(globals::moduleBase + 0x6DCBC4 + 0xC00), Scene::functions::ccSceneFreeBattle);
+
+		//globals::hookManager->addEntry((std::uintptr_t)(globals::moduleBase + 0x6DCF84 + 0xC00), Scene::functions::ccSceneFreeBattleCharacterSelect);
 		
 		globals::hookManager->hookAllEntries();
 		

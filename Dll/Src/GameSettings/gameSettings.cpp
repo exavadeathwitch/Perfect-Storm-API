@@ -24,6 +24,7 @@ int __fastcall gameSettings::functions::newSettings(__int64 a1) {
 }
 
 __int64 __fastcall gameSettings::functions::updateResSettings(__int64 a1) {
+	globals::hookManager->unhookEntry(&hooks::functions::hkPresent);
 	const auto retval = globals::hookManager->getOriginal<decltype(&gameSettings::functions::updateResSettings)>(gameSettings::functions::updateResSettings)(a1);
 	//mechanics::imguiOn = 0;
 	return retval;

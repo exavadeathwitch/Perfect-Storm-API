@@ -8,6 +8,8 @@
 
 #include "Textures/Textures.hpp"
 
+#include "Scene/gamemodeselect/gms.hpp"
+
 #include "General/general.hpp"
 
 #include "Util/Display/Display.hpp"
@@ -27,6 +29,10 @@
 #include "Util/Memory/Modify.hpp"
 
 #include "Player/Mechanics/mech.hpp"
+
+#include "Util/Sound/Music.hpp"
+
+#include "Util/Sound/SDL2Music.h"
 
 #include <iostream>
 int framecount = 0;
@@ -131,6 +137,15 @@ namespace hooks {
 		}
 		*/
 		//std::cout << trainingModeIcon2 << std::endl;
+
+		Mix_VolumeMusic(gameSettings::musicVol / 1.25);
+		if (General::musicaddr != NULL) {
+			if (General::musictrack == 0 && *(float*)(General::musicaddr + 0xD8 + 0x6C) == 1.0f)
+				music::introtrack = 1;
+			if (General::musictrack == 2 && General::prevtrack == 0)
+				music::introtrack = 2;
+		}
+		gms::gamefunc = 0;
 		if (trainingModeIcon2) {
 
 			ImGuiWindowFlags window_flags = 0;
@@ -139,8 +154,6 @@ namespace hooks {
 			window_flags |= ImGuiWindowFlags_NoResize;
 			window_flags |= ImGuiWindowFlags_NoScrollbar;
 			window_flags |= ImGuiWindowFlags_NoScrollWithMouse;
-
-				ImGui::SetNextWindowPos(ImVec2(100.0f, 100.0f), 0, ImVec2(0.5f, 0.5f));
 			
 
 			ImGui::Begin("", NULL, window_flags);

@@ -102,7 +102,7 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
-    <OutDir>$(SolutionDir)bin\$(ProjectName)_$(Configuration)\</OutDir>
+    <OutDir>C:\Program Files (x86)\Steam\steamapps\common\NARUTO SHIPPUDEN Ultimate Ninja STORM 4</OutDir>
     <IntDir>$(SolutionDir)\build\$(ProjectName)_$(Configuration)\</IntDir>
     <TargetName>d3dcompiler_47</TargetName>
   </PropertyGroup>
@@ -252,7 +252,9 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\Perfect-Storm-API - Copy\Dll\Src\Unlock\unlock.hpp" />
     <ClInclude Include="Src\Battle\battle.hpp" />
+    <ClInclude Include="Src\Battle\commandlist.hpp" />
     <ClInclude Include="Src\Camera\Camera.hpp" />
     <ClInclude Include="Src\Charsel\Charsel.hpp" />
     <ClInclude Include="Src\Input\gInput.hpp" />
@@ -260,9 +262,11 @@
     <ClInclude Include="Src\Net\Online Training\oTraining.hpp" />
     <ClInclude Include="Src\Player\Input\input.hpp" />
     <ClInclude Include="Src\Player\Properties\prop.hpp" />
+    <ClInclude Include="Src\Scene\gamemodeselect\gms.hpp" />
     <ClInclude Include="Src\Scene\Scene.hpp" />
     <ClInclude Include="Src\Stage\Stage.hpp" />
     <ClInclude Include="Src\Textures\Textures.hpp" />
+    <ClInclude Include="Src\Unlock\unlock.hpp" />
     <ClInclude Include="Src\Util\Display\Display.hpp" />
     <ClInclude Include="Thirdparty\stb\stb_image.h" />
     <ClInclude Include="Src\Core\ModConsole\ModConsole.hpp" />
@@ -395,7 +399,9 @@
     <ClInclude Include="Src\Util\Sound\SDLInit.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\Perfect-Storm-API - Copy\Dll\Src\Unlock\unlock.cpp" />
     <ClCompile Include="Src\Battle\battle.cpp" />
+    <ClCompile Include="Src\Battle\commandlist.cpp" />
     <ClCompile Include="Src\Camera\Camera.cpp" />
     <ClCompile Include="Src\Charsel\Charsel.cpp" />
     <ClCompile Include="Src\Core\ModConsole\ModConsole.cpp" />
@@ -421,9 +427,11 @@
     <ClCompile Include="Src\Player\Input\input.cpp" />
     <ClCompile Include="Src\Player\Mechanics\mech.cpp" />
     <ClCompile Include="Src\Player\Properties\prop.cpp" />
+    <ClCompile Include="Src\Scene\gamemodeselect\gms.cpp" />
     <ClCompile Include="Src\Scene\Scene.cpp" />
     <ClCompile Include="Src\Stage\Stage.cpp" />
     <ClCompile Include="Src\Textures\Textures.cpp" />
+    <ClCompile Include="Src\Unlock\unlock.cpp" />
     <ClCompile Include="src\util\console\Console.cpp" />
     <ClCompile Include="src\Util\Hook\HookManager.cpp" />
     <ClCompile Include="Src\Util\Process\Module.cpp" />

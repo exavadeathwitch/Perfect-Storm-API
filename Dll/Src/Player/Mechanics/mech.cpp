@@ -8,6 +8,8 @@
 
 #include "GameSettings/gameSettings.hpp"
 
+#include "Player/Properties/prop.hpp"
+
 #include <iostream>
 
 //Initializes game mechanics depending on the version of the game selected.
@@ -542,6 +544,112 @@ int mechanics::functions::itemState(__int64 a1, unsigned int a2) {
 
 //Function that runs every frame that affects all characters in a combo state. Modifications are for disabling shadow state with full combo switch.
 signed __int64 mechanics::functions::areYouComboing(__int64 playerAddr, unsigned int playerState, unsigned int a3) {
+	/*
+	*(double*)(playerAddr + 0xB40) = 0;
+	*(DWORD*)(playerAddr + 0x840) = 6;
+	*/
+	
+	__int64 a1 = playerAddr;
+	if (*(DWORD*)(a1 + 0xC8C) == 1234) {
+		std::cout << "guard\n";
+		*(DWORD*)(a1 + 0xC8C) = 0x46;
+		//std::cout << *(DWORD*)(a1 + 0xC94) << std::endl;
+		//__int64 addrsubtrahend = 0x7AFE56 + globals::moduleBase;
+		/*
+		std::vector<uint8_t> arrayOfByte(4);
+		for (int i = 0; i < 4; i++)
+			arrayOfByte[3 - i] = ((__int64)name - addrsubtrahend >> (i * 8));
+
+		std::cout << std::hex << globals::moduleBase + 0x7AFE56 << std::endl;
+		std::cout << std::hex << (__int64)name << std::endl;
+
+		util::memory::Modify::write_bytes<4>(globals::moduleBase + 0x7AF252 + 0xC00, { arrayOfByte[3], arrayOfByte[2], arrayOfByte[1], arrayOfByte[0] });
+		*/
+		std::string bodname = "2itc00t0 trall";
+		/*
+		std::string sname = "2itceff1_grds"; //Start
+		std::string lname = "2itceff1_grdl"; //Guard Anim
+		std::string ename = "2itceff1_grde"; //Exit
+		std::string effname = "2itceff1.xfbin";*/
+		std::string sname = "2itceff1_awa_core00"; //Start
+		std::string lname = "2itceff1_awa_core00"; //Guard Anim
+		std::string ename = "2itceff1_awa_core00"; //Exit
+		std::string effname = "2itceff1.xfbin";
+
+		const std::array<unsigned char, 0x10> ogeffbytes = util::memory::Modify::read_bytes<0x10>(globals::moduleBase + 0xC00 + 0x10AB7F8 + 0x400);
+		for (int i = 0; i < 10; i++) {
+			if (i >= effname.length())
+				util::memory::Modify::write_bytes<1>(globals::moduleBase + 0xC00 + 0x10AB7F8 + 0x400 + i, { 0x0 });
+			else
+				util::memory::Modify::write_bytes<1>(globals::moduleBase + 0xC00 + 0x10AB7F8 + 0x400 + i, { uint8_t(effname[i]) });
+		}
+		const std::array<unsigned char, 0x10> ogbodbytes = util::memory::Modify::read_bytes<0x10>(globals::moduleBase + 0xC00 + 0xF08810 + 0x400);
+		for (int i = 0; i < 10; i++) {
+			if (i >= bodname.length())
+				util::memory::Modify::write_bytes<1>(globals::moduleBase + 0xC00 + 0xF08810 + 0x400 + i, { 0x0 });
+			else
+				util::memory::Modify::write_bytes<1>(globals::moduleBase + 0xC00 + 0xF08810 + 0x400 + i, { uint8_t(bodname[i]) });
+		}
+		const std::array<unsigned char, 0x24> ogsbytes = util::memory::Modify::read_bytes<0x24>(globals::moduleBase + 0xC00 + 0x10AB4F8 + 0x400);
+		for (int i = 0; i < 24; i++) {
+			if (i >= sname.length())
+				util::memory::Modify::write_bytes<1>(globals::moduleBase + 0xC00 + 0x10AB4F8 + 0x400 + i, { 0x0 });
+			else
+				util::memory::Modify::write_bytes<1>(globals::moduleBase + 0xC00 + 0x10AB4F8 + 0x400 + i, { uint8_t(sname[i]) });
+		}
+
+		const std::array<unsigned char, 0x24> oglbytes = util::memory::Modify::read_bytes<0x24>(globals::moduleBase + 0xC00 + 0x10AB5B8 + 0x400);
+		for (int i = 0; i < 24; i++) {
+			if (i >= lname.length())
+				util::memory::Modify::write_bytes<1>(globals::moduleBase + 0xC00 + 0x10AB5B8 + 0x400 + i, { 0x0 });
+			else
+				util::memory::Modify::write_bytes<1>(globals::moduleBase + 0xC00 + 0x10AB5B8 + 0x400 + i, { uint8_t(lname[i]) });
+		}
+		const std::array<unsigned char, 0x24> ogebytes = util::memory::Modify::read_bytes<0x24>(globals::moduleBase + 0xC00 + 0x10AB678 + 0x400);
+		for (int i = 0; i < 24; i++) {
+			if (i >= ename.length())
+				util::memory::Modify::write_bytes<1>(globals::moduleBase + 0xC00 + 0x10AB678 + 0x400 + i, { 0x0 });
+			else
+				util::memory::Modify::write_bytes<1>(globals::moduleBase + 0xC00 + 0x10AB678 + 0x400 + i, { uint8_t(ename[i]) });
+		}
+
+		globals::hookManager->callOriginal<decltype(&prop::functions::CtrlGuardEffect)>(prop::functions::CtrlGuardEffect, a1, 1);
+
+		*(DWORD*)(a1 + 0xC8C) = 0x19;
+		for (int i = 0; i < 10; i++) {
+			if (i >= ogeffbytes.size())
+				util::memory::Modify::write_bytes<1>(globals::moduleBase + 0xC00 + 0x10AB7F8 + 0x400 + i, { 0x0 });
+			else
+				util::memory::Modify::write_bytes<1>(globals::moduleBase + 0xC00 + 0x10AB7F8 + 0x400 + i, { ogeffbytes[i] });
+		}
+		for (int i = 0; i < 10; i++) {
+			if (i >= ogbodbytes.size())
+				util::memory::Modify::write_bytes<1>(globals::moduleBase + 0xC00 + 0xF08810 + 0x400 + i, { 0x0 });
+			else
+				util::memory::Modify::write_bytes<1>(globals::moduleBase + 0xC00 + 0xF08810 + 0x400 + i, { ogbodbytes[i] });
+		}
+
+		for (int i = 0; i < 24; i++) {
+			if (i >= ogsbytes.size())
+				util::memory::Modify::write_bytes<1>(globals::moduleBase + 0xC00 + 0x10AB4F8 + 0x400 + i, { 0x0 });
+			else
+				util::memory::Modify::write_bytes<1>(globals::moduleBase + 0xC00 + 0x10AB4F8 + 0x400 + i, { ogsbytes[i] });
+		}
+
+		for (int i = 0; i < 24; i++) {
+			if (i >= oglbytes.size())
+				util::memory::Modify::write_bytes<1>(globals::moduleBase + 0xC00 + 0x10AB5B8 + 0x400 + i, { 0x0 });
+			else
+				util::memory::Modify::write_bytes<1>(globals::moduleBase + 0xC00 + 0x10AB5B8 + 0x400 + i, { oglbytes[i] });
+		}
+
+		for (int i = 0; i < 24; i++) {
+			if (i >= ogebytes.size())
+				util::memory::Modify::write_bytes<1>(globals::moduleBase + 0xC00 + 0x10AB678 + 0x400 + i, { 0x0 });
+			else
+				util::memory::Modify::write_bytes<1>(globals::moduleBase + 0xC00 + 0x10AB678 + 0x400 + i, { ogebytes[i] });
+		}
+	}
 	std::uintptr_t addrGameRate = (std::uintptr_t)(globals::moduleBase + 0x161A334);
 	if (mechanics::fullComboSwitchShadowState && *(DWORD*)(playerAddr + 0xCC0) == 63) {
 		*(DWORD*)(playerAddr + 0x14C60) = 0;

@@ -4,6 +4,7 @@
 //Adding Toggles for Each Individual Mechanic
 
 namespace mechanics {
+	inline bool guardrun = 0;
 	//turn imgui on
 	inline bool imguiOn = 1;
 

@@ -66,6 +66,8 @@ namespace util::memory {
 			return tmp;
 			//*reinterpret_cast<T*>(tmp) = val;
 		}
+		
+		
 	private:
 		
 	};

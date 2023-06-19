@@ -29,8 +29,9 @@ namespace util::hook {
 
 	void HookManager::hookEntry(void* detour) {
 		try {
-			if (MH_EnableHook(m_Entries[detour].m_Original) != MH_OK)
+			if (MH_EnableHook(m_Entries[detour].m_Original) != MH_OK) {
 				throw std::runtime_error(std::format("Failed to enable hook entry @ 0x{:x}.", std::bit_cast<std::uintptr_t>(m_Entries[detour].m_Original)));
+			}
 		}
 		catch (const std::runtime_error& e) {
 			MessageBoxA(nullptr, e.what(), "Runtime error", MB_ICONERROR | MB_OK);
