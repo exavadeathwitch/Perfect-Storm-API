@@ -60,7 +60,7 @@ namespace hooks {
 				ImGui_ImplWin32_Init(sdk::game::gameWindow);
 				ImGui_ImplDX11_Init(sdk::game::device, sdk::game::deviceContext);
 
-				globals::modConsole->buildCommands();
+				//globals::modConsole->buildCommands();
 				});
 		}
 		else
@@ -74,7 +74,7 @@ namespace hooks {
 
 		//printf_s("shit\n");
 		ImGui::SetNextWindowSize({400, 400}, ImGuiCond_FirstUseEver);
-		globals::modConsole->render();
+		//globals::modConsole->render();
 
 		ImGui::EndFrame();
 		ImGui::Render();

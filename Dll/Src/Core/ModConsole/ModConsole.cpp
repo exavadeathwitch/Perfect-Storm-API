@@ -9,7 +9,7 @@ namespace console {
 		if (!m_ShouldRender)
 			return;
 
-		if (ImGui::Begin("Perfect Storm Console", &m_ShouldRender, ImGuiWindowFlags_NoScrollbar | ImGuiWindowFlags_NoCollapse)) {
+		if (ImGui::Begin("Console", &m_ShouldRender, ImGuiWindowFlags_NoScrollbar | ImGuiWindowFlags_NoCollapse)) {
 			ImGui::SetCursorPosY(ImGui::GetWindowHeight() - 25.f);
 
 			std::string command;

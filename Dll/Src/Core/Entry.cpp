@@ -50,14 +50,15 @@ DWORD __stdcall modEntry(void* const imageBase) {
 
 	for (auto i = 0u; i < sizeof(proxyFunctions) / sizeof(*proxyFunctions); ++i)
 		proxyFunctions[i] = std::bit_cast<std::uintptr_t>(GetProcAddress(oD3DCompiler, proxyFuncNames[i]));
-
-    util::console::initialize("lol");
-
-    printf_s("[+] init\n");
-
+	globals::moduleBase = (uintptr_t)GetModuleHandle(NULL);
 	if (!sdk::game::initialize())
-		//std::abort();
+		printf_s("boo\n");
 	settings::onStartup();
+	if (globals::settings->m_ShouldEnableConsole) {
+		util::console::initialize("lol");
+		printf_s("[+] init\n");
+	}
+	globals::modLoader.LoadMods();
     hooks::initialize();
 
 	printf_s("hooks initialized\n");

@@ -26,8 +26,6 @@ namespace settings {
 		nlohmann::json settings;
 
 		settings["General"]["Console"] = true;
-		settings["General"]["Version"] = "Default";
-		settings["General"]["Auto-Update"] = true;
 
 		fileOut << settings.dump(1);
 	}
@@ -38,8 +36,6 @@ namespace settings {
 		nlohmann::json settings;
 
 		settings["General"]["Console"] = globals::settings->m_ShouldEnableConsole;
-		settings["General"]["Version"] = globals::settings->m_Version;
-		settings["General"]["Auto-Update"] = globals::settings->m_ShouldAutoUpdate;
 
 		fileOut << settings.dump(1);
 	}
@@ -54,7 +50,5 @@ namespace settings {
 		auto parsedJson = nlohmann::json::parse(buffer);
 
 		globals::settings->m_ShouldEnableConsole = parsedJson["General"]["Console"].get<bool>();
-		globals::settings->m_Version = parsedJson["General"]["Version"].get<std::string>();
-		globals::settings->m_ShouldAutoUpdate = parsedJson["General"]["Auto-Update"].get<bool>();
 	}
 }

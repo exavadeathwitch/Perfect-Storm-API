@@ -7,8 +7,9 @@ namespace util::console {
 		AllocConsole();
 
 		SetConsoleTitleA(name.data());
-
-		freopen_s(std::bit_cast<FILE**>(stdout), "conout$", "w", stdout);
+		FILE* file = nullptr;
+		freopen_s(&file, "CONIN$", "r", stdin);
+		freopen_s(&file, "CONOUT$", "w", stdout);
 	}
 
 	void uninitialize() {

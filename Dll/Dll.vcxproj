@@ -252,6 +252,9 @@
     <ClInclude Include="Src\Core\ModConsole\ModConsole.hpp" />
     <ClInclude Include="Src\Core\Globals.hpp" />
     <ClInclude Include="Src\Core\Hooks\Hooks.hpp" />
+    <ClInclude Include="Src\Core\ModLoader\ModLoader.hpp" />
+    <ClInclude Include="Src\Core\ModMenu\ModMenu.hpp" />
+    <ClInclude Include="Src\Core\Mod\Mod.hpp" />
     <ClInclude Include="Src\Core\SDK\Game.hpp" />
     <ClInclude Include="Src\Core\Settings\Settings.hpp" />
     <ClInclude Include="src\pch.hpp" />
