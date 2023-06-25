@@ -136,7 +136,7 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>_DEBUG;ULTIMATESTORM_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_DEBUG;ULTIMATESTORM_EXPORTS;_WINDOWS;_USRDLL;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.hpp</PrecompiledHeaderFile>
@@ -257,6 +257,8 @@
     <ClInclude Include="Src\Core\Mod\Mod.hpp" />
     <ClInclude Include="Src\Core\SDK\Game.hpp" />
     <ClInclude Include="Src\Core\Settings\Settings.hpp" />
+    <ClInclude Include="Src\Core\Zealot\API_Console.h" />
+    <ClInclude Include="Src\Core\Zealot\Zealot.hpp" />
     <ClInclude Include="src\pch.hpp" />
     <ClInclude Include="src\util\console\Console.hpp" />
     <ClInclude Include="src\Util\Hook\HookManager.hpp" />
@@ -292,6 +294,7 @@
     <ClCompile Include="Src\Core\Hooks\Hooks.cpp" />
     <ClCompile Include="Src\Core\SDK\Game.cpp" />
     <ClCompile Include="Src\Core\Settings\Settings.cpp" />
+    <ClCompile Include="Src\Core\Zealot\API_Console.cpp" />
     <ClCompile Include="src\pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Public|x64'">Create</PrecompiledHeader>

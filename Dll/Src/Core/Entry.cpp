@@ -8,6 +8,7 @@
 
 #include "Util/Console/Console.hpp"
 
+#include "Core/Zealot/API_Console.h"
 extern "C" std::uintptr_t proxyFunctions[29] = {};
 
 static constexpr const char* proxyFuncNames[29] = {
@@ -62,6 +63,7 @@ DWORD __stdcall modEntry(void* const imageBase) {
     hooks::initialize();
 
 	printf_s("hooks initialized\n");
+	moddingApi::API_Console::LoopConsole();
     while (!GetAsyncKeyState(VK_END))
         Sleep(50);
 

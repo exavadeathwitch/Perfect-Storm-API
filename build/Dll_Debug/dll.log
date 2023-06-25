@@ -1,0 +1,4 @@
+﻿  pch.cpp
+C:\Users\Exavadeathwitch\Documents\GitHub\Perfect-Storm-API\Dll\src\Core\Zealot\Zealot.hpp(74,11): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Exavadeathwitch\Documents\GitHub\Perfect-Storm-API\Dll\src\Core\ModLoader\ModLoader.hpp(39,35): warning C4101: 'ex': unreferenced local variable
+C:\Users\Exavadeathwitch\Documents\GitHub\Perfect-Storm-API\Dll\src\pch.cpp(1,1): fatal error C1085: Cannot write precompiled header file: 'C:\Users\Exavadeathwitch\Documents\GitHub\Perfect-Storm-API\\build\Dll_Debug\d3dcompiler_47.pch': There is not enough space on the disk.

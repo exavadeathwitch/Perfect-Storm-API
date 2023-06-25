@@ -3,6 +3,9 @@
 #include "Core/Mod/Mod.hpp"
 #include "Util/Util.hpp"
 #include "json/single_include/json.hpp"
+#include "Core/Zealot/Zealot.hpp"
+#include "Core/Zealot/API_Console.h"
+#include <atlstr.h>
 class ModLoader {
 	std::vector<Mod> mods;
 	
@@ -142,32 +145,65 @@ class ModLoader {
 								std::cout << "PluginSystem :: Loaded plugin " << pluginname << std::endl;
 
 								std::vector<__int64> functionExport;
-								
+								functionExport.push_back((__int64)Zealot::UpdateKeys);
+								functionExport.push_back((__int64)Zealot::GetKey);
+								functionExport.push_back((__int64)Zealot::GetKeyDown);
+								functionExport.push_back((__int64)Zealot::GetKeyUp);
 								// Get InitializePlugin
-								typedef void(__stdcall* initfunct)(__int64 moduleBase, std::vector<__int64> functs);
-								initfunct funct = (initfunct)GetProcAddress(hGetProcIDDLL, "InitializePlugin");
+								typedef void(__stdcall* initfunct)(__int64 moduleBase, std::vector<__int64> funct);
+								initfunct f = (initfunct)GetProcAddress(hGetProcIDDLL, "InitializePlugin");
 								uintptr_t mb = (uintptr_t)GetModuleHandle(NULL) + 0xC00;
-								if (funct)
-									funct(mb, functionExport);
-								else std::cout << "PluginSystem :: Init not found in plugin" << std::endl;
-
+								if (f) {
+									f(mb, functionExport);
+									std::cout << "init ran\n";
+								}
+								else
+									std::cout << "PluginSystem :: Init not found in plugin" << std::endl;
 								// Get InitializeHooks
 								typedef void(__stdcall* hookfunct)(__int64 moduleBase, __int64 hookFunction);
 								hookfunct hfunct = (hookfunct)GetProcAddress(hGetProcIDDLL, "InitializeHooks");
-
-								if (hfunct) hfunct(mb, NULL);
-								else std::cout << "PluginSystem :: Hook not found in plugin" << std::endl;
 								
-								// Get GameLoop
-								typedef void(__stdcall* initfunctloop)(__int64 moduleBase);
-								initfunctloop functloop = (initfunctloop)GetProcAddress(hGetProcIDDLL, "GameLoop");
-								/*
-								if (functloop) PluginLoop.push_back((__int64)functloop);
+								if (hfunct)
+									hfunct(mb, (__int64)Zealot::Hook);
 								else
+									std::cout << "PluginSystem :: Hook not found in plugin" << std::endl;
+
+								typedef void(__stdcall* cmdfunct)(__int64 moduleBase, __int64 cmdFunction);
+								cmdfunct cfunct = (cmdfunct)GetProcAddress(hGetProcIDDLL, "InitializeCommands");
+
+								if (cfunct)
+									cfunct(mb, (__int64)moddingApi::API_Console::AddCommand);
+								for (const auto& f : std::filesystem::directory_iterator(mods[x].path))
 								{
-									std::cout << "PluginSystem :: Loop not found in plugin" << std::endl;
-									PluginLoop.push_back(0);
-								}*/
+									std::string _file = f.path().string();
+									std::string _ext = _file.substr(_file.length() - 4, 4);
+
+									// Send file to plugin
+									for (int actualPlugin = 0; actualPlugin < mods.size(); actualPlugin++) {
+										if (mods[actualPlugin].type != 0 || mods[actualPlugin].dll == NULL)
+											continue;
+										HINSTANCE hGetProcIDDLL = mods[actualPlugin].dll;
+
+										typedef bool(__stdcall* filefunct)(__int64 moduleBase, std::string path, std::vector<BYTE> file);
+										filefunct funct = (filefunct)GetProcAddress(hGetProcIDDLL, "ParseApiFiles");
+										if (funct)
+											funct(mb, _file, Zealot::ReadAllBytes(_file));
+									}
+
+									//if (funct)
+									//	funct(modBase, (__int64)Zealot::Hook);
+									// Get GameLoop
+									/*
+									typedef void(__stdcall* initfunctloop)(__int64 moduleBase);
+									initfunctloop functloop = (initfunctloop)GetProcAddress(hGetProcIDDLL, "GameLoop");
+									
+									if (functloop) PluginLoop.push_back((__int64)functloop);
+									else
+									{
+										std::cout << "PluginSystem :: Loop not found in plugin" << std::endl;
+										PluginLoop.push_back(0);
+									}*/
+								}
 							}
 							break;
 						}
