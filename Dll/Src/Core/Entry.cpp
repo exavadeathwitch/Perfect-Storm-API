@@ -61,6 +61,7 @@ DWORD __stdcall modEntry(void* const imageBase) {
 		printf_s("[+] init\n");
 	}
 	globals::modLoader.LoadMods();
+	Sleep(5000);
 	sdk::game::initializeGameWindow();
     hooks::initialize();
 	printf_s("hooks initialized\n");

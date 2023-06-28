@@ -42,8 +42,8 @@ namespace hooks {
 		static bool showWindow = true;
 		static std::once_flag init;
 
-		if (showWindow)
-			ShowCursor(true);
+		//if (showWindow)
+			//ShowCursor(true);
 		if (SUCCEEDED(swapChain->GetDevice(__uuidof(ID3D11Device), (void**)&sdk::game::device)))
 		{
 			std::call_once(init, [&swapChain]() {
@@ -71,7 +71,7 @@ namespace hooks {
 		ImGui_ImplWin32_NewFrame();
 
 		ImGui::NewFrame();
-
+		//ImGui::Text("Hello, world %d", 123);
 		//printf_s("shit\n");
 		ImGui::SetNextWindowSize({400, 400}, ImGuiCond_FirstUseEver);
 		//globals::modConsole->render();

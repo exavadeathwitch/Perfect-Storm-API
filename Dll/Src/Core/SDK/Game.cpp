@@ -49,10 +49,10 @@ namespace sdk::game {
 	bool initializeGameWindow() noexcept {
 
 
-		gameWindow = FindWindowA(nullptr, "NSUNS4");
+		gameWindow = FindWindowA(nullptr, "JoJo's Bizarre Adventure: All-Star Battle R");
 
 		while (!gameWindow) {
-			gameWindow = FindWindowA(nullptr, "NSUNS4");
+			gameWindow = FindWindowA(nullptr, "JoJo's Bizarre Adventure: All-Star Battle R");
 			printf_s("Couldn't find window\n");
 			Sleep(2000);
 		}
