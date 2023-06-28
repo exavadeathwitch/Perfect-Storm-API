@@ -6,6 +6,7 @@
 namespace sdk::game {
 
 	bool initialize() noexcept;
+	bool initializeGameWindow() noexcept;
 
 	inline std::uintptr_t* swapChainVtbl = nullptr;
 	inline ID3D11Device* device = nullptr;

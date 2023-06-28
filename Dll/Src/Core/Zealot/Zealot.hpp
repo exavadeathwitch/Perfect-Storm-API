@@ -34,6 +34,7 @@ public:
 
 		return result;
 	}
+
 	static void UpdateKeys()
 	{
 		for (int x = 0; x < 0xFF; x++)

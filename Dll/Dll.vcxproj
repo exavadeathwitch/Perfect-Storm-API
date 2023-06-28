@@ -264,7 +264,9 @@
     <ClInclude Include="src\Util\Hook\HookManager.hpp" />
     <ClInclude Include="src\Util\Memory\Address.hpp" />
     <ClInclude Include="Src\Util\Memory\Memory.hpp" />
+    <ClInclude Include="Src\Util\Memory\Modify.hpp" />
     <ClInclude Include="Src\Util\Memory\Signature.hpp" />
+    <ClInclude Include="Src\Util\Memory\String.hpp" />
     <ClInclude Include="Src\Util\Process\Module.hpp" />
     <ClInclude Include="Src\Util\Process\Process.hpp" />
     <ClInclude Include="Src\Util\Util.hpp" />

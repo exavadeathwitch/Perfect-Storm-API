@@ -29,7 +29,7 @@ namespace util::memory {
 
 	namespace string_literals {
 		template<Signature sig>
-		consteval auto operator""_sig() {
+		consteval auto operator_sig() {
 			constexpr auto data = sig.m_Data;
 
 			std::array<std::uint8_t, std::ranges::count(data, ' ') + 1> signatureBytes{};
