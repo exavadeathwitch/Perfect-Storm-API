@@ -18,7 +18,7 @@ class ModLoader {
 			//Load All Mods
 			for (const auto& entry : std::filesystem::directory_iterator(directory))
 			{
-				//Loading new style mod
+				//Loading type 1 mod(stormapi mod)
 				if (std::filesystem::exists(entry.path().string() + "\\info.json") == true) {
 					std::ifstream fileIn(entry.path().string() + "\\info.json");
 
@@ -190,20 +190,11 @@ class ModLoader {
 							HINSTANCE hGetProcIDDLL = LoadLibrary(wideString);
 
 							if (!hGetProcIDDLL)
-							{
-								std::cout << "PluginSystem :: Error loading plugin " << _file.c_str() << ": ERROR CODE " << std::dec << GetLastError() << std::endl;
-							}
+							{}
 							else
 							{
 								std::string pluginname = std::string(mods[x].name);
 								mods[x].dll = hGetProcIDDLL;
-								std::cout << "PluginSystem :: Loaded plugin " << pluginname << std::endl;
-
-								std::vector<__int64> functionExport;
-								functionExport.push_back((__int64)Zealot::UpdateKeys);
-								functionExport.push_back((__int64)Zealot::GetKey);
-								functionExport.push_back((__int64)Zealot::GetKeyDown);
-								functionExport.push_back((__int64)Zealot::GetKeyUp);
 								// Get InitializePlugin
 								typedef void(__stdcall* initfunct)(__int64 moduleBase, std::vector<__int64> funct);
 								initfunct f = (initfunct)GetProcAddress(hGetProcIDDLL, "InitializePlugin");
