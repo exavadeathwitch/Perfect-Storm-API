@@ -39,6 +39,7 @@ namespace hooks {
 		return hr;
 	}
 	LRESULT __stdcall functions::hkPresent(IDXGISwapChain* swapChain, UINT syncInterval, UINT flags) {
+		return globals::hookManager->callOriginal<decltype(&hkPresent)>(hkPresent, swapChain, syncInterval, flags);
 		static bool showWindow = true;
 		static std::once_flag init;
 
