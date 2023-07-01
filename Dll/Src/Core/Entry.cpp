@@ -57,16 +57,18 @@ DWORD __stdcall modEntry(void* const imageBase) {
 		printf_s("boo\n");
 	settings::onStartup();
 	if (globals::settings->m_ShouldEnableConsole) {
-		util::console::initialize("lol");
+		util::console::initialize("Storm API");
 		printf_s("[+] init\n");
 	}
 	globals::modLoader.LoadMods();
+	globals::modMenu.initializeModNames(globals::modLoader.mods);
+	globals::modMenu.maxMods = globals::settings->m_MaxModsPerColumn;
 	sdk::game::initializeGameWindow();
     hooks::initialize();
 	printf_s("hooks initialized\n");
 	moddingApi::API_Console::LoopConsole();
-    while (!GetAsyncKeyState(VK_END))
-        Sleep(50);
+	while (!GetAsyncKeyState(VK_END))
+		Sleep(50);
 
     hooks::uninitialize();
     util::console::uninitialize();

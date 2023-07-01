@@ -7,9 +7,9 @@
 #include "Core/Zealot/API_Console.h"
 #include <atlstr.h>
 class ModLoader {
-	std::vector<Mod> mods;
 	
 	public:
+		std::vector<Mod> mods;
 		ModLoader() {
 
 		}
@@ -25,7 +25,6 @@ class ModLoader {
 					const std::string buffer{ std::istreambuf_iterator<char>(fileIn), std::istreambuf_iterator<char>() };
 
 					fileIn.close();
-
 					auto parsedJson = nlohmann::json::parse(buffer);
 					std::string errorname = "Name";
 					try {
@@ -36,8 +35,6 @@ class ModLoader {
 						parsedJson["Author"].get<std::string>();
 						errorname = "Priority";
 						parsedJson["Priority"].get<int>();
-						errorname = "Priority";
-						parsedJson["Priority"].get<int>();
 					}
 					catch (const std::exception& ex) {
 						std::string message = "info.json at " + entry.path().string() + " causes an error when loading the key " + errorname + ".";
@@ -46,7 +43,7 @@ class ModLoader {
 						MessageBox(0, wideString, L"Storm API", MB_OK);
 						continue;
 					}
-					mods.push_back(Mod(parsedJson["Name"].get<std::string>(), parsedJson["Description"].get<std::string>(), parsedJson["Author"].get<std::string>(), parsedJson["Priority"].get<int>(), 1, entry.path().string()));
+					mods.push_back(Mod(parsedJson["Name"].get<std::string>(), parsedJson["Description"].get<std::string>(), entry.path().string(), parsedJson["Author"].get<std::string>(), parsedJson["Priority"].get<int>(), 1, entry.path().string()));
 				}
 				//Loading type 0 mod(moddingapi mod)
 				else if (std::filesystem::exists(entry.path().string() + "\\info.txt") == true) {
@@ -101,7 +98,7 @@ class ModLoader {
 						continue;
 					}
 					std::cout << modName << " has been loaded." << std::endl;
-					mods.push_back(Mod(modName, modDesc, modAuth, 100, 0, entry.path().string()));
+					mods.push_back(Mod(modName, modDesc, entry.path().string(), modAuth, 100, 0, entry.path().string()));
 				}
 				else {
 					std::string message = "Info file at " + entry.path().string() + " not found. The mod has not been loaded.";
@@ -177,7 +174,7 @@ class ModLoader {
 						}
 					}
 					break;
-					/*
+					
 				case 1:
 					for (const auto& f : std::filesystem::directory_iterator(mods[x].path))
 					{
@@ -196,15 +193,14 @@ class ModLoader {
 								std::string pluginname = std::string(mods[x].name);
 								mods[x].dll = hGetProcIDDLL;
 								// Get InitializePlugin
-								typedef void(__stdcall* initfunct)(__int64 moduleBase, std::vector<__int64> funct);
-								initfunct f = (initfunct)GetProcAddress(hGetProcIDDLL, "InitializePlugin");
+								typedef void(__stdcall* initfunct)(__int64 uintptr_t);
+								initfunct f = (initfunct)GetProcAddress(hGetProcIDDLL, "modEntry");
 								uintptr_t mb = (uintptr_t)GetModuleHandle(NULL) + 0xC00;
 								if (f) {
-									f(mb, functionExport);
-									std::cout << "init ran\n";
+									f(mb);
 								}
 								else {
-									std::string message = "ModEntry could not be loaded for the plugin " + pluginname + ".";
+									std::string message = "modEntry could not be loaded for the plugin " + pluginname + ".";
 									std::wstring temp = std::wstring(message.begin(), message.end());
 									LPCWSTR wideString = temp.c_str();
 									MessageBox(0, wideString, L"Storm API", MB_OK);
@@ -214,7 +210,7 @@ class ModLoader {
 						else
 							continue;
 					}
-					break;*/
+					break;
 				default:
 					break;
 				}
@@ -255,5 +251,4 @@ class ModLoader {
 					}
 			}
 		}
-
 };

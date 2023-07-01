@@ -1,4 +1,21 @@
 ﻿  pch.cpp
-C:\Users\Exavadeathwitch\Documents\GitHub\Perfect-Storm-API\Dll\src\Core\Zealot\Zealot.hpp(74,11): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Exavadeathwitch\Documents\GitHub\Perfect-Storm-API\Dll\src\Core\Zealot\Zealot.hpp(75,11): warning C4018: '<': signed/unsigned mismatch
 C:\Users\Exavadeathwitch\Documents\GitHub\Perfect-Storm-API\Dll\src\Core\ModLoader\ModLoader.hpp(39,35): warning C4101: 'ex': unreferenced local variable
-C:\Users\Exavadeathwitch\Documents\GitHub\Perfect-Storm-API\Dll\src\pch.cpp(1,1): fatal error C1085: Cannot write precompiled header file: 'C:\Users\Exavadeathwitch\Documents\GitHub\Perfect-Storm-API\\build\Dll_Debug\d3dcompiler_47.pch': There is not enough space on the disk.
+C:\Users\Exavadeathwitch\Documents\GitHub\Perfect-Storm-API\Dll\src\Core\ModMenu\ModMenu.hpp(66,1): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\Exavadeathwitch\Documents\GitHub\Perfect-Storm-API\Dll\src\Core\ModMenu\ModMenu.hpp(88,1): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
+  Present.cpp
+C:\Users\Exavadeathwitch\Documents\GitHub\Perfect-Storm-API\Dll\Src\Core\Hooks\Functions\D3D11\Present.cpp(34,14): warning C4244: '=': conversion from 'UINT' to 'FLOAT', possible loss of data
+C:\Users\Exavadeathwitch\Documents\GitHub\Perfect-Storm-API\Dll\Src\Core\Hooks\Functions\D3D11\Present.cpp(35,15): warning C4244: '=': conversion from 'UINT' to 'FLOAT', possible loss of data
+  WndProc.cpp
+  Hooks.cpp
+  ModConsole.cpp
+  Game.cpp
+  Settings.cpp
+  API_Console.cpp
+C:\Users\Exavadeathwitch\Documents\GitHub\Perfect-Storm-API\Dll\Src\Core\Zealot\API_Console.cpp(117,30): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
+  Module.cpp
+  Entry.cpp
+  HookManager.cpp
+  Console.cpp
+  Generating Code...
+  dll.vcxproj -> C:\Users\Exavadeathwitch\Documents\GitHub\Perfect-Storm-API\bin\Dll_Debug\d3dcompiler_47.dll

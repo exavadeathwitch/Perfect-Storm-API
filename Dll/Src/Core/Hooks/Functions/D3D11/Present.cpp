@@ -5,6 +5,8 @@
 #include "imgui/include/imgui_impl_dx11.h"
 #include "imgui/include/imgui_impl_win32.h"
 
+#include "Core/Globals.hpp"
+
 ID3D11RenderTargetView* g_RenderTargetView;
 
 namespace hooks {
@@ -71,10 +73,23 @@ namespace hooks {
 		ImGui_ImplWin32_NewFrame();
 
 		ImGui::NewFrame();
-
-		//printf_s("shit\n");
-		ImGui::SetNextWindowSize({400, 400}, ImGuiCond_FirstUseEver);
-		//globals::modConsole->render();
+		globals::modMenu.runMenu();
+		for (int x = 0; x < globals::modLoader.mods.size(); x++) {
+			typedef void(__stdcall* initfunctloop)(__int64 moduleBase);
+			initfunctloop functloop = (initfunctloop)GetProcAddress(globals::modLoader.mods[x].dll, "GameLoop");
+			typedef void(__stdcall* initfunctimguiloop)(__int64 moduleBase, ImGuiContext* context);
+			initfunctimguiloop functimguiloop = (initfunctimguiloop)GetProcAddress(globals::modLoader.mods[x].dll, "modLoop");
+			switch (globals::modLoader.mods[x].type) {
+			case 0:
+				if (functloop)
+					functloop(globals::moduleBase);
+				break;
+			case 1:
+				if (functimguiloop)
+					functimguiloop(globals::moduleBase, ImGui::GetCurrentContext());
+				break;
+			}
+		}
 
 		ImGui::EndFrame();
 		ImGui::Render();

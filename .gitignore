@@ -96,3 +96,4 @@ build/Dll_Public/WndProc.obj
 *.opendb
 *.db
 *.pch
+*.ilk

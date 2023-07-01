@@ -53,7 +53,7 @@ namespace sdk::game {
 
 		while (!gameWindow) {
 			gameWindow = FindWindowA(nullptr, "NSUNS4");
-			printf_s("Couldn't find window\n");
+			//printf_s("Couldn't find window\n");
 			Sleep(2000);
 		}
 		return true;

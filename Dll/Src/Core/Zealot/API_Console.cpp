@@ -20,8 +20,7 @@ DWORD WINAPI moddingApi::API_Console::LoopConsole()
 		std::cin >> cmd;
 
 		moddingApi::API_Console::DoConsoleCommand(cmd);
-
-		Sleep(100);
+		//Sleep(100);
 	}
 
 	return 0;

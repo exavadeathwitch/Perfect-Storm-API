@@ -5,6 +5,7 @@
 class Mod {
 public:
 	std::string name;
+	std::string description;
 	std::string directory;
 	std::string author;
 	std::string path;
@@ -13,6 +14,7 @@ public:
 	int type; //0 for old, 1 for new
 	Mod() {
 		this->name = "";
+		this->description = "";
 		this->directory = "";
 		this->author = "";
 		this->priority = 1;
@@ -20,8 +22,9 @@ public:
 		this->path = "";
 		this->dll = NULL;
 	}
-	Mod(std::string name, std::string directory, std::string author, int priority, int type, std::string path) {
+	Mod(std::string name, std::string description, std::string directory, std::string author, int priority, int type, std::string path) {
 		this->name = name;
+		this->description = description;
 		this->directory = directory;
 		this->author = author;
 		this->priority = priority;
@@ -29,8 +32,4 @@ public:
 		this->path = path;
 		this->dll = NULL;
 	}
-};
-
-class Plugin {
-
 };
