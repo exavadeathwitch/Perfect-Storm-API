@@ -1,11 +1,15 @@
 ﻿  pch.cpp
 C:\Users\Exavadeathwitch\Documents\GitHub\Perfect-Storm-API\Dll\src\Core\Zealot\Zealot.hpp(75,11): warning C4018: '<': signed/unsigned mismatch
 C:\Users\Exavadeathwitch\Documents\GitHub\Perfect-Storm-API\Dll\src\Core\ModLoader\ModLoader.hpp(39,35): warning C4101: 'ex': unreferenced local variable
-C:\Users\Exavadeathwitch\Documents\GitHub\Perfect-Storm-API\Dll\src\Core\ModMenu\ModMenu.hpp(66,1): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
-C:\Users\Exavadeathwitch\Documents\GitHub\Perfect-Storm-API\Dll\src\Core\ModMenu\ModMenu.hpp(88,1): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\Exavadeathwitch\Documents\GitHub\Perfect-Storm-API\Dll\src\Core\Language\Language.hpp(58,1): warning C4267: 'return': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\Exavadeathwitch\Documents\GitHub\Perfect-Storm-API\Dll\src\Core\MenuMessage\MenuMessage.hpp(58,1): warning C4267: '=': conversion from 'size_t' to 'unsigned int', possible loss of data
+C:\Users\Exavadeathwitch\Documents\GitHub\Perfect-Storm-API\Dll\src\Core\ModMenu\ModMenu.hpp(95,23): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Exavadeathwitch\Documents\GitHub\Perfect-Storm-API\Dll\src\Core\ModMenu\ModMenu.hpp(100,23): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Exavadeathwitch\Documents\GitHub\Perfect-Storm-API\Dll\src\Core\ModMenu\ModMenu.hpp(141,1): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\Exavadeathwitch\Documents\GitHub\Perfect-Storm-API\Dll\src\Core\ModMenu\ModMenu.hpp(163,1): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
   Present.cpp
-C:\Users\Exavadeathwitch\Documents\GitHub\Perfect-Storm-API\Dll\Src\Core\Hooks\Functions\D3D11\Present.cpp(34,14): warning C4244: '=': conversion from 'UINT' to 'FLOAT', possible loss of data
-C:\Users\Exavadeathwitch\Documents\GitHub\Perfect-Storm-API\Dll\Src\Core\Hooks\Functions\D3D11\Present.cpp(35,15): warning C4244: '=': conversion from 'UINT' to 'FLOAT', possible loss of data
+C:\Users\Exavadeathwitch\Documents\GitHub\Perfect-Storm-API\Dll\Src\Core\Hooks\Functions\D3D11\Present.cpp(36,14): warning C4244: '=': conversion from 'UINT' to 'FLOAT', possible loss of data
+C:\Users\Exavadeathwitch\Documents\GitHub\Perfect-Storm-API\Dll\Src\Core\Hooks\Functions\D3D11\Present.cpp(37,15): warning C4244: '=': conversion from 'UINT' to 'FLOAT', possible loss of data
   WndProc.cpp
   Hooks.cpp
   ModConsole.cpp
@@ -14,8 +18,68 @@ C:\Users\Exavadeathwitch\Documents\GitHub\Perfect-Storm-API\Dll\Src\Core\Hooks\F
   API_Console.cpp
 C:\Users\Exavadeathwitch\Documents\GitHub\Perfect-Storm-API\Dll\Src\Core\Zealot\API_Console.cpp(117,30): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
   Module.cpp
+  imgui_styles.cpp
+C:\Users\Exavadeathwitch\Documents\GitHub\Perfect-Storm-API\Dll\Thirdparty\imguistyles\imgui_styles.cpp(141,2): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\Exavadeathwitch\Documents\GitHub\Perfect-Storm-API\Dll\Thirdparty\imguistyles\imgui_styles.cpp(142,2): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\Exavadeathwitch\Documents\GitHub\Perfect-Storm-API\Dll\Thirdparty\imguistyles\imgui_styles.cpp(143,2): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\Exavadeathwitch\Documents\GitHub\Perfect-Storm-API\Dll\Thirdparty\imguistyles\imgui_styles.cpp(144,2): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\Exavadeathwitch\Documents\GitHub\Perfect-Storm-API\Dll\Thirdparty\imguistyles\imgui_styles.cpp(145,2): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\Exavadeathwitch\Documents\GitHub\Perfect-Storm-API\Dll\Thirdparty\imguistyles\imgui_styles.cpp(146,2): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\Exavadeathwitch\Documents\GitHub\Perfect-Storm-API\Dll\Thirdparty\imguistyles\imgui_styles.cpp(147,2): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\Exavadeathwitch\Documents\GitHub\Perfect-Storm-API\Dll\Thirdparty\imguistyles\imgui_styles.cpp(148,2): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\Exavadeathwitch\Documents\GitHub\Perfect-Storm-API\Dll\Thirdparty\imguistyles\imgui_styles.cpp(149,2): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\Exavadeathwitch\Documents\GitHub\Perfect-Storm-API\Dll\Thirdparty\imguistyles\imgui_styles.cpp(150,2): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\Exavadeathwitch\Documents\GitHub\Perfect-Storm-API\Dll\Thirdparty\imguistyles\imgui_styles.cpp(151,2): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\Exavadeathwitch\Documents\GitHub\Perfect-Storm-API\Dll\Thirdparty\imguistyles\imgui_styles.cpp(152,2): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\Exavadeathwitch\Documents\GitHub\Perfect-Storm-API\Dll\Thirdparty\imguistyles\imgui_styles.cpp(153,2): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\Exavadeathwitch\Documents\GitHub\Perfect-Storm-API\Dll\Thirdparty\imguistyles\imgui_styles.cpp(154,2): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\Exavadeathwitch\Documents\GitHub\Perfect-Storm-API\Dll\Thirdparty\imguistyles\imgui_styles.cpp(155,2): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\Exavadeathwitch\Documents\GitHub\Perfect-Storm-API\Dll\Thirdparty\imguistyles\imgui_styles.cpp(156,2): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\Exavadeathwitch\Documents\GitHub\Perfect-Storm-API\Dll\Thirdparty\imguistyles\imgui_styles.cpp(157,2): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\Exavadeathwitch\Documents\GitHub\Perfect-Storm-API\Dll\Thirdparty\imguistyles\imgui_styles.cpp(158,2): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\Exavadeathwitch\Documents\GitHub\Perfect-Storm-API\Dll\Thirdparty\imguistyles\imgui_styles.cpp(159,2): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\Exavadeathwitch\Documents\GitHub\Perfect-Storm-API\Dll\Thirdparty\imguistyles\imgui_styles.cpp(160,2): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\Exavadeathwitch\Documents\GitHub\Perfect-Storm-API\Dll\Thirdparty\imguistyles\imgui_styles.cpp(161,2): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\Exavadeathwitch\Documents\GitHub\Perfect-Storm-API\Dll\Thirdparty\imguistyles\imgui_styles.cpp(162,2): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\Exavadeathwitch\Documents\GitHub\Perfect-Storm-API\Dll\Thirdparty\imguistyles\imgui_styles.cpp(207,2): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\Exavadeathwitch\Documents\GitHub\Perfect-Storm-API\Dll\Thirdparty\imguistyles\imgui_styles.cpp(208,2): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\Exavadeathwitch\Documents\GitHub\Perfect-Storm-API\Dll\Thirdparty\imguistyles\imgui_styles.cpp(209,2): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\Exavadeathwitch\Documents\GitHub\Perfect-Storm-API\Dll\Thirdparty\imguistyles\imgui_styles.cpp(210,2): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\Exavadeathwitch\Documents\GitHub\Perfect-Storm-API\Dll\Thirdparty\imguistyles\imgui_styles.cpp(211,2): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\Exavadeathwitch\Documents\GitHub\Perfect-Storm-API\Dll\Thirdparty\imguistyles\imgui_styles.cpp(212,2): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\Exavadeathwitch\Documents\GitHub\Perfect-Storm-API\Dll\Thirdparty\imguistyles\imgui_styles.cpp(213,2): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\Exavadeathwitch\Documents\GitHub\Perfect-Storm-API\Dll\Thirdparty\imguistyles\imgui_styles.cpp(214,2): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\Exavadeathwitch\Documents\GitHub\Perfect-Storm-API\Dll\Thirdparty\imguistyles\imgui_styles.cpp(215,2): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\Exavadeathwitch\Documents\GitHub\Perfect-Storm-API\Dll\Thirdparty\imguistyles\imgui_styles.cpp(216,2): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\Exavadeathwitch\Documents\GitHub\Perfect-Storm-API\Dll\Thirdparty\imguistyles\imgui_styles.cpp(217,2): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\Exavadeathwitch\Documents\GitHub\Perfect-Storm-API\Dll\Thirdparty\imguistyles\imgui_styles.cpp(218,2): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\Exavadeathwitch\Documents\GitHub\Perfect-Storm-API\Dll\Thirdparty\imguistyles\imgui_styles.cpp(413,22): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\Exavadeathwitch\Documents\GitHub\Perfect-Storm-API\Dll\Thirdparty\imguistyles\imgui_styles.cpp(463,33): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
   Entry.cpp
+C:\Users\Exavadeathwitch\Documents\GitHub\Perfect-Storm-API\Dll\src\Core\Entry.cpp(87,21): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Exavadeathwitch\Documents\GitHub\Perfect-Storm-API\Dll\src\Core\Entry.cpp(92,21): warning C4018: '<': signed/unsigned mismatch
   HookManager.cpp
   Console.cpp
   Generating Code...
+minhook.x64d.lib(hook.obj) : warning LNK4099: PDB 'minhook.x64d.pdb' was not found with 'minhook.x64d.lib(hook.obj)' or at 'C:\Users\Exavadeathwitch\Documents\GitHub\Perfect-Storm-API\bin\Dll_Debug\minhook.x64d.pdb'; linking object as if no debug info
+minhook.x64d.lib(buffer.obj) : warning LNK4099: PDB 'minhook.x64d.pdb' was not found with 'minhook.x64d.lib(buffer.obj)' or at 'C:\Users\Exavadeathwitch\Documents\GitHub\Perfect-Storm-API\bin\Dll_Debug\minhook.x64d.pdb'; linking object as if no debug info
+minhook.x64d.lib(trampoline.obj) : warning LNK4099: PDB 'minhook.x64d.pdb' was not found with 'minhook.x64d.lib(trampoline.obj)' or at 'C:\Users\Exavadeathwitch\Documents\GitHub\Perfect-Storm-API\bin\Dll_Debug\minhook.x64d.pdb'; linking object as if no debug info
+minhook.x64d.lib(hde64.obj) : warning LNK4099: PDB 'minhook.x64d.pdb' was not found with 'minhook.x64d.lib(hde64.obj)' or at 'C:\Users\Exavadeathwitch\Documents\GitHub\Perfect-Storm-API\bin\Dll_Debug\minhook.x64d.pdb'; linking object as if no debug info
+  imguid.lib(imgui.obj) : MSIL .netmodule or module compiled with /GL found; restarting link with /LTCG; add /LTCG to the link command line to improve linker performance
+LINK : warning LNK4075: ignoring '/INCREMENTAL' due to '/LTCG' specification
+     Creating library C:\Users\Exavadeathwitch\Documents\GitHub\Perfect-Storm-API\bin\Dll_Debug\d3dcompiler_47.lib and object C:\Users\Exavadeathwitch\Documents\GitHub\Perfect-Storm-API\bin\Dll_Debug\d3dcompiler_47.exp
+LINK : warning LNK4098: defaultlib 'MSVCRT' conflicts with use of other libs; use /NODEFAULTLIB:library
+  Generating code
+  Finished generating code
+minhook.x64d.lib(hook.obj) : warning LNK4099: PDB 'minhook.x64d.pdb' was not found with 'minhook.x64d.lib(hook.obj)' or at 'C:\Users\Exavadeathwitch\Documents\GitHub\Perfect-Storm-API\bin\Dll_Debug\minhook.x64d.pdb'; linking object as if no debug info
+minhook.x64d.lib(buffer.obj) : warning LNK4099: PDB 'minhook.x64d.pdb' was not found with 'minhook.x64d.lib(buffer.obj)' or at 'C:\Users\Exavadeathwitch\Documents\GitHub\Perfect-Storm-API\bin\Dll_Debug\minhook.x64d.pdb'; linking object as if no debug info
+minhook.x64d.lib(trampoline.obj) : warning LNK4099: PDB 'minhook.x64d.pdb' was not found with 'minhook.x64d.lib(trampoline.obj)' or at 'C:\Users\Exavadeathwitch\Documents\GitHub\Perfect-Storm-API\bin\Dll_Debug\minhook.x64d.pdb'; linking object as if no debug info
+minhook.x64d.lib(hde64.obj) : warning LNK4099: PDB 'minhook.x64d.pdb' was not found with 'minhook.x64d.lib(hde64.obj)' or at 'C:\Users\Exavadeathwitch\Documents\GitHub\Perfect-Storm-API\bin\Dll_Debug\minhook.x64d.pdb'; linking object as if no debug info
+imguid.lib(imgui.obj) : warning LNK4099: PDB 'imgui.pdb' was not found with 'imguid.lib(imgui.obj)' or at 'C:\Users\Exavadeathwitch\Documents\GitHub\Perfect-Storm-API\bin\Dll_Debug\imgui.pdb'; linking object as if no debug info
+imguid.lib(imgui_widgets.obj) : warning LNK4099: PDB 'imgui.pdb' was not found with 'imguid.lib(imgui_widgets.obj)' or at 'C:\Users\Exavadeathwitch\Documents\GitHub\Perfect-Storm-API\bin\Dll_Debug\imgui.pdb'; linking object as if no debug info
+imguid.lib(imgui_demo.obj) : warning LNK4099: PDB 'imgui.pdb' was not found with 'imguid.lib(imgui_demo.obj)' or at 'C:\Users\Exavadeathwitch\Documents\GitHub\Perfect-Storm-API\bin\Dll_Debug\imgui.pdb'; linking object as if no debug info
+imguid.lib(imgui_impl_dx11.obj) : warning LNK4099: PDB 'imgui.pdb' was not found with 'imguid.lib(imgui_impl_dx11.obj)' or at 'C:\Users\Exavadeathwitch\Documents\GitHub\Perfect-Storm-API\bin\Dll_Debug\imgui.pdb'; linking object as if no debug info
+imguid.lib(imgui_impl_win32.obj) : warning LNK4099: PDB 'imgui.pdb' was not found with 'imguid.lib(imgui_impl_win32.obj)' or at 'C:\Users\Exavadeathwitch\Documents\GitHub\Perfect-Storm-API\bin\Dll_Debug\imgui.pdb'; linking object as if no debug info
+imguid.lib(imgui_draw.obj) : warning LNK4099: PDB 'imgui.pdb' was not found with 'imguid.lib(imgui_draw.obj)' or at 'C:\Users\Exavadeathwitch\Documents\GitHub\Perfect-Storm-API\bin\Dll_Debug\imgui.pdb'; linking object as if no debug info
+imguid.lib(imgui_tables.obj) : warning LNK4099: PDB 'imgui.pdb' was not found with 'imguid.lib(imgui_tables.obj)' or at 'C:\Users\Exavadeathwitch\Documents\GitHub\Perfect-Storm-API\bin\Dll_Debug\imgui.pdb'; linking object as if no debug info
   dll.vcxproj -> C:\Users\Exavadeathwitch\Documents\GitHub\Perfect-Storm-API\bin\Dll_Debug\d3dcompiler_47.dll
