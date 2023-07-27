@@ -72,6 +72,7 @@ DWORD __stdcall modEntry(void* const imageBase) {
 		util::console::initialize("Storm API");
 		printf_s("[+] init\n");
 	}
+	globals::modLoader.sa = (__int64)&globals::settings;
 	globals::modLoader.LoadMods();
 	globals::modMenu.initializeModNames(globals::modLoader.mods);
 	globals::modMenu.maxMods = globals::settings->m_MaxModsPerColumn;
