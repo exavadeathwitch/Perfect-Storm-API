@@ -3,9 +3,11 @@
     "",
     "\\Dll",
     "\\Dll\\Src",
-    "\\Dll\\Src\\Core",
-    "\\Dll\\Src\\Core\\ModMenu"
+    "\\Dll\\Src\\Core\\ModMenu",
+    "\\Dll\\Src\\Exports",
+    "\\Dll\\Src\\Util",
+    "\\Dll\\Src\\Util\\Config"
   ],
-  "SelectedNode": "\\Dll\\Src\\Core\\ModMenu\\ModMenu.hpp",
+  "SelectedNode": "\\Dll\\Src\\Util\\Config\\toml.hpp",
   "PreviewInSolutionExplorer": false
 }

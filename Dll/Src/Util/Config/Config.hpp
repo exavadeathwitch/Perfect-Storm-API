@@ -1,6 +1,6 @@
 #pragma once
 
-#include "../Util/Config/toml.hpp"
+#include "toml.hpp"
 
 namespace Config {
 	struct PluginConfig {
@@ -9,7 +9,8 @@ namespace Config {
 	};
 
 	PluginConfig GetPluginsConfig(std::string pluginGUID);
-	
+	void Save(PluginConfig& config);
+
 	template<typename T>
 	inline T Bind(toml::table& config, std::string section, std::string key, T defaultValue) {
 		// Check if the section exists
@@ -28,5 +29,15 @@ namespace Config {
 		return config[section][key].value<T>();
 	}
 
-	void Save(PluginConfig& config);
+	template<typename T>
+	inline void Set(toml::table& config, std::string section, std::string key, T value) {
+		// Check if the section exists
+		if (!config.contains(section)) {
+			// Create the section
+			config[section] = toml::table();
+		}
+
+		// Set the value
+		config[section][key] = value;
+	}
 }

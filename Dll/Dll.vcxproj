@@ -249,7 +249,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\..\..\Downloads\Perfect-Storm-API-baseapi\Perfect-Storm-API-baseapi\Dll\Src\Core\Language\Language.hpp" />
     <ClInclude Include="Src\Class\message.hpp" />
     <ClInclude Include="Src\Core\Language\Language.hpp" />
     <ClInclude Include="Src\Core\MenuMessage\MenuMessage.hpp" />
