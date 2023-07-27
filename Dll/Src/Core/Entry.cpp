@@ -9,6 +9,8 @@
 #include "Util/Console/Console.hpp"
 
 #include "Core/Zealot/API_Console.h"
+
+#include "MenuMessage/MenuMessage.hpp"
 extern "C" std::uintptr_t proxyFunctions[29] = {};
 
 static constexpr const char* proxyFuncNames[29] = {
@@ -43,6 +45,16 @@ static constexpr const char* proxyFuncNames[29] = {
 	"D3DWriteBlobToFile"
 };
 
+void toggleModMenu() {
+	while (true) {
+		if ((GetAsyncKeyState(VK_ESCAPE) & 0x01)) {
+			if (globals::modMenu.enableMenu)
+				globals::modMenu.enableMenu = false;
+			else
+				globals::modMenu.enableMenu = true;
+		}
+	}
+}
 DWORD __stdcall modEntry(void* const imageBase) {
 	const HMODULE oD3DCompiler = LoadLibraryA("d3dcompiler_47_o.dll");
 
@@ -63,10 +75,26 @@ DWORD __stdcall modEntry(void* const imageBase) {
 	globals::modLoader.LoadMods();
 	globals::modMenu.initializeModNames(globals::modLoader.mods);
 	globals::modMenu.maxMods = globals::settings->m_MaxModsPerColumn;
+	globals::modMenu.ec = globals::settings->m_ShouldEnableConsole;
+	globals::modMenu.convertmenumessages = globals::settings->m_ConvertMenuMessages;
 	sdk::game::initializeGameWindow();
     hooks::initialize();
 	printf_s("hooks initialized\n");
-	moddingApi::API_Console::LoopConsole();
+	globals::modMenu.setLang(globals::settings->m_Language);
+	menuSet.setlang(globals::settings->m_Language);
+	translateAllSets();
+	if (globals::settings->m_ConvertMenuMessages) {
+		for (int x = 0; x < debugmessageset.size; x++) {
+			debugmessageset.messages[x].convertmessages = true;
+		}
+	}
+	else {
+		for (int x = 0; x < debugmessageset.size; x++) {
+			debugmessageset.messages[x].convertmessages = false;
+		}
+	}
+	std::thread(moddingApi::API_Console::LoopConsole).detach();
+	toggleModMenu();
 	while (!GetAsyncKeyState(VK_END))
 		Sleep(50);
 

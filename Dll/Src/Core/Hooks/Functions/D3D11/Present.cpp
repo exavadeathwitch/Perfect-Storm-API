@@ -7,6 +7,8 @@
 
 #include "Core/Globals.hpp"
 
+#include "imguistyles/imgui_styles.h"
+
 ID3D11RenderTargetView* g_RenderTargetView;
 
 namespace hooks {
@@ -61,7 +63,11 @@ namespace hooks {
 
 				ImGui_ImplWin32_Init(sdk::game::gameWindow);
 				ImGui_ImplDX11_Init(sdk::game::device, sdk::game::deviceContext);
-
+				std::ifstream f(util::getImguiStylePath());
+				if (!f.good()) {
+					ImGui::SaveStylesTo(util::getImguiStylePath().string().c_str());
+				}
+				ImGui::LoadStyleFrom(util::getImguiStylePath().string().c_str());
 				//globals::modConsole->buildCommands();
 				});
 		}
