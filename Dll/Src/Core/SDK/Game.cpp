@@ -49,10 +49,10 @@ namespace sdk::game {
 	bool initializeGameWindow() noexcept {
 
 
-		gameWindow = FindWindowA(nullptr, "NSUNS4");
+		gameWindow = FindWindowA(nullptr, GAME_WINDOW_NAME);
 
 		while (!gameWindow) {
-			gameWindow = FindWindowA(nullptr, "NSUNS4");
+			gameWindow = FindWindowA(nullptr, GAME_WINDOW_NAME);
 			//printf_s("Couldn't find window\n");
 			Sleep(2000);
 		}

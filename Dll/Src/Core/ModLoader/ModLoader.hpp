@@ -18,7 +18,7 @@ class ModLoader {
 			//Load All Mods
 			for (const auto& entry : std::filesystem::directory_iterator(directory))
 			{
-				//Loading type 1 mod(stormapi mod)
+				//Loading type 1 mod(mod)
 				if (std::filesystem::exists(entry.path().string() + "\\info.json") == true) {
 					std::ifstream fileIn(entry.path().string() + "\\info.json");
 
