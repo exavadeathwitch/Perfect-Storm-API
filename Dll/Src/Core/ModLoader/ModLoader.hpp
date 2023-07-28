@@ -21,7 +21,7 @@ class ModLoader {
 			//Load All Mods
 			for (const auto& entry : std::filesystem::directory_iterator(directory))
 			{
-				//Loading type 1 mod(stormapi mod)
+				//Loading type 1 mod(mod)
 				if (std::filesystem::exists(entry.path().string() + "\\info.json") == true) {
 					std::ifstream fileIn(entry.path().string() + "\\info.json");
 
@@ -46,7 +46,7 @@ class ModLoader {
 						MessageBox(0, wideString, L"Storm API", MB_OK);
 						continue;
 					}
-					mods.push_back(Mod(parsedJson["Name"].get<std::string>(), parsedJson["Description"].get<std::string>(), entry.path().string(), parsedJson["Author"].get<std::string>(), parsedJson["Priority"].get<int>(), 1, entry.path().string()));
+					mods.push_back(Mod(parsedJson["Name"].get<std::string>(), parsedJson["Description"].get<std::string>(), entry.path().string(), parsedJson["Author"].get<std::string>(), parsedJson["Priority"].get<int>(), ModType::NEW, entry.path().string()));
 				}
 				//Loading type 0 mod(moddingapi mod)
 				else if (std::filesystem::exists(entry.path().string() + "\\info.txt") == true) {
@@ -101,7 +101,7 @@ class ModLoader {
 						continue;
 					}
 					std::cout << modName << " has been loaded." << std::endl;
-					mods.push_back(Mod(modName, modDesc, entry.path().string(), modAuth, 100, 0, entry.path().string()));
+					mods.push_back(Mod(modName, modDesc, entry.path().string(), modAuth, 100, ModType::OLD, entry.path().string()));
 				}
 				else {
 					std::string message = "Info file at " + entry.path().string() + " not found. The mod has not been loaded.";

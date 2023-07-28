@@ -1,0 +1,13 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\Dll",
+    "\\Dll\\Src",
+    "\\Dll\\Src\\Core\\ModMenu",
+    "\\Dll\\Src\\Exports",
+    "\\Dll\\Src\\Util",
+    "\\Dll\\Src\\Util\\Config"
+  ],
+  "SelectedNode": "\\Dll\\Src\\Util\\Config\\toml.hpp",
+  "PreviewInSolutionExplorer": false
+}
