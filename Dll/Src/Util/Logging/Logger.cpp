@@ -1,6 +1,8 @@
 #include "Logger.h"
 
-void LogOutput(LogLevel level, const std::string& message, const std::string& pluginGUID) {
+#include "pch.hpp"
+
+void LogOutput(int level, const std::string& message, const std::string& pluginGUID) {
     static const std::string level_strings[6] = { "[FATAL]: ", "[ERROR]: ", "[WARN]: ", "[INFO]: ", "[DEBUG]: ", "[TRACE]: " };
     bool isError = level < 2;
 

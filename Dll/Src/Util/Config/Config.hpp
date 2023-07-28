@@ -12,21 +12,17 @@ namespace Config {
 	void Save(PluginConfig& config);
 
 	template<typename T>
-	inline T Bind(toml::table& config, std::string section, std::string key, T defaultValue) {
-		// Check if the section exists
-		if (!config.contains(section)) {
-			// Create the section
-			config[section] = toml::table();
-		}
-
+	inline std::optional<T> Bind(toml::table& config, std::string section, std::string key, T defaultValue) {
 		// Check if the key exists
-		if (!config[section].contains(key)) {
-			// Create the key
-			config[section][key] = defaultValue;
-		}
+		//if (!config[section][key].is<T>()) {
+			// Set the default value
+		//	config.insert_or_assign(section, toml::table{ { key, defaultValue } });
+		//}
 
 		// Return the value
-		return config[section][key].value<T>();
+		//return config[section][key].value<T>();
+
+		return std::optional<T>();
 	}
 
 	template<typename T>

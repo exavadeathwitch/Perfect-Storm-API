@@ -1,6 +1,5 @@
 #pragma once
 
-#include <Windows.h>
 #include <string>
 #include <memory>
 
@@ -20,13 +19,13 @@ typedef enum LogLevel {
 
 void LogOutput(LogLevel level, const std::string& message, const std::string& pluginGUID);
 
-#define LOG_FATAL(pluginGUID, message) LogOutput(LOG_LEVEL_FATAL, pluginGUID, message);
+#define LOG_FATAL(pluginGUID, message) LogOutput(LOG_LEVEL_FATAL, message, pluginGUID);
 
-#define LOG_ERROR(pluginGUID, message) LogOutput(LOG_LEVEL_ERROR, pluginGUID, message);
+#define LOG_ERROR(pluginGUID, message) LogOutput(LOG_LEVEL_ERROR, message, pluginGUID);
 
 #if LOG_WARN_ENABLED == 1
 // Logs a warning-level message
-#define LOG_WARN(pluginGUID, message) LogOutput(LOG_LEVEL_WARN, pluginGUID, message);
+#define LOG_WARN(pluginGUID, message) LogOutput(LOG_LEVEL_WARN, message, pluginGUID);
 #else
 // Does nothing when LOG_WARN_ENABLED != 1
 #define LOG_WARN(pluginGUID, message)
@@ -34,7 +33,7 @@ void LogOutput(LogLevel level, const std::string& message, const std::string& pl
 
 #if LOG_INFO_ENABLED == 1
 // Logs a info-level message
-#define LOG_INFO(pluginGUID, message) LogOutput(LOG_LEVEL_INFO, pluginGUID, message);
+#define LOG_INFO(pluginGUID, message) LogOutput(LOG_LEVEL_INFO, message, pluginGUID);
 #else
 // Does nothing when LOG_INFO_ENABLED != 1
 #define LOG_INFO(pluginGUID, message)
@@ -42,7 +41,7 @@ void LogOutput(LogLevel level, const std::string& message, const std::string& pl
 
 #if LOG_DEBUG_ENABLED == 1
 // Logs a info-level message
-#define LOG_DEBUG(pluginGUID, message) LogOutput(LOG_LEVEL_DEBUG, pluginGUID, message);
+#define LOG_DEBUG(pluginGUID, message) LogOutput(LOG_LEVEL_DEBUG, message, pluginGUID);
 #else
 // Does nothing when LOG_DEBUG_ENABLED != 1
 #define LOG_DEBUG(pluginGUID, message)
@@ -50,7 +49,7 @@ void LogOutput(LogLevel level, const std::string& message, const std::string& pl
 
 #if LOG_TRACE_ENABLED == 1
 // Logs a info-level message
-#define LOG_TRACE(pluginGUID, message) LogOutput(LOG_LEVEL_TRACE, pluginGUID, message);
+#define LOG_TRACE(pluginGUID, message) LogOutput(LOG_LEVEL_TRACE, message, pluginGUID);
 #else
 // Does nothing when LOG_TRACE_ENABLED != 1
 #define LOG_TRACE(pluginGUID, message)

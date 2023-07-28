@@ -2,6 +2,8 @@
 
 #include <Windows.h>
 
+#include "pch.hpp"
+
 #include "../Util/Config/Config.hpp"
 #include "../Util/Logging/Logger.h"
 
@@ -23,22 +25,22 @@ std::string GetPluginGUID() {
 
 std::string Storm_GetConfigString(std::string section, std::string key, std::string defaultValue) {
 	Config::PluginConfig config = Config::GetPluginsConfig(GetPluginGUID());
-	return Config::Bind<std::string>(config.config, section, key, defaultValue);
+	return Config::Bind<std::string>(config.config, section, key, defaultValue).value();
 }
 
 int Storm_GetConfigInt(std::string section, std::string key, int defaultValue) {
 	Config::PluginConfig config = Config::GetPluginsConfig(GetPluginGUID());
-	return Config::Bind<int>(config.config, section, key, defaultValue);
+	return Config::Bind<int>(config.config, section, key, defaultValue).value();
 }
 
 float Storm_GetConfigFloat(std::string section, std::string key, float defaultValue) {
 	Config::PluginConfig config = Config::GetPluginsConfig(GetPluginGUID());
-	return Config::Bind<float>(config.config, section, key, defaultValue);
+	return Config::Bind<float>(config.config, section, key, defaultValue).value();
 }
 
 bool Storm_GetConfigBool(std::string section, std::string key, bool defaultValue) {
 	Config::PluginConfig config = Config::GetPluginsConfig(GetPluginGUID());
-	return Config::Bind<bool>(config.config, section, key, defaultValue);
+	return Config::Bind<bool>(config.config, section, key, defaultValue).value();
 }
 
 // Logging

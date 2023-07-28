@@ -40,7 +40,6 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Public|x64'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
-    <PlatformToolset>v143</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
@@ -262,9 +261,13 @@
     <ClInclude Include="Src\Core\Settings\Settings.hpp" />
     <ClInclude Include="Src\Core\Zealot\API_Console.h" />
     <ClInclude Include="Src\Core\Zealot\Zealot.hpp" />
+    <ClInclude Include="Src\Exports\StormAPI.h" />
     <ClInclude Include="src\pch.hpp" />
+    <ClInclude Include="Src\Util\Config\Config.hpp" />
+    <ClInclude Include="Src\Util\Config\toml.hpp" />
     <ClInclude Include="src\util\console\Console.hpp" />
     <ClInclude Include="src\Util\Hook\HookManager.hpp" />
+    <ClInclude Include="Src\Util\Logging\Logger.h" />
     <ClInclude Include="src\Util\Memory\Address.hpp" />
     <ClInclude Include="Src\Util\Memory\Memory.hpp" />
     <ClInclude Include="Src\Util\Memory\Modify.hpp" />
@@ -302,6 +305,7 @@
     <ClCompile Include="Src\Core\SDK\Game.cpp" />
     <ClCompile Include="Src\Core\Settings\Settings.cpp" />
     <ClCompile Include="Src\Core\Zealot\API_Console.cpp" />
+    <ClCompile Include="Src\Exports\StormAPI.cpp" />
     <ClCompile Include="src\pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Public|x64'">Create</PrecompiledHeader>
@@ -312,6 +316,7 @@
     <ClCompile Include="Src\Util\Config\Config.cpp" />
     <ClCompile Include="src\util\console\Console.cpp" />
     <ClCompile Include="src\Util\Hook\HookManager.cpp" />
+    <ClCompile Include="Src\Util\Logging\Logger.cpp" />
     <ClCompile Include="Src\Util\Process\Module.cpp" />
     <ClCompile Include="Thirdparty\imguistyles\imgui_styles.cpp" />
   </ItemGroup>

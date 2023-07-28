@@ -1,0 +1,84 @@
+﻿  Assembling Dll.asm...
+  pch.cpp
+C:\Users\katedra\Desktop\Perfect-Storm-API\Dll\src\Core\Zealot\Zealot.hpp(75,11): warning C4018: "<": niezgodność typu ze znakiem/bez znaku
+C:\Users\katedra\Desktop\Perfect-Storm-API\Dll\src\Core\ModLoader\ModLoader.hpp(39,35): warning C4101: "ex": lokalna zmienna, do której nie istnieje odwołanie
+C:\Users\katedra\Desktop\Perfect-Storm-API\Dll\src\Core\Language\Language.hpp(58,4): warning C4267: "return": konwersja z "size_t" do "int", możliwa utrata danych
+C:\Users\katedra\Desktop\Perfect-Storm-API\Dll\src\Core\MenuMessage\MenuMessage.hpp(58,1): warning C4267: "=": konwersja z "size_t" do "unsigned int", możliwa utrata danych
+C:\Users\katedra\Desktop\Perfect-Storm-API\Dll\src\Core\ModMenu\ModMenu.hpp(95,23): warning C4018: "<": niezgodność typu ze znakiem/bez znaku
+C:\Users\katedra\Desktop\Perfect-Storm-API\Dll\src\Core\ModMenu\ModMenu.hpp(100,23): warning C4018: "<": niezgodność typu ze znakiem/bez znaku
+C:\Users\katedra\Desktop\Perfect-Storm-API\Dll\src\Core\ModMenu\ModMenu.hpp(141,1): warning C4267: "=": konwersja z "size_t" do "int", możliwa utrata danych
+C:\Users\katedra\Desktop\Perfect-Storm-API\Dll\src\Core\ModMenu\ModMenu.hpp(163,1): warning C4267: "=": konwersja z "size_t" do "int", możliwa utrata danych
+  ModConsole.cpp
+  Entry.cpp
+C:\Users\katedra\Desktop\Perfect-Storm-API\Dll\src\Core\Entry.cpp(87,21): warning C4018: "<": niezgodność typu ze znakiem/bez znaku
+C:\Users\katedra\Desktop\Perfect-Storm-API\Dll\src\Core\Entry.cpp(92,21): warning C4018: "<": niezgodność typu ze znakiem/bez znaku
+  Present.cpp
+C:\Users\katedra\Desktop\Perfect-Storm-API\Dll\Src\Core\Hooks\Functions\D3D11\Present.cpp(36,14): warning C4244: "=": konwersja z "UINT" do "FLOAT", możliwa utrata danych
+C:\Users\katedra\Desktop\Perfect-Storm-API\Dll\Src\Core\Hooks\Functions\D3D11\Present.cpp(37,15): warning C4244: "=": konwersja z "UINT" do "FLOAT", możliwa utrata danych
+  WndProc.cpp
+  Hooks.cpp
+  Game.cpp
+  Settings.cpp
+  API_Console.cpp
+C:\Users\katedra\Desktop\Perfect-Storm-API\Dll\Src\Core\Zealot\API_Console.cpp(117,30): warning C4267: "=": konwersja z "size_t" do "int", możliwa utrata danych
+  Config.cpp
+C:\Users\katedra\Desktop\Perfect-Storm-API\Dll\Src\Util\Config\Config.cpp(1): warning C4603: TOML_IMPLEMENTATION: makro jest niezdefiniowane lub definicja różni się po użyciu prekompilowanego nagłówka
+C:\Users\katedra\Desktop\Perfect-Storm-API\Dll\Src\Util\Config\Config.cpp(1): message : Dodaj makro do prekompilowanego nagłówka, zamiast definiować go w tym miejscu
+C:\Users\katedra\Desktop\Perfect-Storm-API\Dll\Src\Util\Config\Config.cpp(2,1): message : użyj prekompilowanego nagłówka
+  Console.cpp
+  HookManager.cpp
+  Module.cpp
+  imgui_styles.cpp
+C:\Users\katedra\Desktop\Perfect-Storm-API\Dll\Thirdparty\imguistyles\imgui_styles.cpp(49,13): error C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\katedra\Desktop\Perfect-Storm-API\Dll\Thirdparty\imguistyles\imgui_styles.cpp(141,2): warning C4244: "=": konwersja z "double" do "float", możliwa utrata danych
+C:\Users\katedra\Desktop\Perfect-Storm-API\Dll\Thirdparty\imguistyles\imgui_styles.cpp(142,2): warning C4244: "=": konwersja z "double" do "float", możliwa utrata danych
+C:\Users\katedra\Desktop\Perfect-Storm-API\Dll\Thirdparty\imguistyles\imgui_styles.cpp(143,2): warning C4244: "=": konwersja z "double" do "float", możliwa utrata danych
+C:\Users\katedra\Desktop\Perfect-Storm-API\Dll\Thirdparty\imguistyles\imgui_styles.cpp(144,2): warning C4244: "=": konwersja z "double" do "float", możliwa utrata danych
+C:\Users\katedra\Desktop\Perfect-Storm-API\Dll\Thirdparty\imguistyles\imgui_styles.cpp(145,2): warning C4244: "=": konwersja z "double" do "float", możliwa utrata danych
+C:\Users\katedra\Desktop\Perfect-Storm-API\Dll\Thirdparty\imguistyles\imgui_styles.cpp(146,2): warning C4244: "=": konwersja z "double" do "float", możliwa utrata danych
+C:\Users\katedra\Desktop\Perfect-Storm-API\Dll\Thirdparty\imguistyles\imgui_styles.cpp(147,2): warning C4244: "=": konwersja z "double" do "float", możliwa utrata danych
+C:\Users\katedra\Desktop\Perfect-Storm-API\Dll\Thirdparty\imguistyles\imgui_styles.cpp(148,2): warning C4244: "=": konwersja z "double" do "float", możliwa utrata danych
+C:\Users\katedra\Desktop\Perfect-Storm-API\Dll\Thirdparty\imguistyles\imgui_styles.cpp(149,2): warning C4244: "=": konwersja z "double" do "float", możliwa utrata danych
+C:\Users\katedra\Desktop\Perfect-Storm-API\Dll\Thirdparty\imguistyles\imgui_styles.cpp(150,2): warning C4244: "=": konwersja z "double" do "float", możliwa utrata danych
+C:\Users\katedra\Desktop\Perfect-Storm-API\Dll\Thirdparty\imguistyles\imgui_styles.cpp(151,2): warning C4244: "=": konwersja z "double" do "float", możliwa utrata danych
+C:\Users\katedra\Desktop\Perfect-Storm-API\Dll\Thirdparty\imguistyles\imgui_styles.cpp(152,2): warning C4244: "=": konwersja z "double" do "float", możliwa utrata danych
+C:\Users\katedra\Desktop\Perfect-Storm-API\Dll\Thirdparty\imguistyles\imgui_styles.cpp(153,2): warning C4244: "=": konwersja z "double" do "float", możliwa utrata danych
+C:\Users\katedra\Desktop\Perfect-Storm-API\Dll\Thirdparty\imguistyles\imgui_styles.cpp(154,2): warning C4244: "=": konwersja z "double" do "float", możliwa utrata danych
+C:\Users\katedra\Desktop\Perfect-Storm-API\Dll\Thirdparty\imguistyles\imgui_styles.cpp(155,2): warning C4244: "=": konwersja z "double" do "float", możliwa utrata danych
+C:\Users\katedra\Desktop\Perfect-Storm-API\Dll\Thirdparty\imguistyles\imgui_styles.cpp(156,2): warning C4244: "=": konwersja z "double" do "float", możliwa utrata danych
+C:\Users\katedra\Desktop\Perfect-Storm-API\Dll\Thirdparty\imguistyles\imgui_styles.cpp(157,2): warning C4244: "=": konwersja z "double" do "float", możliwa utrata danych
+C:\Users\katedra\Desktop\Perfect-Storm-API\Dll\Thirdparty\imguistyles\imgui_styles.cpp(158,2): warning C4244: "=": konwersja z "double" do "float", możliwa utrata danych
+C:\Users\katedra\Desktop\Perfect-Storm-API\Dll\Thirdparty\imguistyles\imgui_styles.cpp(159,2): warning C4244: "=": konwersja z "double" do "float", możliwa utrata danych
+C:\Users\katedra\Desktop\Perfect-Storm-API\Dll\Thirdparty\imguistyles\imgui_styles.cpp(160,2): warning C4244: "=": konwersja z "double" do "float", możliwa utrata danych
+C:\Users\katedra\Desktop\Perfect-Storm-API\Dll\Thirdparty\imguistyles\imgui_styles.cpp(161,2): warning C4244: "=": konwersja z "double" do "float", możliwa utrata danych
+C:\Users\katedra\Desktop\Perfect-Storm-API\Dll\Thirdparty\imguistyles\imgui_styles.cpp(162,2): warning C4244: "=": konwersja z "double" do "float", możliwa utrata danych
+C:\Users\katedra\Desktop\Perfect-Storm-API\Dll\Thirdparty\imguistyles\imgui_styles.cpp(207,2): warning C4244: "=": konwersja z "double" do "float", możliwa utrata danych
+C:\Users\katedra\Desktop\Perfect-Storm-API\Dll\Thirdparty\imguistyles\imgui_styles.cpp(208,2): warning C4244: "=": konwersja z "double" do "float", możliwa utrata danych
+C:\Users\katedra\Desktop\Perfect-Storm-API\Dll\Thirdparty\imguistyles\imgui_styles.cpp(209,2): warning C4244: "=": konwersja z "double" do "float", możliwa utrata danych
+C:\Users\katedra\Desktop\Perfect-Storm-API\Dll\Thirdparty\imguistyles\imgui_styles.cpp(210,2): warning C4244: "=": konwersja z "double" do "float", możliwa utrata danych
+C:\Users\katedra\Desktop\Perfect-Storm-API\Dll\Thirdparty\imguistyles\imgui_styles.cpp(211,2): warning C4244: "=": konwersja z "double" do "float", możliwa utrata danych
+C:\Users\katedra\Desktop\Perfect-Storm-API\Dll\Thirdparty\imguistyles\imgui_styles.cpp(212,2): warning C4244: "=": konwersja z "double" do "float", możliwa utrata danych
+C:\Users\katedra\Desktop\Perfect-Storm-API\Dll\Thirdparty\imguistyles\imgui_styles.cpp(213,2): warning C4244: "=": konwersja z "double" do "float", możliwa utrata danych
+C:\Users\katedra\Desktop\Perfect-Storm-API\Dll\Thirdparty\imguistyles\imgui_styles.cpp(214,2): warning C4244: "=": konwersja z "double" do "float", możliwa utrata danych
+C:\Users\katedra\Desktop\Perfect-Storm-API\Dll\Thirdparty\imguistyles\imgui_styles.cpp(215,2): warning C4244: "=": konwersja z "double" do "float", możliwa utrata danych
+C:\Users\katedra\Desktop\Perfect-Storm-API\Dll\Thirdparty\imguistyles\imgui_styles.cpp(216,2): warning C4244: "=": konwersja z "double" do "float", możliwa utrata danych
+C:\Users\katedra\Desktop\Perfect-Storm-API\Dll\Thirdparty\imguistyles\imgui_styles.cpp(217,2): warning C4244: "=": konwersja z "double" do "float", możliwa utrata danych
+C:\Users\katedra\Desktop\Perfect-Storm-API\Dll\Thirdparty\imguistyles\imgui_styles.cpp(218,2): warning C4244: "=": konwersja z "double" do "float", możliwa utrata danych
+C:\Users\katedra\Desktop\Perfect-Storm-API\Dll\Thirdparty\imguistyles\imgui_styles.cpp(207,2): error C4996: 'strncpy': This function or variable may be unsafe. Consider using strncpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\katedra\Desktop\Perfect-Storm-API\Dll\Thirdparty\imguistyles\imgui_styles.cpp(208,2): error C4996: 'strncpy': This function or variable may be unsafe. Consider using strncpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\katedra\Desktop\Perfect-Storm-API\Dll\Thirdparty\imguistyles\imgui_styles.cpp(209,2): error C4996: 'strncpy': This function or variable may be unsafe. Consider using strncpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\katedra\Desktop\Perfect-Storm-API\Dll\Thirdparty\imguistyles\imgui_styles.cpp(210,2): error C4996: 'strncpy': This function or variable may be unsafe. Consider using strncpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\katedra\Desktop\Perfect-Storm-API\Dll\Thirdparty\imguistyles\imgui_styles.cpp(211,2): error C4996: 'strncpy': This function or variable may be unsafe. Consider using strncpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\katedra\Desktop\Perfect-Storm-API\Dll\Thirdparty\imguistyles\imgui_styles.cpp(212,2): error C4996: 'strncpy': This function or variable may be unsafe. Consider using strncpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\katedra\Desktop\Perfect-Storm-API\Dll\Thirdparty\imguistyles\imgui_styles.cpp(213,2): error C4996: 'strncpy': This function or variable may be unsafe. Consider using strncpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\katedra\Desktop\Perfect-Storm-API\Dll\Thirdparty\imguistyles\imgui_styles.cpp(214,2): error C4996: 'strncpy': This function or variable may be unsafe. Consider using strncpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\katedra\Desktop\Perfect-Storm-API\Dll\Thirdparty\imguistyles\imgui_styles.cpp(215,2): error C4996: 'strncpy': This function or variable may be unsafe. Consider using strncpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\katedra\Desktop\Perfect-Storm-API\Dll\Thirdparty\imguistyles\imgui_styles.cpp(216,2): error C4996: 'strncpy': This function or variable may be unsafe. Consider using strncpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\katedra\Desktop\Perfect-Storm-API\Dll\Thirdparty\imguistyles\imgui_styles.cpp(217,2): error C4996: 'strncpy': This function or variable may be unsafe. Consider using strncpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\katedra\Desktop\Perfect-Storm-API\Dll\Thirdparty\imguistyles\imgui_styles.cpp(218,2): error C4996: 'strncpy': This function or variable may be unsafe. Consider using strncpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\katedra\Desktop\Perfect-Storm-API\Dll\Thirdparty\imguistyles\imgui_styles.cpp(226,8): error C4996: 'sscanf': This function or variable may be unsafe. Consider using sscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\katedra\Desktop\Perfect-Storm-API\Dll\Thirdparty\imguistyles\imgui_styles.cpp(413,22): warning C4267: "=": konwersja z "size_t" do "int", możliwa utrata danych
+C:\Users\katedra\Desktop\Perfect-Storm-API\Dll\Thirdparty\imguistyles\imgui_styles.cpp(424,2): error C4996: 'strncpy': This function or variable may be unsafe. Consider using strncpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\katedra\Desktop\Perfect-Storm-API\Dll\Thirdparty\imguistyles\imgui_styles.cpp(463,33): warning C4267: "=": konwersja z "size_t" do "int", możliwa utrata danych
+C:\Users\katedra\Desktop\Perfect-Storm-API\Dll\Thirdparty\imguistyles\imgui_styles.cpp(449,7): error C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\katedra\Desktop\Perfect-Storm-API\Dll\Thirdparty\imguistyles\imgui_styles.cpp(533,2): error C4996: 'sscanf': This function or variable may be unsafe. Consider using sscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.

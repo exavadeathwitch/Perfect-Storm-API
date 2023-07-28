@@ -1,4 +1,4 @@
-#define TOML_IMPLEMENTATION
+#include "pch.hpp"
 #include "Config.hpp"
 
 #include <filesystem>
