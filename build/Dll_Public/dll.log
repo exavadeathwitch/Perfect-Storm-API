@@ -1,1 +1,14 @@
+<<<<<<< HEAD
 ﻿C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Microsoft\VC\v170\Microsoft.CppBuild.targets(442,5): error MSB8020: The build tools for Visual Studio 2010 (Platform Toolset = 'v100') cannot be found. To build using the v100 build tools, please install Visual Studio 2010 build tools.  Alternatively, you may upgrade to the current Visual Studio tools by selecting the Project menu or right-click the solution, and then selecting "Retarget solution".
+=======
+﻿  Entry.cpp
+C:\Users\Exavadeathwitch\Documents\GitHub\Perfect-Storm-API\Dll\src\Core\Entry.cpp(88,21): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Exavadeathwitch\Documents\GitHub\Perfect-Storm-API\Dll\src\Core\Entry.cpp(93,21): warning C4018: '<': signed/unsigned mismatch
+     Creating library C:\Users\Exavadeathwitch\Documents\GitHub\Perfect-Storm-API\bin\Dll_Public\d3dcompiler_47.lib and object C:\Users\Exavadeathwitch\Documents\GitHub\Perfect-Storm-API\bin\Dll_Public\d3dcompiler_47.exp
+  Generating code
+  2 of 5634 functions (<0.1%) were compiled, the rest were copied from previous compilation.
+    0 functions were new in current compilation
+    37 functions had inline decision re-evaluated but remain unchanged
+  Finished generating code
+  dll.vcxproj -> C:\Users\Exavadeathwitch\Documents\GitHub\Perfect-Storm-API\bin\Dll_Public\d3dcompiler_47.dll
+>>>>>>> a38da5ffe29c3d532251f0bef24d63e551749dd6

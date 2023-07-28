@@ -1,14 +1,17 @@
 #pragma once
 
 #include "Core/Mod/Mod.hpp"
+#include "Core/Globals.hpp"
 #include "Util/Util.hpp"
 #include "json/single_include/json.hpp"
 #include "Core/Zealot/Zealot.hpp"
 #include "Core/Zealot/API_Console.h"
+#include "Core/Settings/Settings.hpp"
 #include <atlstr.h>
 class ModLoader {
 	
 	public:
+		__int64 sa;
 		std::vector<Mod> mods;
 		ModLoader() {
 
@@ -193,11 +196,11 @@ class ModLoader {
 								std::string pluginname = std::string(mods[x].name);
 								mods[x].dll = hGetProcIDDLL;
 								// Get InitializePlugin
-								typedef void(__stdcall* initfunct)(__int64 uintptr_t);
+								typedef void(__stdcall* initfunct)(__int64 uintptr_t, __int64 settingsaddr);
 								initfunct f = (initfunct)GetProcAddress(hGetProcIDDLL, "modEntry");
 								uintptr_t mb = (uintptr_t)GetModuleHandle(NULL) + 0xC00;
 								if (f) {
-									f(mb);
+									f(mb, sa);
 								}
 								else {
 									std::string message = "modEntry could not be loaded for the plugin " + pluginname + ".";
