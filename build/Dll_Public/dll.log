@@ -1,12 +1,12 @@
 ﻿  pch.cpp
 C:\Users\Exavadeathwitch\Documents\GitHub\Perfect-Storm-API\Dll\src\Core\Zealot\Zealot.hpp(75,11): warning C4018: '<': signed/unsigned mismatch
-C:\Users\Exavadeathwitch\Documents\GitHub\Perfect-Storm-API\Dll\src\Core\ModLoader\ModLoader.hpp(39,35): warning C4101: 'ex': unreferenced local variable
+C:\Users\Exavadeathwitch\Documents\GitHub\Perfect-Storm-API\Dll\src\Core\ModLoader\ModLoader.hpp(40,35): warning C4101: 'ex': unreferenced local variable
 C:\Users\Exavadeathwitch\Documents\GitHub\Perfect-Storm-API\Dll\src\Core\Language\Language.hpp(58,1): warning C4267: 'return': conversion from 'size_t' to 'int', possible loss of data
 C:\Users\Exavadeathwitch\Documents\GitHub\Perfect-Storm-API\Dll\src\Core\MenuMessage\MenuMessage.hpp(58,1): warning C4267: '=': conversion from 'size_t' to 'unsigned int', possible loss of data
-C:\Users\Exavadeathwitch\Documents\GitHub\Perfect-Storm-API\Dll\src\Core\ModMenu\ModMenu.hpp(95,23): warning C4018: '<': signed/unsigned mismatch
-C:\Users\Exavadeathwitch\Documents\GitHub\Perfect-Storm-API\Dll\src\Core\ModMenu\ModMenu.hpp(100,23): warning C4018: '<': signed/unsigned mismatch
-C:\Users\Exavadeathwitch\Documents\GitHub\Perfect-Storm-API\Dll\src\Core\ModMenu\ModMenu.hpp(141,1): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
-C:\Users\Exavadeathwitch\Documents\GitHub\Perfect-Storm-API\Dll\src\Core\ModMenu\ModMenu.hpp(163,1): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\Exavadeathwitch\Documents\GitHub\Perfect-Storm-API\Dll\src\Core\ModMenu\ModMenu.hpp(96,23): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Exavadeathwitch\Documents\GitHub\Perfect-Storm-API\Dll\src\Core\ModMenu\ModMenu.hpp(101,23): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Exavadeathwitch\Documents\GitHub\Perfect-Storm-API\Dll\src\Core\ModMenu\ModMenu.hpp(148,1): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\Exavadeathwitch\Documents\GitHub\Perfect-Storm-API\Dll\src\Core\ModMenu\ModMenu.hpp(170,1): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
   Present.cpp
 C:\Users\Exavadeathwitch\Documents\GitHub\Perfect-Storm-API\Dll\Src\Core\Hooks\Functions\D3D11\Present.cpp(36,14): warning C4244: '=': conversion from 'UINT' to 'FLOAT', possible loss of data
 C:\Users\Exavadeathwitch\Documents\GitHub\Perfect-Storm-API\Dll\Src\Core\Hooks\Functions\D3D11\Present.cpp(37,15): warning C4244: '=': conversion from 'UINT' to 'FLOAT', possible loss of data
@@ -62,8 +62,8 @@ C:\Users\Exavadeathwitch\Documents\GitHub\Perfect-Storm-API\Dll\src\Core\Entry.c
   Console.cpp
      Creating library C:\Users\Exavadeathwitch\Documents\GitHub\Perfect-Storm-API\bin\Dll_Public\d3dcompiler_47.lib and object C:\Users\Exavadeathwitch\Documents\GitHub\Perfect-Storm-API\bin\Dll_Public\d3dcompiler_47.exp
   Generating code
-  6 of 5634 functions ( 0.1%) were compiled, the rest were copied from previous compilation.
+  10 of 5624 functions ( 0.2%) were compiled, the rest were copied from previous compilation.
     0 functions were new in current compilation
-    51 functions had inline decision re-evaluated but remain unchanged
+    47 functions had inline decision re-evaluated but remain unchanged
   Finished generating code
   dll.vcxproj -> C:\Users\Exavadeathwitch\Documents\GitHub\Perfect-Storm-API\bin\Dll_Public\d3dcompiler_47.dll

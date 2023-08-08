@@ -1,5 +1,6 @@
 #pragma once
 
+#include "Core/Globals.hpp"
 #include "Core/Mod/Mod.hpp"
 #include "Util/Util.hpp"
 #include "json/single_include/json.hpp"
@@ -13,7 +14,7 @@ class ModLoader {
 		ModLoader() {
 
 		}
-		void LoadMods() {
+		void LoadMods(bool* enableConsole, bool* convertMessages, std::string* language, int* maxmodspercolumn) {
 			std::string directory = (util::getModPath() / "mods").generic_string();
 			//Load All Mods
 			for (const auto& entry : std::filesystem::directory_iterator(directory))
@@ -96,6 +97,9 @@ class ModLoader {
 						LPCWSTR wideString = temp.c_str();
 						MessageBox(0, wideString, L"Storm API", MB_OK);
 						continue;
+					}
+					else {
+						modAuth = modAuth.substr(0, modAuth.size() - 1);
 					}
 					std::cout << modName << " has been loaded." << std::endl;
 					mods.push_back(Mod(modName, modDesc, entry.path().string(), modAuth, 100, 0, entry.path().string()));
@@ -193,12 +197,11 @@ class ModLoader {
 								std::string pluginname = std::string(mods[x].name);
 								mods[x].dll = hGetProcIDDLL;
 								// Get InitializePlugin
-								typedef void(__stdcall* initfunct)(__int64 uintptr_t);
+								typedef void(__stdcall* initfunct)(uintptr_t moduleBase, bool* enableConsole, bool* convertMessages, std::string* language, int* maxmodspercolumn);
 								initfunct f = (initfunct)GetProcAddress(hGetProcIDDLL, "modEntry");
 								uintptr_t mb = (uintptr_t)GetModuleHandle(NULL) + 0xC00;
-								if (f) {
-									f(mb);
-								}
+								if (f)
+									f(mb, enableConsole, convertMessages, language, maxmodspercolumn);
 								else {
 									std::string message = "modEntry could not be loaded for the plugin " + pluginname + ".";
 									std::wstring temp = std::wstring(message.begin(), message.end());

@@ -108,6 +108,10 @@ class ModMenu {
 		ImGui::SameLine(); widget::HelpMarker(debugmessageset.getMessage(6).getconverted().c_str());
 		if (ImGui::InputInt(debugmessageset.getMessage(7).getconverted().c_str(), &maxMods))
 			settings::updateSettings();
+		if (maxMods < 2)
+			maxMods = 2;
+		if (maxMods > 10)
+			maxMods = 10;
 		ImGui::SameLine(); widget::HelpMarker(debugmessageset.getMessage(8).getconverted().c_str());
 		ImGui::Text("\n");
 		ImGui::Text(debugmessageset.getMessage(3).getconverted().c_str());
@@ -116,8 +120,8 @@ class ModMenu {
 		ImGui::End();
 	}
 	void runMenu() {
-		if (maxMods < 1)
-			maxMods = 1;
+		if (maxMods < 2)
+			maxMods = 2;
 		if (maxMods > 10)
 			maxMods = 10;
 		this->runModCredits();
@@ -131,40 +135,41 @@ class ModMenu {
 			if (ImGui::MenuItem(debugmessageset.getMessage(0).getconverted().c_str(), "")) { this->toggleMenu(); }
 			if (ImGui::MenuItem(debugmessageset.getMessage(1).getconverted().c_str(), "")) { this->toggleSettingsMenu(); }
 			ImGui::EndMenu();
-			int multiplycount = 0;
-			int modcount = 1;
-			std::string modstring = "";
-			if (imguimods.size() == 0)
-				return;
-			int modsize = this->maxMods;
+		}
+
+		int multiplycount = 0;
+		int modcount = 1;
+		std::string modstring = "";
+		if (imguimods.size() == 0)
+			return;
+		int modsize = this->maxMods;
+		if (this->imguimods.size() < modsize)
+			modsize = this->imguimods.size();
+		int modstart = 0;
+		while (multiplycount * this->maxMods < imguimods.size()) {
+			int modsran = 0;
+			if (ImGui::BeginMenu((debugmessageset.getMessage(9).getconverted() + modstring).c_str()))
+			{
+				for (int x = modstart; x < this->imguimods.size(); x++) {
+					if (x >= modsize * modcount)
+						break;
+					typedef void(__stdcall* f)();
+					f twv = (f)GetProcAddress(imguimods[x].dll, "toggleWindowValue");
+					if (ImGui::MenuItem(imguimods[x].name.c_str(), ""))
+						twv();
+					modsran++;
+				}
+				ImGui::EndMenu();
+			}
+			modstart += modsize;
+			modcount++;
+			modstring = " " + std::to_string(modcount);
+			multiplycount++;
 			if (this->imguimods.size() < modsize)
 				modsize = this->imguimods.size();
-			int modstart = 0;
-			while (multiplycount * this->maxMods < imguimods.size()) {
-				int modsran = 0;
-				if (ImGui::BeginMenu((debugmessageset.getMessage(9).getconverted().c_str() + modstring).c_str()))
-				{
-					for (int x = modstart; x < this->imguimods.size(); x++) {
-						if (x >= modsize * modcount)
-							break;
-						typedef void(__stdcall* f)();
-						f twv = (f)GetProcAddress(imguimods[x].dll, "toggleWindowValue");
-						if (ImGui::MenuItem(imguimods[x].name.c_str(), ""))
-							twv();
-						modsran++;
-					}
-					ImGui::EndMenu();
-				}
-				modstart += modsize;
-				modcount++;
-				modstring = " " + std::to_string(modcount);
-				multiplycount++;
-				if (this->imguimods.size() < modsize)
-					modsize = this->imguimods.size();
-			}
-			ImGui::EndMainMenuBar();
 		}
-	}
+		ImGui::EndMainMenuBar();
+		}
 	void toggleMenu() {
 		if (ModCredits)
 			ModCredits = false;

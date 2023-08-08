@@ -68,22 +68,22 @@ DWORD __stdcall modEntry(void* const imageBase) {
 	if (!sdk::game::initialize())
 		printf_s("boo\n");
 	settings::onStartup();
-	if (globals::settings->m_ShouldEnableConsole) {
+	if (globals::settings.m_ShouldEnableConsole) {
 		util::console::initialize("Storm API");
 		printf_s("[+] init\n");
 	}
-	globals::modLoader.LoadMods();
+	globals::modLoader.LoadMods(&globals::settings.m_ShouldEnableConsole, &globals::settings.m_ConvertMenuMessages, &globals::settings.m_Language, &globals::settings.m_MaxModsPerColumn);
 	globals::modMenu.initializeModNames(globals::modLoader.mods);
-	globals::modMenu.maxMods = globals::settings->m_MaxModsPerColumn;
-	globals::modMenu.ec = globals::settings->m_ShouldEnableConsole;
-	globals::modMenu.convertmenumessages = globals::settings->m_ConvertMenuMessages;
+	globals::modMenu.maxMods = globals::settings.m_MaxModsPerColumn;
+	globals::modMenu.ec = globals::settings.m_ShouldEnableConsole;
+	globals::modMenu.convertmenumessages = globals::settings.m_ConvertMenuMessages;
 	sdk::game::initializeGameWindow();
     hooks::initialize();
 	printf_s("hooks initialized\n");
-	globals::modMenu.setLang(globals::settings->m_Language);
-	menuSet.setlang(globals::settings->m_Language);
+	globals::modMenu.setLang(globals::settings.m_Language);
+	menuSet.setlang(globals::settings.m_Language);
 	translateAllSets();
-	if (globals::settings->m_ConvertMenuMessages) {
+	if (globals::settings.m_ConvertMenuMessages) {
 		for (int x = 0; x < debugmessageset.size; x++) {
 			debugmessageset.messages[x].convertmessages = true;
 		}

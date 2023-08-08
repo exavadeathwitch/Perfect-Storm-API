@@ -9,10 +9,10 @@
 #include "Core/Globals.hpp"
 namespace settings {
 	void updateSettings() {
-		globals::settings->m_Language = globals::modMenu.langarr[globals::modMenu.langindex];
-		globals::settings->m_ConvertMenuMessages = globals::modMenu.convertmenumessages;
-		globals::settings->m_ShouldEnableConsole = globals::modMenu.ec;
-		globals::settings->m_MaxModsPerColumn = globals::modMenu.maxMods;
+		globals::settings.m_Language = globals::modMenu.langarr[globals::modMenu.langindex];
+		globals::settings.m_ConvertMenuMessages = globals::modMenu.convertmenumessages;
+		globals::settings.m_ShouldEnableConsole = globals::modMenu.ec;
+		globals::settings.m_MaxModsPerColumn = globals::modMenu.maxMods;
 
 	}
 	void onStartup() noexcept {
@@ -46,10 +46,10 @@ namespace settings {
 
 		nlohmann::json settings;
 
-		settings["General"]["Console"] = globals::settings->m_ShouldEnableConsole;
-		settings["General"]["Language"] = globals::settings->m_Language;
-		settings["General"]["MaxModsPerColumn"] = globals::settings->m_MaxModsPerColumn;
-		settings["General"]["ConvertMenuMessages"] = globals::settings->m_ConvertMenuMessages;
+		settings["General"]["Console"] = globals::settings.m_ShouldEnableConsole;
+		settings["General"]["Language"] = globals::settings.m_Language;
+		settings["General"]["MaxModsPerColumn"] = globals::settings.m_MaxModsPerColumn;
+		settings["General"]["ConvertMenuMessages"] = globals::settings.m_ConvertMenuMessages;
 
 		fileOut << settings.dump(1);
 	}
@@ -63,9 +63,9 @@ namespace settings {
 
 		auto parsedJson = nlohmann::json::parse(buffer);
 
-		globals::settings->m_ShouldEnableConsole = parsedJson["General"]["Console"].get<bool>();
-		globals::settings->m_Language = parsedJson["General"]["Language"].get<std::string>();
-		globals::settings->m_MaxModsPerColumn = parsedJson["General"]["MaxModsPerColumn"].get<int>();
-		globals::settings->m_ConvertMenuMessages = parsedJson["General"]["ConvertMenuMessages"].get<bool>();
+		globals::settings.m_ShouldEnableConsole = parsedJson["General"]["Console"].get<bool>();
+		globals::settings.m_Language = parsedJson["General"]["Language"].get<std::string>();
+		globals::settings.m_MaxModsPerColumn = parsedJson["General"]["MaxModsPerColumn"].get<int>();
+		globals::settings.m_ConvertMenuMessages = parsedJson["General"]["ConvertMenuMessages"].get<bool>();
 	}
 }

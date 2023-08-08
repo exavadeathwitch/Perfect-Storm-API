@@ -1,0 +1,13 @@
+﻿  Entry.cpp
+C:\Users\Exavadeathwitch\Documents\GitHub\Storm-API-Plugin\Storm API Plugin\Dll\src\Core\Entry.cpp(48,62): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\Exavadeathwitch\Documents\GitHub\Storm-API-Plugin\Storm API Plugin\Dll\src\Core\Entry.cpp(48,50): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+minhook.x64d.lib(hook.obj) : warning LNK4099: PDB 'minhook.x64d.pdb' was not found with 'minhook.x64d.lib(hook.obj)' or at 'C:\Users\Exavadeathwitch\Documents\GitHub\Perfect-Storm-API\bin\APIDll_Debug\minhook.x64d.pdb'; linking object as if no debug info
+minhook.x64d.lib(buffer.obj) : warning LNK4099: PDB 'minhook.x64d.pdb' was not found with 'minhook.x64d.lib(buffer.obj)' or at 'C:\Users\Exavadeathwitch\Documents\GitHub\Perfect-Storm-API\bin\APIDll_Debug\minhook.x64d.pdb'; linking object as if no debug info
+minhook.x64d.lib(trampoline.obj) : warning LNK4099: PDB 'minhook.x64d.pdb' was not found with 'minhook.x64d.lib(trampoline.obj)' or at 'C:\Users\Exavadeathwitch\Documents\GitHub\Perfect-Storm-API\bin\APIDll_Debug\minhook.x64d.pdb'; linking object as if no debug info
+minhook.x64d.lib(hde64.obj) : warning LNK4099: PDB 'minhook.x64d.pdb' was not found with 'minhook.x64d.lib(hde64.obj)' or at 'C:\Users\Exavadeathwitch\Documents\GitHub\Perfect-Storm-API\bin\APIDll_Debug\minhook.x64d.pdb'; linking object as if no debug info
+imguid.lib(imgui.obj) : warning LNK4099: PDB 'imguid.pdb' was not found with 'imguid.lib(imgui.obj)' or at 'C:\Users\Exavadeathwitch\Documents\GitHub\Perfect-Storm-API\bin\APIDll_Debug\imguid.pdb'; linking object as if no debug info
+imguid.lib(imgui_widgets.obj) : warning LNK4099: PDB 'imguid.pdb' was not found with 'imguid.lib(imgui_widgets.obj)' or at 'C:\Users\Exavadeathwitch\Documents\GitHub\Perfect-Storm-API\bin\APIDll_Debug\imguid.pdb'; linking object as if no debug info
+imguid.lib(imgui_draw.obj) : warning LNK4099: PDB 'imguid.pdb' was not found with 'imguid.lib(imgui_draw.obj)' or at 'C:\Users\Exavadeathwitch\Documents\GitHub\Perfect-Storm-API\bin\APIDll_Debug\imguid.pdb'; linking object as if no debug info
+imguid.lib(imgui_tables.obj) : warning LNK4099: PDB 'imguid.pdb' was not found with 'imguid.lib(imgui_tables.obj)' or at 'C:\Users\Exavadeathwitch\Documents\GitHub\Perfect-Storm-API\bin\APIDll_Debug\imguid.pdb'; linking object as if no debug info
+     Creating library C:\Users\Exavadeathwitch\Documents\GitHub\Perfect-Storm-API\bin\APIDll_Debug\Storm API Plugin.lib and object C:\Users\Exavadeathwitch\Documents\GitHub\Perfect-Storm-API\bin\APIDll_Debug\Storm API Plugin.exp
+  APIDll.vcxproj -> C:\Users\Exavadeathwitch\Documents\GitHub\Perfect-Storm-API\bin\APIDll_Debug\Storm API Plugin.dll

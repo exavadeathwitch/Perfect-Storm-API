@@ -69,6 +69,18 @@ namespace hooks {
 				}
 				ImGui::LoadStyleFrom(util::getImguiStylePath().string().c_str());
 				//globals::modConsole->buildCommands();
+				for (int x = 0; x < globals::modLoader.mods.size(); x++) {
+					typedef void(__stdcall* funct)(uintptr_t* swapChainVtbl, ID3D11Device* device, ID3D11DeviceContext* deviceContext, HWND gameWindow);
+					funct sdkPassthrough = (funct)GetProcAddress(globals::modLoader.mods[x].dll, "sdkPassthrough");
+					switch (globals::modLoader.mods[x].type) {
+					case 0:
+						continue;
+					case 1:
+						if (sdkPassthrough)
+							sdkPassthrough(sdk::game::swapChainVtbl, sdk::game::device, sdk::game::deviceContext, sdk::game::gameWindow);
+						break;
+					}
+				}
 				});
 		}
 		else
