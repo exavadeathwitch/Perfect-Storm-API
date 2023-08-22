@@ -98,6 +98,7 @@
     <OutDir>$(SolutionDir)bin\$(ProjectName)_$(Configuration)\</OutDir>
     <IntDir>$(SolutionDir)\build\$(ProjectName)_$(Configuration)\</IntDir>
     <TargetName>d3dcompiler_47</TargetName>
+    <LibraryPath>C:\Users\Exavadeathwitch\Documents\GitHub\Perfect-Storm-API\Dll\Thirdparty\lib\Release;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
@@ -163,7 +164,7 @@
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.hpp</PrecompiledHeaderFile>
       <LanguageStandard>stdcpplatest</LanguageStandard>
-      <AdditionalIncludeDirectories>$(ProjectDir)src\;$(ProjectDir)Thirdparty\;</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\Exavadeathwitch\Documents\GitHub\Perfect-Storm-API\Dll\Thirdparty\lib\Release;$(ProjectDir)src\;$(ProjectDir)Thirdparty\</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -314,6 +315,13 @@
     <ClCompile Include="src\Util\Hook\HookManager.cpp" />
     <ClCompile Include="Src\Util\Process\Module.cpp" />
     <ClCompile Include="Thirdparty\imguistyles\imgui_styles.cpp" />
+    <ClCompile Include="Thirdparty\imgui\include\imgui.cpp" />
+    <ClCompile Include="Thirdparty\imgui\include\imgui_demo.cpp" />
+    <ClCompile Include="Thirdparty\imgui\include\imgui_draw.cpp" />
+    <ClCompile Include="Thirdparty\imgui\include\imgui_impl_dx11.cpp" />
+    <ClCompile Include="Thirdparty\imgui\include\imgui_impl_win32.cpp" />
+    <ClCompile Include="Thirdparty\imgui\include\imgui_tables.cpp" />
+    <ClCompile Include="Thirdparty\imgui\include\imgui_widgets.cpp" />
   </ItemGroup>
   <ItemGroup>
     <MASM Include="Dll.asm" />

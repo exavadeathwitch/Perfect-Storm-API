@@ -99,7 +99,7 @@ class ModLoader {
 						continue;
 					}
 					else {
-						modAuth = modAuth.substr(0, modAuth.size() - 1);
+						modAuth = modAuth.substr(0, modAuth.size() - 2);
 					}
 					std::cout << modName << " has been loaded." << std::endl;
 					mods.push_back(Mod(modName, modDesc, entry.path().string(), modAuth, 100, 0, entry.path().string()));
