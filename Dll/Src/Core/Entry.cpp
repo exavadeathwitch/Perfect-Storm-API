@@ -57,7 +57,7 @@ DWORD __stdcall modEntry(void* const imageBase) {
 
 	if (!sdk::game::initialize())
 		//std::abort();
-	settings::onStartup();
+	//settings::onStartup();
     hooks::initialize();
 
 	printf_s("hooks initialized\n");

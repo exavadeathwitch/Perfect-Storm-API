@@ -1,0 +1,20 @@
+﻿  Assembling Dll.asm...
+  ModConsole.cpp
+  Entry.cpp
+  Present.cpp
+C:\Users\Exavadeathwitch\Documents\GitHub\Perfect-Storm-API\Dll\Src\Core\Hooks\Functions\D3D11\Present.cpp(32,14): warning C4244: '=': conversion from 'UINT' to 'FLOAT', possible loss of data
+C:\Users\Exavadeathwitch\Documents\GitHub\Perfect-Storm-API\Dll\Src\Core\Hooks\Functions\D3D11\Present.cpp(33,15): warning C4244: '=': conversion from 'UINT' to 'FLOAT', possible loss of data
+  imgui.cpp
+  imgui_demo.cpp
+  imgui_draw.cpp
+  imgui_impl_dx11.cpp
+  imgui_impl_win32.cpp
+  imgui_tables.cpp
+  imgui_widgets.cpp
+  Generating Code...
+minhook.x64d.lib(hook.obj) : warning LNK4099: PDB 'minhook.x64d.pdb' was not found with 'minhook.x64d.lib(hook.obj)' or at 'C:\Users\Exavadeathwitch\Documents\GitHub\Perfect-Storm-API\bin\Dll_Debug\minhook.x64d.pdb'; linking object as if no debug info
+minhook.x64d.lib(buffer.obj) : warning LNK4099: PDB 'minhook.x64d.pdb' was not found with 'minhook.x64d.lib(buffer.obj)' or at 'C:\Users\Exavadeathwitch\Documents\GitHub\Perfect-Storm-API\bin\Dll_Debug\minhook.x64d.pdb'; linking object as if no debug info
+minhook.x64d.lib(trampoline.obj) : warning LNK4099: PDB 'minhook.x64d.pdb' was not found with 'minhook.x64d.lib(trampoline.obj)' or at 'C:\Users\Exavadeathwitch\Documents\GitHub\Perfect-Storm-API\bin\Dll_Debug\minhook.x64d.pdb'; linking object as if no debug info
+minhook.x64d.lib(hde64.obj) : warning LNK4099: PDB 'minhook.x64d.pdb' was not found with 'minhook.x64d.lib(hde64.obj)' or at 'C:\Users\Exavadeathwitch\Documents\GitHub\Perfect-Storm-API\bin\Dll_Debug\minhook.x64d.pdb'; linking object as if no debug info
+     Creating library C:\Users\Exavadeathwitch\Documents\GitHub\Perfect-Storm-API\bin\Dll_Debug\d3dcompiler_47.lib and object C:\Users\Exavadeathwitch\Documents\GitHub\Perfect-Storm-API\bin\Dll_Debug\d3dcompiler_47.exp
+  dll.vcxproj -> C:\Users\Exavadeathwitch\Documents\GitHub\Perfect-Storm-API\bin\Dll_Debug\d3dcompiler_47.dll

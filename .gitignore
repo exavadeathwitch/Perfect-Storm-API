@@ -94,3 +94,4 @@ build/Dll_Public/vc142.pdb
 build/Dll_Public/WndProc.obj
 *.ipch
 *.opendb
+*.pch

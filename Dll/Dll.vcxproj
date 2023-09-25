@@ -299,6 +299,13 @@
     <ClCompile Include="src\util\console\Console.cpp" />
     <ClCompile Include="src\Util\Hook\HookManager.cpp" />
     <ClCompile Include="Src\Util\Process\Module.cpp" />
+    <ClCompile Include="Thirdparty\imgui\include\imgui.cpp" />
+    <ClCompile Include="Thirdparty\imgui\include\imgui_demo.cpp" />
+    <ClCompile Include="Thirdparty\imgui\include\imgui_draw.cpp" />
+    <ClCompile Include="Thirdparty\imgui\include\imgui_impl_dx11.cpp" />
+    <ClCompile Include="Thirdparty\imgui\include\imgui_impl_win32.cpp" />
+    <ClCompile Include="Thirdparty\imgui\include\imgui_tables.cpp" />
+    <ClCompile Include="Thirdparty\imgui\include\imgui_widgets.cpp" />
   </ItemGroup>
   <ItemGroup>
     <MASM Include="Dll.asm" />

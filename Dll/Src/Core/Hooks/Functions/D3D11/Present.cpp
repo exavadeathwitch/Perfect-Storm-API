@@ -74,7 +74,7 @@ namespace hooks {
 
 		//printf_s("shit\n");
 		ImGui::SetNextWindowSize({400, 400}, ImGuiCond_FirstUseEver);
-		globals::modConsole->render();
+		//globals::modConsole->render();
 
 		ImGui::EndFrame();
 		ImGui::Render();
